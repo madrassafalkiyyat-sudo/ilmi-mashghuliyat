@@ -20,7 +20,7 @@
   var SCRIPT_URL = window.ADMISSIONS_SCRIPT_URL || '';
   var WA_NUMBER = window.ADMISSIONS_WHATSAPP_NUMBER || '';
   var WA_GROUP = window.ADMISSIONS_WHATSAPP_GROUP_URL || '';
-  var state = { disc: 'تمام', level: 'تمام', current: null, pk: [], foreign: [], scope: 'pk', section: 'unis' };
+  var state = { disc: 'تمام', level: 'تمام', current: null, pk: [], foreign: [], scope: 'pk', section: null };
   var SECTIONS = [
     ['unis', '🎓 یونیورسٹیز'],
     ['scholarships', '🎓 سکالرشپس'],
@@ -245,18 +245,34 @@
     return h + '</div>';
   }
 
+  /* بڑے اکارڈین بٹن (Mufti 2026-10-29): کھلنے پر پانچوں ڈبے بند ہوتے ہیں —
+     صرف بڑے بٹن نظر آتے ہیں؛ کسی ایک پر کلک ہو تو اسی کے اندر اس کی فہرست
+     کھلتی ہے، دوبارہ کلک پر بند ہو جاتی ہے۔ */
+  var SEC_SUB = {
+    unis: 'ملکی و غیر ملکی یونیورسٹیز — داخلہ معلومات و اپلائی',
+    scholarships: 'سکالرشپس و فلی فنڈڈ کانفرنسز',
+    jobs: 'ملازمتیں و مواقع',
+    calendar: 'ہر یونیورسٹی کا داخلہ صفحہ و شیڈول',
+    tests: 'انٹری ٹیسٹ کی زبان، نوع و مواد'
+  };
+
   function renderSecButtons() {
-    el('adm-sections').innerHTML = SECTIONS.map(function (s) {
-      return chip(s[1], state.section === s[0], "admSection('" + s[0] + "')");
-    }).join('');
+    el('adm-sections').innerHTML = '<div style="display:flex;flex-direction:column;gap:10px">' +
+      SECTIONS.map(function (s) {
+        var open = state.section === s[0];
+        return '<button type="button" onclick="admSection(\'' + s[0] + '\')" style="display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:14px 16px;border-radius:14px;border:1px solid ' + (open ? 'var(--c-gold-500)' : 'var(--c-border)') + ';background:' + (open ? 'var(--c-gold-100)' : 'var(--c-card)') + ';font-family:inherit;cursor:pointer;text-align:right">' +
+          '<span><span style="display:block;font-size:19px;font-weight:bold">' + esc(s[1]) + '</span>' +
+          '<span class="small" style="display:block;margin-top:2px">' + esc(SEC_SUB[s[0]] || '') + '</span></span>' +
+          '<span style="flex:none;font-size:22px">' + (open ? '⌃' : '⌄') + '</span></button>';
+      }).join('') + '</div>';
   }
 
   window.admSection = function (sec) {
-    state.section = sec;
+    state.section = (sec === state.section) ? null : sec;
     renderSecButtons();
     SECTIONS.forEach(function (s) {
       var d = el('adm-sec-' + s[0]);
-      if (d) d.style.display = (s[0] === sec) ? '' : 'none';
+      if (d) d.style.display = (s[0] === state.section) ? '' : 'none';
     });
   };
 
@@ -505,7 +521,7 @@
     renderNewsSections();
     renderCalendar();
     renderTests();
-    admSection('unis');
+    admSection(null);
     fillUniversitySelects();
     if (!SCRIPT_URL) {
       var n1 = el('af-note');
