@@ -20,7 +20,7 @@
   var SCRIPT_URL = window.ADMISSIONS_SCRIPT_URL || '';
   var WA_NUMBER = window.ADMISSIONS_WHATSAPP_NUMBER || '';
   var WA_GROUP = window.ADMISSIONS_WHATSAPP_GROUP_URL || '';
-  var state = { disc: 'تمام', level: 'تمام', current: null, pk: [], foreign: [], scope: 'pk', section: null };
+  var state = { disc: null, level: 'تمام', current: null, pk: [], foreign: [], scope: 'pk', section: null };
   var SECTIONS = [
     ['unis', '🎓 یونیورسٹیز داخلے'],
     ['scholarships', '🎓 سکالرشپس'],
@@ -62,15 +62,20 @@
     return '';
   }
 
+  /* شعبہ وار ترتیب (Mufti 2026-10-29): ملکی/غیر ملکی چننے پر پہلے صرف
+     شعبہ جات کے چھوٹے بٹن نظر آتے ہیں؛ کسی شعبے پر کلک ہو تو اس کی
+     یونیورسٹیز + لیول فلٹر کھلتے ہیں۔ */
   function renderChips() {
     var discs = ['تمام'].concat(DATA.disciplines || []);
     var levels = ['تمام', 'BS', 'MS/MPhil', 'PhD'];
     el('adm-disc').innerHTML = discs.map(function (d) {
       return chip(d, state.disc === d, "admSetDisc('" + d + "')");
     }).join('');
-    el('adm-level').innerHTML = levels.map(function (l) {
+    var showLevel = !!state.disc;
+    el('adm-level').innerHTML = showLevel ? levels.map(function (l) {
       return chip(l, state.level === l, "admSetLevel('" + l + "')");
-    }).join('');
+    }).join('') : '';
+    var lh = el('adm-level-head'); if (lh) lh.style.display = showLevel ? '' : 'none';
   }
 
   function curList() {
@@ -97,17 +102,25 @@
   }
 
   window.admSetScope = function (s) {
-    state.scope = s; renderScope(); renderChips(); renderList();
+    state.scope = s; state.disc = null; state.level = 'تمام';
+    renderScope(); renderChips(); renderList();
   };
 
   function renderList() {
+    if (!state.disc) {
+      el('adm-count').textContent = '';
+      el('adm-list').innerHTML =
+        '<div style="border:1px dashed var(--c-border);border-radius:12px;padding:12px;background:var(--c-card)">' +
+        '<p class="small" style="margin:0">اوپر کسی شعبے پر کلک کریں تو اس کی یونیورسٹیز یہاں کھلیں گی — «تمام» پر کلک کریں تو پوری فہرست کھلے گی۔</p></div>';
+      return;
+    }
     var list = filtered();
     el('adm-count').textContent = list.length + ' یونیورسٹیز ملیں';
     if (!list.length) {
       el('adm-list').innerHTML =
         '<div style="border:1px solid var(--c-border);border-radius:12px;padding:12px;background:var(--c-card)">' +
         '<p style="margin:0"><b>اس انتخاب کی معلومات ابھی شیٹ میں درج نہیں۔</b></p>' +
-        '<p class="small" style="margin:6px 0 0">ڈسپلن یا لیول بدل کر دیکھیں، یا «تمام» چن کر پوری فہرست دیکھیں۔ ' +
+        '<p class="small" style="margin:6px 0 0">شعبہ جات یا لیول بدل کر دیکھیں، یا «تمام» چن کر پوری فہرست دیکھیں۔ ' +
         'فیس/اہلیت کی حتمی تصدیق ہمیشہ یونیورسٹی کی سرکاری ویب سائٹ سے کریں۔</p></div>';
       return;
     }
