@@ -9500,7 +9500,7 @@ window.ADMISSIONS_DATA = {
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
-   "country": "",
+   "country": "پاکستان",
    "sector": "",
    "city": "",
    "level": "BS",
@@ -9529,7 +9529,7 @@ window.ADMISSIONS_DATA = {
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
-   "country": "",
+   "country": "پاکستان",
    "sector": "",
    "city": "",
    "level": "BS",
@@ -9558,7 +9558,7 @@ window.ADMISSIONS_DATA = {
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
-   "country": "",
+   "country": "پاکستان",
    "sector": "",
    "city": "",
    "level": "MS/MPhil",
