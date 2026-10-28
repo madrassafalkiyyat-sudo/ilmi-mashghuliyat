@@ -3316,7 +3316,8 @@ async function doLoginOnline(email, pass){
 }
 function loginErrText(e){
   const c = (e && e.code) || '';
-  if(c.includes('invalid-credential') || c.includes('wrong-password') || c.includes('user-not-found')) return 'ای میل یا پاس ورڈ غلط ہے۔';
+  if(c.includes('no_password_set')) return 'آپ کا ریکارڈ موجود ہے مگر نئی ایپ کے لیے پاس ورڈ ابھی نہیں بنا۔ اوپر والے خانوں میں اپنی پرانی رجسٹرڈ ای میل اور نیا پاس ورڈ (کم از کم 8 حروف) لکھیں، پھر نیچے سنہری بٹن «پہلی بار نئی ایپ میں لاگ ان کریں» دبائیں — اس کے بعد اسی نئے پاس ورڈ سے لاگ ان ہو گا۔';
+  if(c.includes('invalid-credential') || c.includes('wrong-password') || c.includes('user-not-found') || c.includes('bad_credentials')) return 'ای میل یا پاس ورڈ غلط ہے۔ اگر آپ پرانی ایپ کے طالب علم ہیں اور پہلی بار نئی ایپ میں لاگ ان کر رہے ہیں تو پرانا پاس ورڈ کام نہیں کرے گا — اپنی پرانی رجسٹرڈ ای میل اور نیا پاس ورڈ اوپر والے خانوں میں لکھ کر نیچے سنہری بٹن «پہلی بار نئی ایپ میں لاگ ان کریں» دبائیں۔';
   if(c.includes('permission-denied') || c.includes('PERMISSION_DENIED')) return 'ڈیٹا بیس سے رابطہ نہیں ہو سکا — Firestore قوانین ابھی شائع نہیں ہوئے۔ انتظامیہ کو اطلاع کریں۔';
   if(c.includes('network')) return 'انٹرنیٹ کا مسئلہ ہے — کنکشن جانچ کر دوبارہ کوشش کریں۔';
   if(c.includes('too-many-requests')) return 'بہت زیادہ ناکام کوششیں ہو گئی ہیں — کچھ دیر بعد دوبارہ کوشش کریں۔';
