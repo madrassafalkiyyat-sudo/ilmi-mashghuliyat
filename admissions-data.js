@@ -1823,19 +1823,19 @@ window.ADMISSIONS_DATA = {
    ],
    "duration": "4 سال / 2.5 سال / 2 سال (داخلہ کی بنیاد پر)",
    "website": "https://aiou.edu.pk/",
-   "deptLink": "",
+   "deptLink": "https://www.aiou.edu.pk/bs-islamic-studies-general",
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 111 112 468",
    "fields": "BS اسلامک سٹڈیز جنرل؛ BS اسلامک سٹڈیز قرآن و تفسیر؛ BS اسلامک سٹڈیز حدیث و علوم الحدیث؛ BS اسلامک سٹڈیز سیرت سٹڈیز؛ BS اسلامک سٹڈیز دعوت و ارشاد؛ BS اسلامک سٹڈیز بین المذاہب مطالعات؛ BS اسلامک فقہ و قانون — فیس فی سمسٹر: براہ راست 17,900 روپے، BA کی بنیاد پر 20,630 روپے، ADE کی بنیاد پر 17,900–20,630 روپے",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS / Written",
-   "classDays": "",
+   "classDays": "آن لائن ورکشاپ: فی کورس 6 دن (روزانہ 2 گھنٹے)",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "Open Distance Learning",
    "eligibility": "براہ راست: FA/انٹرمیڈیٹ یا مساوی تعلیم؛ BA کی بنیاد پر: BA/BSc یا مساوی تعلیم، کم از کم 45 فیصد نمبر؛ ADE کی بنیاد پر: Associate Degree اسلامک سٹڈیز، کم از کم 50 فیصد نمبر",
    "videoLink": "",
    "contacts": [],
@@ -2150,7 +2150,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "HSSC or equivalent with minimum 50% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2179,7 +2179,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2208,7 +2208,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "As per Advertisement",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2237,7 +2237,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2266,7 +2266,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2295,7 +2295,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2324,7 +2324,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "HSSC or equivalent with minimum 50% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2344,7 +2344,7 @@ window.ADMISSIONS_DATA = {
    "admissionFrequency": "",
    "admissionDates": "",
    "phone": "",
-   "fields": "MS Psychology؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
+   "fields": "MS Psychology؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ MS Psychology — فیس فی سمسٹر 66,322",
    "testLanguage": "Arabic",
    "testType": "MCQS / Written",
    "classDays": "",
@@ -2353,7 +2353,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "BS (4y)/MA/MSc، 60 فیصد نمبر",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2373,7 +2373,7 @@ window.ADMISSIONS_DATA = {
    "admissionFrequency": "",
    "admissionDates": "",
    "phone": "",
-   "fields": "PhD Psychology؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
+   "fields": "PhD Psychology؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ PhD Psychology — فیس فی سمسٹر 74,671",
    "testLanguage": "Arabic",
    "testType": "MCQS / Written",
    "classDays": "",
@@ -2382,7 +2382,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MS (Psychology)، CGPA 3.00/4.00",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2411,7 +2411,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2440,7 +2440,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2469,7 +2469,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2498,7 +2498,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "BA/B.Sc",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2527,7 +2527,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MA/M.Ed/ADE/B.Ed/B.S (4 سالہ) ایجوکیشن سپیشل",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2556,7 +2556,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "متعلقہ مضمون میں MA/MPhil، CGPA 3.0/4.0",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2585,7 +2585,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "FA / F.Sc or equivalent",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2614,7 +2614,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "BS (4 سالہ)/MA اپلائیڈ سائیکالوجی",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2643,7 +2643,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "متعلقہ مضمون میں MA/MPhil، CGPA 3.0/4.0",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2672,7 +2672,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "متعلقہ مضمون میں MA/MPhil، CGPA 3.0/4.0",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2701,7 +2701,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2730,7 +2730,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "F.A./F.Sc./I.Com. or equivalent with minimum 2nd Division",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2759,7 +2759,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Master in Psychology and Applied Psychology with minimum 50% marks in Annual System & 2.5/4.00 CGPA under Semester System, or BS 4-year Applied Psychology/Psychology with minimum 2.5 CGPA",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2788,7 +2788,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "According to the University Policy",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2817,7 +2817,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "M.Phil. Islamic Studies",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2846,7 +2846,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "B.A./B.Sc./ADA/ADS/ADP (for 5th Semester)",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2875,7 +2875,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "All Master/BS (4-Year) Degrees (Science/Arts)",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2904,7 +2904,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MPhil/MS Education، university/HEC criteria",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2933,7 +2933,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "16 years of undergraduate education; 2.20/4.0 CGPA or 53% in Semester System or 45% marks in Annual System",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -2962,7 +2962,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -2991,7 +2991,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3020,7 +3020,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3049,7 +3049,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3078,7 +3078,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3107,7 +3107,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3136,7 +3136,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3165,7 +3165,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3194,7 +3194,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3223,7 +3223,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3252,7 +3252,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3281,7 +3281,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3310,7 +3310,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3339,7 +3339,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "At least 50% marks in HSSC (FA, FSc, ICS, I.Com, D.Com), DAE (1st & 2nd Year) or equivalent",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3368,7 +3368,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3397,7 +3397,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3426,7 +3426,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3455,7 +3455,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3484,7 +3484,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -3503,7 +3503,7 @@ window.ADMISSIONS_DATA = {
    "scholarshipLink": "",
    "admissionFrequency": "",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 111 112 468",
    "fields": "BS Islamic Finance (AD-Based)؛ BS Islamic Finance (BS/BSc / AD Based)",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS / Written",
@@ -3513,7 +3513,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "HSSC/Intermediate/Equivalence with at least second division/C Grade with 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -3532,7 +3532,7 @@ window.ADMISSIONS_DATA = {
    "scholarshipLink": "",
    "admissionFrequency": "",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 111 112 468",
    "fields": "PhD Islamic Studies",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS / Written",
@@ -3542,7 +3542,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "M.Phil Islamic Studies or equivalent in first division or CGPA 3.0; departmental test and interview",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3571,7 +3571,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MPhil/MS or equivalent / 18 years of education with CGPA 3.0/4.0 or 60% annual; valid GAT (Subject) 60% or IUB departmental test 70%",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3600,7 +3600,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MPhil/MS or equivalent / 18 years of education with CGPA 3.0/4.0 or 60% annual; valid GAT (Subject) 60% or IUB departmental test 70%",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3629,7 +3629,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MPhil/MS or equivalent / 18 years of education with CGPA 3.0/4.0 or 60% annual; valid GAT (Subject) 60% or IUB departmental test 70%",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3658,7 +3658,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MPhil/MS or equivalent / 18 years of education with CGPA 3.0/4.0 or 60% annual; valid GAT (Subject) 60% or IUB departmental test 70%",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہائیٹیک یونیورسٹی",
@@ -3687,7 +3687,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3716,7 +3716,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "FA/FSc. or equivalent with minimum 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3745,7 +3745,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "M.A Education / M.Ed / B.Ed (1.5 and 2 years) / 4 years degree in Education",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3774,7 +3774,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "M.Phil/M.S in Education",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3803,7 +3803,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "FA/FSc. or equivalent with minimum 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3832,7 +3832,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "4 years BSc. (Hons) in Psychology (CGPA 2.50+ or 60% marks annual) or MSc in Psychology (1st Div.); NTS (GAT) minimum 50% score or entry test",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3861,7 +3861,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "18 years of education in Psychology, CGPA 3.00/4.00 or 60% marks annual; NTS-GAT (Non-Subject) or GRE (General) minimum 60% + entry test",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3890,7 +3890,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "M. Phil in Islamic Studies and the GRE subject test",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "عبدالولی خان یونیورسٹی",
@@ -3919,7 +3919,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "عبدالولی خان یونیورسٹی",
@@ -3948,7 +3948,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "عبدالولی خان یونیورسٹی",
@@ -3977,7 +3977,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف لاہور",
@@ -4006,7 +4006,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "FA, F.Sc., I.Com, ICS & A-level or equivalent 12 years of education with 40% marks; UOL Entry Test mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بحریہ یونیورسٹی",
@@ -4035,7 +4035,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بحریہ یونیورسٹی",
@@ -4064,7 +4064,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بحریہ یونیورسٹی",
@@ -4093,7 +4093,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بحریہ یونیورسٹی",
@@ -4122,7 +4122,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "16 years of Business/Management/relevant education with 2.00/4 CGPA or 50% marks; accepted GAT/GRE/Bahria University entry test result",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بحریہ یونیورسٹی",
@@ -4151,7 +4151,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4180,7 +4180,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate (12 years), FA/F.Sc/ICS/ICOM/A-Levels/DAE or equivalent, minimum 45% marks, interview",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4209,7 +4209,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate (12 years), FA/F.Sc/ICS/ICOM/A-Levels/DAE or equivalent, minimum 45% marks, interview",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4238,7 +4238,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate with 50% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4267,7 +4267,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "16 years of education, BS/MA/MSc in Islamic Banking & Finance / Business Management Sciences / Commerce & Accountancy or equivalent, minimum 50% marks or 2.50/4.00 CGPA, interview, minimum 50% marks in GAT/NTS (General)",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4296,7 +4296,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "16 years of education, BS/M.A./M.Sc. in Psychology or equivalent, minimum 50% marks or 2.50/4.00 CGPA, interview, minimum 50% marks in GAT/NTS (General) or 60% marks in MAT (Minhaj Aptitude Test)",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4325,7 +4325,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "الغزالی یونیورسٹی",
@@ -4354,7 +4354,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف آزاد جموں و کشمیر",
@@ -4383,7 +4383,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف آزاد جموں و کشمیر",
@@ -4412,7 +4412,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف آزاد جموں و کشمیر",
@@ -4441,7 +4441,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "القادر یونیورسٹی",
@@ -4470,7 +4470,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "45% marks in intermediate or equivalent",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "قراقرم یونیورسٹی",
@@ -4499,7 +4499,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "FA/FSc. with at least 2nd Division (45% Marks); Psychology subject preferred",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "قراقرم یونیورسٹی",
@@ -4528,7 +4528,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "B.Ed 2.5: ADA/ADS or BA/BSc with at least 45% marks; B.Ed 4-year: FA/FSc/I.Com/ICS or equivalent 12 years with at least 45% marks; B.Ed After ADE: ADE with minimum 2.5 CGPA",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی (بہاول نگر کیمپس)",
@@ -4557,7 +4557,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی (بہاول نگر کیمپس)",
@@ -4586,7 +4586,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی (بہاول نگر کیمپس)",
@@ -4615,7 +4615,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی (بہاول نگر کیمپس)",
@@ -4644,7 +4644,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی [رحیم یار خان کیمپس]",
@@ -4673,7 +4673,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی [رحیم یار خان کیمپس]",
@@ -4702,7 +4702,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی [رحیم یار خان کیمپس]",
@@ -4731,7 +4731,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "الحمد اسلامی یونیورسٹی (کوئٹہ کیمپس)",
@@ -4760,7 +4760,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بحریہ یونیورسٹی (کراچی کیمپس)",
@@ -4789,7 +4789,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بحریہ یونیورسٹی (کراچی کیمپس)",
@@ -4818,7 +4818,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بحریہ یونیورسٹی (کراچی کیمپس)",
@@ -4847,7 +4847,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -4876,7 +4876,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -4905,7 +4905,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -4934,7 +4934,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -4963,7 +4963,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -4992,7 +4992,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -5021,7 +5021,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -5050,7 +5050,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -5079,7 +5079,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گورنمنٹ صادق کالج ویمن یونیورسٹی",
@@ -5108,7 +5108,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "At least 2nd Division FA/FSc or equivalent; no third division in the terminal degree",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گورنمنٹ صادق کالج ویمن یونیورسٹی",
@@ -5137,7 +5137,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گورنمنٹ صادق کالج ویمن یونیورسٹی",
@@ -5166,7 +5166,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گورنمنٹ صادق کالج ویمن یونیورسٹی",
@@ -5195,7 +5195,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5224,7 +5224,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5253,7 +5253,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5282,7 +5282,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5311,7 +5311,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5340,7 +5340,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MS/MPhil degree (18 years of education with 6 credit hours research) in the relevant discipline from an HEC-recognized university with minimum 3.0/4.0 CGPA or 1st Division; NUML GAT-Subject and interview",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5369,7 +5369,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5398,7 +5398,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5427,7 +5427,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5456,7 +5456,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5485,7 +5485,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5514,7 +5514,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی فیصل آباد",
@@ -5543,7 +5543,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی فیصل آباد",
@@ -5572,7 +5572,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی فیصل آباد",
@@ -5601,7 +5601,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی فیصل آباد",
@@ -5630,7 +5630,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5659,7 +5659,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "12 years of schooling with a minimum of 50% marks; 50% passing marks in Departmental Test",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5688,7 +5688,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate, with at least 45% marks in aggregate (B.Ed. 4 years); at least 45% marks/2nd division in B.A/B.Sc or equivalent 14 years of education (B.Ed. 1.5 years); at least 45% marks/2nd division in M.A/M.Sc or equivalent 16 years of education (B.Ed. 2.5 years)",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5717,7 +5717,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate, with at least 45% marks in aggregate",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5746,7 +5746,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5775,7 +5775,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5804,7 +5804,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5833,7 +5833,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5862,7 +5862,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "وومن یونیورسٹی صوابی",
@@ -5891,7 +5891,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "سردار بہادر خان ویمن یونیورسٹی کوئٹہ",
@@ -5920,7 +5920,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "سردار بہادر خان ویمن یونیورسٹی کوئٹہ",
@@ -5949,7 +5949,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی سیالکوٹ",
@@ -5978,7 +5978,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی سیالکوٹ",
@@ -6007,7 +6007,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6036,7 +6036,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6065,7 +6065,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6094,7 +6094,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Female candidates who have passed (BS) examinations or 16 years of education with psychology from HEC recognized University; 2.50/4.00 CGPA in semester system or 50% marks in annual system; Entry Test (50% qualifying marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6123,7 +6123,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Female candidates having 4 Years BS Education or Master degree in education or Relevant Subject (School Subject) from HEC recognized University with minimum 2.50/4.00 CGPA in semester system or 50% marks in annual system; Entry Test (50% qualifying marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6152,7 +6152,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Female candidates having 18 years of education MS/MPhil in relevant field from HEC recognized University; 3.00/4.00 CGPA in semester or 60% Marks in Annual system; Entry Test (60% qualifying Marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6181,7 +6181,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Minimum 18 years of education MS/MPhil in Relevant Field from HEC recognized University; 3.00/4.00 CGPA in semester or 60% Marks in Annual system; Entry Test (60% qualifying Marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6210,7 +6210,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Female candidates having 18 years of education in relevant field (MS/MPhil/or equivalent) from HEC recognized University; 3.00/4.00 CGPA in semester or 60% Marks in Annual system; Entry Test (60% qualifying Marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6239,7 +6239,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6268,7 +6268,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6297,7 +6297,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "For admission to MS/M.Phil. applicants are required to have minimum CGPA 2.5 out of 4.0 in semester system or 1st division in annual system in Masters/BS 4 years from any HEC-recognized university/institution; minimum score of 50 in GAT General Test conducted by NTS (except where specific tests will be taken by respective Departments)",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6326,7 +6326,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Sixteen Years of Education in Behavioral Sciences or any field of Psychology; minimum score of 50 in GAT General Test conducted by NTS",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6355,7 +6355,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6384,7 +6384,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6413,7 +6413,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6442,7 +6442,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6471,7 +6471,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6500,7 +6500,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6529,7 +6529,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6558,7 +6558,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف گجرات",
@@ -6587,7 +6587,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "F.A / Intermediate / equivalent (first year) or three-year DAE (first two years), as listed on the official program page",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف گجرات",
@@ -6616,7 +6616,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "At least 45% marks in intermediate or equivalent, as stated on the official program page",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف گجرات",
@@ -6645,7 +6645,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف گجرات",
@@ -6674,7 +6674,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -6703,7 +6703,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate with a minimum of 45% marks or equivalent",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -6732,7 +6732,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -6761,7 +6761,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -6790,7 +6790,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "16 years of education: BS (4 years) / MA (2 years) / MEd in Education or equivalent field, as stated in the official prospectus",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -6819,7 +6819,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "18 years of education, MPhil (with research) in Education from an HEC-recognized university with minimum 3.00/4.00 CGPA in semester system or 60% marks in annual system",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -6848,7 +6848,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "وفاقی اردو یونیورسٹی آف آرٹس سائنس اینڈ ٹیکنالوجی اسلام آباد",
@@ -6877,7 +6877,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ٹائمز انسٹی ٹیوٹ ملتان",
@@ -6906,7 +6906,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ٹائمز انسٹی ٹیوٹ ملتان",
@@ -6935,7 +6935,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -6964,7 +6964,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -6993,7 +6993,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7022,7 +7022,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7051,7 +7051,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7080,7 +7080,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "16 years education in Banking, Finance and Economics; Islamic Banking, Islamic Finance and Islamic Economics; Islamic Studies or equivalent with 2.5/4.0 CGPA or 60% marks in annual system",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7109,7 +7109,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7138,7 +7138,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7167,7 +7167,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "غازی یونیورسٹی",
@@ -7196,7 +7196,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "غازی یونیورسٹی",
@@ -7225,7 +7225,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "غازی یونیورسٹی",
@@ -7254,7 +7254,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "غازی یونیورسٹی",
@@ -7283,7 +7283,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7312,7 +7312,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7341,7 +7341,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7370,7 +7370,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7399,7 +7399,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7428,7 +7428,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7457,7 +7457,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور گیریژن یونیورسٹی",
@@ -7486,7 +7486,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور گیریژن یونیورسٹی",
@@ -7515,7 +7515,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور گیریژن یونیورسٹی",
@@ -7544,7 +7544,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -7573,7 +7573,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -7602,7 +7602,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -7631,7 +7631,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -7660,7 +7660,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -7689,7 +7689,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -7718,7 +7718,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "HSSC with Pre-Medical or equivalent with 50% marks; KFUEIT recognized/valid aptitude test (KFAT / NAT / MDCAT)",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -7747,7 +7747,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "HSSC / DAE in all fields or equivalent with 45% marks; KFUEIT recognized/valid aptitude test (KFAT / NAT / KFEAT / ECAT / MDCAT)",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -7776,7 +7776,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "M.Phil Education: 16 years of education in M.A Education, M.Ed, B.Ed (Hons) 4 Years, B.Ed (2.5 Years) or B.Ed (1.5 Years); 2.0/4.0 or 45% in annual system; NTS GAT General / KFGAT minimum 50% mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -7805,7 +7805,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "18 years of education: M.Phil/MS with thesis in Education (MS without thesis: additional research work mandatory); 3.0/4.0 or 60% in annual system; NTS GAT/HEC/GRE Subject/KFGAT minimum 60%",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -7834,7 +7834,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "18 years of education in Islamic Studies; MS/M.Phil with thesis (MS without thesis: additional research work mandatory); 3.0/4.0 or 60% in annual system; NTS GAT/HEC/GRE Subject/KFGAT minimum 60%",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سائنس اینڈ ٹیکنالوجی بنوں",
@@ -7863,7 +7863,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سائنس اینڈ ٹیکنالوجی بنوں",
@@ -7892,7 +7892,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سائنس اینڈ ٹیکنالوجی بنوں",
@@ -7921,7 +7921,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سائنس اینڈ ٹیکنالوجی بنوں",
@@ -7950,7 +7950,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف ملاکنڈ",
@@ -7979,7 +7979,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف ملاکنڈ",
@@ -8008,7 +8008,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف ملاکنڈ",
@@ -8037,7 +8037,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف صوابی",
@@ -8066,7 +8066,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف صوابی",
@@ -8095,7 +8095,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سوات",
@@ -8124,7 +8124,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سوات",
@@ -8153,7 +8153,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سوات",
@@ -8182,7 +8182,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سوات",
@@ -8211,7 +8211,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سوات",
@@ -8240,7 +8240,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف دی پونچھ راولا کوٹ",
@@ -8269,7 +8269,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف دی پونچھ راولا کوٹ",
@@ -8298,7 +8298,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8327,7 +8327,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8356,7 +8356,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8385,7 +8385,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Masters in Education, M.Ed, B.Ed (1.5 year) or B.Ed (Hons 4 year) with a minimum second division; entry test with 60% or GAT General with 50% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8414,7 +8414,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MPhil/MS Education with at least 60% marks or 3 CGPA out of 4; university entry test with 70% marks or GAT Subject with 60% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8443,7 +8443,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "M.Phil./MS (Islamic Studies) with a minimum CGPA of 3/4 or equivalent; departmental test or HEC-approved test; interview",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -8462,17 +8462,17 @@ window.ADMISSIONS_DATA = {
    "scholarshipLink": "",
    "admissionFrequency": "",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 111 112 468",
    "fields": "B.Ed (4 Years)؛ BS ایجوکیشن (Childhood) — فیس فی سمسٹر 25,700 روپے؛ BEd ایلیمنٹری ٹیچر ایجوکیشن؛ BEd سیکنڈری ٹیچر ایجوکیشن؛ BEd سائنس ایجوکیشن؛ BEd سپیشل ایجوکیشن؛ BEd غیر رسمی و فاصلاتی تعلیم — فیس فی سمسٹر 29,990 روپے",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "Open Distance Learning",
    "eligibility": "BS ایجوکیشن (Childhood): FA/FSc یا مساوی تعلیم؛ BEd: 12 سالہ تعلیم / FA/FSc/A-Level یا مساوی؛ BA/ADE کی بنیاد پر: BA/BSc/ADE یا مساوی، کم از کم 45 فیصد نمبر",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -8491,7 +8491,7 @@ window.ADMISSIONS_DATA = {
    "scholarshipLink": "",
    "admissionFrequency": "",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 111 112 468",
    "fields": "BS Psychology (4 Years)؛ BS سائیکالوجی — فیس فی سمسٹر 18,810 روپے؛ BS Psychology (03-Aug-26 admission post: علماء و عالمات کے لیے BS Psychology میں داخلے)",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS / Written",
@@ -8501,7 +8501,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "FA/F.Sc./A levels/12 years of Education with equivalence certificate",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف لاہور",
@@ -8530,7 +8530,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "12 Years of Formal Education with a minimum of 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف لاہور",
@@ -8559,7 +8559,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Minimum 12 years of education (Intermediate or equivalent) with at least 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -8588,7 +8588,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "FA/FSc/I.Com/D.Com/DBA/ICS/A-Level یا مساوی",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -8617,7 +8617,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -8646,7 +8646,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "جامعہ کراچی",
@@ -8675,7 +8675,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "At least 50% marks in Intermediate (HSC) or equivalent examination",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "جامعہ کراچی",
@@ -8704,7 +8704,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate Arts / Science (with Psychology); or Intermediate Arts/Science/Commerce/Home Economics/Computer Science/A-Level (with First division)",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "پشاور یونیورسٹی",
@@ -8733,7 +8733,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate with at least 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "پشاور یونیورسٹی",
@@ -8762,7 +8762,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate with at least 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ورچوئل یونیورسٹی",
@@ -8791,7 +8791,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "ورچوئل یونیورسٹی",
@@ -8820,7 +8820,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "الغزالی یونیورسٹی",
@@ -8849,7 +8849,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -8878,7 +8878,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "FA/FSc/ICS کے مساوی، شہادت الثانویہ (Equivalence) میں 45%–50% مارکس",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -8907,7 +8907,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MPhil/MS اسلامک سٹڈیز (CGPA 3.0/4.0)، انٹری ٹیسٹ اور انٹرویو",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -8936,7 +8936,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "FA/FSc کے مساوی، 45% مارکس",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -8965,7 +8965,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "BS ایجوکیشن یا MA ایجوکیشن، CGPA 2.5",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -8994,7 +8994,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MPhil ایجوکیشن (CGPA 3.0) اور انٹری ٹیسٹ",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -9023,7 +9023,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "FA/FSc/ICom، 50% مارکس",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -9052,7 +9052,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "BS فنانس / BBA / اکاؤنٹنگ، CGPA 2.5",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -9081,7 +9081,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MS/MPhil فنانس (CGPA 3.0) اور انٹری ٹیسٹ",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -9110,7 +9110,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "FA/FSc یا مساوی؛ 5th Semester کے لیے BA/BSc/B.Com/ADA/ADS/ADP یا مساوی",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: BZU_1.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -9139,7 +9139,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "FA/FSc یا مساوی؛ 5th Semester کے لیے BA/ADP مع Arabic Elective/Optional",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: BZU_1.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -9168,7 +9168,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "BS/MA Arabic یا مساوی، HEC/BZU قواعد کے مطابق",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: BZU_1.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -9197,7 +9197,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MPhil Arabic / HEC-BZU PhD requirements",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: BZU_1.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9216,17 +9216,17 @@ window.ADMISSIONS_DATA = {
    "scholarshipLink": "",
    "admissionFrequency": "",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 111 112 468",
    "fields": "BS عربی — فیس فی سمسٹر: براہ راست 17,900 روپے، BA کی بنیاد پر 20,630 روپے، ADE کی بنیاد پر 17,900 روپے",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "Open Distance Learning",
    "eligibility": "براہ راست: FA/انٹرمیڈیٹ یا مساوی تعلیم؛ BA کی بنیاد پر: BA/BSc یا مساوی تعلیم، کم از کم 45 فیصد نمبر؛ ADE کی بنیاد پر: Associate Degree عربی، کم از کم 50 فیصد نمبر",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: AIOU_programs.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9245,7 +9245,7 @@ window.ADMISSIONS_DATA = {
    "scholarshipLink": "",
    "admissionFrequency": "",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 111 112 468",
    "fields": "MPhil عربی — فیس فی سمسٹر 25,940 روپے",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS / Written",
@@ -9255,7 +9255,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MA عربی + الشھادۃ العالمیۃ معادلہ، سیکنڈ ڈویژن",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: AIOU_programs.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9274,7 +9274,7 @@ window.ADMISSIONS_DATA = {
    "scholarshipLink": "",
    "admissionFrequency": "",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 111 112 468",
    "fields": "MPhil ٹیچر ایجوکیشن — فیس فی سمسٹر 25,940 روپے؛ MPhil سائنس ایجوکیشن — فیس فی سمسٹر 25,940 روپے",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS / Written",
@@ -9284,7 +9284,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "ٹیچر ایجوکیشن: MA ایجوکیشن، BEd (4 سالہ)، MEd؛ سائنس ایجوکیشن: MA/MEd، 16 سالہ تعلیم",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: AIOU_programs.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9303,7 +9303,7 @@ window.ADMISSIONS_DATA = {
    "scholarshipLink": "",
    "admissionFrequency": "",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 111 112 468",
    "fields": "PhD عربی — فیس فی سمسٹر 36,840 روپے (نوٹ: PDF سے اہلیت میں MPhil اسلامک سٹڈیز درج ہے — ممکنہ استخراجی گڑبڑ، اصل میں MPhil عربی ہو سکتی ہے)",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS / Written",
@@ -9313,7 +9313,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MPhil اسلامک سٹڈیز یا مساوی تعلیم (جیسا کہ PDF سے ملا)، 60 فیصد نمبر، CGPA 3.0",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: AIOU_programs.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9332,7 +9332,7 @@ window.ADMISSIONS_DATA = {
    "scholarshipLink": "",
    "admissionFrequency": "",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 111 112 468",
    "fields": "PhD سپیشل ایجوکیشن — فیس فی سمسٹر 36,840 روپے؛ PhD سائنس ایجوکیشن — فیس فی سمسٹر 36,840 روپے",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS / Written",
@@ -9342,7 +9342,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "سپیشل ایجوکیشن: MPhil سپیشل ایجوکیشن، CGPA 3.0؛ سائنس ایجوکیشن: MPhil ایجوکیشن، CGPA 3.0",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: AIOU_programs.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -9374,7 +9374,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "FA/FSc، 50 فیصد نمبر لازم، الشھادۃ العالمیۃ کا معادلہ کیا ہوا ہو",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: IIUI_programs.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -9406,7 +9406,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "BS (4 سالہ)/MA/الشھادۃ العالمیۃ معادلہ کیا ہوا ہو، 60 فیصد نمبر لازم، شریعہ اینڈ لاء کے لیے پہلے ٹیسٹ لازمی ہے",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: IIUI_programs.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -9438,7 +9438,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "متعلقہ مضمون میں MS مکمل کیا ہوا ہو اور 70 فیصد نمبر حاصل کیے ہوئے ہوں؛ اسلامک سٹڈیز اور شریعہ اینڈ لاء میں 65 فیصد نمبر لازم ہیں",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: IIUI_programs.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "الحمد اسلامی یونیورسٹی",
@@ -9467,7 +9467,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "FA/FSc/A-Level یا مساوی تعلیم، کم از کم 50 فیصد نمبر",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: Alhamd.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "الحمد اسلامی یونیورسٹی",
@@ -9496,7 +9496,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "متعلقہ مضمون میں MS/MPhil اسلامک سٹڈیز، کم از کم CGPA 3.00/4.0، سیکنڈ ڈویژن، GAT Subject / HAT / GRE / یونیورسٹی ٹیسٹ میں کم از کم 70 فیصد",
    "videoLink": "",
    "contacts": [],
-   "source": "Drive PDF: Alhamd.pdf"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -9525,7 +9525,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "Planner tab (2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -9554,7 +9554,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "Planner tab (2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -9583,7 +9583,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "Planner tab (2026-10-29)"
+   "source": "University Studies Planner (Google Sheet)"
   }
  ]
 };
