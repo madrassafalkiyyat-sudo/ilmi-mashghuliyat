@@ -85,10 +85,15 @@
     });
   }
 
+  /* زیلی بٹنز (Mufti 2026-10-29): یونیورسٹیز داخلے کے اندر دو واضح بٹن —
+     ملکی یونیورسٹیز / غیر ملکی یونیورسٹیز — چھوٹی گولیوں کی جگہ */
   function renderScope() {
-    el('adm-scope').innerHTML =
-      chip('🇵🇰 ملکی', state.scope === 'pk', "admSetScope('pk')") +
-      chip('🌍 غیر ملکی', state.scope === 'foreign', "admSetScope('foreign')");
+    function sub(label, active, onclick) {
+      return '<button type="button" onclick="' + onclick + '" style="flex:1;padding:12px 8px;border-radius:12px;border:1px solid ' + (active ? 'var(--c-gold-500)' : 'var(--c-border)') + ';background:' + (active ? 'var(--c-gold-100)' : 'var(--c-card)') + ';font-family:inherit;font-size:17px;font-weight:bold;cursor:pointer">' + label + '</button>';
+    }
+    el('adm-scope').innerHTML = '<div style="display:flex;gap:10px">' +
+      sub('🇵🇰 ملکی یونیورسٹیز', state.scope === 'pk', "admSetScope('pk')") +
+      sub('🌍 غیر ملکی یونیورسٹیز', state.scope === 'foreign', "admSetScope('foreign')") + '</div>';
   }
 
   window.admSetScope = function (s) {
