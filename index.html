@@ -815,37 +815,31 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
     <input id="l-pass" type="password" dir="ltr" style="text-align:left">
     <button type="button" class="pass-eye" onclick="togglePass('l-pass', this)" aria-label="پاس ورڈ دکھائیں" title="پاس ورڈ دکھائیں">👁</button>
   </div>
-  <p style="margin:4px 0 0"><a href="#" onclick="go('reset');return false" style="color:var(--c-primary-700);font-weight:bold">پاس ورڈ بھول گئے؟</a> <span class="small">— ای میل سے نیا پاس ورڈ بنائیں</span></p>
+  <p style="margin:4px 0 0"><a href="#" onclick="go('reset');return false" style="color:var(--c-primary-700);font-weight:bold">پاس ورڈ بھول گئے؟</a> <span class="small">— نیا پاس ورڈ بنانے کا طریقہ</span></p>
   <button class="btn" onclick="doLogin()">لاگ ان</button>
   <p class="center">اکاؤنٹ نہیں ہے؟ <a href="#" onclick="go('register');return false" style="color:var(--c-primary-700);font-weight:bold">رجسٹریشن کریں</a></p>
 </section>
 
-<!-- ============ پاس ورڈ بھول گئے — ای میل سے نیا پاس ورڈ ============ -->
+<!-- ============ پاس ورڈ بھول گئے — نئی ایپ میں ای میل لنک نہیں آتا ============ -->
 <section class="view" id="view-reset">
   <div class="center"><img class="logo-sm" src="assets/logo.png" onerror="this.onerror=null;this.src=window.__LOGO" alt="لوگو" style="width:84px;height:84px"></div>
   <h1>پاس ورڈ بھول گئے؟</h1>
-  <p class="center small">اپنی رجسٹرڈ ای میل لکھیں — اس پر نیا پاس ورڈ بنانے کا لنک بھیجا جائے گا۔ ای میل کھول کر لنک سے نیا پاس ورڈ بنائیں اور اسی نئے پاس ورڈ سے لاگ ان کریں۔</p>
+  <p class="center small">نئی ایپ میں پاس ورڈ <b>ای میل لنک سے نہیں</b> بنتا — کوئی لنک آپ کی ای میل پر نہیں آئے گا۔ طریقہ یہ ہے: لاگ ان اسکرین پر واپس جا کر اوپر والے خانوں میں اپنی <b>پرانی رجسٹرڈ ای میل</b> اور ایک <b>نیا پاس ورڈ (کم از کم 8 حروف)</b> لکھیں، پھر نیچے سنہری بٹن <b>«پہلی بار نئی ایپ میں لاگ ان کریں»</b> دبائیں — اسی نئے پاس ورڈ سے آئندہ لاگ ان ہو گا۔</p>
   <div class="divider"></div>
   <div class="msg" id="reset-msg"></div>
-  <label>ای میل</label>
-  <input id="rp-email" type="email" placeholder="example@mail.com" dir="ltr" style="text-align:left">
-  <button class="btn" onclick="doReset()">🔑 نیا پاس ورڈ بنانے کا لنک بھیجیں</button>
-  <button class="btn ghost" onclick="go('login')">← لاگ ان پر واپس جائیں</button>
+  <button class="btn goldb" onclick="go('login')">← لاگ ان اسکرین پر واپس جائیں — وہیں نیا پاس ورڈ بنائیں</button>
 </section>
 
-<!-- ============ انتظامیہ و ٹیم — ای میل تصدیقی لنک سے داخلہ (بغیر رجسٹریشن) ============ -->
+<!-- ============ انتظامیہ و ٹیم — نئی ایپ میں ای میل لنک نہیں آتا ============ -->
 <section class="view" id="view-staff">
   <div class="center"><img class="logo-sm" src="assets/logo.png" onerror="this.onerror=null;this.src=window.__LOGO" alt="لوگو" style="width:84px;height:84px"></div>
   <h1>🏛️ انتظامیہ و ٹیم — ای میل سے داخلہ</h1>
-  <p class="center small">یہ راستہ صرف ان کے لیے ہے جن کی ای میل <b>انتظامیہ کی فہرست</b> میں پہلے سے شامل ہے۔ اپنی ای میل لکھیں — اس پر ایک <b>تصدیقی لنک</b> آئے گا؛ <b>اسی موبائل/براؤزر</b> میں وہ لنک کھولتے ہی داخلہ ہو جائے گا — نہ رجسٹریشن، نہ وژن، نہ منظوری۔ داخلے کے بعد آپ وہیں اپنا پاس ورڈ بھی بنا سکیں گے تاکہ اگلی بار عام لاگ ان سے بھی داخلہ ہو سکے۔</p>
+  <p class="center small">نئی ایپ میں <b>ای میل لنک کا راستہ بند ہے</b> — کوئی تصدیقی لنک آپ کی ای میل پر نہیں آئے گا۔ انتظامیہ کے ارکان بھی عام لاگ ان سے داخل ہوں: لاگ ان اسکرین پر اپنی <b>ایڈمن ای میل</b> اور نیا پاس ورڈ لکھیں (پہلی بار سنہری بٹن <b>«پہلی بار نئی ایپ میں لاگ ان کریں»</b> سے پاس ورڈ بنائیں) — ایڈمن کی ای میل خود پہچان کر ایڈمن پینل کھل جائے گا۔</p>
   <div class="divider"></div>
   <div class="layout-switch-slot"></div>
   <div class="msg" id="staff-msg"></div>
-  <label>آپ کی (فہرست میں شامل) ای میل</label>
-  <input id="st-email" type="email" placeholder="example@mail.com" dir="ltr" style="text-align:left">
-  <button class="btn goldb" onclick="sendStaffLink()">✉️ تصدیقی لنک بھیجیں</button>
+  <button class="btn goldb" onclick="go('login')">← لاگ ان اسکرین پر جائیں</button>
   <button class="btn ghost" onclick="go('entry')">← داخلی اسکرین پر واپس جائیں</button>
-  <p class="small center">نوٹ: لنک اسی ڈیوائس پر کھولیں جس سے مانگا ہے۔ اگر آپ کی ای میل فہرست میں شامل نہ ہوئی تو لنک کھولنے پر بھی داخلہ نہیں ملے گا — اس صورت میں عام طالب علم والی رجسٹریشن کا راستہ اختیار کریں۔</p>
 </section>
 
 <!-- ============ اپنا پاس ورڈ بنائیں / بدلیں (انتظامیہ و ٹیم) ============ -->
@@ -3148,6 +3142,13 @@ function renderPending(){
   if(lead) lead.textContent = rejected
     ? 'انتظامیہ نے جائزے کے بعد اس وقت آپ کی رجسٹریشن منظور نہیں کی۔ اگر آپ سمجھتے ہیں کہ معلومات میں کوئی کمی رہ گئی تھی یا فیصلے پر نظرِ ثانی درکار ہے تو نیچے دیے ذرائع سے انتظامیہ سے رابطہ کریں۔'
     : 'جزاک اللہ! آپ کی رجسٹریشن انتظامیہ کی منظوری کی منتظر ہے۔ منظوری کی اطلاع آپ کو خودکار طریقے سے یہیں اسی اسکرین پر مل جائے گی — انتظامیہ کو الگ سے بتانے یا بار بار پوچھنے کی ضرورت نہیں۔';
+  /* منتقلی کا نوٹ (صرف لاگ ان شدہ زیرِ منظوری طالب علم کو): اگر منظوری پرانی
+     ایپ میں ہو چکی تھی اور یہاں پھر بھی زیرِ منظوری نظر آ رہا ہے تو یہ نئی ایپ
+     میں منتقلی کا فرق ہے — انتظامیہ کو اپنی رجسٹرڈ ای میل بتائیں تاکہ منظوری
+     نئی ایپ میں لگائی جا سکے۔ */
+  if(lead && !rejected && signed){
+    lead.textContent += ' نوٹ: اگر آپ کی منظوری پرانی ایپ میں ہو چکی تھی اور یہاں پھر بھی زیرِ منظوری نظر آ رہا ہے تو یہ منتقلی کا فرق ہے — انتظامیہ کو اپنی رجسٹرڈ ای میل بتائیں تاکہ منظوری نئی ایپ میں لگائی جا سکے۔';
+  }
   const info = document.getElementById('pending-info');
   const rows = document.getElementById('pending-info-rows');
   if(info && rows){
@@ -3351,28 +3352,14 @@ function togglePass(id, btn){
   }
   try{ inp.focus(); }catch(e){}
 }
-/* پاس ورڈ بھول جانے پر Firebase Auth اسی ای میل پر نیا پاس ورڈ بنانے کا لنک بھیجتا ہے */
+/* نئی ایپ میں ای میل لنک کا راستہ بند ہے — doReset اب کوئی لنک نہیں منگواتا،
+   صرف لاگ ان اسکرین کے سنہری بٹن کا طریقہ بتاتا ہے (پرانا کیشڈ بٹن بھی اسی
+   رہنمائی پر آئے گا، جھوٹی «لنک بھیج دیا» کامیابی کبھی نہیں دکھائے گا) */
 async function doReset(){
-  const email = document.getElementById('rp-email').value.trim().toLowerCase();
-  if(!/^\S+@\S+\.\S+$/.test(email)){ showMsg('reset-msg', 'درست ای میل لکھیں — نیا پاس ورڈ بنانے کا لنک اسی ای میل پر جائے گا۔', false); return; }
-  if(!ONLINE || !FB || !FB.resetPassword){
-    showMsg('reset-msg', 'پاس ورڈ کا لنک صرف اصل آن لائن ایپ سے بھیجا جا سکتا ہے — یہ آف لائن نمونہ (ڈیمو) صورت ہے۔ اصل ویب ایپ کھول کر اسی جگہ سے لنک منگوائیں۔', false); return;
-  }
-  showMsg('reset-msg', 'لنک بھیجا جا رہا ہے — چند لمحے انتظار کریں…', true);
-  try{
-    await FB.resetPassword(email);
-    showMsg('reset-msg', 'آپ کی ای میل (' + email + ') پر نیا پاس ورڈ بنانے کا لنک بھیج دیا گیا ہے — ای میل کھول کر نیا پاس ورڈ بنائیں اور اسی سے لاگ ان کریں۔ (لنک نظر نہ آئے تو ای میل کا سپام/جنک فولڈر بھی دیکھیں۔)', true);
-  }catch(e){
-    showMsg('reset-msg', resetErrText(e), false);
-  }
+  showMsg('reset-msg', 'نئی ایپ میں کوئی ای میل لنک نہیں آتا۔ لاگ ان اسکرین پر اپنی پرانی رجسٹرڈ ای میل اور نیا پاس ورڈ (کم از کم 8 حروف) اوپر والے خانوں میں لکھ کر نیچے سنہری بٹن «پہلی بار نئی ایپ میں لاگ ان کریں» دبائیں — اسی نئے پاس ورڈ سے آئندہ لاگ ان ہو گا۔', true);
 }
 function resetErrText(e){
-  const c = (e && e.code) || '';
-  if(c.includes('user-not-found') || c.includes('invalid-credential')) return 'اس ای میل سے کوئی اکاؤنٹ نہیں ملا — ای میل کی ہجے جانچ کر دوبارہ کوشش کریں یا پہلے رجسٹریشن کریں۔';
-  if(c.includes('invalid-email')) return 'ای میل درست نہیں ہے — ہجے جانچ کر دوبارہ لکھیں۔';
-  if(c.includes('too-many-requests')) return 'بہت زیادہ کوششیں ہو گئی ہیں — کچھ دیر بعد دوبارہ کوشش کریں۔';
-  if(c.includes('network')) return 'انٹرنیٹ کا مسئلہ ہے — کنکشن جانچ کر دوبارہ کوشش کریں۔';
-  return 'لنک بھیجنے میں مسئلہ پیش آیا — کچھ دیر بعد دوبارہ کوشش کریں۔';
+  return 'نئی ایپ میں کوئی ای میل لنک نہیں آتا — لاگ ان اسکرین پر سنہری بٹن سے نیا پاس ورڈ بنائیں۔';
 }
 
 /* ================= انتظامیہ و ٹیم — ای میل تصدیقی لنک سے داخلہ (بغیر رجسٹریشن) =================
@@ -3383,22 +3370,11 @@ function resetErrText(e){
    داخلے کے بعد اگر اکاؤنٹ میں پاس ورڈ نہ ہو تو فوراً «پاس ورڈ بنائیں» اسکرین آتی ہے تاکہ اگلی بار
    عام لاگ ان (ای میل + پاس ورڈ) سے بھی داخلہ ہو سکے۔ users ریکارڈ کا ہونا ایڈمن شناخت کے لیے شرط نہیں۔ */
 const STAFF_APP_URL = 'https://madrassafalkiyyat-sudo.github.io/ilmi-mashghuliyat/';
+/* نئی ایپ میں ای میل لنک کا راستہ بند ہے — sendStaffLink اب کوئی لنک نہیں
+   منگواتا، صرف لاگ ان اسکرین کے پاس ورڈ والے طریقے کی رہنمائی دیتا ہے */
 async function sendStaffLink(){
   window.__authTouched = true;
-  const email = document.getElementById('st-email').value.trim().toLowerCase();
-  if(email) LS2.set('lastEmail', email);
-  if(!/^\S+@\S+\.\S+$/.test(email)){ showMsg('staff-msg', 'درست ای میل لکھیں — تصدیقی لنک اسی ای میل پر جائے گا۔', false); return; }
-  if(!ONLINE || !FB || !FB.sendStaffLink){
-    showMsg('staff-msg', 'یہ سہولت صرف اصل آن لائن ایپ میں کام کرتی ہے — یہ آف لائن نمونہ (ڈیمو) صورت ہے۔ اصل ویب ایپ (' + STAFF_APP_URL + ') کھول کر اسی اسکرین سے تصدیقی لنک منگوائیں۔', false); return;
-  }
-  showMsg('staff-msg', 'تصدیقی لنک بھیجا جا رہا ہے — چند لمحے انتظار کریں…', true);
-  try{
-    await FB.sendStaffLink(email);
-    try{ LS2.set('staffLinkEmail', email); }catch(e){}
-    showMsg('staff-msg', 'آپ کی ای میل (' + email + ') پر تصدیقی لنک بھیج دیا گیا ہے — اسی ڈیوائس/براؤزر میں وہ لنک کھولیں، داخلہ خود مکمل ہو جائے گا۔ (لنک نظر نہ آئے تو ای میل کا سپام/جنک فولڈر بھی دیکھیں۔)', true);
-  }catch(e){
-    showMsg('staff-msg', staffLinkErrText(e), false);
-  }
+  showMsg('staff-msg', 'نئی ایپ میں کوئی تصدیقی لنک ای میل پر نہیں آتا۔ لاگ ان اسکرین پر اپنی ایڈمن ای میل اور نیا پاس ورڈ لکھیں (پہلی بار سنہری بٹن «پہلی بار نئی ایپ میں لاگ ان کریں» سے پاس ورڈ بنائیں) — ایڈمن کی ای میل خود پہچان کر ایڈمن پینل کھل جائے گا۔', true);
 }
 function staffLinkErrText(e){
   const c = (e && e.code) || '';
