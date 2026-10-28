@@ -109,8 +109,8 @@
     var note = '';
     if (state.scope === 'foreign') {
       note = '<div style="border:1px solid var(--c-gold-500);border-radius:12px;padding:10px;margin:8px 0;background:var(--c-gold-100)">' +
-        '<p class="small" style="margin:0">غیر ملکی یونیورسٹیز کی تفصیل: 17 یونیورسٹیز کے پروگرامز، اہلیت اور سرکاری لنکس سرکاری پیجز سے آ گئے ہیں؛ ' +
-        '3 یونیورسٹیز (الازہر، المصطفی، استنبول تھیالوجی) کی مکمل تفصیل ابھی تحقیق میں ہے — ان کے سرکاری لنکس یہاں موجود ہیں۔</p></div>';
+        '<p class="small" style="margin:0">غیر ملکی یونیورسٹیز کی تفصیل: 19 یونیورسٹیز کے پروگرامز/فیکلٹیز سرکاری پیجز سے آ گئے ہیں؛ ' +
+        'صرف المصطفی کی مکمل تفصیل ابھی تحقیق میں ہے (اس کی سرکاری سائٹ پر پروگرام لسٹ نہیں ملی) — اس کا سرکاری لنک یہاں موجود ہے۔</p></div>';
     }
     el('adm-list').innerHTML = note + list.map(function (u) {
       var i = curList().indexOf(u);
@@ -344,22 +344,39 @@
         return (o && u.name && (o.indexOf(u.name) !== -1 || u.name.indexOf(o) !== -1));
       })[0];
     }
+    /* ہر یونیورسٹی کا داخلہ کیلنڈر بٹن (Mufti 2026-10-29): «کوئی اعلان نہیں»
+       والی سطر ہر یونیورسٹی پر دہرانا بند — اب ہر قطار میں یونیورسٹی کے اپنے
+       داخلہ صفحے کا بٹن ہوتا ہے (داخلہ پورٹل > شعبہ صفحہ > ویب سائٹ)، چاہے
+       وہاں اس وقت کوئی نیا اعلان نہ ہو۔ آخری تاریخ صرف وہاں دکھائی جاتی ہے
+       جہاں واقعی تصدیق شدہ اعلان موجود ہو۔ */
+    var allEntries = state.pk.concat(state.foreign);
+    function calendarUrl(name) {
+      var portal = '', dept = '', web = '';
+      allEntries.forEach(function (e) {
+        if (e.name !== name) return;
+        var at = e.attributes || {};
+        if (!portal && at['داخلہ فارم / پورٹل'] && isUrl(at['داخلہ فارم / پورٹل'])) portal = at['داخلہ فارم / پورٹل'].trim();
+        if (!dept && e.deptLink && isUrl(e.deptLink)) dept = e.deptLink.trim();
+        if (!web && e.website && isUrl(e.website)) web = e.website.trim();
+      });
+      return portal || dept || web;
+    }
     var rows = names.map(function (u) {
       var n = matchNews(u);
-      return { u: u, n: n };
+      return { u: u, n: n, url: calendarUrl(u.name) };
     });
     rows.sort(function (a, b) { return (a.n ? 0 : 1) - (b.n ? 0 : 1); });
     cEl.innerHTML = '<p style="margin:8px 0"><b>📅 داخلہ کیلنڈر</b></p>' +
-      '<p class="small" style="margin:0 0 8px">ہر یونیورسٹی کا داخلہ شیڈول (سال میں کتنی مرتبہ) + تصدیق شدہ آخری تاریخ جہاں اعلان موجود ہے۔ ' +
-      'داخلہ تاریخیں ہر سائیکل کے ساتھ بدلتی ہیں — نیا اعلان آتے ہی یہیں نظر آئے گا۔</p>' +
+      '<p class="small" style="margin:0 0 8px">ہر یونیورسٹی کا داخلہ شیڈول (سال میں کتنی مرتبہ) + اس کے اپنے داخلہ صفحے کا بٹن — ' +
+      'وہاں اس وقت کوئی نیا اعلان نہ ہو تو بھی وہی سرکاری صفحہ چیک کریں۔ تصدیق شدہ آخری تاریخ صرف وہاں لکھی جاتی ہے جہاں اعلان موجود ہو۔</p>' +
       rows.map(function (r) {
         return '<div style="border:1px solid var(--c-border);border-radius:12px;padding:10px;margin:8px 0;background:var(--c-card)">' +
           '<p style="margin:0;font-weight:bold">' + esc(r.u.name) +
           (r.u.country && r.u.country !== 'پاکستان' ? ' (' + esc(r.u.country) + ')' : '') + '</p>' +
           '<p class="small" style="margin:4px 0">داخلہ (سال میں): ' + (r.u.admissionFrequency ? esc(r.u.admissionFrequency) : 'معلومات دستیاب نہیں') + '</p>' +
           (r.n ? '<p class="small" style="margin:4px 0">⏰ ' + esc(r.n.title) + ' — ' + esc(r.n.deadlineText || r.n.deadline) +
-            (isUrl(r.n.link) ? ' <a style="color:var(--c-primary-700);font-weight:bold" href="' + esc(r.n.link.trim()) + '" target="_blank" rel="noopener">لنک ←</a>' : '') + '</p>'
-            : '<p class="small" style="margin:4px 0">آخری تاریخ: اس وقت کوئی تصدیق شدہ داخلہ اعلان نہیں۔</p>') +
+            (isUrl(r.n.link) ? ' <a style="color:var(--c-primary-700);font-weight:bold" href="' + esc(r.n.link.trim()) + '" target="_blank" rel="noopener">لنک ←</a>' : '') + '</p>' : '') +
+          (r.url ? '<p style="margin:6px 0 0"><a style="display:inline-block;padding:6px 14px;border-radius:20px;background:var(--c-gold-100);border:1px solid var(--c-gold-500);font-weight:bold;color:var(--c-primary-700);text-decoration:none" href="' + esc(r.url) + '" target="_blank" rel="noopener">📅 داخلہ کیلنڈر / اعلانات ←</a></p>' : '') +
           '</div>';
       }).join('');
   }
