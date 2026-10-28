@@ -199,6 +199,7 @@
       html += row('داخلہ تاریخ', val(u.admissionDates));
       html += row('انٹری ٹیسٹ زبان', val(u.testLanguage));
       html += row('انٹری ٹیسٹ نوع', val(u.testType));
+      html += row('ٹیسٹ معلومات / مواد', link(u.testLink ? String(u.testLink).trim().replace(/ /g, '%20') : '', u.testLinkLabel || 'ٹیسٹ معلومات / مواد'));
       var pl = row('شعبہ کا صفحہ', link(u.deptLink, 'شعبہ کا صفحہ')) +
         row('فیس نوٹیفیکیشن', link(u.feeLink, 'فیس نوٹیفیکیشن'));
       if (pl) html += '<div style="margin-top:6px">' + pl + '</div>';
@@ -332,13 +333,22 @@
       }).join('') + '</div>';
   }
 
+  /* سیکشن فل اسکرین (Mufti 2026-10-29): بٹن پر کلک ہو تو ہب کی باقی چیزیں
+     (پٹی، ٹائلز، تعارف، رجسٹریشن بٹن) غائب — صرف اس سیکشن کا انٹرفیس نظر آتا
+     ہے، نیچے اسکرول کر کے نہیں کھلتا۔ واپسی سیکشن کے «ہب پر واپس» بٹن سے۔ */
   window.admSection = function (sec) {
     state.section = (sec === state.section) ? null : sec;
     renderSecButtons();
+    var hub = (state.section === null);
+    ['adm-strip', 'adm-sections', 'adm-hub-intro', 'adm-hub-foot'].forEach(function (id) {
+      var e = el(id);
+      if (e) e.style.display = hub ? '' : 'none';
+    });
     SECTIONS.forEach(function (s) {
       var d = el('adm-sec-' + s[0]);
       if (d) d.style.display = (s[0] === state.section) ? '' : 'none';
     });
+    if (typeof window.scrollTo === 'function') window.scrollTo(0, 0);
   };
 
   /* آخری تاریخوں کی پٹی — ایک ہی قطار، ہر خبر ایک لائن (Mufti 2026-10-29):
@@ -399,13 +409,15 @@
     var jobs = newsItems().filter(function (it) { return it.cat === 'job'; });
     var sEl = el('adm-sec-scholarships');
     if (sEl) {
-      sEl.innerHTML = '<p style="margin:8px 0"><b>🎓 سکالرشپس</b></p>' +
+      sEl.innerHTML = '<button class="btn" style="margin-bottom:10px" onclick="admSection(null)">→ ہب پر واپس</button>' +
+        '<p style="margin:8px 0"><b>🎓 سکالرشپس</b></p>' +
         (sch.length ? sch.map(newsCard).join('') : '<p class="small">ابھی کوئی تصدیق شدہ سکالرشپ خبر نہیں — نئی خبریں تصدیق کے بعد یہیں آئیں گی۔</p>') +
         '<p class="small" style="margin-top:8px">فلی فنڈڈ کانفرنسز کے اعلانات بھی تصدیق کے بعد اسی ڈبے میں آئیں گے۔</p>';
     }
     var jEl = el('adm-sec-jobs');
     if (jEl) {
-      jEl.innerHTML = '<p style="margin:8px 0"><b>💼 ملازمتیں و مواقع</b></p>' +
+      jEl.innerHTML = '<button class="btn" style="margin-bottom:10px" onclick="admSection(null)">→ ہب پر واپس</button>' +
+        '<p style="margin:8px 0"><b>💼 ملازمتیں و مواقع</b></p>' +
         (jobs.length ? jobs.map(newsCard).join('') : '<p class="small">ابھی کوئی تصدیق شدہ ملازمت خبر نہیں — نئی خبریں تصدیق کے بعد یہیں آئیں گی۔</p>') +
         '<p class="small" style="margin-top:8px">یہ وہی طرز کی خبریں ہیں جو علمی مشغولیت ایپ کے اندر بھی آتی ہیں — یہاں فہرست شدہ یونیورسٹیز سے متعلقہ خبریں دکھائی جاتی ہیں۔</p>';
     }
@@ -447,7 +459,8 @@
       return { u: u, n: n, url: calendarUrl(u.name) };
     });
     rows.sort(function (a, b) { return (a.n ? 0 : 1) - (b.n ? 0 : 1); });
-    cEl.innerHTML = '<p style="margin:8px 0"><b>📅 داخلہ کیلنڈر</b></p>' +
+    cEl.innerHTML = '<button class="btn" style="margin-bottom:10px" onclick="admSection(null)">→ ہب پر واپس</button>' +
+      '<p style="margin:8px 0"><b>📅 داخلہ کیلنڈر</b></p>' +
       '<p class="small" style="margin:0 0 8px">ہر یونیورسٹی کا داخلہ شیڈول (سال میں کتنی مرتبہ) + اس کے اپنے داخلہ صفحے کا بٹن — ' +
       'وہاں اس وقت کوئی نیا اعلان نہ ہو تو بھی وہی سرکاری صفحہ چیک کریں۔ تصدیق شدہ آخری تاریخ صرف وہاں لکھی جاتی ہے جہاں اعلان موجود ہو۔</p>' +
       rows.map(function (r) {
@@ -466,15 +479,18 @@
     var tEl = el('adm-sec-tests');
     if (!tEl) return;
     var rows = state.pk.concat(state.foreign).filter(function (u) {
-      return (u.testLanguage && String(u.testLanguage).trim()) || (u.testType && String(u.testType).trim());
+      return (u.testLanguage && String(u.testLanguage).trim()) || (u.testType && String(u.testType).trim()) ||
+        (u.testLink && String(u.testLink).trim());
     });
-    tEl.innerHTML = '<p style="margin:8px 0"><b>📝 انٹری ٹیسٹ کی معلومات</b></p>' +
+    tEl.innerHTML = '<button class="btn" style="margin-bottom:10px" onclick="admSection(null)">→ ہب پر واپس</button>' +
+      '<p style="margin:8px 0"><b>📝 انٹری ٹیسٹ کی معلومات</b></p>' +
       '<p class="small" style="margin:0 0 8px">کون سی یونیورسٹی کا انٹری ٹیسٹ کس زبان میں اور کس نوع کا ہوتا ہے (شیٹ / سرکاری ذرائع کے مطابق)۔ ' +
       'تیاری کا مواد (کتب، کورسز، نمونہ پیپرز) تصدیق کے بعد یہیں شامل ہو گا۔</p>' +
       (rows.length ? rows.map(function (u) {
         return '<div style="border:1px solid var(--c-border);border-radius:12px;padding:10px;margin:8px 0;background:var(--c-card)">' +
           '<p style="margin:0;font-weight:bold">' + esc(u.name) + (u.level ? ' — ' + esc(u.level) : '') + '</p>' +
-          '<p class="small" style="margin:4px 0">' + [u.testLanguage ? 'زبان: ' + esc(u.testLanguage) : '', u.testType ? 'نوع: ' + esc(u.testType) : ''].filter(Boolean).join(' • ') + '</p></div>';
+          '<p class="small" style="margin:4px 0">' + [u.testLanguage ? 'زبان: ' + esc(u.testLanguage) : '', u.testType ? 'نوع: ' + esc(u.testType) : ''].filter(Boolean).join(' • ') + '</p>' +
+          (u.testLink ? '<p style="margin:6px 0 0"><a style="display:inline-block;padding:6px 14px;border-radius:20px;background:var(--c-gold-100);border:1px solid var(--c-gold-500);font-weight:bold;color:var(--c-primary-700);text-decoration:none" href="' + esc(String(u.testLink).trim().replace(/ /g, '%20')) + '" target="_blank" rel="noopener">📝 ' + esc(u.testLinkLabel || 'ٹیسٹ معلومات / مواد') + ' ←</a></p>' : '') + '</div>';
       }).join('') : '<p class="small">ابھی کوئی انٹری ٹیسٹ معلومات درج نہیں۔</p>');
   }
 

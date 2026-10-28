@@ -519,10 +519,11 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 <!-- ============ یونیورسٹی داخلہ جات (فیز 2: ملکی/غیر ملکی + سکالرشپس + ملازمتیں + کیلنڈر) ============ -->
 <section class="view" id="view-admissions">
   <div class="topbar"><button onclick="goBack('entry')">→ واپس</button><div class="ttl">یونیورسٹی داخلہ جات</div><span style="width:52px"></span></div>
-  <p class="center small" style="margin:6px 0">ملکی و غیر ملکی یونیورسٹیز، سکالرشپس، ملازمتیں اور داخلہ کیلنڈر — سب ایک جگہ۔</p>
+  <p class="center small" id="adm-hub-intro" style="margin:6px 0">ملکی و غیر ملکی یونیورسٹیز، سکالرشپس، ملازمتیں اور داخلہ کیلنڈر — سب ایک جگہ۔</p>
   <div id="adm-strip" style="margin:8px 0;padding:8px 10px;border:1px solid var(--c-gold-500);border-radius:12px;background:var(--c-gold-100)"></div>
   <div id="adm-sections" style="margin:10px 0"></div>
   <div id="adm-sec-unis">
+    <button class="btn" style="margin-bottom:10px" onclick="admSection(null)">→ ہب پر واپس</button>
     <div id="adm-scope"></div>
     <p style="margin:8px 0 2px"><b>شعبہ جات</b></p>
     <div id="adm-disc"></div>
@@ -536,9 +537,11 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div id="adm-sec-jobs" style="display:none"></div>
   <div id="adm-sec-calendar" style="display:none"></div>
   <div id="adm-sec-tests" style="display:none"></div>
+  <div id="adm-hub-foot">
   <div class="divider"></div>
   <button class="btn goldb" onclick="go('admissions-form')">📝 آسان رجسٹریشن فارم</button>
   <p class="small" style="margin-top:6px">صرف جی میل، نام اور بنیادی معلومات — نہ ویژن، نہ لنکڈن، نہ گوگل اسکالر۔ یہ فارم آپ کا نام Candidates فہرست میں ڈال دے گا۔</p>
+  </div>
 </section>
 
 <!-- ============ یونیورسٹی تفصیل + اپلائی ============ -->
@@ -12179,7 +12182,7 @@ try{ renderLayoutSwitches(); }catch(e){}
 <script src="admissions-data.js"></script>
 <script src="foreign-data.js?v=20261029c"></script>
 <script src="admissions-news.js"></script>
-<script src="admissions.js?v=20261029f"></script>
+<script src="admissions.js?v=20261029g"></script>
 <script type="module" src="api-bridge.js"></script>
 </body>
 </html>
