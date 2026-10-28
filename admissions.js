@@ -22,7 +22,7 @@
   var WA_GROUP = window.ADMISSIONS_WHATSAPP_GROUP_URL || '';
   var state = { disc: 'تمام', level: 'تمام', current: null, pk: [], foreign: [], scope: 'pk', section: null };
   var SECTIONS = [
-    ['unis', '🎓 یونیورسٹیز'],
+    ['unis', '🎓 یونیورسٹیز داخلے'],
     ['scholarships', '🎓 سکالرشپس'],
     ['jobs', '💼 ملازمتیں و مواقع'],
     ['calendar', '📅 داخلہ کیلنڈر'],
