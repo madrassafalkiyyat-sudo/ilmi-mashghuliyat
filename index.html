@@ -516,17 +516,27 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   </div>
 </section>
 
-<!-- ============ یونیورسٹی داخلہ جات (فیز 1) ============ -->
+<!-- ============ یونیورسٹی داخلہ جات (فیز 2: ملکی/غیر ملکی + سکالرشپس + ملازمتیں + کیلنڈر) ============ -->
 <section class="view" id="view-admissions">
   <div class="topbar"><button onclick="goBack('entry')">→ واپس</button><div class="ttl">یونیورسٹی داخلہ جات</div><span style="width:52px"></span></div>
-  <p class="center small" style="margin:6px 0">پاکستانی یونیورسٹیز کی معلومات — ڈسپلن اور لیول چنیں، پھر یونیورسٹی کی تفصیل دیکھیں۔</p>
-  <p style="margin:8px 0 2px"><b>ڈسپلن</b></p>
-  <div id="adm-disc"></div>
-  <p style="margin:10px 0 2px"><b>لیول</b></p>
-  <div id="adm-level"></div>
-  <div class="divider"></div>
-  <p class="center small" id="adm-count"></p>
-  <div id="adm-list"></div>
+  <p class="center small" style="margin:6px 0">ملکی و غیر ملکی یونیورسٹیز، سکالرشپس، ملازمتیں اور داخلہ کیلنڈر — سب ایک جگہ۔</p>
+  <div id="adm-strip" style="margin:8px 0;padding:10px;border:1px solid var(--c-gold-500);border-radius:12px;background:var(--c-gold-100);overflow-x:auto;white-space:nowrap"></div>
+  <div id="adm-sections" style="margin:10px 0"></div>
+  <div id="adm-sec-unis">
+    <p style="margin:8px 0 2px"><b>ملکی / غیر ملکی</b></p>
+    <div id="adm-scope"></div>
+    <p style="margin:8px 0 2px"><b>ڈسپلن</b></p>
+    <div id="adm-disc"></div>
+    <p style="margin:10px 0 2px"><b>لیول</b></p>
+    <div id="adm-level"></div>
+    <div class="divider"></div>
+    <p class="center small" id="adm-count"></p>
+    <div id="adm-list"></div>
+  </div>
+  <div id="adm-sec-scholarships" style="display:none"></div>
+  <div id="adm-sec-jobs" style="display:none"></div>
+  <div id="adm-sec-calendar" style="display:none"></div>
+  <div id="adm-sec-tests" style="display:none"></div>
   <div class="divider"></div>
   <button class="btn goldb" onclick="go('admissions-form')">📝 آسان رجسٹریشن فارم</button>
   <p class="small" style="margin-top:6px">صرف جی میل، نام اور بنیادی معلومات — نہ ویژن، نہ لنکڈن، نہ گوگل اسکالر۔ یہ فارم آپ کا نام Candidates فہرست میں ڈال دے گا۔</p>
@@ -12192,6 +12202,8 @@ try{ renderLayoutSwitches(); }catch(e){}
 
 <script src="config.js"></script>
 <script src="admissions-data.js"></script>
+<script src="foreign-basic.js"></script>
+<script src="admissions-news.js"></script>
 <script src="admissions.js"></script>
 <script type="module" src="api-bridge.js"></script>
 </body>

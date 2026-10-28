@@ -1,10 +1,12 @@
 /* =====================================================================
-   داخلہ جات (Admissions hub — Phase 1)
+   داخلہ جات (Admissions hub — Phase 2)
    ---------------------------------------------------------------------
-   - ڈیٹا admissions-data.js سے آتا ہے (شیٹ سے نکالا ہوا، کوئی رقم/تاریخ
-     گھڑی نہیں گئی — خالی خانے پر «معلومات دستیاب نہیں» لکھا جاتا ہے)۔
-   - فیز 1 میں صرف پاکستانی یونیورسٹیز دکھائی جاتی ہیں؛ غیر ملکی ڈیٹا
-     فائل میں موجود ہے مگر فیز 2 کے بین الاقوامی ڈبے تک چھپا رہے گا۔
+   - ملکی ڈیٹا admissions-data.js سے، غیر ملکی (بنیادی) foreign-basic.js
+     سے، خبریں admissions-news.js سے — کوئی رقم/تاریخ گھڑی نہیں گئی،
+     خالی خانے پر «معلومات دستیاب نہیں» لکھا جاتا ہے۔
+   - غیر ملکی مکمل تفصیل (پروگرام، اہلیت، فیس) سرکاری پیجز سے تحقیق میں
+     ہے؛ مکمل ہوتے ہی یہی فائل امیر ڈیٹا سے بدل جائے گی۔
+   - آخری تاریخوں کی پٹی دستی (manual) اسکرول ہے — کوئی آٹو ٹکر نہیں۔
    - واٹس ایپ نمبر/گروپ صرف اپلائی مرحلے (تفصیل + اپلائی فارم) میں ہیں —
      داخلہ/معلومات اسکرینوں پر کبھی نہیں۔
    - ایپ بیرونی یونیورسٹی فارم کی تصدیق نہیں کر سکتی — اپلائی ریکارڈ
@@ -13,10 +15,19 @@
 (function () {
   'use strict';
   var DATA = window.ADMISSIONS_DATA;
+  var FOREIGN = window.FOREIGN_DATA;
+  var NEWS = window.ADMISSIONS_NEWS;
   var SCRIPT_URL = window.ADMISSIONS_SCRIPT_URL || '';
   var WA_NUMBER = window.ADMISSIONS_WHATSAPP_NUMBER || '';
   var WA_GROUP = window.ADMISSIONS_WHATSAPP_GROUP_URL || '';
-  var state = { disc: 'تمام', level: 'تمام', current: null, pk: [] };
+  var state = { disc: 'تمام', level: 'تمام', current: null, pk: [], foreign: [], scope: 'pk', section: 'unis' };
+  var SECTIONS = [
+    ['unis', '🎓 یونیورسٹیز'],
+    ['scholarships', '🎓 سکالرشپس'],
+    ['jobs', '💼 ملازمتیں و مواقع'],
+    ['calendar', '📅 داخلہ کیلنڈر'],
+    ['tests', '📝 انٹری ٹیسٹ کی معلومات']
+  ];
 
   function esc(s) {
     return String(s == null ? '' : s)
@@ -62,13 +73,27 @@
     }).join('');
   }
 
+  function curList() {
+    return state.scope === 'foreign' ? state.foreign : state.pk;
+  }
+
   function filtered() {
-    return state.pk.filter(function (u) {
+    return curList().filter(function (u) {
       var dok = state.disc === 'تمام' || (u.disciplines || []).indexOf(state.disc) !== -1;
       var lok = state.level === 'تمام' || u.level === state.level;
       return dok && lok;
     });
   }
+
+  function renderScope() {
+    el('adm-scope').innerHTML =
+      chip('🇵🇰 ملکی', state.scope === 'pk', "admSetScope('pk')") +
+      chip('🌍 غیر ملکی', state.scope === 'foreign', "admSetScope('foreign')");
+  }
+
+  window.admSetScope = function (s) {
+    state.scope = s; renderScope(); renderChips(); renderList();
+  };
 
   function renderList() {
     var list = filtered();
@@ -81,8 +106,14 @@
         'فیس/اہلیت کی حتمی تصدیق ہمیشہ یونیورسٹی کی سرکاری ویب سائٹ سے کریں۔</p></div>';
       return;
     }
-    el('adm-list').innerHTML = list.map(function (u) {
-      var i = state.pk.indexOf(u);
+    var note = '';
+    if (state.scope === 'foreign') {
+      note = '<div style="border:1px solid var(--c-gold-500);border-radius:12px;padding:10px;margin:8px 0;background:var(--c-gold-100)">' +
+        '<p class="small" style="margin:0">غیر ملکی یونیورسٹیز کی بنیادی معلومات (سرکاری ویب سائٹ، داخلہ اور سکالرشپ لنکس) یہاں ہیں؛ ' +
+        'ہر یونیورسٹی کے پروگرامز، اہلیت اور فیس کی مکمل تفصیل سرکاری پیجز سے جمع کی جا رہی ہے اور مکمل ہوتے ہی یہیں نظر آئے گی۔</p></div>';
+    }
+    el('adm-list').innerHTML = note + list.map(function (u) {
+      var i = curList().indexOf(u);
       var meta = [u.sector, u.city, u.level].filter(Boolean).join(' • ');
       var d = discOf(u);
       return '<div style="border:1px solid var(--c-border);border-radius:12px;padding:12px;margin:8px 0;background:var(--c-card)">' +
@@ -97,7 +128,7 @@
   window.admSetLevel = function (l) { state.level = l; renderChips(); renderList(); };
 
   window.admShow = function (i) {
-    var u = state.pk[i];
+    var u = curList()[i];
     if (!u) return;
     state.current = u;
     var html = '<h1 style="font-size:1.25em">' + esc(u.name) + '</h1>';
@@ -180,16 +211,136 @@
   };
 
   function fillUniversitySelects() {
+    var all = state.pk.concat(state.foreign);
     var opts = '<option value="">ابھی منتخب نہیں کی</option>' +
-      state.pk.map(function (u) {
+      all.map(function (u) {
         return '<option value="' + esc(u.name) + '">' + esc(u.name) + '</option>';
       }).join('');
     var a = el('af-university'); if (a) a.innerHTML = opts;
     var b = el('ap-university');
     if (b) b.innerHTML = '<option value="">— یونیورسٹی چنیں —</option>' +
-      state.pk.map(function (u) {
+      all.map(function (u) {
         return '<option value="' + esc(u.name) + '">' + esc(u.name) + '</option>';
       }).join('');
+  }
+
+  /* ---- Phase 2 sections: strip, scholarships, jobs, calendar, tests ---- */
+
+  function newsItems() {
+    return (NEWS && NEWS.items) || [];
+  }
+
+  function catLabel(c) {
+    return c === 'scholarship' ? '🎓 سکالرشپ' : c === 'job' ? '💼 ملازمت' :
+      c === 'admission' ? '📢 داخلہ' : c === 'conference' ? '🎤 کانفرنس' : '📰 خبر';
+  }
+
+  function newsCard(it) {
+    var h = '<div style="border:1px solid var(--c-border);border-radius:12px;padding:12px;margin:8px 0;background:var(--c-card)">' +
+      '<p style="margin:0;font-weight:bold">' + esc(it.title) + '</p>' +
+      '<p class="small" style="margin:4px 0">' + catLabel(it.cat) + ' • ' + esc(it.org || '') +
+      (it.deadlineText ? ' • ' + esc(it.deadlineText) : '') + '</p>';
+    if (it.details) h += '<p class="small" style="margin:4px 0">' + esc(it.details) + '</p>';
+    if (isUrl(it.link)) h += '<a class="btn" style="display:inline-block;text-align:center;text-decoration:none;margin-top:6px;padding:8px 16px" href="' + esc(it.link.trim()) + '" target="_blank" rel="noopener">سرکاری صفحہ کھولیں</a>';
+    return h + '</div>';
+  }
+
+  function renderSecButtons() {
+    el('adm-sections').innerHTML = SECTIONS.map(function (s) {
+      return chip(s[1], state.section === s[0], "admSection('" + s[0] + "')");
+    }).join('');
+  }
+
+  window.admSection = function (sec) {
+    state.section = sec;
+    renderSecButtons();
+    SECTIONS.forEach(function (s) {
+      var d = el('adm-sec-' + s[0]);
+      if (d) d.style.display = (s[0] === sec) ? '' : 'none';
+    });
+  };
+
+  function renderStrip() {
+    var box = el('adm-strip');
+    if (!box) return;
+    var dated = newsItems().filter(function (it) { return it.deadline; })
+      .sort(function (a, b) { return a.deadline < b.deadline ? -1 : 1; });
+    if (!dated.length) { box.style.display = 'none'; return; }
+    box.innerHTML = '<p style="margin:0 0 6px;white-space:normal"><b>⏰ آخری تاریخیں</b> <span class="small">(دائیں/بائیں اسکرول کریں)</span></p>' +
+      dated.map(function (it) {
+        return '<div style="display:inline-block;vertical-align:top;width:260px;white-space:normal;border:1px solid var(--c-border);border-radius:10px;padding:10px;margin:2px;background:var(--c-card)">' +
+          '<p style="margin:0;font-weight:bold;font-size:16px">' + esc(it.title) + '</p>' +
+          '<p class="small" style="margin:4px 0">' + catLabel(it.cat) + ' • ' + esc(it.deadlineText || it.deadline) + '</p>' +
+          (isUrl(it.link) ? '<a style="color:var(--c-primary-700);font-weight:bold" href="' + esc(it.link.trim()) + '" target="_blank" rel="noopener">سرکاری صفحہ ←</a>' : '') +
+          '</div>';
+      }).join('');
+  }
+
+  function renderNewsSections() {
+    var sch = newsItems().filter(function (it) { return it.cat === 'scholarship' || it.cat === 'conference'; });
+    var jobs = newsItems().filter(function (it) { return it.cat === 'job'; });
+    var sEl = el('adm-sec-scholarships');
+    if (sEl) {
+      sEl.innerHTML = '<p style="margin:8px 0"><b>🎓 سکالرشپس</b></p>' +
+        (sch.length ? sch.map(newsCard).join('') : '<p class="small">ابھی کوئی تصدیق شدہ سکالرشپ خبر نہیں — نئی خبریں تصدیق کے بعد یہیں آئیں گی۔</p>') +
+        '<p class="small" style="margin-top:8px">فلی فنڈڈ کانفرنسز کے اعلانات بھی تصدیق کے بعد اسی ڈبے میں آئیں گے۔</p>';
+    }
+    var jEl = el('adm-sec-jobs');
+    if (jEl) {
+      jEl.innerHTML = '<p style="margin:8px 0"><b>💼 ملازمتیں و مواقع</b></p>' +
+        (jobs.length ? jobs.map(newsCard).join('') : '<p class="small">ابھی کوئی تصدیق شدہ ملازمت خبر نہیں — نئی خبریں تصدیق کے بعد یہیں آئیں گی۔</p>') +
+        '<p class="small" style="margin-top:8px">یہ وہی طرز کی خبریں ہیں جو علمی مشغولیت ایپ کے اندر بھی آتی ہیں — یہاں فہرست شدہ یونیورسٹیز سے متعلقہ خبریں دکھائی جاتی ہیں۔</p>';
+    }
+  }
+
+  function renderCalendar() {
+    var cEl = el('adm-sec-calendar');
+    if (!cEl) return;
+    var seen = {};
+    var names = [];
+    state.pk.concat(state.foreign).forEach(function (u) {
+      if (u.name && !seen[u.name]) { seen[u.name] = u; names.push(u); }
+    });
+    function matchNews(u) {
+      return newsItems().filter(function (it) { return it.deadline; }).filter(function (it) {
+        var o = it.org || '';
+        return (o && u.name && (o.indexOf(u.name) !== -1 || u.name.indexOf(o) !== -1));
+      })[0];
+    }
+    var rows = names.map(function (u) {
+      var n = matchNews(u);
+      return { u: u, n: n };
+    });
+    rows.sort(function (a, b) { return (a.n ? 0 : 1) - (b.n ? 0 : 1); });
+    cEl.innerHTML = '<p style="margin:8px 0"><b>📅 داخلہ کیلنڈر</b></p>' +
+      '<p class="small" style="margin:0 0 8px">ہر یونیورسٹی کا داخلہ شیڈول (سال میں کتنی مرتبہ) + تصدیق شدہ آخری تاریخ جہاں اعلان موجود ہے۔ ' +
+      'داخلہ تاریخیں ہر سائیکل کے ساتھ بدلتی ہیں — نیا اعلان آتے ہی یہیں نظر آئے گا۔</p>' +
+      rows.map(function (r) {
+        return '<div style="border:1px solid var(--c-border);border-radius:12px;padding:10px;margin:8px 0;background:var(--c-card)">' +
+          '<p style="margin:0;font-weight:bold">' + esc(r.u.name) +
+          (r.u.country && r.u.country !== 'پاکستان' ? ' (' + esc(r.u.country) + ')' : '') + '</p>' +
+          '<p class="small" style="margin:4px 0">داخلہ (سال میں): ' + (r.u.admissionFrequency ? esc(r.u.admissionFrequency) : 'معلومات دستیاب نہیں') + '</p>' +
+          (r.n ? '<p class="small" style="margin:4px 0">⏰ ' + esc(r.n.title) + ' — ' + esc(r.n.deadlineText || r.n.deadline) +
+            (isUrl(r.n.link) ? ' <a style="color:var(--c-primary-700);font-weight:bold" href="' + esc(r.n.link.trim()) + '" target="_blank" rel="noopener">لنک ←</a>' : '') + '</p>'
+            : '<p class="small" style="margin:4px 0">آخری تاریخ: اس وقت کوئی تصدیق شدہ داخلہ اعلان نہیں۔</p>') +
+          '</div>';
+      }).join('');
+  }
+
+  function renderTests() {
+    var tEl = el('adm-sec-tests');
+    if (!tEl) return;
+    var rows = state.pk.concat(state.foreign).filter(function (u) {
+      return (u.testLanguage && String(u.testLanguage).trim()) || (u.testType && String(u.testType).trim());
+    });
+    tEl.innerHTML = '<p style="margin:8px 0"><b>📝 انٹری ٹیسٹ کی معلومات</b></p>' +
+      '<p class="small" style="margin:0 0 8px">کون سی یونیورسٹی کا انٹری ٹیسٹ کس زبان میں اور کس نوع کا ہوتا ہے (شیٹ / سرکاری ذرائع کے مطابق)۔ ' +
+      'تیاری کا مواد (کتب، کورسز، نمونہ پیپرز) تصدیق کے بعد یہیں شامل ہو گا۔</p>' +
+      (rows.length ? rows.map(function (u) {
+        return '<div style="border:1px solid var(--c-border);border-radius:12px;padding:10px;margin:8px 0;background:var(--c-card)">' +
+          '<p style="margin:0;font-weight:bold">' + esc(u.name) + (u.level ? ' — ' + esc(u.level) : '') + '</p>' +
+          '<p class="small" style="margin:4px 0">زبان: ' + val(u.testLanguage) + ' • نوع: ' + val(u.testType) + '</p></div>';
+      }).join('') : '<p class="small">ابھی کوئی انٹری ٹیسٹ معلومات درج نہیں۔</p>');
   }
 
   function readFilesAsBase64(input) {
@@ -291,8 +442,16 @@
       return;
     }
     state.pk = DATA.universities.filter(function (u) { return u.country === 'پاکستان'; });
+    state.foreign = (FOREIGN && FOREIGN.universities) || [];
+    renderScope();
     renderChips();
     renderList();
+    renderSecButtons();
+    renderStrip();
+    renderNewsSections();
+    renderCalendar();
+    renderTests();
+    admSection('unis');
     fillUniversitySelects();
     if (!SCRIPT_URL) {
       var n1 = el('af-note');
