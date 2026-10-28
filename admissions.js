@@ -3,7 +3,7 @@
    ---------------------------------------------------------------------
    - ملکی ڈیٹا admissions-data.js سے، غیر ملکی (بنیادی) foreign-basic.js
      سے، خبریں admissions-news.js سے — کوئی رقم/تاریخ گھڑی نہیں گئی،
-     خالی خانے پر «معلومات دستیاب نہیں» لکھا جاتا ہے۔
+     خالی خانہ دکھایا ہی نہیں جاتا — صرف وہ معلومات نظر آتی ہیں جو واقعی موجود ہیں۔
    - غیر ملکی مکمل تفصیل (پروگرام، اہلیت، فیس) سرکاری پیجز سے تحقیق میں
      ہے؛ مکمل ہوتے ہی یہی فائل امیر ڈیٹا سے بدل جائے گی۔
    - آخری تاریخوں کی پٹی دستی (manual) اسکرول ہے — کوئی آٹو ٹکر نہیں۔
@@ -38,14 +38,15 @@
     return typeof u === 'string' && /^https?:\/\//i.test(u.trim());
   }
   function link(u, label) {
-    if (!isUrl(u)) return '<span class="small">معلومات دستیاب نہیں</span>';
+    if (!isUrl(u)) return '';
     return '<a href="' + esc(u.trim()) + '" target="_blank" rel="noopener" ' +
       'style="color:var(--c-primary-700);font-weight:bold">' + esc(label) + '</a>';
   }
   function val(v) {
-    return (v && String(v).trim()) ? esc(v) : '<span class="small">معلومات دستیاب نہیں</span>';
+    return (v && String(v).trim()) ? esc(v) : '';
   }
   function row(label, html) {
+    if (!html) return '';
     return '<p style="margin:4px 0"><b>' + esc(label) + ':</b> ' + html + '</p>';
   }
   function el(id) { return document.getElementById(id); }
@@ -115,11 +116,17 @@
       return;
     }
     var list = filtered();
-    el('adm-count').textContent = list.length + ' یونیورسٹیز ملیں';
-    if (!list.length) {
+    var groups = [], byName = {};
+    list.forEach(function (u) {
+      if (!byName[u.name]) { byName[u.name] = { name: u.name, entries: [] }; groups.push(byName[u.name]); }
+      byName[u.name].entries.push(u);
+    });
+    window.__admGroups = groups;
+    el('adm-count').textContent = groups.length + ' یونیورسٹیز ملیں';
+    if (!groups.length) {
       el('adm-list').innerHTML =
         '<div style="border:1px solid var(--c-border);border-radius:12px;padding:12px;background:var(--c-card)">' +
-        '<p style="margin:0"><b>اس انتخاب کی معلومات ابھی شیٹ میں درج نہیں۔</b></p>' +
+        '<p style="margin:0"><b>اس انتخاب کے لیے کوئی اندراج نہیں ملا۔</b></p>' +
         '<p class="small" style="margin:6px 0 0">شعبہ جات یا لیول بدل کر دیکھیں، یا «تمام» چن کر پوری فہرست دیکھیں۔ ' +
         'فیس/اہلیت کی حتمی تصدیق ہمیشہ یونیورسٹی کی سرکاری ویب سائٹ سے کریں۔</p></div>';
       return;
@@ -130,74 +137,118 @@
         '<p class="small" style="margin:0">غیر ملکی یونیورسٹیز کی تفصیل: 19 یونیورسٹیز کے پروگرامز/فیکلٹیز سرکاری پیجز سے آ گئے ہیں؛ ' +
         'صرف المصطفی کی مکمل تفصیل ابھی تحقیق میں ہے (اس کی سرکاری سائٹ پر پروگرام لسٹ نہیں ملی) — اس کا سرکاری لنک یہاں موجود ہے۔</p></div>';
     }
-    el('adm-list').innerHTML = note + list.map(function (u) {
-      var i = curList().indexOf(u);
-      var meta = [u.sector, u.city, u.level].filter(Boolean).join(' • ');
-      var d = discOf(u);
+    el('adm-list').innerHTML = note + groups.map(function (g, gi) {
+      var first = g.entries[0];
+      var levels = [];
+      var discs = [];
+      g.entries.forEach(function (e) {
+        if (e.level && levels.indexOf(e.level) < 0) levels.push(e.level);
+        (e.disciplines || []).forEach(function (d) { if (discs.indexOf(d) < 0) discs.push(d); });
+      });
+      var meta = [first.sector, first.city].filter(Boolean).join(' • ');
       return '<div style="border:1px solid var(--c-border);border-radius:12px;padding:12px;margin:8px 0;background:var(--c-card)">' +
-        '<p style="margin:0;font-weight:bold;font-size:1.05em">' + esc(u.name) + '</p>' +
+        '<p style="margin:0;font-weight:bold;font-size:1.05em">' + esc(g.name) + '</p>' +
         (meta ? '<p class="small" style="margin:2px 0">' + esc(meta) + '</p>' : '') +
-        (d ? '<p class="small" style="margin:2px 0">' + esc(d) + '</p>' : '') +
-        '<button class="btn" style="margin-top:8px" onclick="admShow(' + i + ')">تفصیل دیکھیں</button></div>';
+        (levels.length ? '<p class="small" style="margin:2px 0">' + esc(levels.join(' • ')) + '</p>' : '') +
+        (discs.length ? '<p class="small" style="margin:2px 0">' + esc(discs.join('، ')) + '</p>' : '') +
+        '<p class="small" style="margin:2px 0">' + g.entries.length + ' پروگرامز</p>' +
+        '<button class="btn" style="margin-top:8px" onclick="admShowUni(' + gi + ')">تفصیل دیکھیں</button></div>';
     }).join('');
   }
 
   window.admSetDisc = function (d) { state.disc = d; renderChips(); renderList(); };
   window.admSetLevel = function (l) { state.level = l; renderChips(); renderList(); };
 
-  window.admShow = function (i) {
-    var u = curList()[i];
-    if (!u) return;
-    state.current = u;
-    var html = '<h1 style="font-size:1.25em">' + esc(u.name) + '</h1>';
+  window.admShowUni = function (gi) {
+    var g = window.__admGroups && window.__admGroups[gi];
+    if (!g) return;
+    var entries = g.entries;
+    var first = entries[0];
+    state.current = { name: g.name, level: '', disciplines: [] };
+    var pick = function (f) {
+      for (var k = 0; k < entries.length; k++) if (entries[k][f]) return entries[k][f];
+      return '';
+    };
+    var pickAttr = function (k) {
+      for (var k2 = 0; k2 < entries.length; k2++) {
+        if (entries[k2].attributes && entries[k2].attributes[k]) return entries[k2].attributes[k];
+      }
+      return '';
+    };
+    var html = '<h1 style="font-size:1.25em">' + esc(g.name) + '</h1>';
     html += '<p class="small" style="margin:0 0 8px">' +
-      [u.sector, u.city, u.level, discOf(u)].filter(Boolean).map(esc).join(' • ') + '</p>';
+      [first.sector, first.city, (first.country && first.country !== 'پاکستان') ? first.country : ''].filter(Boolean).map(esc).join(' • ') + '</p>';
     html += '<div class="divider"></div>';
-    html += row('دورانیہ', val(u.duration));
-    html += row('اہلیت', val(u.eligibility));
-    html += row('آن لائن سہولت', val(u.onlineFacility));
-    html += row('کلاس ایام', val(u.classDays));
-    html += row('کلاس اوقات', val(u.classTimings));
-    html += row('داخلہ (سال میں)', val(u.admissionFrequency));
-    html += row('داخلہ تاریخ', val(u.admissionDates));
-    html += row('انٹری ٹیسٹ زبان', val(u.testLanguage));
-    html += row('انٹری ٹیسٹ نوع', val(u.testType));
-    html += row('شعبے / پروگرامز', val(u.fields || (u.attributes && u.attributes['بی ایس پروگرامز'])));
-    html += row('فون', val(u.phone));
-    if (u.contacts && u.contacts.length) {
+    html += row('فون', val(pick('phone')));
+    html += row('آن لائن سہولت', val(pick('onlineFacility')));
+    html += row('داخلہ (سال میں)', val(pick('admissionFrequency')));
+    var levelOrder = { 'بی ایس': 0, 'ایم ایس / ایم فل': 1, 'پی ایچ ڈی': 2 };
+    var sorted = entries.slice().sort(function (a, b) {
+      var la = (levelOrder[a.level] === undefined) ? 9 : levelOrder[a.level];
+      var lb = (levelOrder[b.level] === undefined) ? 9 : levelOrder[b.level];
+      return la - lb;
+    });
+    sorted.forEach(function (u) {
+      html += '<div style="border:1px solid var(--c-border);border-radius:12px;padding:10px;margin:10px 0;background:var(--c-card)">';
+      html += '<p style="margin:0;font-weight:bold">' + [u.level, discOf(u)].filter(Boolean).map(esc).join(' • ') + '</p>';
+      html += row('شعبے / پروگرامز', val(u.fields || (u.attributes && u.attributes['بی ایس پروگرامز'])));
+      html += row('دورانیہ', val(u.duration));
+      html += row('اہلیت', val(u.eligibility));
+      html += row('کلاس ایام', val(u.classDays));
+      html += row('کلاس اوقات', val(u.classTimings));
+      html += row('داخلہ تاریخ', val(u.admissionDates));
+      html += row('انٹری ٹیسٹ زبان', val(u.testLanguage));
+      html += row('انٹری ٹیسٹ نوع', val(u.testType));
+      var pl = row('شعبہ کا صفحہ', link(u.deptLink, 'شعبہ کا صفحہ')) +
+        row('فیس نوٹیفیکیشن', link(u.feeLink, 'فیس نوٹیفیکیشن'));
+      if (pl) html += '<div style="margin-top:6px">' + pl + '</div>';
+      html += '</div>';
+    });
+    var seenContacts = {};
+    var allContacts = [];
+    entries.forEach(function (u) {
+      (u.contacts || []).forEach(function (c) {
+        var key = (c.person || '') + '|' + (c.number || '');
+        if (!seenContacts[key]) { seenContacts[key] = true; allContacts.push(c); }
+      });
+    });
+    if (allContacts.length) {
       html += '<p style="margin:8px 0 2px"><b>رابطہ افراد (شیٹ کے مطابق):</b></p>';
-      u.contacts.forEach(function (c) {
+      allContacts.forEach(function (c) {
         html += '<p style="margin:2px 0">' + esc(c.person || '—') +
           (c.number ? ' — ' + esc(c.number) : '') + '</p>';
       });
     }
-    if (u.attributes) {
+    var seenAttrs = {};
+    entries.forEach(function (u) {
+      if (!u.attributes) return;
       Object.keys(u.attributes).forEach(function (k) {
-        if (k === 'بی ایس پروگرامز') return;
+        if (k === 'بی ایس پروگرامز' || k === 'داخلہ فارم / پورٹل' || seenAttrs[k]) return;
+        seenAttrs[k] = true;
         var v = u.attributes[k];
         html += row(k, isUrl(v) ? link(v, 'لنک کھولیں') : val(v));
       });
+    });
+    var linksHtml = row('ویب سائٹ', link(pick('website'), 'یونیورسٹی ویب سائٹ')) +
+      row('داخلہ فارم / پورٹل', link(pickAttr('داخلہ فارم / پورٹل'), 'لنک کھولیں')) +
+      row('سکالرشپ تفصیل', link(pick('scholarshipLink'), 'سکالرشپ تفصیل')) +
+      row('فیس بک', link(pick('facebook'), 'فیس بک پیج')) +
+      row('داخلہ ویڈیو', link(pick('videoLink'), 'داخلہ ویڈیو'));
+    if (linksHtml) {
+      html += '<div class="divider"></div><p style="margin:0 0 4px"><b>سرکاری لنکس</b></p>' + linksHtml;
     }
-    html += '<div class="divider"></div><p style="margin:0 0 4px"><b>سرکاری لنکس</b></p>';
-    html += row('ویب سائٹ', link(u.website, 'یونیورسٹی ویب سائٹ'));
-    html += row('شعبہ کا صفحہ', link(u.deptLink, 'شعبہ کا صفحہ'));
-    html += row('فیس نوٹیفیکیشن', link(u.feeLink, 'فیس نوٹیفیکیشن'));
-    html += row('سکالرشپ تفصیل', link(u.scholarshipLink, 'سکالرشپ تفصیل'));
-    html += row('فیس بک', link(u.facebook, 'فیس بک پیج'));
-    html += row('داخلہ ویڈیو', link(u.videoLink, 'داخلہ ویڈیو'));
-    html += '<p class="small" style="margin:8px 0 0">فیس کی رقم شیٹ میں درج نہیں — ' +
-      'فیس نوٹیفیکیشن یا یونیورسٹی ویب سائٹ سے تصدیق کریں۔</p>';
-    var applyUrl = u.deptLink || u.website;
-    var applyNote = u.deptLink
-      ? 'شعبہ کا صفحہ کھلے گا — ایڈمیشن فارم وہیں ملے گا۔'
-      : 'یونیورسٹی کی ویب سائٹ کھلے گی — ایڈمیشن فارم وہیں تلاش کریں۔';
+    html += '<p class="small" style="margin:8px 0 0">فیس کی رقم فیس نوٹیفیکیشن یا یونیورسٹی ویب سائٹ سے تصدیق کریں۔</p>';
+    var applyUrl = pickAttr('داخلہ فارم / پورٹل') || pick('deptLink') || pick('website');
+    var applyNote = pickAttr('داخلہ فارم / پورٹل')
+      ? 'داخلہ فارم / پورٹل کھلے گا۔'
+      : (pick('deptLink')
+        ? 'شعبہ کا صفحہ کھلے گا — ایڈمیشن فارم وہیں ملے گا۔'
+        : 'یونیورسٹی کی ویب سائٹ کھلے گی — ایڈمیشن فارم وہیں تلاش کریں۔');
     html += '<div style="margin:14px 0;padding:12px;border:1px solid var(--c-gold-500);border-radius:12px;background:var(--c-gold-100)">' +
       '<p style="margin:0 0 4px;font-weight:bold">📝 اپلائی کریں</p>' +
       '<p class="small" style="margin:0 0 10px">' + esc(applyNote) + '</p>';
     if (isUrl(applyUrl)) {
       html += '<a class="btn goldb" style="display:block;text-align:center;text-decoration:none;padding:12px" href="' + esc(applyUrl.trim()) + '" target="_blank" rel="noopener">ایڈمیشن فارم کھولیں</a>';
-    } else {
-      html += '<p class="small">اس یونیورسٹی کا فارم/ویب لنک شیٹ میں درج نہیں۔</p>';
     }
     html += '<div style="margin-top:12px;border-top:1px dashed var(--c-gold-500);padding-top:10px">' +
       '<p style="margin:0 0 6px"><b>اپلائی میں مدد چاہیے؟</b></p>';
@@ -230,14 +281,16 @@
 
   function fillUniversitySelects() {
     var all = state.pk.concat(state.foreign);
+    var seen = {}, uniq = [];
+    all.forEach(function (u) { if (!seen[u.name]) { seen[u.name] = true; uniq.push(u); } });
     var opts = '<option value="">ابھی منتخب نہیں کی</option>' +
-      all.map(function (u) {
+      uniq.map(function (u) {
         return '<option value="' + esc(u.name) + '">' + esc(u.name) + '</option>';
       }).join('');
     var a = el('af-university'); if (a) a.innerHTML = opts;
     var b = el('ap-university');
     if (b) b.innerHTML = '<option value="">— یونیورسٹی چنیں —</option>' +
-      all.map(function (u) {
+      uniq.map(function (u) {
         return '<option value="' + esc(u.name) + '">' + esc(u.name) + '</option>';
       }).join('');
   }
@@ -263,25 +316,19 @@
     return h + '</div>';
   }
 
-  /* بڑے اکارڈین بٹن (Mufti 2026-10-29): کھلنے پر پانچوں ڈبے بند ہوتے ہیں —
-     صرف بڑے بٹن نظر آتے ہیں؛ کسی ایک پر کلک ہو تو اسی کے اندر اس کی فہرست
-     کھلتی ہے، دوبارہ کلک پر بند ہو جاتی ہے۔ */
-  var SEC_SUB = {
-    unis: 'ملکی و غیر ملکی یونیورسٹیز — داخلہ معلومات و اپلائی',
-    scholarships: 'سکالرشپس و فلی فنڈڈ کانفرنسز',
-    jobs: 'ملازمتیں و مواقع',
-    calendar: 'ہر یونیورسٹی کا داخلہ صفحہ و شیڈول',
-    tests: 'انٹری ٹیسٹ کی زبان، نوع و مواد'
-  };
-
+  /* مربع ٹائلز (Mufti 2026-10-29): اوپر نیچے کی بجائے 3 کالم × 2 قطاریں،
+     ساتھ ساتھ — جگہ کم گھیرتے ہیں؛ نیچے والے جملے (سب ٹائٹل) حذف۔ */
   function renderSecButtons() {
-    el('adm-sections').innerHTML = '<div style="display:flex;flex-direction:column;gap:10px">' +
+    el('adm-sections').innerHTML = '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:560px;margin:0 auto">' +
       SECTIONS.map(function (s) {
         var open = state.section === s[0];
-        return '<button type="button" onclick="admSection(\'' + s[0] + '\')" style="display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:14px 16px;border-radius:14px;border:1px solid ' + (open ? 'var(--c-gold-500)' : 'var(--c-border)') + ';background:' + (open ? 'var(--c-gold-100)' : 'var(--c-card)') + ';font-family:inherit;cursor:pointer;text-align:right">' +
-          '<span><span style="display:block;font-size:19px;font-weight:bold">' + esc(s[1]) + '</span>' +
-          '<span class="small" style="display:block;margin-top:2px">' + esc(SEC_SUB[s[0]] || '') + '</span></span>' +
-          '<span style="flex:none;font-size:22px">' + (open ? '⌃' : '⌄') + '</span></button>';
+        var parts = s[1].split(' ');
+        var emoji = parts[0];
+        var title = parts.slice(1).join(' ');
+        return '<button type="button" onclick="admSection(\'' + s[0] + '\')" style="aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px 6px;border-radius:16px;border:1px solid ' + (open ? 'var(--c-gold-500)' : 'var(--c-border)') + ';background:' + (open ? 'var(--c-gold-100)' : 'var(--c-card)') + ';font-family:inherit;cursor:pointer;text-align:center">' +
+          '<span style="font-size:26px;line-height:1">' + esc(emoji) + '</span>' +
+          '<span style="display:block;font-size:16px;font-weight:bold;line-height:1.4">' + esc(title) + '</span>' +
+          '<span style="font-size:14px;line-height:1">' + (open ? '⌃' : '⌄') + '</span></button>';
       }).join('') + '</div>';
   }
 
@@ -407,7 +454,7 @@
         return '<div style="border:1px solid var(--c-border);border-radius:12px;padding:10px;margin:8px 0;background:var(--c-card)">' +
           '<p style="margin:0;font-weight:bold">' + esc(r.u.name) +
           (r.u.country && r.u.country !== 'پاکستان' ? ' (' + esc(r.u.country) + ')' : '') + '</p>' +
-          '<p class="small" style="margin:4px 0">داخلہ (سال میں): ' + (r.u.admissionFrequency ? esc(r.u.admissionFrequency) : 'معلومات دستیاب نہیں') + '</p>' +
+          (r.u.admissionFrequency ? '<p class="small" style="margin:4px 0">داخلہ (سال میں): ' + esc(r.u.admissionFrequency) + '</p>' : '') +
           (r.n ? '<p class="small" style="margin:4px 0">⏰ ' + esc(r.n.title) + ' — ' + esc(r.n.deadlineText || r.n.deadline) +
             (isUrl(r.n.link) ? ' <a style="color:var(--c-primary-700);font-weight:bold" href="' + esc(r.n.link.trim()) + '" target="_blank" rel="noopener">لنک ←</a>' : '') + '</p>' : '') +
           (r.url ? '<p style="margin:6px 0 0"><a style="display:inline-block;padding:6px 14px;border-radius:20px;background:var(--c-gold-100);border:1px solid var(--c-gold-500);font-weight:bold;color:var(--c-primary-700);text-decoration:none" href="' + esc(r.url) + '" target="_blank" rel="noopener">📅 داخلہ کیلنڈر / اعلانات ←</a></p>' : '') +
@@ -427,7 +474,7 @@
       (rows.length ? rows.map(function (u) {
         return '<div style="border:1px solid var(--c-border);border-radius:12px;padding:10px;margin:8px 0;background:var(--c-card)">' +
           '<p style="margin:0;font-weight:bold">' + esc(u.name) + (u.level ? ' — ' + esc(u.level) : '') + '</p>' +
-          '<p class="small" style="margin:4px 0">زبان: ' + val(u.testLanguage) + ' • نوع: ' + val(u.testType) + '</p></div>';
+          '<p class="small" style="margin:4px 0">' + [u.testLanguage ? 'زبان: ' + esc(u.testLanguage) : '', u.testType ? 'نوع: ' + esc(u.testType) : ''].filter(Boolean).join(' • ') + '</p></div>';
       }).join('') : '<p class="small">ابھی کوئی انٹری ٹیسٹ معلومات درج نہیں۔</p>');
   }
 
