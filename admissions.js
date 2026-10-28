@@ -260,20 +260,57 @@
     });
   };
 
+  /* آخری تاریخوں کی پٹی — ایک ہی قطار، ہر خبر ایک لائن (Mufti 2026-10-29):
+     بڑے کارڈز کی جگہ باریک پٹی: لیبل + کونوں پر ایرو بٹن + اسکرول ہونے والی
+     ایک لائنی چپس۔ ایرو scrollIntoView سے چلتے ہیں (RTL میں scrollLeft کی
+     علامت براؤزر بہ براؤزر بدلتی ہے، اس لیے اس پر بھروسہ نہیں)؛ انگلی سے
+     سوائپ بھی ویسے ہی کام کرتا ہے۔ کوئی آٹو حرکت نہیں۔ */
   function renderStrip() {
     var box = el('adm-strip');
     if (!box) return;
     var dated = newsItems().filter(function (it) { return it.deadline; })
       .sort(function (a, b) { return a.deadline < b.deadline ? -1 : 1; });
     if (!dated.length) { box.style.display = 'none'; return; }
-    box.innerHTML = '<p style="margin:0 0 6px;white-space:normal"><b>⏰ آخری تاریخیں</b> <span class="small">(دائیں/بائیں اسکرول کریں)</span></p>' +
-      dated.map(function (it) {
-        return '<div style="display:inline-block;vertical-align:top;width:260px;white-space:normal;border:1px solid var(--c-border);border-radius:10px;padding:10px;margin:2px;background:var(--c-card)">' +
-          '<p style="margin:0;font-weight:bold;font-size:16px">' + esc(it.title) + '</p>' +
-          '<p class="small" style="margin:4px 0">' + catLabel(it.cat) + ' • ' + esc(it.deadlineText || it.deadline) + '</p>' +
-          (isUrl(it.link) ? '<a style="color:var(--c-primary-700);font-weight:bold" href="' + esc(it.link.trim()) + '" target="_blank" rel="noopener">سرکاری صفحہ ←</a>' : '') +
-          '</div>';
-      }).join('');
+    var chips = dated.map(function (it) {
+      var label = catLabel(it.cat) + ' ' + it.title + ' • آخری تاریخ: ' + (it.deadlineText || it.deadline);
+      var clickable = isUrl(it.link);
+      return '<div class="adm-strip-chip" data-link="' + (clickable ? esc(it.link.trim()) : '') + '" title="' + esc(label) + '" style="display:inline-block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:320px;border:1px solid var(--c-border);border-radius:20px;padding:6px 12px;margin:2px;background:var(--c-card);font-size:13px;cursor:' + (clickable ? 'pointer' : 'default') + '">' + esc(label) + '</div>';
+    }).join('');
+    box.innerHTML = '<div style="display:flex;align-items:center;gap:6px">' +
+      '<b style="white-space:nowrap;font-size:13px">⏰ آخری تاریخیں:</b>' +
+      '<button type="button" id="adm-strip-prev" aria-label="پچھلی خبریں" style="flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--c-border);background:var(--c-card);font-size:16px;line-height:1;cursor:pointer">›</button>' +
+      '<div id="adm-strip-track" style="flex:1;overflow-x:auto;white-space:nowrap;scroll-behavior:smooth">' + chips + '</div>' +
+      '<button type="button" id="adm-strip-next" aria-label="اگلی خبریں" style="flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--c-border);background:var(--c-card);font-size:16px;line-height:1;cursor:pointer">‹</button>' +
+      '</div>';
+    var track = document.getElementById('adm-strip-track');
+    var items = track ? track.querySelectorAll('.adm-strip-chip') : [];
+    var idx = 0;
+    function goTo(i) {
+      if (!items.length) return;
+      idx = Math.max(0, Math.min(items.length - 1, i));
+      items[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+    var prev = document.getElementById('adm-strip-prev');
+    var next = document.getElementById('adm-strip-next');
+    if (prev) prev.addEventListener('click', function () { goTo(idx - 1); });
+    if (next) next.addEventListener('click', function () { goTo(idx + 1); });
+    if (track) track.addEventListener('scroll', function () {
+      var tr = track.getBoundingClientRect(), best = 0, bestD = 1e9;
+      for (var i = 0; i < items.length; i++) {
+        var r = items[i].getBoundingClientRect();
+        var d = Math.abs((r.left + r.right) / 2 - (tr.left + tr.right) / 2);
+        if (d < bestD) { bestD = d; best = i; }
+      }
+      idx = best;
+    }, { passive: true });
+    for (var j = 0; j < items.length; j++) {
+      (function (chip) {
+        chip.addEventListener('click', function () {
+          var u = chip.getAttribute('data-link');
+          if (u) window.open(u, '_blank', 'noopener');
+        });
+      })(items[j]);
+    }
   }
 
   function renderNewsSections() {
