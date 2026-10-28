@@ -8,10 +8,9 @@
 // anyone in until the URL is set.
 window.ILMI_API_BASE = 'https://ilmi-mashghuliyat-api.onrender.com';
 
-// Admissions hub (Phase 1). The script URL stays empty until the Apps
-// Script web app is deployed (see admissions/DEPLOY.md); until then the
-// forms show an honest "not yet active" notice instead of fake submissions.
-window.ADMISSIONS_SCRIPT_URL = '';
+// Admissions hub (Phase 1). Web app deployed 2026-10-28 under the
+// institutional account (madrassa.falkiyyat@gmail.com); see admissions/DEPLOY.md.
+window.ADMISSIONS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw8J8GTuGol_OqDUdO0KILtymInwJ-xWV-QSH5xuuVpFOT4E7PiJ-bo6KypGJxcVL_B/exec';
 // WhatsApp help — shown ONLY at the apply stage, never on entry/info screens.
 window.ADMISSIONS_WHATSAPP_NUMBER = '923219692952';
 // WhatsApp group invite — shown ONLY at the apply stage, beside the number.
