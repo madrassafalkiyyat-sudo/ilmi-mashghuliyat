@@ -73,7 +73,7 @@ window.ADMISSIONS_DATA = {
    "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "(051) 9019100",
-   "fields": "ایم فل جنرل،ایم فل قرآن وتفسیر،ایم فل سیرت،ایم فل تقابل ادیان،ایم فل حدیث،ایم ایس شریعہ؛ ایم فل عقیدہ و فلسفہ، دعوہ و اسلامی ثقافت؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
+   "fields": "ایم فل جنرل،ایم فل قرآن وتفسیر،ایم فل سیرت،ایم فل تقابل ادیان،ایم فل حدیث،ایم ایس شریعہ؛ ایم فل عقیدہ و فلسفہ، دعوہ و اسلامی ثقافت",
    "testLanguage": "عربی",
    "testType": "یوگیٹ",
    "classDays": "پیر تا جمعرات",
@@ -303,7 +303,7 @@ window.ADMISSIONS_DATA = {
    "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "(048) 9230157",
-   "fields": "ایم فل جنرل؛ ایم فل اسلامک سٹڈیز؛ بی ایس، ایم فل اسلامک سٹڈیز / بی ایس، ایم فل، پی ایچ ڈی عربی",
+   "fields": "ایم فل جنرل؛ ایم فل اسلامک سٹڈیز",
    "testLanguage": "اردو,عربی،انگریزی",
    "testType": "یوگیٹ",
    "classDays": "پیر سے جمعرات",
@@ -1856,15 +1856,15 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
+   "phone": "(051) 9019100",
+   "fields": "",
    "testLanguage": "Arabic",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
@@ -1885,15 +1885,15 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(042) 111 865 865",
    "fields": "",
    "testLanguage": "Urdu",
    "testType": "MCQS",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
@@ -1914,15 +1914,15 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "042-99233132",
    "fields": "BS اسلامک سٹڈیز (ریگولر) — پہلا سمسٹر 39,090 روپے، باقی سمسٹر 32,490 روپے؛ BS اسلامک سٹڈیز (سیلف سپورٹ) — پہلا سمسٹر 63,350 روپے، باقی سمسٹر 56,750 روپے",
    "testLanguage": "English",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "انٹرمیڈیٹ یا مساوی",
    "videoLink": "",
    "contacts": [],
@@ -1941,15 +1941,15 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(061) 9210071",
    "fields": "",
-   "testLanguage": "Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
@@ -1970,15 +1970,15 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(062) 9250235",
    "fields": "",
    "testLanguage": "English",
    "testType": "MCQS on PC",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
@@ -1999,15 +1999,15 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(021) 99261300",
    "fields": "",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
@@ -2026,15 +2026,15 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(091) 9216701",
    "fields": "",
-   "testLanguage": "English",
-   "testType": "Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
@@ -2053,15 +2053,15 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0997) 414171",
    "fields": "",
-   "testLanguage": "English",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
@@ -2109,15 +2109,15 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(021) 36881900",
    "fields": "",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
@@ -2134,23 +2134,23 @@ window.ADMISSIONS_DATA = {
    ],
    "duration": "4 Years",
    "website": "https://www.iiu.edu.pk/",
-   "deptLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
+   "deptLink": "",
    "facebook": "",
    "feeLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "BS Islamic Banking and Finance؛ BS in Islamic Banking and Finance (4 Years)؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
-   "testLanguage": "Arabic",
-   "testType": "MCQS / Written",
+   "phone": "(051) 9019100",
+   "fields": "BS Islamic Banking and Finance؛ BS in Islamic Banking and Finance (4 Years)",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "HSSC or equivalent with minimum 50% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2163,23 +2163,23 @@ window.ADMISSIONS_DATA = {
    ],
    "duration": "",
    "website": "https://www.iiu.edu.pk/",
-   "deptLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
+   "deptLink": "",
    "facebook": "",
    "feeLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "MS Islamic Banking & Finance؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
-   "testLanguage": "Arabic",
-   "testType": "MCQS / Written",
+   "phone": "(051) 9019100",
+   "fields": "MS Islamic Banking & Finance",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2196,19 +2196,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "PhD Islamic Banking & Finance (joint program of IIIE, FMS and FSL)؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
-   "testLanguage": "Arabic",
-   "testType": "MCQS / Written",
+   "phone": "(051) 9019100",
+   "fields": "PhD Islamic Banking & Finance (joint program of IIIE, FMS and FSL)",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "As per Advertisement",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2221,23 +2221,23 @@ window.ADMISSIONS_DATA = {
    ],
    "duration": "",
    "website": "https://www.iiu.edu.pk/",
-   "deptLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
+   "deptLink": "",
    "facebook": "",
    "feeLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "BS in Education (Educational Leadership and Management), BS in Education (Information Technology), BS in Education (English Language Teaching), B.Ed (Elementary) 2.5 years, B.Ed (Hons) (Elementary Education), B.Ed (Secondary)؛ BS in Education (Educational Leadership and Management); BS in Education (Information Technology); BS in Education (English Language Teaching); B.Ed (Hons) (Elementary Education); B.Ed (Elementary) 2.5 years; B.Ed (Secondary)؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
-   "testLanguage": "Arabic",
-   "testType": "MCQS / Written",
+   "phone": "(051) 9019100",
+   "fields": "BS in Education (Educational Leadership and Management), BS in Education (Information Technology), BS in Education (English Language Teaching), B.Ed (Elementary) 2.5 years, B.Ed (Hons) (Elementary Education), B.Ed (Secondary)؛ BS in Education (Educational Leadership and Management); BS in Education (Information Technology); BS in Education (English Language Teaching); B.Ed (Hons) (Elementary Education); B.Ed (Elementary) 2.5 years; B.Ed (Secondary)",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2250,23 +2250,23 @@ window.ADMISSIONS_DATA = {
    ],
    "duration": "",
    "website": "https://www.iiu.edu.pk/",
-   "deptLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
+   "deptLink": "",
    "facebook": "",
    "feeLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "MS Education, MS Education (Educational Leadership & Management), MS Teacher Education, M.Ed؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
-   "testLanguage": "Arabic",
-   "testType": "MCQS / Written",
+   "phone": "(051) 9019100",
+   "fields": "MS Education, MS Education (Educational Leadership & Management), MS Teacher Education, M.Ed",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2279,23 +2279,23 @@ window.ADMISSIONS_DATA = {
    ],
    "duration": "",
    "website": "https://www.iiu.edu.pk/",
-   "deptLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
+   "deptLink": "",
    "facebook": "",
    "feeLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "PhD Education (Teacher Education), PhD Education (Educational Leadership and Management)؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
-   "testLanguage": "Arabic",
-   "testType": "MCQS / Written",
+   "phone": "(051) 9019100",
+   "fields": "PhD Education (Teacher Education), PhD Education (Educational Leadership and Management)",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2308,23 +2308,23 @@ window.ADMISSIONS_DATA = {
    ],
    "duration": "4 Years",
    "website": "https://www.iiu.edu.pk/",
-   "deptLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
+   "deptLink": "",
    "facebook": "",
    "feeLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "BS Psychology؛ BS in Psychology (4 Years)؛ BS Psychology — فیس فی سمسٹر 60,900؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
-   "testLanguage": "Arabic",
-   "testType": "MCQS / Written",
+   "phone": "(051) 9019100",
+   "fields": "BS Psychology؛ BS in Psychology (4 Years)؛ BS Psychology — فیس فی سمسٹر 60,900",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "HSSC or equivalent with minimum 50% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2337,23 +2337,23 @@ window.ADMISSIONS_DATA = {
    ],
    "duration": "2 سال",
    "website": "https://www.iiu.edu.pk/",
-   "deptLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
+   "deptLink": "",
    "facebook": "",
    "feeLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "MS Psychology؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ MS Psychology — فیس فی سمسٹر 66,322",
-   "testLanguage": "Arabic",
-   "testType": "MCQS / Written",
+   "phone": "(051) 9019100",
+   "fields": "MS Psychology",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "BS (4y)/MA/MSc، 60 فیصد نمبر",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2366,23 +2366,23 @@ window.ADMISSIONS_DATA = {
    ],
    "duration": "3 سال",
    "website": "https://www.iiu.edu.pk/",
-   "deptLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
+   "deptLink": "",
    "facebook": "",
    "feeLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "PhD Psychology؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ PhD Psychology — فیس فی سمسٹر 74,671",
-   "testLanguage": "Arabic",
-   "testType": "MCQS / Written",
+   "phone": "(051) 9019100",
+   "fields": "PhD Psychology",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "MS (Psychology)، CGPA 3.00/4.00",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2395,23 +2395,23 @@ window.ADMISSIONS_DATA = {
    ],
    "duration": "",
    "website": "https://www.iiu.edu.pk/",
-   "deptLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
+   "deptLink": "",
    "facebook": "",
    "feeLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "PhD Usuluddin (Islamic Studies)؛ پی ایچ ڈی حدیث و علوم الحدیث، تقابل ادیان، سیرت اور تاریخ اسلامی، عقیدہ و فلسفہ، دعوہ و اسلامی ثقافت؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
+   "phone": "(051) 9019100",
+   "fields": "PhD Usuluddin (Islamic Studies)؛ پی ایچ ڈی حدیث و علوم الحدیث، تقابل ادیان، سیرت اور تاریخ اسلامی، عقیدہ و فلسفہ، دعوہ و اسلامی ثقافت",
    "testLanguage": "Arabic",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2424,23 +2424,23 @@ window.ADMISSIONS_DATA = {
    ],
    "duration": "",
    "website": "https://www.iiu.edu.pk/",
-   "deptLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
+   "deptLink": "",
    "facebook": "",
    "feeLink": "https://www.iiu.edu.pk/fee-structure/international-students/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "PhD Arabic Literature & Linguistics؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
+   "phone": "(051) 9019100",
+   "fields": "PhD Arabic Literature & Linguistics",
    "testLanguage": "Arabic",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2453,23 +2453,23 @@ window.ADMISSIONS_DATA = {
    ],
    "duration": "",
    "website": "http://www.pu.edu.pk/",
-   "deptLink": "http://pu.edu.pk/fee",
+   "deptLink": "",
    "facebook": "",
    "feeLink": "http://pu.edu.pk/fee",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "042-99233132",
    "fields": "MS-Islamic Banking & Finance (Hailey College of Banking & Finance)",
-   "testLanguage": "English",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2486,19 +2486,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "http://pu.edu.pk/fee",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "042-99233132",
    "fields": "B.Ed., B.S.Ed.؛ B.Ed. Hons. (4 Years) Elementary Education; B.Ed. Hons. (4 Years) Secondary Education; B.S.Ed. (Hons) (4 years)؛ BS ایجوکیشن سپیشل 5th سمسٹر (ریگولر) — پہلا سمسٹر 52,280 روپے، باقی سمسٹر 45,680 روپے؛ BS ایجوکیشن سپیشل 5th سمسٹر (سیلف سپورٹ) — پہلا سمسٹر 91,850 روپے، باقی سمسٹر 85,250 روپے",
-   "testLanguage": "English",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "BA/B.Sc",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2515,19 +2515,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "http://pu.edu.pk/fee",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "042-99233132",
    "fields": "M.Phil Education, M.Phil Education Policy & Development؛ MPhil ایجوکیشن سپیشل (ریگولر) — پہلا سمسٹر 48,700 روپے، باقی سمسٹر 42,100 روپے",
-   "testLanguage": "English",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "MA/M.Ed/ADE/B.Ed/B.S (4 سالہ) ایجوکیشن سپیشل",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2544,19 +2544,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "http://pu.edu.pk/fee",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "042-99233132",
    "fields": "PhD Education, PhD Special Education؛ PhD ایجوکیشن سپیشل (ریگولر) — پہلا سمسٹر 86,100 روپے، باقی سمسٹر 79,500 روپے",
-   "testLanguage": "English",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "متعلقہ مضمون میں MA/MPhil، CGPA 3.0/4.0",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2573,19 +2573,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "http://pu.edu.pk/fee",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "042-99233132",
    "fields": "BS (4-years) in Applied Psychology, BS Clinical Psychology؛ BS (4-years) in Applied Psychology (Morning)؛ BS اپلائیڈ سائیکالوجی (ریگولر) — پہلا سمسٹر 52,280 روپے، باقی سمسٹر 45,680 روپے؛ BS اپلائیڈ سائیکالوجی (سیلف سپورٹ) — پہلا سمسٹر 91,850 روپے، باقی سمسٹر 85,250 روپے",
-   "testLanguage": "English",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "FA / F.Sc or equivalent",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2602,19 +2602,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "http://pu.edu.pk/fee",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "042-99233132",
    "fields": "M.Phil Applied Psychology, MS Health Psychology, MS in Clinical Psychology؛ MPhil اپلائیڈ سائیکالوجی (ریگولر) — پہلا سمسٹر 58,600 روپے، باقی سمسٹر 52,000 روپے",
-   "testLanguage": "English",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "BS (4 سالہ)/MA اپلائیڈ سائیکالوجی",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2631,19 +2631,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "http://pu.edu.pk/fee",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "042-99233132",
    "fields": "PhD Applied Psychology, PhD in Clinical Psychology؛ PhD اپلائیڈ سائیکالوجی (ریگولر) — پہلا سمسٹر 86,100 روپے، باقی سمسٹر 79,500 روپے",
-   "testLanguage": "English",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "متعلقہ مضمون میں MA/MPhil، CGPA 3.0/4.0",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2660,19 +2660,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "http://pu.edu.pk/fee",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "042-99233132",
    "fields": "PhD Islamic Studies, PhD. in Islamic Studies؛ PhD اسلامک سٹڈیز (ریگولر) — پہلا سمسٹر 72,900 روپے، باقی سمسٹر 66,300 روپے",
    "testLanguage": "English",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "متعلقہ مضمون میں MA/MPhil، CGPA 3.0/4.0",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2689,19 +2689,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "http://pu.edu.pk/fee",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "042-99233132",
    "fields": "PhD Arabic",
    "testLanguage": "English",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2718,19 +2718,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "+92619210447",
    "fields": "BS in Applied Psychology, BS in Applied Psychology 5th Semester Entrance؛ BS Psychology; BS (Applied Psychology)؛ BS Applied Psychology، 4 سالہ (Morning: Rs. 51,500، Evening: Rs. 63,152)؛ BS Applied Psychology 5th Semester (Fall 2026 fee public chart میں واضح نہیں)",
-   "testLanguage": "Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "F.A./F.Sc./I.Com. or equivalent with minimum 2nd Division",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2747,19 +2747,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "+92619210447",
    "fields": "M.Phil. in Applied Psychology (with and without Research), Advanced Diploma in Clinical Psychology؛ MPhil Applied Psychology — فیس 78,474 روپے",
-   "testLanguage": "Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "Master in Psychology and Applied Psychology with minimum 50% marks in Annual System & 2.5/4.00 CGPA under Semester System, or BS 4-year Applied Psychology/Psychology with minimum 2.5 CGPA",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2776,19 +2776,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "+92619210447",
    "fields": "PhD in Applied Psychology؛ PhD Applied Psychology — فیس 94,423 روپے",
-   "testLanguage": "Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "According to the University Policy",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2805,19 +2805,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(061) 9210071",
    "fields": "PhD Islamic Studies",
    "testLanguage": "Urdu",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "M.Phil. Islamic Studies",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2834,19 +2834,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(061) 9210071",
    "fields": "BS Education (4-year), BS Education (5th Semester)؛ BS (Education); B.Ed (4-Years); BS (Education Planning & Management); BS (Special Education)؛ BS Education، 4 سالہ (Morning: Rs. 48,170، Evening: Rs. 60,831)؛ BS Education 5th Semester (Fall 2026 fee public chart میں واضح نہیں)",
-   "testLanguage": "Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "B.A./B.Sc./ADA/ADS/ADP (for 5th Semester)",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2863,19 +2863,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(061) 9210071",
    "fields": "M.Phil (Education & E.P.M)؛ MPhil Education — فیس 78,474 روپے",
-   "testLanguage": "Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "All Master/BS (4-Year) Degrees (Science/Arts)",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2892,19 +2892,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(061) 9210071",
    "fields": "PhD Education",
-   "testLanguage": "Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "MPhil/MS Education، university/HEC criteria",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2921,19 +2921,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(061) 9210071",
    "fields": "MBA (Specialization in Islamic Banking)؛ MBA Specialization in Islamic Banking (فیس public fee chart میں موجود نہیں)",
-   "testLanguage": "Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "16 years of undergraduate education; 2.20/4.0 CGPA or 53% in Semester System or 45% marks in Annual System",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -2950,19 +2950,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(062) 9250235",
    "fields": "MS Islamic Banking & Finance",
-   "testLanguage": "English",
-   "testType": "MCQS on PC",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -2979,19 +2979,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(062) 9250235",
    "fields": "MPhil Applied Psychology",
-   "testLanguage": "English",
-   "testType": "MCQS on PC",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3008,19 +3008,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(062) 9250235",
    "fields": "MPhil Education",
-   "testLanguage": "English",
-   "testType": "MCQS on PC",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3037,19 +3037,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://www.hu.edu.pk/admissions/academic-programs/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0997) 414171",
    "fields": "BS Education, B.Ed (1.5)",
-   "testLanguage": "English",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3066,19 +3066,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://www.hu.edu.pk/admissions/academic-programs/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0997) 414171",
    "fields": "MPhil Education",
-   "testLanguage": "English",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3095,19 +3095,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://www.hu.edu.pk/admissions/academic-programs/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0997) 414171",
    "fields": "PhD Education",
-   "testLanguage": "English",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3124,19 +3124,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://www.hu.edu.pk/admissions/academic-programs/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0997) 414171",
    "fields": "BS Psychology",
-   "testLanguage": "English",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3153,19 +3153,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://www.hu.edu.pk/admissions/academic-programs/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0997) 414171",
    "fields": "MPhil Psychology",
-   "testLanguage": "English",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3182,19 +3182,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://www.hu.edu.pk/admissions/academic-programs/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0997) 414171",
    "fields": "PhD Psychology",
-   "testLanguage": "English",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3211,19 +3211,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://www.hu.edu.pk/admissions/academic-programs/",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0997) 414171",
    "fields": "PhD Islamic and Religious Studies",
    "testLanguage": "English",
    "testType": "MCQS",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3240,19 +3240,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://affiliations.su.edu.pk/programs",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "BS in Education, BS in Special Education, Bachelor of Education (B.Ed) 4-Year, BS Education (5th Semester Intake), B.Ed 5th Semester Intake, B.Ed (1.5 year) General, B.Ed (1.5 year) ELT, B.Ed (1.5 year) Science Education؛ بی ایس، ایم فل اسلامک سٹڈیز / بی ایس، ایم فل، پی ایچ ڈی عربی",
+   "phone": "(048) 9230157",
+   "fields": "BS in Education, BS in Special Education, Bachelor of Education (B.Ed) 4-Year, BS Education (5th Semester Intake), B.Ed 5th Semester Intake, B.Ed (1.5 year) General, B.Ed (1.5 year) ELT, B.Ed (1.5 year) Science Education",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3269,19 +3269,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://affiliations.su.edu.pk/programs",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "MPhil Education؛ بی ایس، ایم فل اسلامک سٹڈیز / بی ایس، ایم فل، پی ایچ ڈی عربی",
+   "phone": "(048) 9230157",
+   "fields": "MPhil Education",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3298,19 +3298,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://affiliations.su.edu.pk/programs",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "PhD Education؛ بی ایس، ایم فل اسلامک سٹڈیز / بی ایس، ایم فل، پی ایچ ڈی عربی",
+   "phone": "(048) 9230157",
+   "fields": "PhD Education",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3327,19 +3327,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://affiliations.su.edu.pk/programs",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "BS in Islamic Banking and Finance؛ بی ایس، ایم فل اسلامک سٹڈیز / بی ایس، ایم فل، پی ایچ ڈی عربی",
+   "phone": "(048) 9230157",
+   "fields": "BS in Islamic Banking and Finance",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "At least 50% marks in HSSC (FA, FSc, ICS, I.Com, D.Com), DAE (1st & 2nd Year) or equivalent",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3356,19 +3356,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://affiliations.su.edu.pk/programs",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "BS in Psychology, BS in Psychology (5th Semester Intake)؛ بی ایس، ایم فل اسلامک سٹڈیز / بی ایس، ایم فل، پی ایچ ڈی عربی",
+   "phone": "(048) 9230157",
+   "fields": "BS in Psychology, BS in Psychology (5th Semester Intake)",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3385,19 +3385,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://affiliations.su.edu.pk/programs",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "MS in Clinical Psychology, MS Psychology, MS Industrial Organizational Psychology؛ بی ایس، ایم فل اسلامک سٹڈیز / بی ایس، ایم فل، پی ایچ ڈی عربی",
+   "phone": "(048) 9230157",
+   "fields": "MS in Clinical Psychology, MS Psychology, MS Industrial Organizational Psychology",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3414,19 +3414,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://affiliations.su.edu.pk/programs",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "PhD Psychology؛ بی ایس، ایم فل اسلامک سٹڈیز / بی ایس، ایم فل، پی ایچ ڈی عربی",
+   "phone": "(048) 9230157",
+   "fields": "PhD Psychology",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3443,19 +3443,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://affiliations.su.edu.pk/programs",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "PhD Islamic Studies؛ بی ایس، ایم فل اسلامک سٹڈیز / بی ایس، ایم فل، پی ایچ ڈی عربی",
+   "phone": "(048) 9230157",
+   "fields": "PhD Islamic Studies",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3472,19 +3472,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://affiliations.su.edu.pk/programs",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "PhD Arabic؛ پی ایچ ڈی عربی؛ بی ایس، ایم فل اسلامک سٹڈیز / بی ایس، ایم فل، پی ایچ ڈی عربی",
+   "phone": "(048) 9230157",
+   "fields": "PhD Arabic؛ پی ایچ ڈی عربی",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -3501,19 +3501,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "(051) 111 112 468",
    "fields": "BS Islamic Finance (AD-Based)؛ BS Islamic Finance (BS/BSc / AD Based)",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
    "onlineFacility": "Open Distance Learning",
    "eligibility": "HSSC/Intermediate/Equivalence with at least second division/C Grade with 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -3530,7 +3530,7 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "(051) 111 112 468",
    "fields": "PhD Islamic Studies",
@@ -3538,11 +3538,11 @@ window.ADMISSIONS_DATA = {
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "ہے",
    "eligibility": "M.Phil Islamic Studies or equivalent in first division or CGPA 3.0; departmental test and interview",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3559,19 +3559,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(062) 9250235",
    "fields": "PhD Education, PhD Educational Leadership and Management",
-   "testLanguage": "English",
-   "testType": "MCQS on PC",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "MPhil/MS or equivalent / 18 years of education with CGPA 3.0/4.0 or 60% annual; valid GAT (Subject) 60% or IUB departmental test 70%",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3588,19 +3588,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(062) 9250235",
    "fields": "PhD Applied Psychology",
-   "testLanguage": "English",
-   "testType": "MCQS on PC",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "MPhil/MS or equivalent / 18 years of education with CGPA 3.0/4.0 or 60% annual; valid GAT (Subject) 60% or IUB departmental test 70%",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3617,19 +3617,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(062) 9250235",
    "fields": "PhD Arabic",
    "testLanguage": "English",
    "testType": "MCQS on PC",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "MPhil/MS or equivalent / 18 years of education with CGPA 3.0/4.0 or 60% annual; valid GAT (Subject) 60% or IUB departmental test 70%",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3646,19 +3646,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(062) 9250235",
    "fields": "PhD Islamic Studies with Specialization in Fiqh wa Shariah, PhD Islamic Studies with Specialization in Hadith wa Seerah, PhD Islamic Studies with Specialization in Quran wa Tafseer, PhD Islamic Studies with Specialization in World Religions and Interfaith Harmony",
    "testLanguage": "English",
    "testType": "MCQS on PC",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "MPhil/MS or equivalent / 18 years of education with CGPA 3.0/4.0 or 60% annual; valid GAT (Subject) 60% or IUB departmental test 70%",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہائیٹیک یونیورسٹی",
@@ -3671,23 +3671,23 @@ window.ADMISSIONS_DATA = {
    ],
    "duration": "",
    "website": "https://www.hitecuni.edu.pk/",
-   "deptLink": "https://www.hitecuni.edu.pk/Admission/FeeStructure",
+   "deptLink": "",
    "facebook": "",
    "feeLink": "https://www.hitecuni.edu.pk/Admission/FeeStructure",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 4908146",
    "fields": "PhD Islamic Studies",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3704,19 +3704,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0995) 920612",
    "fields": "Bachelor of Education (Hons)",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "FA/FSc. or equivalent with minimum 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3733,19 +3733,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0995) 920612",
    "fields": "M.Phil Education",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "M.A Education / M.Ed / B.Ed (1.5 and 2 years) / 4 years degree in Education",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3762,19 +3762,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0995) 920612",
    "fields": "PhD Education",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "M.Phil/M.S in Education",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3791,19 +3791,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0995) 920612",
    "fields": "BS Psychology (Hons), BS Psychology (5th Semester)",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "FA/FSc. or equivalent with minimum 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3820,19 +3820,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0995) 920612",
    "fields": "MS Psychology",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "4 years BSc. (Hons) in Psychology (CGPA 2.50+ or 60% marks annual) or MSc in Psychology (1st Div.); NTS (GAT) minimum 50% score or entry test",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3849,19 +3849,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0995) 920612",
    "fields": "PhD Psychology",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "18 years of education in Psychology, CGPA 3.00/4.00 or 60% marks annual; NTS-GAT (Non-Subject) or GRE (General) minimum 60% + entry test",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3878,19 +3878,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(0995) 920612",
    "fields": "PhD Islamic & Religious Studies",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "M. Phil in Islamic Studies and the GRE subject test",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "عبدالولی خان یونیورسٹی",
@@ -3907,19 +3907,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "937920856",
    "fields": "PhD Islamic Studies",
    "testLanguage": "English",
    "testType": "MCQS on PC",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "عبدالولی خان یونیورسٹی",
@@ -3936,19 +3936,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "937920856",
    "fields": "MPhil Education",
-   "testLanguage": "English",
-   "testType": "MCQS on PC",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "عبدالولی خان یونیورسٹی",
@@ -3965,19 +3965,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "937920856",
    "fields": "MPhil Psychology",
-   "testLanguage": "English",
-   "testType": "MCQS on PC",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف لاہور",
@@ -3994,19 +3994,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(042) 111 865 865",
    "fields": "BS Islamic Banking & Finance (Hons)؛ BS in Islamic Banking & Finance (Sargodha Campus, Department of Management Sciences)",
-   "testLanguage": "Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "Monday-Friday",
    "classTimings": "Morning",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "FA, F.Sc., I.Com, ICS & A-level or equivalent 12 years of education with 40% marks; UOL Entry Test mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بحریہ یونیورسٹی",
@@ -4023,19 +4023,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9260002",
    "fields": "BS Psychology, BS Clinical Psychology",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بحریہ یونیورسٹی",
@@ -4052,19 +4052,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9260002",
    "fields": "MS Clinical Psychology, M.Phil Professional Psychology, M.Phil Organizational Psychology",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بحریہ یونیورسٹی",
@@ -4081,19 +4081,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9260002",
    "fields": "PhD Clinical Psychology",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بحریہ یونیورسٹی",
@@ -4110,19 +4110,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9260002",
    "fields": "MS Islamic Banking & Finance",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "16 years of Business/Management/relevant education with 2.00/4 CGPA or 50% marks; accepted GAT/GRE/Bahria University entry test result",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بحریہ یونیورسٹی",
@@ -4139,19 +4139,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9260002",
    "fields": "PhD Islamic Studies",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4168,19 +4168,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://mul.edu.pk/en/admissions-open",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "0311 1222685",
    "fields": "BS Islamic Banking & Finance",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "Intermediate (12 years), FA/F.Sc/ICS/ICOM/A-Levels/DAE or equivalent, minimum 45% marks, interview",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4197,19 +4197,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://mul.edu.pk/en/admissions-open",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "0311 1222685",
    "fields": "BS Education",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "Intermediate (12 years), FA/F.Sc/ICS/ICOM/A-Levels/DAE or equivalent, minimum 45% marks, interview",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4226,19 +4226,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://mul.edu.pk/en/admissions-open",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "0311 1222685",
    "fields": "BS Psychology",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "Intermediate with 50% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4255,19 +4255,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://mul.edu.pk/en/admissions-open",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "0311 1222685",
    "fields": "MS Islamic Banking & Finance",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "16 years of education, BS/MA/MSc in Islamic Banking & Finance / Business Management Sciences / Commerce & Accountancy or equivalent, minimum 50% marks or 2.50/4.00 CGPA, interview, minimum 50% marks in GAT/NTS (General)",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4284,19 +4284,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://mul.edu.pk/en/admissions-open",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "0311 1222685",
    "fields": "M.Phil Applied Psychology",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "16 years of education, BS/M.A./M.Sc. in Psychology or equivalent, minimum 50% marks or 2.50/4.00 CGPA, interview, minimum 50% marks in GAT/NTS (General) or 60% marks in MAT (Minhaj Aptitude Test)",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4313,19 +4313,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "https://mul.edu.pk/en/admissions-open",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "0311 1222685",
    "fields": "M.Phil Education",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "الغزالی یونیورسٹی",
@@ -4342,19 +4342,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(021) 36881900",
    "fields": "MS Islamic Banking & Finance (weekend program)",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف آزاد جموں و کشمیر",
@@ -4371,19 +4371,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "05822-960440",
    "fields": "Psychology (undergraduate program)",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف آزاد جموں و کشمیر",
@@ -4400,19 +4400,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "05822-960440",
    "fields": "Islamic Banking & Economy (undergraduate program)",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف آزاد جموں و کشمیر",
@@ -4429,19 +4429,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "05822-960440",
    "fields": "Education (undergraduate program)",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "القادر یونیورسٹی",
@@ -4460,17 +4460,17 @@ window.ADMISSIONS_DATA = {
    "scholarshipLink": "",
    "admissionFrequency": "",
    "admissionDates": "",
-   "phone": "",
+   "phone": "0304 1110471",
    "fields": "BS Psychology",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "45% marks in intermediate or equivalent",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "قراقرم یونیورسٹی",
@@ -4487,19 +4487,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "05811- 960019",
    "fields": "BS Psychology",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "FA/FSc. with at least 2nd Division (45% Marks); Psychology subject preferred",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "قراقرم یونیورسٹی",
@@ -4516,19 +4516,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "05811- 960019",
    "fields": "B.Ed 2.5, B.Ed. 4 year (Specialization in Educational leadership & Management), B.Ed After ADE",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "B.Ed 2.5: ADA/ADS or BA/BSc with at least 45% marks; B.Ed 4-year: FA/FSc/I.Com/ICS or equivalent 12 years with at least 45% marks; B.Ed After ADE: ADE with minimum 2.5 CGPA",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی (بہاول نگر کیمپس)",
@@ -4545,7 +4545,7 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "+92-62-9250235",
    "fields": "BS Islamic Studies",
@@ -4553,11 +4553,11 @@ window.ADMISSIONS_DATA = {
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی (بہاول نگر کیمپس)",
@@ -4574,7 +4574,7 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "+92-62-9250235",
    "fields": "PhD Islamic Studies",
@@ -4582,11 +4582,11 @@ window.ADMISSIONS_DATA = {
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی (بہاول نگر کیمپس)",
@@ -4603,7 +4603,7 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "+92-62-9250235",
    "fields": "BS Applied Psychology",
@@ -4611,11 +4611,11 @@ window.ADMISSIONS_DATA = {
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی (بہاول نگر کیمپس)",
@@ -4632,7 +4632,7 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "+92-62-9250235",
    "fields": "BS Education",
@@ -4640,11 +4640,11 @@ window.ADMISSIONS_DATA = {
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی [رحیم یار خان کیمپس]",
@@ -4661,7 +4661,7 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "+92-62-9250235",
    "fields": "BS Islamic Studies",
@@ -4669,11 +4669,11 @@ window.ADMISSIONS_DATA = {
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی [رحیم یار خان کیمپس]",
@@ -4690,7 +4690,7 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "+92-62-9250235",
    "fields": "BS Applied Psychology",
@@ -4698,11 +4698,11 @@ window.ADMISSIONS_DATA = {
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی [رحیم یار خان کیمپس]",
@@ -4719,7 +4719,7 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "+92-62-9250235",
    "fields": "BS Education",
@@ -4727,11 +4727,11 @@ window.ADMISSIONS_DATA = {
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "الحمد اسلامی یونیورسٹی (کوئٹہ کیمپس)",
@@ -4760,7 +4760,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بحریہ یونیورسٹی (کراچی کیمپس)",
@@ -4777,19 +4777,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(021) 99240002",
    "fields": "BS Psychology, BS Psychology (Clinical Psychology)",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بحریہ یونیورسٹی (کراچی کیمپس)",
@@ -4806,19 +4806,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(021) 99240002",
    "fields": "MPhil Professional Psychology, MS Clinical Psychology",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بحریہ یونیورسٹی (کراچی کیمپس)",
@@ -4835,19 +4835,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(021) 99240002",
    "fields": "PhD Professional Psychology",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -4864,19 +4864,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(041) 8777210",
    "fields": "BS Applied Psychology (BSAP), BS Clinical Psychology (BSCP)",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -4893,19 +4893,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(041) 8777210",
    "fields": "BS Islamic Studies (BSIS)",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -4922,19 +4922,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(041) 8777210",
    "fields": "Bachelor of Education (B.Ed.) (1.5 year)",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -4951,19 +4951,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(041) 8777210",
    "fields": "MPhil Clinical Psychology",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -4980,19 +4980,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(041) 8777210",
    "fields": "MPhil Education",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -5009,19 +5009,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(041) 8777210",
    "fields": "PhD Islamic Studies",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -5038,19 +5038,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(041) 8777210",
    "fields": "PhD Psychology (PhD Psy)",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -5067,19 +5067,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(041) 8777210",
    "fields": "PhD Education",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گورنمنٹ صادق کالج ویمن یونیورسٹی",
@@ -5104,11 +5104,11 @@ window.ADMISSIONS_DATA = {
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "At least 2nd Division FA/FSc or equivalent; no third division in the terminal degree",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گورنمنٹ صادق کالج ویمن یونیورسٹی",
@@ -5133,11 +5133,11 @@ window.ADMISSIONS_DATA = {
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گورنمنٹ صادق کالج ویمن یونیورسٹی",
@@ -5162,11 +5162,11 @@ window.ADMISSIONS_DATA = {
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گورنمنٹ صادق کالج ویمن یونیورسٹی",
@@ -5191,11 +5191,11 @@ window.ADMISSIONS_DATA = {
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5212,19 +5212,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9265100",
    "fields": "BS Islamic Studies, BS Islamic Studies (Bridging)",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5241,19 +5241,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9265100",
    "fields": "PhD Islamic Studies",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5270,19 +5270,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9265100",
    "fields": "BS Arabic",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5299,19 +5299,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9265100",
    "fields": "MPhil Arabic",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5328,19 +5328,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9265100",
    "fields": "PhD Arabic",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "MS/MPhil degree (18 years of education with 6 credit hours research) in the relevant discipline from an HEC-recognized university with minimum 3.0/4.0 CGPA or 1st Division; NUML GAT-Subject and interview",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5357,19 +5357,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9265100",
    "fields": "B.Ed (Hons) 4 Year, B.Ed (Bridging), BS Ed (Hons), BS Educational Leadership and Management, BS Early Childhood Care and Education, BS Special Education, BS Health and Physical Education, B.Ed 1.5 year",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5386,19 +5386,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9265100",
    "fields": "MPhil Education",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5415,19 +5415,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9265100",
    "fields": "PhD Education",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5444,19 +5444,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9265100",
    "fields": "BS Psychology, BS Psychology (Bridging)",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5473,19 +5473,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9265100",
    "fields": "MPhil Psychology",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5502,19 +5502,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 9265100",
    "fields": "PhD Psychology",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی فیصل آباد",
@@ -5543,7 +5543,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی فیصل آباد",
@@ -5572,7 +5572,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی فیصل آباد",
@@ -5601,7 +5601,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی فیصل آباد",
@@ -5630,7 +5630,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5659,7 +5659,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "12 years of schooling with a minimum of 50% marks; 50% passing marks in Departmental Test",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5688,7 +5688,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate, with at least 45% marks in aggregate (B.Ed. 4 years); at least 45% marks/2nd division in B.A/B.Sc or equivalent 14 years of education (B.Ed. 1.5 years); at least 45% marks/2nd division in M.A/M.Sc or equivalent 16 years of education (B.Ed. 2.5 years)",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5717,7 +5717,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate, with at least 45% marks in aggregate",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5746,7 +5746,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5775,7 +5775,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5804,7 +5804,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5833,7 +5833,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -5862,7 +5862,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "وومن یونیورسٹی صوابی",
@@ -5891,7 +5891,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "سردار بہادر خان ویمن یونیورسٹی کوئٹہ",
@@ -5920,7 +5920,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "سردار بہادر خان ویمن یونیورسٹی کوئٹہ",
@@ -5949,7 +5949,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی سیالکوٹ",
@@ -5978,7 +5978,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی سیالکوٹ",
@@ -6007,7 +6007,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6036,7 +6036,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6065,7 +6065,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6094,7 +6094,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Female candidates who have passed (BS) examinations or 16 years of education with psychology from HEC recognized University; 2.50/4.00 CGPA in semester system or 50% marks in annual system; Entry Test (50% qualifying marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6123,7 +6123,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Female candidates having 4 Years BS Education or Master degree in education or Relevant Subject (School Subject) from HEC recognized University with minimum 2.50/4.00 CGPA in semester system or 50% marks in annual system; Entry Test (50% qualifying marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6152,7 +6152,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Female candidates having 18 years of education MS/MPhil in relevant field from HEC recognized University; 3.00/4.00 CGPA in semester or 60% Marks in Annual system; Entry Test (60% qualifying Marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6181,7 +6181,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Minimum 18 years of education MS/MPhil in Relevant Field from HEC recognized University; 3.00/4.00 CGPA in semester or 60% Marks in Annual system; Entry Test (60% qualifying Marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6210,7 +6210,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Female candidates having 18 years of education in relevant field (MS/MPhil/or equivalent) from HEC recognized University; 3.00/4.00 CGPA in semester or 60% Marks in Annual system; Entry Test (60% qualifying Marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6239,7 +6239,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6268,7 +6268,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6297,7 +6297,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "For admission to MS/M.Phil. applicants are required to have minimum CGPA 2.5 out of 4.0 in semester system or 1st division in annual system in Masters/BS 4 years from any HEC-recognized university/institution; minimum score of 50 in GAT General Test conducted by NTS (except where specific tests will be taken by respective Departments)",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6326,7 +6326,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Sixteen Years of Education in Behavioral Sciences or any field of Psychology; minimum score of 50 in GAT General Test conducted by NTS",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6355,7 +6355,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6384,7 +6384,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6413,7 +6413,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6442,7 +6442,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6471,7 +6471,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6500,7 +6500,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6529,7 +6529,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6558,7 +6558,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف گجرات",
@@ -6587,7 +6587,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "F.A / Intermediate / equivalent (first year) or three-year DAE (first two years), as listed on the official program page",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف گجرات",
@@ -6616,7 +6616,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "At least 45% marks in intermediate or equivalent, as stated on the official program page",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف گجرات",
@@ -6645,7 +6645,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف گجرات",
@@ -6674,7 +6674,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -6703,7 +6703,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate with a minimum of 45% marks or equivalent",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -6732,7 +6732,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -6761,7 +6761,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -6790,7 +6790,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "16 years of education: BS (4 years) / MA (2 years) / MEd in Education or equivalent field, as stated in the official prospectus",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -6819,7 +6819,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "18 years of education, MPhil (with research) in Education from an HEC-recognized university with minimum 3.00/4.00 CGPA in semester system or 60% marks in annual system",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -6848,7 +6848,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "وفاقی اردو یونیورسٹی آف آرٹس سائنس اینڈ ٹیکنالوجی اسلام آباد",
@@ -6877,7 +6877,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ٹائمز انسٹی ٹیوٹ ملتان",
@@ -6906,7 +6906,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ٹائمز انسٹی ٹیوٹ ملتان",
@@ -6935,7 +6935,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -6956,15 +6956,15 @@ window.ADMISSIONS_DATA = {
    "admissionDates": "",
    "phone": "+92 42 35212801-10",
    "fields": "BS Education",
-   "testLanguage": "English",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
    "onlineFacility": "",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -6985,15 +6985,15 @@ window.ADMISSIONS_DATA = {
    "admissionDates": "",
    "phone": "+92 42 35212801-10",
    "fields": "BS Psychology",
-   "testLanguage": "English",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
    "onlineFacility": "",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7014,15 +7014,15 @@ window.ADMISSIONS_DATA = {
    "admissionDates": "",
    "phone": "+92 42 35212801-10",
    "fields": "MPhil Education",
-   "testLanguage": "English",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
    "onlineFacility": "",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7043,15 +7043,15 @@ window.ADMISSIONS_DATA = {
    "admissionDates": "",
    "phone": "+92 42 35212801-10",
    "fields": "MPhil Psychology",
-   "testLanguage": "English",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
    "onlineFacility": "",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7072,15 +7072,15 @@ window.ADMISSIONS_DATA = {
    "admissionDates": "",
    "phone": "+92 42 35212801-10",
    "fields": "MS Islamic Banking and Finance",
-   "testLanguage": "English",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
    "onlineFacility": "",
    "eligibility": "16 years education in Banking, Finance and Economics; Islamic Banking, Islamic Finance and Islamic Economics; Islamic Studies or equivalent with 2.5/4.0 CGPA or 60% marks in annual system",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7101,15 +7101,15 @@ window.ADMISSIONS_DATA = {
    "admissionDates": "",
    "phone": "+92 42 35212801-10",
    "fields": "PhD Islamic Banking and Finance",
-   "testLanguage": "English",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
    "onlineFacility": "",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7138,7 +7138,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7159,15 +7159,15 @@ window.ADMISSIONS_DATA = {
    "admissionDates": "",
    "phone": "+92 42 35212801-10",
    "fields": "PhD Psychology; PhD Clinical Psychology",
-   "testLanguage": "English",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
    "onlineFacility": "",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "غازی یونیورسٹی",
@@ -7196,7 +7196,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "غازی یونیورسٹی",
@@ -7225,7 +7225,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "غازی یونیورسٹی",
@@ -7254,7 +7254,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "غازی یونیورسٹی",
@@ -7283,7 +7283,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7312,7 +7312,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7341,7 +7341,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7370,7 +7370,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7399,7 +7399,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7428,7 +7428,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7457,7 +7457,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور گیریژن یونیورسٹی",
@@ -7486,7 +7486,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور گیریژن یونیورسٹی",
@@ -7515,7 +7515,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور گیریژن یونیورسٹی",
@@ -7544,7 +7544,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -7573,7 +7573,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -7602,7 +7602,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -7631,7 +7631,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -7660,7 +7660,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -7689,7 +7689,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -7718,7 +7718,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "HSSC with Pre-Medical or equivalent with 50% marks; KFUEIT recognized/valid aptitude test (KFAT / NAT / MDCAT)",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -7747,7 +7747,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "HSSC / DAE in all fields or equivalent with 45% marks; KFUEIT recognized/valid aptitude test (KFAT / NAT / KFEAT / ECAT / MDCAT)",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -7776,7 +7776,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "M.Phil Education: 16 years of education in M.A Education, M.Ed, B.Ed (Hons) 4 Years, B.Ed (2.5 Years) or B.Ed (1.5 Years); 2.0/4.0 or 45% in annual system; NTS GAT General / KFGAT minimum 50% mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -7805,7 +7805,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "18 years of education: M.Phil/MS with thesis in Education (MS without thesis: additional research work mandatory); 3.0/4.0 or 60% in annual system; NTS GAT/HEC/GRE Subject/KFGAT minimum 60%",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -7834,7 +7834,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "18 years of education in Islamic Studies; MS/M.Phil with thesis (MS without thesis: additional research work mandatory); 3.0/4.0 or 60% in annual system; NTS GAT/HEC/GRE Subject/KFGAT minimum 60%",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سائنس اینڈ ٹیکنالوجی بنوں",
@@ -7863,7 +7863,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سائنس اینڈ ٹیکنالوجی بنوں",
@@ -7892,7 +7892,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سائنس اینڈ ٹیکنالوجی بنوں",
@@ -7921,7 +7921,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سائنس اینڈ ٹیکنالوجی بنوں",
@@ -7950,7 +7950,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف ملاکنڈ",
@@ -7979,7 +7979,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف ملاکنڈ",
@@ -8008,7 +8008,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف ملاکنڈ",
@@ -8037,7 +8037,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف صوابی",
@@ -8066,7 +8066,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف صوابی",
@@ -8095,7 +8095,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سوات",
@@ -8124,7 +8124,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سوات",
@@ -8153,7 +8153,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سوات",
@@ -8182,7 +8182,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سوات",
@@ -8211,7 +8211,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سوات",
@@ -8240,7 +8240,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف دی پونچھ راولا کوٹ",
@@ -8269,7 +8269,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف دی پونچھ راولا کوٹ",
@@ -8298,7 +8298,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8327,7 +8327,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8356,7 +8356,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8385,7 +8385,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Masters in Education, M.Ed, B.Ed (1.5 year) or B.Ed (Hons 4 year) with a minimum second division; entry test with 60% or GAT General with 50% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8414,7 +8414,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MPhil/MS Education with at least 60% marks or 3 CGPA out of 4; university entry test with 70% marks or GAT Subject with 60% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8443,7 +8443,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "M.Phil./MS (Islamic Studies) with a minimum CGPA of 3/4 or equivalent; departmental test or HEC-approved test; interview",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -8460,19 +8460,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "(051) 111 112 468",
    "fields": "B.Ed (4 Years)؛ BS ایجوکیشن (Childhood) — فیس فی سمسٹر 25,700 روپے؛ BEd ایلیمنٹری ٹیچر ایجوکیشن؛ BEd سیکنڈری ٹیچر ایجوکیشن؛ BEd سائنس ایجوکیشن؛ BEd سپیشل ایجوکیشن؛ BEd غیر رسمی و فاصلاتی تعلیم — فیس فی سمسٹر 29,990 روپے",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
    "onlineFacility": "Open Distance Learning",
    "eligibility": "BS ایجوکیشن (Childhood): FA/FSc یا مساوی تعلیم؛ BEd: 12 سالہ تعلیم / FA/FSc/A-Level یا مساوی؛ BA/ADE کی بنیاد پر: BA/BSc/ADE یا مساوی، کم از کم 45 فیصد نمبر",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -8489,19 +8489,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "(051) 111 112 468",
    "fields": "BS Psychology (4 Years)؛ BS سائیکالوجی — فیس فی سمسٹر 18,810 روپے؛ BS Psychology (03-Aug-26 admission post: علماء و عالمات کے لیے BS Psychology میں داخلے)",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
    "onlineFacility": "Open Distance Learning",
    "eligibility": "FA/F.Sc./A levels/12 years of Education with equivalence certificate",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف لاہور",
@@ -8518,19 +8518,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(042) 111 865 865",
    "fields": "Bachelor of Education (BSED); B.Ed (HONS) Elementary; B.Ed (HONS) Special Education",
-   "testLanguage": "Urdu",
+   "testLanguage": "",
    "testType": "UOL Entry Test is mandatory",
    "classDays": "Monday-Friday",
    "classTimings": "Morning",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "12 Years of Formal Education with a minimum of 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف لاہور",
@@ -8547,19 +8547,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(042) 111 865 865",
    "fields": "Bachelor of Science in Psychology (Applied Psychology); Bachelor of Science in Psychology (Clinical Psychology)",
-   "testLanguage": "Urdu",
+   "testLanguage": "",
    "testType": "UOL Entry Test is mandatory",
    "classDays": "Monday-Friday",
    "classTimings": "Morning",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "Minimum 12 years of education (Intermediate or equivalent) with at least 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -8576,19 +8576,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(061) 9210071",
    "fields": "BS (Islamic Finance)؛ BS Islamic Finance، 4 سالہ (Morning: 63,380 روپے؛ Evening فیس درج نہیں)",
-   "testLanguage": "Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "FA/FSc/I.Com/D.Com/DBA/ICS/A-Level یا مساوی",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -8605,19 +8605,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(062) 9250235",
    "fields": "BS (4 Years) Education; Secondary Education; Elementary Education; Special Education; Educational Leadership and Management; Educational Planning & Management; B.Ed 4-Years (after FA/F.Sc)",
-   "testLanguage": "English",
-   "testType": "MCQS on PC",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -8634,19 +8634,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(062) 9250235",
    "fields": "BS (4 Years) Applied Psychology",
-   "testLanguage": "English",
-   "testType": "MCQS on PC",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "جامعہ کراچی",
@@ -8663,19 +8663,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(021) 99261300",
    "fields": "4-Year B.Ed. Elementary Program",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "At least 50% marks in Intermediate (HSC) or equivalent examination",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "جامعہ کراچی",
@@ -8692,19 +8692,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(021) 99261300",
    "fields": "BS & Honors (Psychology)",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "Intermediate Arts / Science (with Psychology); or Intermediate Arts/Science/Commerce/Home Economics/Computer Science/A-Level (with First division)",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "پشاور یونیورسٹی",
@@ -8721,19 +8721,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(091) 9216701",
    "fields": "B.Ed (4-Year)",
-   "testLanguage": "English",
-   "testType": "Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "Intermediate with at least 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "پشاور یونیورسٹی",
@@ -8750,19 +8750,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(091) 9216701",
    "fields": "BS Psychology",
-   "testLanguage": "English",
-   "testType": "Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "Intermediate with at least 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ورچوئل یونیورسٹی",
@@ -8791,7 +8791,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "ورچوئل یونیورسٹی",
@@ -8820,7 +8820,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "الغزالی یونیورسٹی",
@@ -8837,19 +8837,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(021) 36881900",
    "fields": "B.Ed. (Hons)",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "official website (research 2026-10-29)"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -8866,19 +8866,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 8446000",
    "fields": "BS اسلامک سٹڈیز — فیس فی سمسٹر 55,000 PKR",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS",
    "classDays": "عام ایام",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "FA/FSc/ICS کے مساوی، شہادت الثانویہ (Equivalence) میں 45%–50% مارکس",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -8895,19 +8895,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 8446000",
    "fields": "PhD اسلامک سٹڈیز — فیس فی سمسٹر 133,000 PKR",
    "testLanguage": "Eng / Urdu",
    "testType": "انٹری ٹیسٹ اور انٹرویو",
    "classDays": "عام ایام",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "MPhil/MS اسلامک سٹڈیز (CGPA 3.0/4.0)، انٹری ٹیسٹ اور انٹرویو",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -8924,19 +8924,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 8446000",
    "fields": "BS ایجوکیشن — فیس فی سمسٹر 60,000 PKR",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "عام ایام",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "FA/FSc کے مساوی، 45% مارکس",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -8953,19 +8953,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 8446000",
    "fields": "MPhil ایجوکیشن — فیس فی سمسٹر 90,000 PKR",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "مخلوط",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "BS ایجوکیشن یا MA ایجوکیشن، CGPA 2.5",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -8982,19 +8982,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 8446000",
    "fields": "PhD ایجوکیشن — فیس فی سمسٹر 150,000 PKR",
-   "testLanguage": "Eng / Urdu",
+   "testLanguage": "",
    "testType": "انٹری ٹیسٹ",
    "classDays": "عام ایام",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "MPhil ایجوکیشن (CGPA 3.0) اور انٹری ٹیسٹ",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -9011,19 +9011,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 8446000",
    "fields": "BS اسلامک فنانس — فیس فی سمسٹر 75,000 PKR",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "عام ایام",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "FA/FSc/ICom، 50% مارکس",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -9040,19 +9040,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 8446000",
    "fields": "MS اسلامک فنانس — فیس فی سمسٹر 110,000 PKR",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "مخلوط",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "BS فنانس / BBA / اکاؤنٹنگ، CGPA 2.5",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -9069,19 +9069,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 8446000",
    "fields": "PhD اسلامک فنانس — فیس فی سمسٹر 150,000 PKR",
-   "testLanguage": "Eng / Urdu",
+   "testLanguage": "",
    "testType": "انٹری ٹیسٹ",
    "classDays": "لچکدار",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "MS/MPhil فنانس (CGPA 3.0) اور انٹری ٹیسٹ",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -9098,19 +9098,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(061) 9210071",
    "fields": "BS Islamic Studies، 4 سالہ (Morning: پہلا سمسٹر 48,170 روپے، Evening: پہلا سمسٹر 60,831 روپے)؛ BS Islamic Studies 5th Semester (فیس public fee page پر واضح نہیں)",
    "testLanguage": "Urdu",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "FA/FSc یا مساوی؛ 5th Semester کے لیے BA/BSc/B.Com/ADA/ADS/ADP یا مساوی",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: BZU_1.pdf"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -9127,19 +9127,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(061) 9210071",
    "fields": "BS Arabic، 4 سالہ (Morning: پہلا سمسٹر 46,190 روپے، Evening: پہلا سمسٹر 60,831 روپے)؛ BS Arabic 5th Semester (فیس public fee page پر واضح نہیں)",
    "testLanguage": "Urdu",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "FA/FSc یا مساوی؛ 5th Semester کے لیے BA/ADP مع Arabic Elective/Optional",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: BZU_1.pdf"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -9156,19 +9156,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(061) 9210071",
    "fields": "MPhil Arabic — فیس 70,000 روپے",
    "testLanguage": "Urdu",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "BS/MA Arabic یا مساوی، HEC/BZU قواعد کے مطابق",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: BZU_1.pdf"
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -9185,19 +9185,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(061) 9210071",
    "fields": "PhD Arabic — فیس 80,000 روپے",
    "testLanguage": "Urdu",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "MPhil Arabic / HEC-BZU PhD requirements",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: BZU_1.pdf"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9214,7 +9214,7 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "(051) 111 112 468",
    "fields": "BS عربی — فیس فی سمسٹر: براہ راست 17,900 روپے، BA کی بنیاد پر 20,630 روپے، ADE کی بنیاد پر 17,900 روپے",
@@ -9226,7 +9226,7 @@ window.ADMISSIONS_DATA = {
    "eligibility": "براہ راست: FA/انٹرمیڈیٹ یا مساوی تعلیم؛ BA کی بنیاد پر: BA/BSc یا مساوی تعلیم، کم از کم 45 فیصد نمبر؛ ADE کی بنیاد پر: Associate Degree عربی، کم از کم 50 فیصد نمبر",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: AIOU_programs.pdf"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9243,7 +9243,7 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "(051) 111 112 468",
    "fields": "MPhil عربی — فیس فی سمسٹر 25,940 روپے",
@@ -9251,11 +9251,11 @@ window.ADMISSIONS_DATA = {
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "ہے",
    "eligibility": "MA عربی + الشھادۃ العالمیۃ معادلہ، سیکنڈ ڈویژن",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: AIOU_programs.pdf"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9272,19 +9272,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "(051) 111 112 468",
    "fields": "MPhil ٹیچر ایجوکیشن — فیس فی سمسٹر 25,940 روپے؛ MPhil سائنس ایجوکیشن — فیس فی سمسٹر 25,940 روپے",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "ہے",
    "eligibility": "ٹیچر ایجوکیشن: MA ایجوکیشن، BEd (4 سالہ)، MEd؛ سائنس ایجوکیشن: MA/MEd، 16 سالہ تعلیم",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: AIOU_programs.pdf"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9301,7 +9301,7 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "(051) 111 112 468",
    "fields": "PhD عربی — فیس فی سمسٹر 36,840 روپے (نوٹ: PDF سے اہلیت میں MPhil اسلامک سٹڈیز درج ہے — ممکنہ استخراجی گڑبڑ، اصل میں MPhil عربی ہو سکتی ہے)",
@@ -9309,11 +9309,11 @@ window.ADMISSIONS_DATA = {
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "ہے",
    "eligibility": "MPhil اسلامک سٹڈیز یا مساوی تعلیم (جیسا کہ PDF سے ملا)، 60 فیصد نمبر، CGPA 3.0",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: AIOU_programs.pdf"
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9330,19 +9330,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
    "phone": "(051) 111 112 468",
    "fields": "PhD سپیشل ایجوکیشن — فیس فی سمسٹر 36,840 روپے؛ PhD سائنس ایجوکیشن — فیس فی سمسٹر 36,840 روپے",
-   "testLanguage": "Eng / Urdu",
-   "testType": "MCQS / Written",
+   "testLanguage": "",
+   "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "ہے",
    "eligibility": "سپیشل ایجوکیشن: MPhil سپیشل ایجوکیشن، CGPA 3.0؛ سائنس ایجوکیشن: MPhil ایجوکیشن، CGPA 3.0",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: AIOU_programs.pdf"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -9362,19 +9362,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "BS: اصول الدین + اسلامک بینکنگ + ایجوکیشن + عربی؛ BS: عربی + اسلامک سٹڈیز؛ BS: اسلامک بینکنگ + ایجوکیشن — فیس: تقریباً 40,000 فی سمسٹر؛ اسلامک بینکنگ + ایجوکیشن: تقریباً 60,000 فی سمسٹر؛ کلاسز: ریگولر؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
+   "phone": "(051) 9019100",
+   "fields": "BS: اصول الدین + اسلامک بینکنگ + ایجوکیشن + عربی؛ BS: عربی + اسلامک سٹڈیز؛ BS: اسلامک بینکنگ + ایجوکیشن — فیس: تقریباً 40,000 فی سمسٹر؛ اسلامک بینکنگ + ایجوکیشن: تقریباً 60,000 فی سمسٹر؛ کلاسز: ریگولر",
    "testLanguage": "Arabic",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "FA/FSc، 50 فیصد نمبر لازم، الشھادۃ العالمیۃ کا معادلہ کیا ہوا ہو",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: IIUI_programs.pdf"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -9394,19 +9394,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "MS: اصول الدین + عربی + شریعہ اینڈ لاء + اسلامک بینکنگ اینڈ فنانس + ایجوکیشن؛ MS: اصول الدین + عربی + شریعہ اینڈ لاء؛ MS: اسلامک بینکنگ + ایجوکیشن — فیس: تقریباً 48,000 فی سمسٹر؛ بینکنگ 80,000، ایجوکیشن 66,000 فی سمسٹر؛ کلاسز: ریگولر؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
+   "phone": "(051) 9019100",
+   "fields": "MS: اصول الدین + عربی + شریعہ اینڈ لاء + اسلامک بینکنگ اینڈ فنانس + ایجوکیشن؛ MS: اصول الدین + عربی + شریعہ اینڈ لاء؛ MS: اسلامک بینکنگ + ایجوکیشن — فیس: تقریباً 48,000 فی سمسٹر؛ بینکنگ 80,000، ایجوکیشن 66,000 فی سمسٹر؛ کلاسز: ریگولر",
    "testLanguage": "Arabic",
    "testType": "شریعہ اینڈ لاء کے لیے پہلے ٹیسٹ لازمی",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "BS (4 سالہ)/MA/الشھادۃ العالمیۃ معادلہ کیا ہوا ہو، 60 فیصد نمبر لازم، شریعہ اینڈ لاء کے لیے پہلے ٹیسٹ لازمی ہے",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: IIUI_programs.pdf"
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -9426,19 +9426,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "PhD: اصول الدین + عربی + اسلامک بینکنگ اینڈ فنانس + شریعہ اینڈ لاء + ایجوکیشن؛ PhD: اصول الدین + عربی + شریعہ اینڈ لاء؛ PhD: اسلامک بینکنگ اینڈ فنانس — فیس: تقریباً 48,000 فی سمسٹر؛ بینکنگ 73,000، ایجوکیشن 48,000 فی سمسٹر؛ کلاسز: ریگولر؛ ایم فل: عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت؛ پی ایچ ڈی: حدیث و علوم الحدیث + تقابل ادیان + سیرت اور تاریخ اسلامی + عقیدہ و فلسفہ + دعوہ و اسلامی ثقافت",
+   "phone": "(051) 9019100",
+   "fields": "PhD: اصول الدین + عربی + اسلامک بینکنگ اینڈ فنانس + شریعہ اینڈ لاء + ایجوکیشن؛ PhD: اصول الدین + عربی + شریعہ اینڈ لاء؛ PhD: اسلامک بینکنگ اینڈ فنانس — فیس: تقریباً 48,000 فی سمسٹر؛ بینکنگ 73,000، ایجوکیشن 48,000 فی سمسٹر؛ کلاسز: ریگولر",
    "testLanguage": "Arabic",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "متعلقہ مضمون میں MS مکمل کیا ہوا ہو اور 70 فیصد نمبر حاصل کیے ہوئے ہوں؛ اسلامک سٹڈیز اور شریعہ اینڈ لاء میں 65 فیصد نمبر لازم ہیں",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: IIUI_programs.pdf"
   },
   {
    "name": "الحمد اسلامی یونیورسٹی",
@@ -9455,19 +9455,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 2321284",
    "fields": "BS اسلامک سٹڈیز — فیس فی سمسٹر 29,000 روپے؛ کلاسز: ریگولر",
    "testLanguage": "Eng / Urdu",
    "testType": "MCQS / Written",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "FA/FSc/A-Level یا مساوی تعلیم، کم از کم 50 فیصد نمبر",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: Alhamd.pdf"
   },
   {
    "name": "الحمد اسلامی یونیورسٹی",
@@ -9484,19 +9484,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
+   "phone": "(051) 2321284",
    "fields": "PhD اسلامک سٹڈیز — فیس فی سمسٹر 130,000 روپے؛ کلاسز: ریگولر",
    "testLanguage": "Eng / Urdu",
    "testType": "GAT Subject / HAT / GRE / یونیورسٹی ٹیسٹ",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "متعلقہ مضمون میں MS/MPhil اسلامک سٹڈیز، کم از کم CGPA 3.00/4.0، سیکنڈ ڈویژن، GAT Subject / HAT / GRE / یونیورسٹی ٹیسٹ میں کم از کم 70 فیصد",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Drive PDF: Alhamd.pdf"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -9513,19 +9513,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "بی ایس اسلامک سٹڈیز؛ بی ایس، ایم فل اسلامک سٹڈیز / بی ایس، ایم فل، پی ایچ ڈی عربی",
+   "phone": "(048) 9230157",
+   "fields": "بی ایس اسلامک سٹڈیز",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Planner tab (2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -9542,19 +9542,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "بی ایس عربی؛ بی ایس، ایم فل اسلامک سٹڈیز / بی ایس، ایم فل، پی ایچ ڈی عربی",
+   "phone": "(048) 9230157",
+   "fields": "بی ایس عربی",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Planner tab (2026-10-29)"
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -9571,19 +9571,19 @@ window.ADMISSIONS_DATA = {
    "facebook": "",
    "feeLink": "",
    "scholarshipLink": "",
-   "admissionFrequency": "",
+   "admissionFrequency": "2 مرتبہ",
    "admissionDates": "",
-   "phone": "",
-   "fields": "ایم فل عربی؛ بی ایس، ایم فل اسلامک سٹڈیز / بی ایس، ایم فل، پی ایچ ڈی عربی",
+   "phone": "(048) 9230157",
+   "fields": "ایم فل عربی",
    "testLanguage": "",
    "testType": "",
    "classDays": "",
    "classTimings": "",
-   "onlineFacility": "",
+   "onlineFacility": "نہیں",
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "Planner tab (2026-10-29)"
   }
  ]
 };
