@@ -109,8 +109,8 @@
     var note = '';
     if (state.scope === 'foreign') {
       note = '<div style="border:1px solid var(--c-gold-500);border-radius:12px;padding:10px;margin:8px 0;background:var(--c-gold-100)">' +
-        '<p class="small" style="margin:0">غیر ملکی یونیورسٹیز کی بنیادی معلومات (سرکاری ویب سائٹ، داخلہ اور سکالرشپ لنکس) یہاں ہیں؛ ' +
-        'ہر یونیورسٹی کے پروگرامز، اہلیت اور فیس کی مکمل تفصیل سرکاری پیجز سے جمع کی جا رہی ہے اور مکمل ہوتے ہی یہیں نظر آئے گی۔</p></div>';
+        '<p class="small" style="margin:0">غیر ملکی یونیورسٹیز کی تفصیل: 17 یونیورسٹیز کے پروگرامز، اہلیت اور سرکاری لنکس سرکاری پیجز سے آ گئے ہیں؛ ' +
+        '3 یونیورسٹیز (الازہر، المصطفی، استنبول تھیالوجی) کی مکمل تفصیل ابھی تحقیق میں ہے — ان کے سرکاری لنکس یہاں موجود ہیں۔</p></div>';
     }
     el('adm-list').innerHTML = note + list.map(function (u) {
       var i = curList().indexOf(u);
