@@ -1798,6 +1798,8 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
       <p class="small" id="pv-card-note" style="margin:6px 0 0"></p>
     </div>
     <div class="grid ahub-grid">
+      <button class="gbtn" onclick="openAdminSec('dashboard')"><span class="ic">📊</span>ڈیش بورڈ<span class="sub">علمی مشغولیت + داخلہ جات — خودکار اعداد و ٹیبلز</span></button>
+      <button class="gbtn" onclick="openAdminSec('dashdata')"><span class="ic">📝</span>ڈیش بورڈ ڈیٹا<span class="sub">خام اندراج کی واحد جگہ — یہیں ڈیٹا دیں، ڈیش بورڈ خود بنے گا</span></button>
       <button class="gbtn" onclick="openAdminSec('students')"><span class="ic">📋</span>زیرِ منظوری و طلبہ<span class="sub">رجسٹریشنز، منظوری اور سرگرمی لاگ</span><span class="abadge" id="ahub-badge-students" style="display:none"></span></button>
       <button class="gbtn" onclick="openAdminSec('visionreview')"><span class="ic">🌟</span>وژن خودکار جائزہ<span class="sub">خودکار منظوری/نامکمل/زیرِ غور — کارگزاری</span></button>
       <button class="gbtn" onclick="openAdminSec('sessions')"><span class="ic">🎓</span>سیشنز و حاضری<span class="sub">سیشن شائع کریں، حاضری و دعوت</span></button>
@@ -1819,6 +1821,55 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
       <button class="gbtn" onclick="go('setpass')"><span class="ic">🔑</span>میرا پاس ورڈ<span class="sub">پاس ورڈ بنائیں یا بدلیں — عام لاگ ان کے لیے</span></button>
     </div>
     <p class="small" style="margin-top:12px">نوٹ: سیشن، خبر، جاب یا کورس شائع ہوتے ہی تمام منظور شدہ طلبہ کو ایپ اطلاعات <b>خودکار</b> چلی جاتی ہیں — الگ سے اطلاع بھیجنے کی ضرورت نہیں۔</p>
+  </div>
+
+  <!-- حصہ: ڈیش بورڈ (علمی مشغولیت + داخلہ جات) — خودکار اپڈیٹ؛ ایڈمن یہاں کچھ نہیں بناتا -->
+  <div class="admin-sec" id="asec-dashboard" style="display:none">
+  <div class="admin-sec-head"><button class="btn sm" onclick="adminBack()">← ایڈمن مرکز</button><h2>📊 ڈیش بورڈ</h2></div>
+  <p class="small">یہ ڈیش بورڈ خود بنتا ہے — ایپ کے لائیو ڈیٹا اور «ڈیش بورڈ ڈیٹا» میں درج خام اندراجوں سے۔ ایڈمن یہاں کوئی عدد ہاتھ سے نہیں بدلتا؛ نیا ڈیٹا آتے ہی (60 سیکنڈ کے پول سے) یہ خود تازہ ہو جاتا ہے۔ خام ڈیٹا دینے کے لیے «ڈیش بورڈ ڈیٹا» سیکشن استعمال کریں۔</p>
+  <button class="btn sm" onclick="openAdminSec('dashdata')">📝 ڈیش بورڈ ڈیٹا درج کریں</button>
+  <div id="dash-tabs"></div>
+  <div id="dash-ilmi"></div>
+  <div id="dash-adm"></div>
+  </div>
+
+  <!-- حصہ: ڈیش بورڈ ڈیٹا — خام اندراج کی واحد جگہ -->
+  <div class="admin-sec" id="asec-dashdata" style="display:none">
+  <div class="admin-sec-head"><button class="btn sm" onclick="adminBack()">← ایڈمن مرکز</button><h2>📝 ڈیش بورڈ ڈیٹا</h2></div>
+  <p class="small">ڈیش بورڈ کے لیے خام ڈیٹا صرف یہیں درج کریں — داخلہ، ٹیسٹ نتیجہ، کانفرنس اپلائی یا شائع شدہ مضمون۔ محفوظ ہوتے ہی یہ ڈیش بورڈ میں خود شامل ہو جائے گا۔</p>
+  <div class="msg" id="dd-msg"></div>
+  <label>قسم</label>
+  <select id="dd-cat" style="width:100%">
+    <option value="">— چنیں —</option>
+    <option value="داخلہ ہو گیا">داخلہ ہو گیا</option>
+    <option value="ٹیسٹ میں فیل">ٹیسٹ میں فیل</option>
+    <option value="اپلائی نہ کر سکے">اپلائی نہ کر سکے</option>
+    <option value="کانفرنس کے لیے اپلائی">کانفرنس کے لیے اپلائی</option>
+    <option value="مضمون شائع">مضمون شائع</option>
+    <option value="دیگر">دیگر</option>
+  </select>
+  <label>یونیورسٹی (اختیاری)</label>
+  <input id="dd-uni" type="text" placeholder="مثلاً: بین الاقوامی اسلامی یونیورسٹی اسلام آباد">
+  <label>شعبہ / فیلڈ (اختیاری)</label>
+  <input id="dd-field" type="text" placeholder="مثلاً: اسلامک سٹڈیز">
+  <label>لیول</label>
+  <select id="dd-level" style="width:100%">
+    <option value="">—</option>
+    <option value="BS">BS</option>
+    <option value="MS">MS</option>
+    <option value="MPhil">MPhil</option>
+    <option value="PhD">PhD</option>
+  </select>
+  <label>تعداد</label>
+  <input id="dd-count" type="number" min="1" step="1" inputmode="numeric" placeholder="مثلاً: 5">
+  <label>مہینہ</label>
+  <input id="dd-month" type="month" dir="ltr" style="text-align:left">
+  <label>نوٹ (اختیاری)</label>
+  <input id="dd-note" type="text" placeholder="مثلاً: اسپرنگ 2027 داخلہ">
+  <button class="btn goldb" style="margin-top:10px" onclick="saveDashData()">💾 محفوظ کریں</button>
+  <div class="divider"></div>
+  <h3>درج شدہ اندراج (تازہ پہلے)</h3>
+  <div id="dashdata-list"></div>
   </div>
 
   <!-- حصہ: مشورہ کیجیے — خلاصے -->
@@ -2309,7 +2360,8 @@ const COLL = { users:'users', news:'news', announcements:'announcements', notifi
   messages:'messages', drafts:'drafts', jobsExtra:'jobs', rcoursesExtra:'courses', mailQueue:'mailQueue',
   publications:'publications', sessionSecrets:'sessionSecrets', attendanceClaims:'attendanceClaims', courseSessions:'courseSessions', journals:'journals', counselLogs:'counselLogs',
   starTeam:'starTeam', starRecommendations:'starRecommendations', starRequests:'starRequests',
-  spotlights:'spotlights', sessionAttendees:'sessionAttendees', courseContent:'courseContent' };
+  spotlights:'spotlights', sessionAttendees:'sessionAttendees', courseContent:'courseContent',
+  dashboardData:'dashboardData' };
 const CACHE = {};          // کلید ← دستاویزات کی فہرست (eventSession کے لیے واحد شے)
 const SHADOW = {};         // کلید ← {docId: json} — آخری معلوم سرور حالت، فرق سے لکھنے کے لیے
 let PREVIEW = null;        // ایڈمن یوزر پریوو (مفتی، 2026-10-24): آن ہو تو شناخت منتخب طالب علم شخصیت کی۔ دو صورتیں: ڈیمو شخصیت = صرف دیکھنا (تمام تحریریں بند)؛ ٹیسٹ کھاتہ (محمد حسن) = اصل اعمال بھی چلتے ہیں، مگر لکھائی کی نالی پر گارڈ صرف ٹیسٹ کھاتے کی اپنی دستاویزات گزارتا ہے — تفصیل نیچے «ایڈمن یوزر پریوو» حصے میں
@@ -7110,6 +7162,8 @@ function openAdminSec(key, skipNav){
   const el = document.getElementById('asec-' + key); if(el) el.style.display = 'block';
   window.scrollTo(0, 0);
   if(key === 'charts') renderCharts();
+  if(key === 'dashboard') renderAdminDashboard();
+  if(key === 'dashdata') renderDashData();
   if(key === 'counsel') renderAdminCounsel();
   if(key === 'visionreview') renderVisionReview();
   if(key === 'starteam') renderAdminStarTeam();
@@ -11636,6 +11690,340 @@ function renderCharts(){
   body.innerHTML = html;
 }
 
+/* ================= ایڈمن ڈیش بورڈز — خودکار اپڈیٹ =================
+   اصول (مفتی 2026-10-29): ڈیش بورڈ ہمیشہ خود اپڈیٹ ہوتا رہے؛ ایڈمن
+   ڈیش بورڈ پر کچھ نہیں بناتا — صرف «ڈیش بورڈ ڈیٹا» سیکشن میں خام
+   اندراج دیتا ہے، اور یہ ڈیش بورڈز اسی + ایپ کے لائیو ڈیٹا سے خود بنتے ہیں۔
+   یہ کوڈ صرف پڑھتا ہے: users / attendanceClaims / courseSessions /
+   sessionAttendees / publications / dashboardData — وہی مجموعے جو ایڈمن
+   پول پہلے سے لوڈ کرتا ہے — اور داخلہ جات کی گنتی اسکرپٹ کے doGet سے
+   لیتا ہے۔ ڈیش بورڈ میں کوئی نام/ای میل/فون/شناختی کارڈ نہیں آتا۔
+   تازگی: سیکشن کھلنے پر + ہر پول اسنیپ شاٹ پر (600ms ڈی باؤنس) دوبارہ
+   رینڈر؛ داخلہ جات کا اسکرپٹ فچ زیادہ سے زیادہ 60 سیکنڈ میں ایک بار۔ */
+let DASH_TAB = 'ilmi';
+let __admDashCache = null;
+let __admDashErr = '';
+let __dashTimer = null;
+let __dashLocal = [];
+let __dashHidden = {};
+function dashTable(headers, rows){
+  let h = '<div style="overflow-x:auto;margin:10px 0"><table style="border-collapse:collapse;width:100%;font-size:15px;line-height:1.8">';
+  h += '<tr>' + headers.map(function(x){ return '<th style="border:1px solid #ccc;padding:6px;background:#e5dfc8">' + esc(String(x)) + '</th>'; }).join('') + '</tr>';
+  (rows || []).forEach(function(r){
+    h += '<tr>' + r.map(function(c){ return '<td style="border:1px solid #ccc;padding:6px">' + esc(String(c == null ? '' : c)) + '</td>'; }).join('') + '</tr>';
+  });
+  h += '</table></div>';
+  return h;
+}
+function dashTblOrEmpty(headers, rows){
+  return (rows && rows.length) ? dashTable(headers, rows) : '<p class="small">ابھی کوئی ریکارڈ نہیں۔</p>';
+}
+function dashChips(items){
+  return '<div class="ahub-stats">' + items.map(function(it){
+    return '<div class="stat-chip">' + esc(it[0]) + '<b>' + esc(String(it[1])) + '</b></div>';
+  }).join('') + '</div>';
+}
+function dashCount(map){
+  return Object.keys(map).map(function(k){ return [k, map[k]]; }).sort(function(a, b){ return b[1] - a[1]; });
+}
+function dashSumEntries(entries){
+  const out = { total: 0, byUni: {}, byField: {} };
+  (entries || []).forEach(function(e){
+    const n = parseInt(e.count, 10); if(!(n > 0)) return;
+    out.total += n;
+    const u = (e.university || '').trim(); if(u) out.byUni[u] = (out.byUni[u] || 0) + n;
+    const f = (e.field || '').trim(); if(f) out.byField[f] = (out.byField[f] || 0) + n;
+  });
+  return out;
+}
+/* خام اندراج: سرور کی فہرست + ابھی محفوظ شدہ (پول آنے تک) — حذف شدہ چھپے رہیں */
+function dashDataAll(){
+  const base = DB.get('dashboardData', []) || [];
+  const seen = {};
+  const out = [];
+  base.forEach(function(e){
+    if(!e) return;
+    const id = e.id || e._id;
+    if(id && __dashHidden[id]) return;
+    if(id) seen[id] = true;
+    out.push(e);
+  });
+  __dashLocal.forEach(function(e){
+    const id = e.id || e._id;
+    if(id && (seen[id] || __dashHidden[id])) return;
+    out.push(e);
+  });
+  return out;
+}
+function dashPollTick(){
+  if(__dashTimer) return;
+  __dashTimer = setTimeout(function(){ __dashTimer = null; renderAdminDashboard(); renderDashData(); }, 600);
+}
+function hookDashRefresh(){
+  const cur = window.__applySnapshot;
+  if(!cur || cur.__dashHooked) return;
+  const wrapped = function(k, data){
+    const r = cur(k, data);
+    try{ dashPollTick(); }catch(e){}
+    return r;
+  };
+  wrapped.__dashHooked = true;
+  window.__applySnapshot = wrapped;
+}
+function setDashTab(t){ DASH_TAB = t; renderAdminDashboard(); }
+function renderAdminDashboard(){
+  const sec = document.getElementById('asec-dashboard'); if(!sec || sec.style.display === 'none') return;
+  hookDashRefresh();
+  const tabs = '<div style="display:flex;gap:8px;margin:8px 0">'
+    + '<button class="btn ' + (DASH_TAB === 'ilmi' ? 'goldb' : '') + '" onclick="setDashTab(\'ilmi\')">علمی مشغولیت</button>'
+    + '<button class="btn ' + (DASH_TAB === 'adm' ? 'goldb' : '') + '" onclick="setDashTab(\'adm\')">داخلہ جات</button></div>';
+  const tabsEl = document.getElementById('dash-tabs'); if(tabsEl) tabsEl.innerHTML = tabs;
+  const il = document.getElementById('dash-ilmi'); if(il) il.style.display = DASH_TAB === 'ilmi' ? 'block' : 'none';
+  const ad = document.getElementById('dash-adm'); if(ad) ad.style.display = DASH_TAB === 'adm' ? 'block' : 'none';
+  if(DASH_TAB === 'ilmi') renderDashIlmi();
+  else renderDashAdm();
+}
+function renderDashIlmi(){
+  const box = document.getElementById('dash-ilmi'); if(!box) return;
+  const us = users();
+  const approved = us.filter(function(u){ return u.status === 'approved'; });
+  const pending = us.filter(function(u){ return u.status === 'pending'; });
+  const rejected = us.filter(function(u){ return u.status === 'rejected'; });
+  const degN = function(d, arr){ return arr.filter(function(u){ return (u.degree || '') === d; }).length; };
+  const ong = { bs: 0, ms: 0, phd: 0 };
+  approved.forEach(function(u){
+    const st = eduStatusFormValue((u.profile && u.profile.eduStatus) || '', u.degree || '');
+    if(st === 'بی ایس جاری ہے') ong.bs++;
+    else if(st === 'ایم فل جاری ہے') ong.ms++;
+    else if(st === 'پی ایچ ڈی جاری ہے') ong.phd++;
+  });
+  const sampleNote = (us.some(function(u){ return u.sample; }) || (typeof ONLINE !== 'undefined' && !ONLINE))
+    ? '<p class="small"><span class="tag red">نمونہ</span> یہ اعداد اس وقت موجود ریکارڈز (آن لائن ہو تو اصل، ورنہ نمونہ/آزمائشی ڈیٹا) سے بنے ہیں۔</p>' : '';
+  let h = sampleNote;
+  h += dashChips([
+    ['کل طلبہ', urDigits(us.length)],
+    ['منظور شدہ', urDigits(approved.length)],
+    ['زیرِ غور', urDigits(pending.length)],
+    ['مسترد', urDigits(rejected.length)],
+    ['بی ایس', urDigits(degN('بی ایس', approved))],
+    ['ایم فل', urDigits(degN('ایم فل', approved))],
+    ['پی ایچ ڈی', urDigits(degN('پی ایچ ڈی', approved))],
+    ['بی ایس جاری', urDigits(ong.bs)],
+    ['ایم فل جاری', urDigits(ong.ms)],
+    ['پی ایچ ڈی جاری', urDigits(ong.phd)]
+  ]);
+  const degRows = ['بی ایس', 'ایم فل', 'پی ایچ ڈی'].map(function(d){
+    return [d, urDigits(degN(d, us)), urDigits(degN(d, approved)), urDigits(degN(d, pending)), urDigits(degN(d, rejected))];
+  });
+  const other = us.filter(function(u){ return ['بی ایس', 'ایم فل', 'پی ایچ ڈی'].indexOf(u.degree || '') < 0; });
+  degRows.push(['دیگر', urDigits(other.length), urDigits(other.filter(function(u){ return u.status === 'approved'; }).length), urDigits(other.filter(function(u){ return u.status === 'pending'; }).length), urDigits(other.filter(function(u){ return u.status === 'rejected'; }).length)]);
+  degRows.push(['کل', urDigits(us.length), urDigits(approved.length), urDigits(pending.length), urDigits(rejected.length)]);
+  h += '<h3>درجہ × حیثیت</h3>' + dashTable(['درجہ', 'کل', 'منظور شدہ', 'زیرِ غور', 'مسترد'], degRows);
+  const uniMap = {};
+  approved.forEach(function(u){
+    const k = (u.uni || '').trim() || 'یونیورسٹی درج نہیں';
+    uniMap[k] = uniMap[k] || { total: 0, bs: 0, ms: 0, phd: 0 };
+    uniMap[k].total++;
+    if(u.degree === 'بی ایس') uniMap[k].bs++;
+    else if(u.degree === 'ایم فل') uniMap[k].ms++;
+    else if(u.degree === 'پی ایچ ڈی') uniMap[k].phd++;
+  });
+  const uniRows = dashCount(Object.keys(uniMap).reduce(function(m, k){ m[k] = uniMap[k].total; return m; }, {})).map(function(r){
+    const v = uniMap[r[0]];
+    return [r[0], urDigits(v.total), urDigits(v.bs), urDigits(v.ms), urDigits(v.phd)];
+  });
+  h += '<h3>فی یونیورسٹی (منظور شدہ)</h3>' + dashTblOrEmpty(['یونیورسٹی', 'کل', 'بی ایس', 'ایم فل', 'پی ایچ ڈی'], uniRows);
+  const cMap = {};
+  approved.forEach(function(u){ const k = (u.country || '').trim() || 'ملک درج نہیں'; cMap[k] = (cMap[k] || 0) + 1; });
+  h += '<h3>فی ملک (منظور شدہ)</h3>' + dashTblOrEmpty(['ملک', 'طلبہ'], dashCount(cMap).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  const claims = DB.get('attendanceClaims', []) || [];
+  const verified = claims.filter(function(c){ return c && c.status === 'تصدیق شدہ' && c.sessionId; });
+  const bySess = {};
+  verified.forEach(function(c){ bySess[c.sessionId] = (bySess[c.sessionId] || 0) + 1; });
+  const snaps = DB.get('sessionAttendees', []) || [];
+  const snapById = {};
+  snaps.forEach(function(s){ if(s && s.id) snapById[s.id] = s; });
+  const csess = DB.get('courseSessions', []) || [];
+  const titleOf = function(sid){
+    if(snapById[sid] && snapById[sid].title) return snapById[sid].title;
+    const m = csess.find(function(s){ return s && (s.sessionId === sid || s.id === sid || sessionIdOf(s) === sid); });
+    if(m && m.title) return m.title;
+    return sid;
+  };
+  const sessSet = {};
+  Object.keys(bySess).forEach(function(id){ sessSet[id] = true; });
+  snaps.forEach(function(s){ if(s && s.id) sessSet[s.id] = true; });
+  const attRows = Object.keys(sessSet).map(function(sid){
+    const snap = snapById[sid];
+    const att = snap ? (snap.count || (snap.attendees || []).length) : (bySess[sid] || 0);
+    const pct = approved.length ? Math.round(att / approved.length * 100) : 0;
+    return { title: titleOf(sid), ver: bySess[sid] || 0, att: att, pct: pct };
+  }).sort(function(a, b){ return b.att - a.att; }).map(function(r){
+    return [r.title, urDigits(r.ver), urDigits(r.att), urDigits(r.pct) + '٪'];
+  });
+  h += '<h3>فی سیشن حاضری (تصدیق شدہ دعوے + حاضرین خلاصہ)</h3>' + dashTblOrEmpty(['سیشن', 'تصدیق شدہ دعوے', 'حاضرین', 'شرح (منظور شدہ میں سے)'], attRows);
+  const claimedEmails = {};
+  verified.forEach(function(c){ if(c.email) claimedEmails[c.email] = true; });
+  const zeroN = approved.filter(function(u){ return u.email && !claimedEmails[u.email]; }).length;
+  h += '<p>صفر تصدیق شدہ دعوے والے منظور شدہ طلبہ: <b>' + urDigits(zeroN) + '</b> — ان سے رابطہ کر کے حاضری کی پیروی کریں۔</p>';
+  const pubs = DB.get('publications', []) || [];
+  const topAuth = approved.map(function(u){
+    if(!u.name) return null;
+    const n = pubs.filter(function(pb){ return pb && pb.author && (String(pb.author).indexOf(u.name) >= 0 || String(u.name).indexOf(pb.author) >= 0); }).length;
+    return n > 0 ? [u.name, n] : null;
+  }).filter(function(x){ return !!x; }).sort(function(a, b){ return b[1] - a[1]; }).slice(0, 5);
+  h += '<h3>اشاعتیں</h3><p>کل اشاعتیں: <b>' + urDigits(pubs.length) + '</b></p>'
+    + dashTblOrEmpty(['مصنف (نام سے میل — ایپ کا موجودہ طریقہ)', 'مقالات'], topAuth.map(function(r){ return [r[0], urDigits(r[1])]; }));
+  const regDates = pending.map(function(u){ return u.regAt || ''; }).filter(function(x){ return !!x; }).sort();
+  h += '<h3>زیرِ غور کی عمر</h3><p>زیرِ غور طلبہ: <b>' + urDigits(pending.length) + '</b>'
+    + (regDates.length ? ' · قدیم ترین درخواست (جن کی تاریخ درج ہے): <b>' + urDigits(regDates[0].slice(0, 10)) + '</b>' : '') + '</p>';
+  const inc = approved.filter(function(u){ try{ return profileMissing(u).length > 0; }catch(e){ return false; } });
+  const missCount = {};
+  inc.forEach(function(u){ try{ profileMissing(u).forEach(function(m){ missCount[m] = (missCount[m] || 0) + 1; }); }catch(e){} });
+  h += '<h3>نامکمل پروفائلز (ایپ کا اپنا معیار — profileMissing)</h3><p>منظور شدہ میں نامکمل: <b>' + urDigits(inc.length) + '</b></p>'
+    + dashTblOrEmpty(['خالی میدان', 'طلبہ'], dashCount(missCount).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  const raw = dashDataAll();
+  const conf = dashSumEntries(raw.filter(function(e){ return e.category === 'کانفرنس کے لیے اپلائی'; }));
+  const pubRaw = dashSumEntries(raw.filter(function(e){ return e.category === 'مضمون شائع'; }));
+  h += '<h3>ایڈمن کے درج کردہ (ایپ کی اشاعتوں سے الگ)</h3>'
+    + '<p>کانفرنس کے لیے اپلائی: <b>' + urDigits(conf.total) + '</b> · مضمون شائع: <b>' + urDigits(pubRaw.total) + '</b></p>';
+  if(dashCount(conf.byUni).length) h += dashTable(['کانفرنس — یونیورسٹی', 'تعداد'], dashCount(conf.byUni).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  if(dashCount(conf.byField).length) h += dashTable(['کانفرنس — شعبہ / فیلڈ', 'تعداد'], dashCount(conf.byField).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  if(dashCount(pubRaw.byUni).length) h += dashTable(['مضمون — یونیورسٹی', 'تعداد'], dashCount(pubRaw.byUni).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  if(dashCount(pubRaw.byField).length) h += dashTable(['مضمون — شعبہ / فیلڈ', 'تعداد'], dashCount(pubRaw.byField).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  box.innerHTML = h;
+}
+async function fetchAdmDashboard(force){
+  const now = Date.now();
+  if(!force && __admDashCache && (now - __admDashCache.at) < 60000){ __admDashErr = ''; return __admDashCache.data; }
+  try{
+    const base = window.ADMISSIONS_SCRIPT_URL || '';
+    if(!base) throw new Error('no script url');
+    const res = await fetch(base + '?action=dashboard');
+    const j = await res.json();
+    if(j && j.dashboard){ __admDashCache = { at: now, data: j.dashboard }; __admDashErr = ''; return j.dashboard; }
+    __admDashErr = 'payload';
+    return __admDashCache ? __admDashCache.data : null;
+  }catch(e){
+    __admDashErr = 'fetch';
+    return __admDashCache ? __admDashCache.data : null;
+  }
+}
+function dashRawAdmHtml(){
+  const cats = [
+    ['داخلہ ہو گیا', 'داخلے (ایڈمن درج کردہ)'],
+    ['ٹیسٹ میں فیل', 'ٹیسٹ میں فیل (ایڈمن درج کردہ)'],
+    ['اپلائی نہ کر سکے', 'اپلائی نہ کر سکے (ایڈمن درج کردہ)'],
+    ['کانفرنس کے لیے اپلائی', 'کانفرنس اپلائی (ایڈمن درج کردہ)']
+  ];
+  let h = '<h3>نتائج — خام اندراج سے (ایپ ان کا سراغ خود نہیں رکھتی)</h3>';
+  cats.forEach(function(c){
+    const s = dashSumEntries(dashDataAll().filter(function(e){ return e.category === c[0]; }));
+    h += '<h3>' + esc(c[1]) + ' — ' + urDigits(s.total) + '</h3>';
+    if(!s.total){ h += '<p class="small">ابھی کوئی اندراج نہیں۔</p>'; return; }
+    if(dashCount(s.byUni).length) h += dashTable(['یونیورسٹی', 'تعداد'], dashCount(s.byUni).map(function(r){ return [r[0], urDigits(r[1])]; }));
+    if(dashCount(s.byField).length) h += dashTable(['شعبہ / فیلڈ', 'تعداد'], dashCount(s.byField).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  });
+  return h;
+}
+async function renderDashAdm(){
+  const box = document.getElementById('dash-adm'); if(!box) return;
+  if(!__admDashCache && !__admDashErr) box.innerHTML = '<p class="small">لوڈ ہو رہا ہے…</p>';
+  const d = await fetchAdmDashboard(false);
+  if(!d){
+    box.innerHTML = '<div class="card"><p style="margin:0">ڈیش بورڈ ڈیٹا دستیاب نہیں — اسکرپٹ دوبارہ تعینات ہونا باقی ہے۔</p></div>' + dashRawAdmHtml();
+    return;
+  }
+  const conv = d.totalCandidates > 0 ? Math.round(d.totalApplications / d.totalCandidates * 100) : 0;
+  let h = dashChips([
+    ['کل رجسٹریشنز', urDigits(d.totalCandidates)],
+    ['اپلائی تصدیق', urDigits(d.totalApplications)],
+    ['رجسٹریشن سے اپلائی', urDigits(conv) + '٪'],
+    ['منتخب یونیورسٹیز', urDigits(Object.keys(d.byUniversityChosen || {}).length)],
+    ['مطلوبہ فیلڈز', urDigits(Object.keys(d.byField || {}).length)]
+  ]);
+  h += '<h3>فنل</h3>' + dashTable(['مرحلہ', 'تعداد', 'پچھلے مرحلے کا فیصد'], [
+    ['رجسٹریشن', urDigits(d.totalCandidates), '—'],
+    ['اپلائی تصدیق', urDigits(d.totalApplications), urDigits(conv) + '٪']
+  ]);
+  const uniKeys = {};
+  Object.keys(d.byUniversityChosen || {}).forEach(function(k){ uniKeys[k] = true; });
+  Object.keys(d.byUniversityApplied || {}).forEach(function(k){ uniKeys[k] = true; });
+  const uniRows = Object.keys(uniKeys).map(function(k){
+    return { k: k, c: (d.byUniversityChosen || {})[k] || 0, a: (d.byUniversityApplied || {})[k] || 0 };
+  }).sort(function(a, b){ return (b.c + b.a) - (a.c + a.a); }).map(function(r){
+    return [r.k, urDigits(r.c), urDigits(r.a)];
+  });
+  h += '<h3>فی یونیورسٹی</h3>' + dashTblOrEmpty(['یونیورسٹی', 'منتخب (رجسٹریشن)', 'اپلائی تصدیق'], uniRows);
+  h += '<h3>فی فیلڈ / ڈسپلن (رجسٹریشن کی مطلوبہ فیلڈز + اپلائی کے ڈسپلن)</h3>'
+    + dashTblOrEmpty(['فیلڈ / ڈسپلن', 'تعداد'], dashCount(d.byField || {}).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  h += '<h3>فی لیول (اپلائی)</h3>'
+    + dashTblOrEmpty(['لیول', 'اپلائی تصدیق'], dashCount(d.byLevel || {}).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  const moKeys = {};
+  Object.keys(d.byMonth || {}).forEach(function(k){ moKeys[k] = true; });
+  Object.keys(d.byMonthApplied || {}).forEach(function(k){ moKeys[k] = true; });
+  const moRows = Object.keys(moKeys).sort().map(function(k){
+    return [urDigits(k), urDigits((d.byMonth || {})[k] || 0), urDigits((d.byMonthApplied || {})[k] || 0)];
+  });
+  h += '<h3>فی مہینہ</h3>' + dashTblOrEmpty(['مہینہ', 'رجسٹریشن', 'اپلائی تصدیق'], moRows);
+  if(__admDashErr) h += '<p class="small">تازہ ڈیٹا نہ مل سکا — آخری محفوظ شدہ گنتی دکھائی جا رہی ہے۔</p>';
+  h += dashRawAdmHtml();
+  box.innerHTML = h;
+}
+function renderDashData(){
+  const sec = document.getElementById('asec-dashdata'); if(!sec || sec.style.display === 'none') return;
+  const mm = document.getElementById('dd-month');
+  if(mm && !mm.value){ const dt = new Date(); mm.value = dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0'); }
+  const list = dashDataAll().slice().sort(function(a, b){ return String(b.createdAt || '').localeCompare(String(a.createdAt || '')); });
+  const box = document.getElementById('dashdata-list'); if(!box) return;
+  if(!list.length){ box.innerHTML = '<p class="small">ابھی کوئی اندراج نہیں — اوپر فارم سے پہلا اندراج کریں۔</p>'; return; }
+  box.innerHTML = list.map(function(e){
+    const id = e.id || e._id || '';
+    const parts = [esc(e.category || '') + ' — ' + urDigits(e.count || 0)];
+    if(e.university) parts.push(esc(e.university));
+    if(e.field) parts.push(esc(e.field));
+    if(e.level) parts.push(esc(e.level));
+    if(e.month) parts.push(esc(e.month));
+    if(e.note) parts.push(esc(e.note));
+    return '<div class="card" style="margin:8px 0"><p style="margin:0">' + parts.join(' · ') + '</p>'
+      + '<button class="btn sm" style="margin-top:6px" data-id="' + esc(id) + '" onclick="deleteDashData(this.getAttribute(\'data-id\'))">🗑 حذف کریں</button></div>';
+  }).join('');
+}
+async function saveDashData(){
+  const g = function(id){ const el = document.getElementById(id); return el ? el.value : ''; };
+  const cat = g('dd-cat');
+  const uni = g('dd-uni').trim();
+  const field = g('dd-field').trim();
+  const level = g('dd-level');
+  const countRaw = g('dd-count').trim();
+  const month = g('dd-month').trim();
+  const note = g('dd-note').trim();
+  if(!cat){ showMsg('dd-msg', 'قسم منتخب کریں۔', false); return; }
+  if(!/^\d+$/.test(countRaw) || parseInt(countRaw, 10) <= 0){ showMsg('dd-msg', 'تعداد درست لکھیں — 1 یا زیادہ، صرف ہندسے۔', false); return; }
+  const mm = month.match(/^(\d{4})-(\d{2})$/);
+  if(!mm || +mm[2] < 1 || +mm[2] > 12){ showMsg('dd-msg', 'مہینہ درست لکھیں — مثلاً 2026-10۔', false); return; }
+  const doc = { id: 'dd' + Date.now().toString(36), category: cat, university: uni, field: field, level: level, count: parseInt(countRaw, 10), month: month, note: note, createdAt: new Date().toISOString() };
+  try{
+    await window.__fb.upsert('dashboardData', doc.id, doc);
+    __dashLocal.push(doc);
+    showMsg('dd-msg', 'محفوظ ہو گیا — ڈیش بورڈ میں شامل ہو جائے گا۔', true);
+    const ce = document.getElementById('dd-count'); if(ce) ce.value = '';
+    const ne = document.getElementById('dd-note'); if(ne) ne.value = '';
+    renderDashData();
+  }catch(e){ showMsg('dd-msg', 'محفوظ نہ ہو سکا — دوبارہ کوشش کریں۔', false); }
+}
+async function deleteDashData(id){
+  if(!id) return;
+  if(!confirm('یہ اندراج حذف کریں؟')) return;
+  try{
+    await window.__fb.removeFromList('dashboardData', id);
+    __dashHidden[id] = true;
+    __dashLocal = __dashLocal.filter(function(e){ return (e.id || e._id) !== id; });
+    showMsg('dd-msg', 'اندراج حذف ہو گیا۔', true);
+    renderDashData();
+  }catch(e){ showMsg('dd-msg', 'محفوظ نہ ہو سکا — دوبارہ کوشش کریں۔', false); }
+}
+
 /* ================= واٹس ایپ گروپ — ایک ٹیپ بہاؤ (کاپی + گروپ کھولنا) ================= */
 /* کلپ بورڈ پر نقل — جدید API ناکام ہو تو عارضی خانے والا پرانا طریقہ fallback */
 function fallbackCopyText(txt){
@@ -12183,6 +12571,6 @@ try{ renderLayoutSwitches(); }catch(e){}
 <script src="foreign-data.js?v=20261029g"></script>
 <script src="admissions-news.js"></script>
 <script src="admissions.js?v=20261029g"></script>
-<script type="module" src="api-bridge.js"></script>
+<script type="module" src="api-bridge.js?v=20261029h"></script>
 </body>
 </html>

@@ -160,7 +160,7 @@ const CONTENT_FEEDS = [
 const ADMIN_LISTS = [
   'sessionArchive', 'counselLogs', 'messages', 'competitions', 'transfers',
   'starRequests', 'courseSessions', 'starTeam', 'certificates',
-  'starRecommendations', 'attendanceClaims',
+  'starRecommendations', 'attendanceClaims', 'dashboardData',
 ];
 
 async function pollOnce(ctx) {
@@ -500,7 +500,7 @@ window.__fb = {
       await api('/api/content/' + collName, { method: 'POST', body: { doc: clean } });
       return;
     }
-    if (['sessionArchive', 'counselLogs', 'courseSessions', 'starTeam', 'certificates'].includes(collName)) {
+    if (['sessionArchive', 'counselLogs', 'courseSessions', 'starTeam', 'certificates', 'dashboardData'].includes(collName)) {
       await api('/api/admin/lists/' + collName, { method: 'POST', body: { doc: clean } });
       return;
     }
@@ -509,6 +509,12 @@ window.__fb = {
     // Notifications have their own branch above (admin fan-out + own
     // read-state); everything else here is skipped, never faked.
     console.warn('upsert ignored for server-owned collection:', collName);
+  },
+
+  // Delete one admin-list doc (used by the dashboard raw-data form).
+  // Same router-level auth as the list POST (requireAuth + requireAdmin).
+  async removeFromList(collName, id) {
+    await api('/api/admin/lists/' + encodeURIComponent(collName) + '/' + encodeURIComponent(id), { method: 'DELETE' });
   },
 
   startSubscriptions, stopSubscriptions,
