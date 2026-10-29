@@ -412,6 +412,7 @@
     if (sEl) {
       sEl.innerHTML = '<button class="btn" style="margin-bottom:10px" onclick="admSection(null)">→ ہب پر واپس</button>' +
         '<p style="margin:8px 0"><b>🎓 سکالرشپس</b></p>' +
+        (window.helpBtn ? window.helpBtn('general') : '') +
         (sch.length ? sch.map(newsCard).join('') : '<p class="small">ابھی کوئی تصدیق شدہ سکالرشپ خبر نہیں — نئی خبریں تصدیق کے بعد یہیں آئیں گی۔</p>') +
         '<p class="small" style="margin-top:8px">فلی فنڈڈ کانفرنسز کے اعلانات بھی تصدیق کے بعد اسی ڈبے میں آئیں گے۔</p>';
     }
@@ -419,6 +420,7 @@
     if (jEl) {
       jEl.innerHTML = '<button class="btn" style="margin-bottom:10px" onclick="admSection(null)">→ ہب پر واپس</button>' +
         '<p style="margin:8px 0"><b>💼 ملازمتیں و مواقع</b></p>' +
+        (window.helpBtn ? window.helpBtn('jobs') : '') +
         (jobs.length ? jobs.map(newsCard).join('') : '<p class="small">ابھی کوئی تصدیق شدہ ملازمت خبر نہیں — نئی خبریں تصدیق کے بعد یہیں آئیں گی۔</p>') +
         '<p class="small" style="margin-top:8px">یہ وہی طرز کی خبریں ہیں جو علمی مشغولیت ایپ کے اندر بھی آتی ہیں — یہاں فہرست شدہ یونیورسٹیز سے متعلقہ خبریں دکھائی جاتی ہیں۔</p>';
     }
@@ -462,6 +464,7 @@
     rows.sort(function (a, b) { return (a.n ? 0 : 1) - (b.n ? 0 : 1); });
     cEl.innerHTML = '<button class="btn" style="margin-bottom:10px" onclick="admSection(null)">→ ہب پر واپس</button>' +
       '<p style="margin:8px 0"><b>📅 داخلہ کیلنڈر</b></p>' +
+      (window.helpBtn ? window.helpBtn('general') : '') +
       '<p class="small" style="margin:0 0 8px">ہر یونیورسٹی کا داخلہ شیڈول (سال میں کتنی مرتبہ) + اس کے اپنے داخلہ صفحے کا بٹن — ' +
       'وہاں اس وقت کوئی نیا اعلان نہ ہو تو بھی وہی سرکاری صفحہ چیک کریں۔ تصدیق شدہ آخری تاریخ صرف وہاں لکھی جاتی ہے جہاں اعلان موجود ہو۔</p>' +
       rows.map(function (r) {
@@ -485,6 +488,7 @@
     });
     tEl.innerHTML = '<button class="btn" style="margin-bottom:10px" onclick="admSection(null)">→ ہب پر واپس</button>' +
       '<p style="margin:8px 0"><b>📝 انٹری ٹیسٹ کی معلومات</b></p>' +
+      (window.helpBtn ? window.helpBtn('test') : '') +
       '<p class="small" style="margin:0 0 8px">کون سی یونیورسٹی کا انٹری ٹیسٹ کس زبان میں اور کس نوع کا ہوتا ہے (شیٹ / سرکاری ذرائع کے مطابق)۔ ' +
       'تیاری کا مواد نیچے دیے گئے فولڈر میں موجود ہے۔</p>' +
       (PREP_URL ? '<div style="border:1px solid var(--c-gold-500);border-radius:12px;padding:10px;margin:8px 0;background:var(--c-gold-100)">' +

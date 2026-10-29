@@ -524,6 +524,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div id="adm-sections" style="margin:10px 0"></div>
   <div id="adm-sec-unis">
     <button class="btn" style="margin-bottom:10px" onclick="admSection(null)">→ ہب پر واپس</button>
+    <div style="margin:0 0 8px"><button type="button" onclick="openHelp('general')" style="display:inline-block;padding:6px 16px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;line-height:1.6">💬 مدد چاہیے؟</button></div>
     <div id="adm-scope"></div>
     <p style="margin:8px 0 2px"><b>شعبہ جات</b></p>
     <div id="adm-disc"></div>
@@ -553,6 +554,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 <!-- ============ آسان رجسٹریشن فارم (شناختی کارڈ نہیں) ============ -->
 <section class="view" id="view-admissions-form">
   <div class="topbar"><button onclick="goBack('admissions')">→ واپس</button><div class="ttl">آسان رجسٹریشن</div><span style="width:52px"></span></div>
+  <div style="margin:8px 0"><button type="button" onclick="openHelp('adm-form')" style="display:inline-block;padding:6px 16px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;line-height:1.6">💬 مدد چاہیے؟</button></div>
   <p class="small" id="af-note" style="margin:6px 0"></p>
   <p style="margin:8px 0 0"><b>جی میل ایڈریس *</b></p>
   <input id="af-gmail" type="email" style="width:100%;padding:10px;border:1px solid var(--c-border);border-radius:10px;font-family:inherit;font-size:18px;margin:4px 0 10px;background:var(--c-card)">
@@ -586,6 +588,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 <!-- ============ اپلائی کی تصدیق (خود اعلان کردہ) ============ -->
 <section class="view" id="view-admissions-apply">
   <div class="topbar"><button onclick="goBack('admissions')">→ واپس</button><div class="ttl">اپلائی کی تصدیق</div><span style="width:52px"></span></div>
+  <div style="margin:8px 0"><button type="button" onclick="openHelp('apply')" style="display:inline-block;padding:6px 16px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;line-height:1.6">💬 مدد چاہیے؟</button></div>
   <p class="small" id="ap-note" style="margin:6px 0"></p>
   <p class="small" style="margin:6px 0">یونیورسٹی کا فارم بھرنے کے بعد یہ فارم پُر کریں — یہ ریکارڈ <b>خود اعلان کردہ</b> ہو گا، یونیورسٹی کا بیرونی فارم ایپ خود تصدیق نہیں کر سکتی۔</p>
   <div id="ap-help" style="margin:8px 0"></div>
@@ -616,6 +619,28 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <p class="small" style="margin:0 0 10px">فائلیں مجموعی طور پر 15MB سے زیادہ نہ ہوں۔</p>
   <button class="btn goldb" onclick="admSubmitApply()">اپلائی ریکارڈ جمع کریں</button>
   <p class="small" id="ap-msg" style="margin-top:8px"></p>
+</section>
+
+<!-- ============ مدد مرکز — Layer 1 (مفتی 2026-10-30): ہر ضرورت ایپ کے اندر ============ -->
+<section class="view" id="view-help">
+  <div class="topbar"><button onclick="helpBack()">→ واپس</button><div class="ttl">💬 مدد مرکز</div><span style="width:52px"></span></div>
+  <p class="small" style="margin:6px 0">فارم بھرنا ہو، اپنی معلومات کاپی کرنی ہوں، انٹری ٹیسٹ کی تیاری ہو یا کوئی لنک نہ کھل رہا ہو — حل یہیں ملے گا، ایپ سے باہر جانے کی ضرورت نہیں۔ نیچے اپنا موضوع چنیں۔</p>
+  <div id="help-tabs" style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0"></div>
+  <div id="help-mod-form"></div>
+  <div id="help-mod-data" style="display:none">
+    <p style="margin:8px 0"><b>🎒 میرا ڈیٹا پیک</b></p>
+    <p class="small" style="margin:0 0 6px">آپ کی اپنی معلومات — کسی بھی فارم میں جہاں درکار ہو، «کاپی» دبا کر وہیں لگا دیں۔ یہ صرف آپ کا اپنا ڈیٹا ہے۔</p>
+    <div id="help-data-rows"></div>
+  </div>
+  <div id="help-mod-test" style="display:none">
+    <p style="margin:8px 0"><b>📝 انٹری ٹیسٹ تیاری</b></p>
+    <p class="small" style="margin:0 0 6px">یونیورسٹی چنیں — اس کے ٹیسٹ کی زبان، نوعیت اور مواد کا لنک ایپ کے اپنے تصدیق شدہ ڈیٹا سے دکھایا جائے گا۔</p>
+    <select id="help-test-sel" onchange="helpTestShow(this.value)" style="width:100%;padding:10px;border:1px solid var(--c-border);border-radius:10px;font-family:inherit;font-size:18px;margin:4px 0 10px;background:var(--c-card)"></select>
+    <div id="help-test-card"></div>
+    <div id="help-test-prep"></div>
+  </div>
+  <div id="help-mod-link" style="display:none"></div>
+  <div id="help-mod-tools" style="display:none"></div>
 </section>
 
 <!-- ============ وژن گیٹ (صرف نئی رجسٹریشن سے پہلے) ============ -->
@@ -1026,6 +1051,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div id="home-ach"></div>
   <div id="home-warn"></div>
   <div id="home-fcm"></div>
+  <div class="center" style="margin:8px 0 0"><button type="button" onclick="openHelp('ilmi')" style="display:inline-block;padding:6px 16px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;line-height:1.6">💬 مدد چاہیے؟</button></div>
   <button class="btn goldb" style="font-size:1.06em;padding:12px 12px;margin-top:14px" onclick="go('counsel')">🧭 مشورہ کیجیے</button>
   <button class="btn ghost" onclick="go('contact')">✉️ انتظامیہ سے رابطہ</button>
   <div class="divider"></div>
@@ -1258,6 +1284,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 <section class="view" id="view-jobs">
   <div class="topbar"><button onclick="goBack('home')">→ واپس</button><div class="ttl">روزگار کے مواقع</div><span style="width:52px"></span></div>
   <p>مدارس کے فضلاء و فاضلات کے شایانِ شان پارٹ ٹائم ملازمتیں — آن لائن اور آن سائٹ — جو انتظامیہ روزانہ تلاش کر کے یہاں شائع کرتی ہے۔ <b>اہلیت خودکار ہے:</b> ایپ آپ کی پروفائل مہارتوں سے موازنہ کر کے خود بتا دیتی ہے کہ آپ کس جاب کے اہل ہیں اور کس کے لیے کون سی مہارت درکار ہے۔ مہارتیں بدلنا ہوں تو پروفائل دوبارہ مکمل کریں۔</p>
+  <div style="margin:8px 0"><button type="button" onclick="openHelp('jobs')" style="display:inline-block;padding:6px 16px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;line-height:1.6">💬 مدد چاہیے؟</button></div>
   <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="jobs-only" style="width:22px;height:22px" onchange="jobsOnlyToggle(this.checked)"> صرف میرے لیے موزوں جابز دکھائیں</label>
   <div class="msg" id="jobs-msg"></div>
   <div id="jobs-list"></div>
@@ -1319,6 +1346,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 <section class="view" id="view-rafiq">
   <div class="topbar"><button onclick="goBack('wassist')">→ واپس</button><div class="ttl">💬 رفیقِ تحقیق</div><span style="width:52px"></span></div>
   <p class="small" id="rafiq-intro">تحریری معاون کا <b>قاعدے پر مبنی معاون — یہ AI نہیں ہے</b> (نہ لینگویج ماڈل، نہ بیرونی AI کال)۔ باہر کے پرامپٹ کی ضرورت نہیں — یہ خود ترتیب سے پوچھتا ہے، پھر ہر ہیڈنگ کا ڈھانچہ یہیں دکھا کر آپ کی رائے لیتا ہے، اور آخر میں پورا مسودہ ایک ہی دفعہ Write &amp; Export میں بھیج دیتا ہے۔ <b>ایمانداری کا اصول:</b> یہ بوٹ ماہر کے نمونہ سانچوں کو آپ کے جوابات اور تصدیق شدہ مصادر کے ساتھ جوڑ کر عبارت دیتا ہے — آزادانہ AI تحریر نہیں؛ حتمی عبارت آپ اپنی زبان میں ڈھال کر پیش کرتے ہیں۔ حوالہ صرف وہی شامل ہوتا ہے جو اصل ماخذ سے تصدیق شدہ ہو — غیر تصدیق شدہ حوالہ «غیر تصدیق شدہ — شامل نہیں» لکھ کر چھوڑ دیا جاتا ہے، کبھی ایجاد نہیں کیا جاتا۔ پرامپٹس AI درجے کی تفصیل سے مرتب کیے گئے ہیں، مگر چلنا قاعدے سے ہے — کوئی لائیو AI کال نہیں، کوئی کی/خرچ نہیں۔ تحریر اصل ماخذ و قدرتی انداز میں ہے؛ حتمی مسودہ طالب علم خود پڑھ کر اپنی زبان میں ڈھالے — یہی اصل ضمانت ہے۔</p>
+  <div style="margin:8px 0"><button type="button" onclick="openHelp('rafiq')" style="display:inline-block;padding:6px 16px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;line-height:1.6">💬 مدد چاہیے؟</button></div>
   <button class="btn ghost" id="rafiq-sources-btn" onclick="rafiqToggleSources()">📎 مربوط ماخذ دیکھیں (کون سے جڑے ہیں، کون سے نہیں)</button>
   <div id="rafiq-sources" style="display:none"></div>
   <div id="rafiq-thread" style="margin-top:12px"></div>
@@ -12568,13 +12596,281 @@ try{ renderLayoutSwitches(); }catch(e){}
   window.addEventListener('resize', function(){ refreshInstallUI(); });
   refreshInstallUI();
 })();
+
+/* ================= مدد مرکز — Layer 1 (مفتی 2026-10-30) =================
+   اصول: طالب علم کو کسی ضرورت کے لیے ایپ سے باہر نہ جانا پڑے۔ یہ پرت
+   بغیر کسی AI کنجی کے چلتی ہے: فارم رہنمائی، طالب علم کا اپنا ڈیٹا پیک،
+   ایپ کے اپنے یونیورسٹی ڈیٹا سے گراؤنڈ انٹری ٹیسٹ تیاری، لنک مسئلے کے
+   اقدامات، اور ایپ میں پہلے سے موجود ٹولز کے فوری لنکس۔ کوئی لنک/تفصیل
+   ایجاد نہیں — ہر چیز موجودہ کوڈ/ڈیٹا سے لی گئی ہے۔ */
+var HELP_RETURN = 'home';
+var HELP_TAB = 'form';
+var HELP_CTX = 'general';
+var HELP_TABS = [
+  ['form', '📝 فارم رہنمائی'],
+  ['data', '🎒 میرا ڈیٹا پیک'],
+  ['test', '📝 انٹری ٹیسٹ تیاری'],
+  ['link', '🔗 لنک مسئلہ؟'],
+  ['tools', '🧰 فوری ٹولز']
+];
+function helpEsc(s){
+  return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+window.helpBtn = function(ctx){
+  return '<div style="margin:8px 0"><button type="button" onclick="openHelp(\'' + ctx + '\')" style="display:inline-block;padding:6px 16px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;line-height:1.6">💬 مدد چاہیے؟</button></div>';
+};
+window.openHelp = function(ctx){
+  HELP_CTX = ctx || 'general';
+  if(typeof CURRENT_VIEW !== 'undefined' && CURRENT_VIEW && CURRENT_VIEW !== 'help') HELP_RETURN = CURRENT_VIEW;
+  HELP_TAB = ({ 'adm-form':'form', 'apply':'form', 'ilmi':'form', 'general':'form', 'test':'test', 'jobs':'data', 'rafiq':'tools' })[HELP_CTX] || 'form';
+  helpRenderAll();
+  helpSetTab(HELP_TAB);
+  go('help');
+};
+window.helpBack = function(){ go(HELP_RETURN || 'home'); };
+window.helpSetTab = function(t){
+  HELP_TAB = t;
+  HELP_TABS.forEach(function(tb){
+    var m = document.getElementById('help-mod-' + tb[0]);
+    if(m) m.style.display = (tb[0] === t) ? '' : 'none';
+  });
+  var tabsEl = document.getElementById('help-tabs');
+  if(tabsEl){
+    tabsEl.innerHTML = HELP_TABS.map(function(tb){
+      var on = tb[0] === t;
+      return '<button type="button" onclick="helpSetTab(\'' + tb[0] + '\')" style="display:inline-block;width:auto;padding:6px 14px;border-radius:999px;border:1px solid var(--c-border);background:' + (on ? 'var(--c-primary-700)' : 'var(--c-card)') + ';color:' + (on ? '#fff' : 'var(--c-ink)') + ';font-family:inherit;font-size:16px;cursor:pointer;line-height:1.6">' + tb[1] + '</button>';
+    }).join('');
+  }
+  if(t === 'data') helpRenderData();
+  if(t === 'test') helpRenderTestSel();
+};
+function helpRenderAll(){
+  helpRenderForm();
+  helpRenderLink();
+  helpRenderTools();
+  helpRenderTestSel();
+  helpRenderData();
+}
+function helpFieldBlock(id, title, items, hot){
+  var h = '<div style="border:1px solid ' + (hot ? 'var(--c-gold-500)' : 'var(--c-border)') + ';border-radius:12px;padding:12px;margin:10px 0;background:' + (hot ? 'var(--c-gold-100)' : 'var(--c-card)') + '">' +
+    '<p style="margin:0 0 6px"><b>' + title + '</b>' + (hot ? ' <span class="small">👈 آپ یہیں کے فارم سے آئے ہیں</span>' : '') + '</p>';
+  items.forEach(function(it){
+    h += '<p style="margin:6px 0"><b>' + it[0] + ':</b> ' + it[1] + '</p>';
+  });
+  return h + '</div>';
+}
+function helpRenderForm(){
+  var box = document.getElementById('help-mod-form');
+  if(!box) return;
+  var h = '<p style="margin:8px 0"><b>📝 فارم رہنمائی</b></p>' +
+    '<p class="small" style="margin:0 0 4px">ہر خانے میں کیا لکھنا ہے — مختصر و صاف۔ جہاں پھنس جائیں، یہیں دیکھ کر فارم مکمل کریں۔</p>';
+  h += helpFieldBlock('easy', 'آسان رجسٹریشن فارم (یونیورسٹی داخلہ جات)', [
+    ['جی میل ایڈریس', 'وہی Gmail لکھیں جو آپ روز استعمال کرتے ہیں — یہی آپ کی شناخت اور رابطے کی بنیاد ہے، اس میں غلطی نہ کریں۔'],
+    ['نام', 'اپنا مکمل نام — جیسا آپ کے شناختی کارڈ اور تعلیمی اسناد پر درج ہے۔'],
+    ['مدرسہ', 'جس مدرسے سے آپ فارغ التحصیل (فاضل / فاضلہ) ہوئے، اس کا پورا نام لکھیں۔'],
+    ['موجودہ مشغلہ', 'اس وقت آپ کیا کر رہے ہیں — تدریس، ملازمت، مزید تعلیم یا اور کچھ؛ ایک سطر کافی ہے۔'],
+    ['واٹس ایپ نمبر', 'اپنا فعال واٹس ایپ نمبر درست لکھیں — داخلے سے متعلق رابطہ اسی نمبر پر ہو گا۔'],
+    ['ای میل', 'اگر Gmail کے علاوہ کوئی اور ای میل ایڈریس ہے تو وہ لکھیں؛ نہ ہو تو خالی چھوڑ سکتے ہیں۔'],
+    ['سابقہ ڈگریاں', 'جو تعلیم مکمل کر چکے ہیں اس کی مختصر فہرست — مثلاً درسِ نظامی (فاضل)، BA، MA وغیرہ۔'],
+    ['مطلوبہ شعبے', 'جن شعبوں میں داخلہ چاہتے ہیں ان پر ٹک لگائیں — ایک سے زیادہ شعبے بھی منتخب کر سکتے ہیں۔'],
+    ['منتخب یونیورسٹی (اختیاری)', 'اگر پہلے سے کوئی یونیورسٹی طے کر چکے ہیں تو فہرست سے چن لیں؛ ابھی طے نہ ہو تو «ابھی منتخب نہیں کی» ہی رہنے دیں۔']
+  ], HELP_CTX === 'adm-form');
+  h += helpFieldBlock('apply', 'اپلائی تصدیق فارم (اپلائی کے بعد والا فارم)', [
+    ['نام', 'مکمل نام، عین اسناد والا — یہی نام ریکارڈ میں جائے گا۔'],
+    ['شناختی کارڈ نمبر', 'اپنا 13 ہندسوں والا CNIC نمبر درست لکھیں — یہ صرف آپ کے اپلائی ریکارڈ کی تصدیق کے لیے ہے۔'],
+    ['موبائل', 'فعال موبائل نمبر جس پر آپ سے رابطہ ہو سکے۔'],
+    ['ای میل', 'اپنا درست ای میل ایڈریس لکھیں۔'],
+    ['یونیورسٹی / پروگرام / لیول / شعبہ', 'جس یونیورسٹی کے جس پروگرام میں اپلائی کیا ہے، عین وہی منتخب/درج کریں — لیول (BS / MS-MPhil / PhD) اور شعبہ بھی اسی کے مطابق ہو۔'],
+    ['دستاویزات و ثبوت', 'اپلائی کا اسکرین شاٹ اور متعلقہ دستاویزات لگائیں۔ یہ ریکارڈ <b>خود اعلان کردہ</b> ہوتا ہے (یونیورسٹی کا بیرونی فارم ایپ خود تصدیق نہیں کر سکتی) اور تمام فائلوں کا کل سائز <b>15MB سے زیادہ نہ ہو</b>۔']
+  ], HELP_CTX === 'apply');
+  h += helpFieldBlock('profile', 'علمی مشغولیت پروفائل — اہم خانے', [
+    ['واٹس ایپ نمبر', 'فعال نمبر لازمی ہے — سیشنز و اطلاعات کا رابطہ اسی سے ہوتا ہے۔'],
+    ['تصویر', 'مرد طلبہ کے لیے پروفائل تصویر لازمی ہے۔'],
+    ['LinkedIn پروفائل', 'اپنے LinkedIn پروفائل کا لنک لگائیں۔ اکاؤنٹ نہ ہو تو پہلے بنائیں — <a href="https://www.youtube.com/watch?v=dhQ46r_W2zM" target="_blank" rel="noopener" style="color:var(--c-primary-700);font-weight:bold">اردو ویڈیو: LinkedIn اکاؤنٹ کیسے بنائیں (7 منٹ)</a>'],
+    ['Google Scholar پروفائل', 'اپنے Google Scholar پروفائل کا لنک لگائیں — صرف لنک یا صرف Scholar ID بھی کافی ہے۔ طریقہ: <a href="https://www.youtube.com/watch?v=k521gyPJ_H8" target="_blank" rel="noopener" style="color:var(--c-primary-700);font-weight:bold">اردو ویڈیو: Scholar پروفائل کیسے بنائیں (5 منٹ)</a>']
+  ], HELP_CTX === 'ilmi');
+  box.innerHTML = h;
+}
+/* ---- میرا ڈیٹا پیک: صرف موجودہ طالب علم کا اپنا ڈیٹا ---- */
+var HELP_PACK = [];
+window.helpCopy = function(i, btn){
+  var r = HELP_PACK[i];
+  if(!r) return;
+  var v = String(r[1]);
+  var done = function(){
+    if(btn){ var old = btn.textContent; btn.textContent = '✓ کاپی ہو گیا'; setTimeout(function(){ btn.textContent = old; }, 1600); }
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(v).then(done).catch(function(){ helpCopyFallback(v); done(); });
+  } else { helpCopyFallback(v); done(); }
+};
+function helpCopyFallback(v){
+  try{
+    var ta = document.createElement('textarea');
+    ta.value = v;
+    ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  }catch(e){}
+}
+function helpRenderData(){
+  var box = document.getElementById('help-data-rows');
+  if(!box) return;
+  var rows = [];
+  var u = null;
+  try{ u = currentUser(); }catch(e){}
+  if(u){
+    var p = u.profile || {};
+    rows = [
+      ['نام', u.name || ''],
+      ['ای میل', u.email || ''],
+      ['موبائل / واٹس ایپ', p.whatsapp || u.mobile || ''],
+      ['مدرسہ', u.madrasa || ''],
+      ['ڈگری', u.degree || ''],
+      ['یونیورسٹی', u.uni || ''],
+      ['شعبہ', u.dept || '']
+    ];
+  } else {
+    var gv = function(id){ var e = document.getElementById(id); return e ? (e.value || '') : ''; };
+    rows = [
+      ['نام', gv('af-name')],
+      ['جی میل', gv('af-gmail')],
+      ['ای میل', gv('af-email')],
+      ['واٹس ایپ نمبر', gv('af-whatsapp')],
+      ['مدرسہ', gv('af-madrasa')],
+      ['موجودہ مشغلہ', gv('af-occupation')],
+      ['سابقہ ڈگریاں', gv('af-degrees')],
+      ['منتخب یونیورسٹی', gv('af-university')]
+    ];
+  }
+  rows = rows.filter(function(r){ return r[1] && String(r[1]).trim(); });
+  HELP_PACK = rows;
+  if(!rows.length){
+    box.innerHTML = '<p class="small">ابھی یہاں دکھانے کے لیے کوئی ڈیٹا نہیں — پہلے لاگ ان کریں یا آسان رجسٹریشن فارم بھریں، پھر آپ کی معلومات یہاں کاپی کے لیے تیار ملیں گی۔</p>';
+    return;
+  }
+  box.innerHTML = rows.map(function(r, i){
+    return '<div style="display:flex;align-items:center;gap:8px;border:1px solid var(--c-border);border-radius:10px;padding:8px 10px;margin:6px 0;background:var(--c-card)">' +
+      '<div style="flex:1;min-width:0"><p class="small" style="margin:0">' + helpEsc(r[0]) + '</p>' +
+      '<p style="margin:0;font-weight:bold;word-break:break-word">' + helpEsc(r[1]) + '</p></div>' +
+      '<button type="button" onclick="helpCopy(' + i + ', this)" style="flex:none;padding:6px 14px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:15px;font-weight:bold;cursor:pointer">کاپی</button></div>';
+  }).join('');
+}
+/* ---- انٹری ٹیسٹ تیاری: ایپ کے اپنے ڈیٹا سے گراؤنڈ ---- */
+function helpTestByName(){
+  var all = [];
+  if(window.ADMISSIONS_DATA && window.ADMISSIONS_DATA.universities) all = all.concat(window.ADMISSIONS_DATA.universities);
+  if(window.FOREIGN_DATA && window.FOREIGN_DATA.universities) all = all.concat(window.FOREIGN_DATA.universities);
+  var byName = {};
+  all.forEach(function(u){
+    if(!u || !u.name) return;
+    var has = (u.testLink && String(u.testLink).trim()) || (u.testType && String(u.testType).trim());
+    if(!has) return;
+    (byName[u.name] = byName[u.name] || []).push(u);
+  });
+  return byName;
+}
+function helpRenderTestSel(){
+  var sel = document.getElementById('help-test-sel');
+  if(!sel) return;
+  var byName = helpTestByName();
+  var names = Object.keys(byName).sort();
+  var cur = sel.value;
+  sel.innerHTML = '<option value="">— یونیورسٹی چنیں —</option>' + names.map(function(n){
+    return '<option value="' + helpEsc(n) + '"' + (n === cur ? ' selected' : '') + '>' + helpEsc(n) + '</option>';
+  }).join('');
+  var prep = document.getElementById('help-test-prep');
+  if(prep){
+    var pu = window.ADMISSIONS_TEST_PREP_URL || '';
+    prep.innerHTML = pu ? '<div style="border:1px solid var(--c-gold-500);border-radius:12px;padding:10px;margin:10px 0;background:var(--c-gold-100)">' +
+      '<p style="margin:0;font-weight:bold">📚 انٹری ٹیسٹ تیاری کا مواد</p>' +
+      '<p class="small" style="margin:4px 0">اسلامیات انٹری ٹیسٹ کی کتب، کیپسول، گائیڈز اور پاسٹ پیپرز کا فولڈر — تیاری کی کتابیں یہیں سے حاصل کریں۔</p>' +
+      '<p style="margin:6px 0 0"><a style="display:inline-block;padding:6px 14px;border-radius:20px;background:var(--c-card);border:1px solid var(--c-gold-500);font-weight:bold;color:var(--c-primary-700);text-decoration:none" href="' + helpEsc(pu) + '" target="_blank" rel="noopener">📚 تیاری کا مواد کھولیں ←</a></p></div>' : '';
+  }
+}
+window.helpTestShow = function(name){
+  var card = document.getElementById('help-test-card');
+  if(!card) return;
+  var entries = helpTestByName()[name];
+  if(!entries || !entries.length){ card.innerHTML = ''; return; }
+  var pick = function(f){
+    for(var k = 0; k < entries.length; k++){ var v = entries[k][f]; if(v && String(v).trim()) return String(v).trim(); }
+    return '';
+  };
+  var testType = pick('testType'), testLang = pick('testLanguage'),
+      testLink = pick('testLink'), testLabel = pick('testLinkLabel') || 'ٹیسٹ معلومات / مواد',
+      elig = pick('eligibility'), dept = pick('deptLink');
+  var row = function(label, html){ return html ? '<p style="margin:4px 0"><b>' + label + ':</b> ' + html + '</p>' : ''; };
+  var pill = function(url, label){
+    return '<p style="margin:6px 0 0"><a style="display:inline-block;padding:6px 14px;border-radius:20px;background:var(--c-gold-100);border:1px solid var(--c-gold-500);font-weight:bold;color:var(--c-primary-700);text-decoration:none" href="' + helpEsc(url.replace(/ /g, '%20')) + '" target="_blank" rel="noopener">📝 ' + helpEsc(label) + ' ←</a></p>';
+  };
+  var h = '<div style="border:1px solid var(--c-border);border-radius:12px;padding:12px;margin:8px 0;background:var(--c-card)">' +
+    '<p style="margin:0;font-weight:bold;font-size:1.05em">' + helpEsc(name) + '</p>' +
+    row('انٹری ٹیسٹ نوع', helpEsc(testType)) +
+    row('انٹری ٹیسٹ زبان', helpEsc(testLang)) +
+    row('اہلیت', helpEsc(elig)) +
+    (testLink ? pill(testLink, testLabel) : '') +
+    (dept ? '<p style="margin:6px 0 0"><a style="color:var(--c-primary-700);font-weight:bold" href="' + helpEsc(dept) + '" target="_blank" rel="noopener">شعبہ کا صفحہ ←</a></p>' : '');
+  var parts = [];
+  if(testLang) parts.push('یہ ٹیسٹ ' + testLang + ' زبان میں ہوتا ہے — تیاری بھی اسی زبان میں کریں۔');
+  if(testType) parts.push('ٹیسٹ کی نوعیت «' + testType + '» ہے — اسی پیٹرن کو سامنے رکھ کر تیاری کریں۔');
+  if(testLink) parts.push('ٹیسٹ کا مواد اور تفصیل اوپر دیے گئے لنک سے حاصل کریں۔');
+  if(elig) parts.push('اپلائی سے پہلے اپنی اہلیت اوپر دی گئی شرط سے ملا کر دیکھ لیں۔');
+  if(dept) parts.push('مزید تفصیل کے لیے شعبہ کا صفحہ دیکھیں۔');
+  if(window.ADMISSIONS_TEST_PREP_URL) parts.push('تیاری کی کتب و پاسٹ پیپرز نیچے دیے گئے فولڈر میں موجود ہیں۔');
+  if(parts.length){
+    h += '<div class="divider"></div><p style="margin:0 0 4px"><b>اس یونیورسٹی کا ٹیسٹ کیسے حل کروں؟</b></p>' +
+      '<p style="margin:0">' + helpEsc(parts.join(' ')) + '</p>';
+  }
+  card.innerHTML = h + '</div>';
+};
+function helpRenderLink(){
+  var box = document.getElementById('help-mod-link');
+  if(!box) return;
+  box.innerHTML = '<p style="margin:8px 0"><b>🔗 لنک مسئلہ؟</b></p>' +
+    '<p class="small" style="margin:0 0 6px">کوئی لنک نہ کھلے تو گھبرانے کی ضرورت نہیں — یہ اقدامات ترتیب وار آزمائیں:</p>' +
+    '<div style="border:1px solid var(--c-border);border-radius:12px;padding:12px;background:var(--c-card)">' +
+    '<p style="margin:4px 0"><b>1.</b> اپنا انٹرنیٹ کنکشن چیک کریں اور صفحہ دوبارہ کھول کر لنک پھر دبائیں۔</p>' +
+    '<p style="margin:4px 0"><b>2.</b> چند لمحے انتظار کر کے دوبارہ کوشش کریں — بعض سرکاری ویب سائٹس دیر سے کھلتی ہیں۔</p>' +
+    '<p style="margin:4px 0"><b>3.</b> لنک پھر بھی نہ کھلے تو یونیورسٹی کی آفیشل ویب سائٹ خود کھولیں اور وہاں «Admissions» کا صفحہ تلاش کریں۔</p>' +
+    '<p style="margin:4px 0"><b>4.</b> ایپ میں اسی یونیورسٹی کی تفصیل والے صفحے پر دیے گئے متبادل سرکاری لنکس (داخلہ پورٹل / شعبہ کا صفحہ) استعمال کریں — یہی سب سے قابلِ اعتماد راستہ ہے۔</p>' +
+    '<div class="divider"></div>' +
+    '<p class="small" style="margin:0">ایپ کے لنکس تصدیق شدہ ہیں اور باقاعدگی سے اپڈیٹ ہوتے ہیں۔ مسئلہ پھر بھی رہے تو اپلائی کے مرحلے پر واٹس ایپ مدد بھی موجود ہے۔</p></div>';
+}
+function helpRenderTools(){
+  var box = document.getElementById('help-mod-tools');
+  if(!box) return;
+  var tool = function(emoji, name, desc, url){
+    return '<div style="display:flex;align-items:center;gap:8px;border:1px solid var(--c-border);border-radius:10px;padding:10px;margin:6px 0;background:var(--c-card)">' +
+      '<div style="flex:1;min-width:0"><p style="margin:0;font-weight:bold">' + emoji + ' ' + name + '</p>' +
+      '<p class="small" style="margin:2px 0 0">' + desc + '</p></div>' +
+      '<a href="' + url + '" target="_blank" rel="noopener" style="flex:none;padding:6px 14px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-weight:bold;text-decoration:none">کھولیں ←</a></div>';
+  };
+  var inApp = function(emoji, name, desc, view){
+    return '<div style="display:flex;align-items:center;gap:8px;border:1px solid var(--c-border);border-radius:10px;padding:10px;margin:6px 0;background:var(--c-card)">' +
+      '<div style="flex:1;min-width:0"><p style="margin:0;font-weight:bold">' + emoji + ' ' + name + '</p>' +
+      '<p class="small" style="margin:2px 0 0">' + desc + '</p></div>' +
+      '<button type="button" onclick="go(\'' + view + '\')" style="flex:none;padding:6px 14px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer">کھولیں ←</button></div>';
+  };
+  box.innerHTML = '<p style="margin:8px 0"><b>🧰 فوری ٹولز</b></p>' +
+    '<p class="small" style="margin:0 0 6px">تحقیق کے وہی مستند ٹولز جو ایپ میں پہلے سے جڑے ہیں — کلک کرتے ہی کھل جاتے ہیں، الگ لاگ ان کا جھنجھٹ نہیں۔</p>' +
+    inApp('💬', 'رفیقِ تحقیق', 'ایپ کا اپنا قاعدے پر مبنی تحقیقی معاون — یہیں، ایپ کے اندر۔', 'rafiq') +
+    tool('📚', 'التراث نوٹ بکس (Al-Turath Notebooks)', 'التراث کی مستند کتب پر مبنی نوٹ بک مجموعہ — مصادر سے براہِ راست تحقیق۔', 'https://sajidzbi.github.io/Al-Turath-Notebook-LMs-Hub/index.html') +
+    tool('🤖', 'التراث AI (Al-Turath AI)', 'اسلامی مصادر کی تحقیق کے لیے مخصوص AI معاون — <b>سائن ان درکار</b>۔', 'https://sajidzbi.github.io/Al-Turath-AI/index.html') +
+    tool('📚', 'الجامع (aljam3.com)', 'عربی تراثی کتب کی ڈیجیٹل لائبریری — سائٹ کھول کر اپنا موضوع تلاش کریں۔', 'https://aljam3.com/') +
+    tool('📖', 'مکتبہ شاملہ (Shamela)', 'عربی اسلامی کتب کی عظیم مفت ڈیجیٹل لائبریری۔', 'https://shamela.ws') +
+    inApp('🧰', 'تمام تحقیقی ٹولز', 'ایپ کا مکمل ٹولز صفحہ — زمرہ وار تمام منتخب ٹولز۔', 'tools') +
+    inApp('📚', 'شعبہ جاتِ اسلامیات', 'ہر شعبے کے پلیٹ فارمز، لائبریریاں اور تحقیقی مواد کی ڈائریکٹری۔', 'fields');
+}
 </script>
 
 <script src="config.js"></script>
 <script src="admissions-data.js?v=20261029g"></script>
 <script src="foreign-data.js?v=20261029g"></script>
 <script src="admissions-news.js"></script>
-<script src="admissions.js?v=20261029i"></script>
+<script src="admissions.js?v=20261030a"></script>
 <script type="module" src="api-bridge.js?v=20261029h"></script>
 </body>
 </html>
