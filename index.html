@@ -626,6 +626,23 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div class="topbar"><button onclick="helpBack()">→ واپس</button><div class="ttl">💬 مدد مرکز</div><span style="width:52px"></span></div>
   <p class="small" style="margin:6px 0">فارم بھرنا ہو، اپنی معلومات کاپی کرنی ہوں، انٹری ٹیسٹ کی تیاری ہو یا کوئی لنک نہ کھل رہا ہو — حل یہیں ملے گا، ایپ سے باہر جانے کی ضرورت نہیں۔ نیچے اپنا موضوع چنیں۔</p>
   <div id="help-tabs" style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0"></div>
+  <div id="help-mod-chat" style="display:none">
+    <p style="margin:8px 0"><b>🤖 Muse سے پوچھیں</b></p>
+    <p class="small" style="margin:0 0 6px">اپنا سوال لکھیں — چاہیں تو کسی فارم کا اسکرین شاٹ یا PDF بھی ساتھ لگا دیں، جواب یہیں ملے گا۔ یونیورسٹی کی فیس، تاریخ و اہلیت جیسی باتیں صرف ایپ کے اپنے ڈیٹا سے بتائی جاتی ہیں؛ جو بات ایپ میں نہ ہو، وہ صاف بتا دیا جائے گا۔</p>
+    <div id="help-chat-msgs" style="border:1px solid var(--c-border);border-radius:12px;padding:10px;margin:8px 0;background:var(--c-surface);max-height:340px;overflow-y:auto">
+      <p class="small" id="help-chat-empty" style="margin:0">مثال: اسکرین شاٹ لگا کر پوچھیں «اس کا کیا مطلب ہے؟» — یا فارم کے کسی خانے کے بارے میں سوال لکھیں: «داخلے کے فارم میں سابقہ ڈگریوں والے خانے میں کیا لکھوں؟»</p>
+    </div>
+    <div id="help-chat-chip" style="display:none;margin:6px 0"></div>
+    <textarea id="help-chat-q" rows="3" placeholder="اپنا سوال یہاں لکھیں… مثلاً اس فارم میں یہاں کیا لکھوں؟" style="width:100%;padding:10px;border:1px solid var(--c-border);border-radius:10px;font-family:inherit;font-size:17px;background:var(--c-card);box-sizing:border-box"></textarea>
+    <input type="file" id="help-chat-img" accept="image/*" style="display:none" onchange="helpChatFile(this,'image')">
+    <input type="file" id="help-chat-pdf" accept="application/pdf" style="display:none" onchange="helpChatFile(this,'pdf')">
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin:6px 0">
+      <button type="button" onclick="helpChatPick('image')" style="padding:6px 14px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:15px;font-weight:bold;cursor:pointer">🖼️ اسکرین شاٹ</button>
+      <button type="button" onclick="helpChatPick('pdf')" style="padding:6px 14px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:15px;font-weight:bold;cursor:pointer">📄 PDF</button>
+      <button type="button" id="help-chat-send" onclick="helpChatSend()" style="padding:6px 18px;border-radius:999px;border:1px solid var(--c-primary-700);background:var(--c-primary-700);color:#fff;font-family:inherit;font-size:15px;font-weight:bold;cursor:pointer">بھیجیں</button>
+    </div>
+    <p class="small" id="help-chat-err" style="color:var(--c-error);margin:4px 0"></p>
+  </div>
   <div id="help-mod-form"></div>
   <div id="help-mod-data" style="display:none">
     <p style="margin:8px 0"><b>🎒 میرا ڈیٹا پیک</b></p>
@@ -12607,6 +12624,7 @@ var HELP_RETURN = 'home';
 var HELP_TAB = 'form';
 var HELP_CTX = 'general';
 var HELP_TABS = [
+  ['chat', '🤖 Muse سے پوچھیں'],
   ['form', '📝 فارم رہنمائی'],
   ['data', '🎒 میرا ڈیٹا پیک'],
   ['test', '📝 انٹری ٹیسٹ تیاری'],
@@ -12622,7 +12640,7 @@ window.helpBtn = function(ctx){
 window.openHelp = function(ctx){
   HELP_CTX = ctx || 'general';
   if(typeof CURRENT_VIEW !== 'undefined' && CURRENT_VIEW && CURRENT_VIEW !== 'help') HELP_RETURN = CURRENT_VIEW;
-  HELP_TAB = ({ 'adm-form':'form', 'apply':'form', 'ilmi':'form', 'general':'form', 'test':'test', 'jobs':'data', 'rafiq':'tools' })[HELP_CTX] || 'form';
+  HELP_TAB = ({ 'chat':'chat', 'adm-form':'form', 'apply':'form', 'ilmi':'form', 'general':'form', 'test':'test', 'jobs':'data', 'rafiq':'tools' })[HELP_CTX] || 'form';
   helpRenderAll();
   helpSetTab(HELP_TAB);
   go('help');
@@ -12663,7 +12681,8 @@ function helpRenderForm(){
   var box = document.getElementById('help-mod-form');
   if(!box) return;
   var h = '<p style="margin:8px 0"><b>📝 فارم رہنمائی</b></p>' +
-    '<p class="small" style="margin:0 0 4px">ہر خانے میں کیا لکھنا ہے — مختصر و صاف۔ جہاں پھنس جائیں، یہیں دیکھ کر فارم مکمل کریں۔</p>';
+    '<p class="small" style="margin:0 0 4px">ہر خانے میں کیا لکھنا ہے — مختصر و صاف۔ جہاں پھنس جائیں، یہیں دیکھ کر فارم مکمل کریں۔</p>' +
+    '<p class="small" style="margin:0 0 4px">کسی خانے کی اسکرین شاٹ بھیج کر پوچھنا ہو تو اوپر «Muse سے پوچھیں» ٹیب کھولیں۔</p>';
   h += helpFieldBlock('easy', 'آسان رجسٹریشن فارم (یونیورسٹی داخلہ جات)', [
     ['جی میل ایڈریس', 'وہی Gmail لکھیں جو آپ روز استعمال کرتے ہیں — یہی آپ کی شناخت اور رابطے کی بنیاد ہے، اس میں غلطی نہ کریں۔'],
     ['نام', 'اپنا مکمل نام — جیسا آپ کے شناختی کارڈ اور تعلیمی اسناد پر درج ہے۔'],
@@ -12864,6 +12883,155 @@ function helpRenderTools(){
     inApp('🧰', 'تمام تحقیقی ٹولز', 'ایپ کا مکمل ٹولز صفحہ — زمرہ وار تمام منتخب ٹولز۔', 'tools') +
     inApp('📚', 'شعبہ جاتِ اسلامیات', 'ہر شعبے کے پلیٹ فارمز، لائبریریاں اور تحقیقی مواد کی ڈائریکٹری۔', 'fields');
 }
+/* ================= مدد مرکز — Layer 2: Muse سے پوچھیں (AI چیٹ، مفتی 2026-10-30) =================
+   سوال (+ اختیاری ایک اسکرین شاٹ یا PDF) ایپ کے اپنے بیک اینڈ
+   /api/help/ask کو جاتا ہے — Gemini کنجی صرف بیک اینڈ میں ہے، براؤزر
+   میں کبھی نہیں۔ گراؤنڈنگ کے لیے سیاق میں صرف یہ جاتا ہے: موجودہ
+   سیکشن، ٹیسٹ ٹیب میں منتخب یونیورسٹی کے ایپ ڈیٹا والے خانے، اور
+   طالب علم کی اپنی بنیادی معلومات — کسی اور کا ڈیٹا کبھی نہیں۔
+   غلطی پر سرور کا اردو پیغام ہی دکھتا ہے؛ جواب کبھی خود سے ایجاد
+   نہیں ہوتا۔ ٹوکن وہی localStorage کلید ہے جو api-bridge استعمال
+   کرتا ہے ('ilmi_access') — کوئی نئی کلید نہیں بنائی گئی۔ */
+var HELP_CHAT_FILE = null; // { kind:'image'|'pdf', name, dataUrl } — ایک وقت میں ایک ہی فائل
+function helpChatErr(msg){
+  var e = document.getElementById('help-chat-err');
+  if(e) e.textContent = msg || '';
+}
+window.helpChatPick = function(kind){
+  var i = document.getElementById(kind === 'pdf' ? 'help-chat-pdf' : 'help-chat-img');
+  if(i) i.click();
+};
+window.helpChatFile = function(input, kind){
+  var f = input && input.files && input.files[0];
+  if(input) input.value = '';
+  if(!f) return;
+  helpChatErr('');
+  if(f.size > 4 * 1024 * 1024){ helpChatErr('فائل 4MB سے بڑی ہے — چھوٹی فائل لگائیں۔'); return; }
+  var rd = new FileReader();
+  rd.onload = function(){
+    HELP_CHAT_FILE = { kind: kind, name: f.name || (kind === 'pdf' ? 'PDF فائل' : 'اسکرین شاٹ'), dataUrl: String(rd.result || '') };
+    helpChatChip();
+  };
+  rd.onerror = function(){ helpChatErr('فائل پڑھی نہیں جا سکی — دوبارہ کوشش کریں۔'); };
+  rd.readAsDataURL(f);
+};
+window.helpChatClearFile = function(){ HELP_CHAT_FILE = null; helpChatChip(); };
+function helpChatChip(){
+  var chip = document.getElementById('help-chat-chip');
+  if(!chip) return;
+  if(!HELP_CHAT_FILE){ chip.style.display = 'none'; chip.innerHTML = ''; return; }
+  chip.style.display = '';
+  chip.innerHTML = '<span style="display:inline-flex;align-items:center;gap:8px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);border-radius:999px;padding:5px 12px;font-size:15px">' +
+    (HELP_CHAT_FILE.kind === 'pdf' ? '📄 ' : '🖼️ ') + helpEsc(HELP_CHAT_FILE.name) +
+    '<button type="button" onclick="helpChatClearFile()" style="border:none;background:none;font-family:inherit;font-size:15px;font-weight:bold;color:var(--c-primary-700);cursor:pointer;padding:0">✕ ہٹائیں</button></span>';
+}
+function helpChatAddMsg(who, text){
+  var box = document.getElementById('help-chat-msgs');
+  if(!box) return null;
+  var empty = document.getElementById('help-chat-empty');
+  if(empty) empty.remove();
+  var wrap = document.createElement('div');
+  wrap.style.cssText = who === 'me'
+    ? 'border:1px solid var(--c-gold-500);background:var(--c-gold-100);border-radius:10px;padding:8px 10px;margin:6px 0'
+    : 'border:1px solid var(--c-border);background:var(--c-card);border-radius:10px;padding:8px 10px;margin:6px 0';
+  var label = document.createElement('p');
+  label.className = 'small';
+  label.style.margin = '0 0 2px';
+  label.textContent = who === 'me' ? 'آپ' : '🤖 Muse';
+  var bodyEl = document.createElement('p');
+  bodyEl.style.cssText = 'margin:0;white-space:pre-wrap;word-break:break-word';
+  bodyEl.textContent = text;
+  wrap.appendChild(label);
+  wrap.appendChild(bodyEl);
+  box.appendChild(wrap);
+  box.scrollTop = box.scrollHeight;
+  return bodyEl;
+}
+function helpChatContext(){
+  var ctx = { section: HELP_CTX };
+  try{
+    var sel = document.getElementById('help-test-sel');
+    var nm = sel ? sel.value : '';
+    if(nm){
+      var ents = helpTestByName()[nm];
+      if(ents && ents.length){
+        var fields = ['name','country','city','sector','level','duration','eligibility','admissionDates','admissionFrequency','onlineFacility','classDays','classTimings','testType','testLanguage','testLink','testLinkLabel','deptLink','website','feeLink','scholarshipLink','phone','disciplines','fields'];
+        var uni = {};
+        fields.forEach(function(f){
+          for(var k = 0; k < ents.length; k++){
+            var v = ents[k][f];
+            if(Array.isArray(v) && v.length){ uni[f] = v.join('، '); return; }
+            if(v && String(v).trim()){ uni[f] = String(v).trim(); return; }
+          }
+        });
+        if(Object.keys(uni).length) ctx.university = uni;
+      }
+    }
+  }catch(e){}
+  try{
+    var u = (typeof currentUser === 'function') ? currentUser() : null;
+    if(u){
+      var st = {};
+      if(u.name) st.name = u.name;
+      if(u.degree) st.degree = u.degree;
+      if(u.uni) st.university = u.uni;
+      if(u.dept) st.dept = u.dept;
+      if(Object.keys(st).length) ctx.student = st;
+    }
+  }catch(e){}
+  return ctx;
+}
+window.helpChatSend = function(){
+  var ta = document.getElementById('help-chat-q');
+  var btn = document.getElementById('help-chat-send');
+  var q = ta ? String(ta.value || '').trim() : '';
+  helpChatErr('');
+  if(!q && !HELP_CHAT_FILE){ helpChatErr('پہلے اپنا سوال لکھیں — یا اسکرین شاٹ / PDF لگا کر بھیجیں۔'); return; }
+  if(!q && HELP_CHAT_FILE) q = HELP_CHAT_FILE.kind === 'pdf' ? 'اس PDF کا کیا مطلب ہے؟ میری رہنمائی کریں۔' : 'اس اسکرین شاٹ کا کیا مطلب ہے؟ مجھے کیا کرنا چاہیے؟';
+  if(q.length > 2000){ helpChatErr('سوال بہت لمبا ہے — 2000 حروف سے کم رکھیں۔'); return; }
+  var file = HELP_CHAT_FILE;
+  var body = { question: q, context: helpChatContext() };
+  if(file){
+    if(file.kind === 'pdf') body.pdfBase64 = file.dataUrl;
+    else body.imageBase64 = file.dataUrl;
+  }
+  helpChatAddMsg('me', q + (file ? '\n📎 ' + file.name : ''));
+  var pendingBody = helpChatAddMsg('ai', 'جواب آ رہا ہے…');
+  if(ta) ta.value = '';
+  HELP_CHAT_FILE = null;
+  helpChatChip();
+  if(btn) btn.disabled = true;
+  var base = String(window.ILMI_API_BASE || '').replace(/\/+$/, '');
+  var headers = { 'Content-Type': 'application/json' };
+  try{
+    var tk = localStorage.getItem('ilmi_access');
+    if(tk) headers.Authorization = 'Bearer ' + tk;
+  }catch(e){}
+  var finish = function(){ if(btn) btn.disabled = false; };
+  var failMsg = function(msg){
+    if(pendingBody && pendingBody.parentNode) pendingBody.parentNode.remove();
+    helpChatErr(msg);
+    finish();
+  };
+  fetch(base + '/api/help/ask', { method: 'POST', headers: headers, body: JSON.stringify(body) })
+    .then(function(r){
+      return r.json().catch(function(){ return null; }).then(function(d){ return { status: r.status, data: d }; });
+    })
+    .then(function(out){
+      var d = out.data;
+      if(out.status >= 200 && out.status < 300 && d && typeof d.answer === 'string' && d.answer.trim()){
+        if(pendingBody) pendingBody.textContent = d.answer;
+        var box = document.getElementById('help-chat-msgs');
+        if(box) box.scrollTop = box.scrollHeight;
+        finish();
+      } else {
+        failMsg((d && d.error && d.error.message) || 'جواب حاصل نہیں ہو سکا — چند لمحے بعد دوبارہ کوشش کریں۔');
+      }
+    })
+    .catch(function(){
+      failMsg('رابطہ نہیں ہو سکا — انٹرنیٹ کنکشن چیک کر کے دوبارہ کوشش کریں۔');
+    });
+};
 </script>
 
 <script src="config.js"></script>
