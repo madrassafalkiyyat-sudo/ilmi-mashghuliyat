@@ -2778,11 +2778,15 @@ function go(id){
     if(id === 'home' || id === 'admin') navReset(id);
     else navPush(id);
   }
+  /* خودکار تازہ کاری (پول) پر اسی منظر کی اسکرول پوزیشن برقرار رہے — اوپر نہ اچھلے
+     (مفتی کی شکایت 2026-10-29: ایڈمن پینل میں اسکرول کرتے ہی واپس ٹاپ) */
+  const __refreshSame = (id === CURRENT_VIEW);
+  const __scrollKeep = __refreshSame ? window.scrollY : 0;
   CURRENT_VIEW = id;
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   const el = document.getElementById('view-'+id);
   if(el) el.classList.add('active');
-  window.scrollTo(0,0);
+  if(__refreshSame && __scrollKeep) window.scrollTo(0, __scrollKeep); else window.scrollTo(0,0);
   if(id === 'login'){
     /* سہولت: آخری استعمال شدہ ای میل پہلے سے لکھی آئے — بار بار لکھنا نہ پڑے */
     try{ const le = document.getElementById('l-email'); const last = LS2.get('lastEmail', ''); if(le && last && !le.value) le.value = last; }catch(e){}
