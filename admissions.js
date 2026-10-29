@@ -20,6 +20,7 @@
   var SCRIPT_URL = window.ADMISSIONS_SCRIPT_URL || '';
   var WA_NUMBER = window.ADMISSIONS_WHATSAPP_NUMBER || '';
   var WA_GROUP = window.ADMISSIONS_WHATSAPP_GROUP_URL || '';
+  var PREP_URL = window.ADMISSIONS_TEST_PREP_URL || '';
   var state = { disc: null, level: 'تمام', current: null, pk: [], foreign: [], scope: 'pk', section: null };
   var SECTIONS = [
     ['unis', '🎓 یونیورسٹیز داخلے'],
@@ -485,7 +486,11 @@
     tEl.innerHTML = '<button class="btn" style="margin-bottom:10px" onclick="admSection(null)">→ ہب پر واپس</button>' +
       '<p style="margin:8px 0"><b>📝 انٹری ٹیسٹ کی معلومات</b></p>' +
       '<p class="small" style="margin:0 0 8px">کون سی یونیورسٹی کا انٹری ٹیسٹ کس زبان میں اور کس نوع کا ہوتا ہے (شیٹ / سرکاری ذرائع کے مطابق)۔ ' +
-      'تیاری کا مواد (کتب، کورسز، نمونہ پیپرز) تصدیق کے بعد یہیں شامل ہو گا۔</p>' +
+      'تیاری کا مواد نیچے دیے گئے فولڈر میں موجود ہے۔</p>' +
+      (PREP_URL ? '<div style="border:1px solid var(--c-gold-500);border-radius:12px;padding:10px;margin:8px 0;background:var(--c-gold-100)">' +
+        '<p style="margin:0;font-weight:bold">📚 انٹری ٹیسٹ تیاری کا مواد</p>' +
+        '<p class="small" style="margin:4px 0">اسلامیات انٹری ٹیسٹ کی کتب، کیپسول، گائیڈز اور پاسٹ پیپرز کا فولڈر — تیاری کی کتابیں یہیں سے حاصل کریں۔</p>' +
+        '<p style="margin:6px 0 0"><a style="display:inline-block;padding:6px 14px;border-radius:20px;background:var(--c-card);border:1px solid var(--c-gold-500);font-weight:bold;color:var(--c-primary-700);text-decoration:none" href="' + esc(PREP_URL) + '" target="_blank" rel="noopener">📚 تیاری کا مواد کھولیں ←</a></p></div>' : '') +
       (rows.length ? rows.map(function (u) {
         return '<div style="border:1px solid var(--c-border);border-radius:12px;padding:10px;margin:8px 0;background:var(--c-card)">' +
           '<p style="margin:0;font-weight:bold">' + esc(u.name) + (u.level ? ' — ' + esc(u.level) : '') + '</p>' +

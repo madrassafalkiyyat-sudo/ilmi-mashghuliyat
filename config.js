@@ -16,3 +16,5 @@ window.ADMISSIONS_WHATSAPP_NUMBER = '923219692952';
 // WhatsApp group invite — shown ONLY at the apply stage, beside the number.
 // Empty string hides the group button entirely (hidden-until-set).
 window.ADMISSIONS_WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/EYKqTyeX0790e6cIKu6KNj?s=cl&p=a&mlu=4&ilr=4&iam=2';
+// Entry-test preparation material (Drive folder «انٹری ٹیسٹ کتب», reader-only link) — shown in the tests section.
+window.ADMISSIONS_TEST_PREP_URL = 'https://drive.google.com/drive/folders/1ST3t0g5NNwJ69yrU2cJTmFvRvHhkFM17?usp=sharing';
