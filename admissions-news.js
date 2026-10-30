@@ -48,6 +48,7 @@ window.ADMISSIONS_NEWS = {
    "deadline": "2027-01-03",
    "deadlineText": "آخری تاریخ: 3 جنوری 2027",
    "link": "https://www.groundwatermaster.eu/how-to-apply",
+   "img": "https://static.wixstatic.com/media/1dddb9_3e7822f045ad469f84f0b9e8295d12bc%7Emv2.jpg/v1/fit/w_2500,h_1330,al_c/1dddb9_3e7822f045ad469f84f0b9e8295d12bc%7Emv2.jpg",
    "details": "دو سالہ یورپی جوائنٹ ماسٹر؛ Erasmus Mundus سکالرشپ کے ساتھ۔"
   },
   {

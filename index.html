@@ -176,6 +176,15 @@ select.inline{width:auto;flex:1}
 .divider{height:2px;background:var(--c-gold-500);margin:16px 0}
 .logo-sm{width:64px;height:64px;object-fit:contain;background:var(--c-card);border-radius:12px;padding:3px}
 .poster-ph{background:var(--c-primary-900);color:var(--c-gold-100);border-radius:12px;padding:26px 16px;text-align:center;font-size:23px;line-height:1.9;font-weight:bold;margin-bottom:8px;border:1px solid var(--c-border)}
+/* خبر کی تفصیل: آفیشل پوسٹر متن کے ساتھ (مفتی کی ہدایت 2026-10-31) — فون پر پوسٹر اوپر،
+   وسیع/ویب صورت میں متن دائیں اور پوسٹر بائیں طرفی کالم میں؛ تصویر نہ لوڈ ہو تو خانہ خود غائب */
+.nd-flex{display:flex;flex-direction:column;gap:12px}
+.nd-poster img{display:block}
+@media (min-width:768px){
+  body:not(.layout-mobile) .nd-flex{flex-direction:row;align-items:flex-start}
+  body:not(.layout-mobile) .nd-text{order:1;flex:1;min-width:0}
+  body:not(.layout-mobile) .nd-poster{order:2;flex:0 0 32%;max-width:330px}
+}
 .featured-card{border:1px solid var(--c-border);background:var(--c-surface);border-radius:16px;padding:12px 14px;margin:8px 0 4px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 /* سٹار امتیاز: سنہرا بیج، نام کی جھلک، تصویر کا سنہرا فریم، ڈیجیٹل ID کارڈ (CR80 تناسب) */
 .star-badge{display:inline-block;background:var(--c-gold-fill);color:var(--c-gold-ink);border:1px solid var(--c-gold-700);border-radius:12px;font-size:15px;line-height:1.9;padding:0 8px 2px;margin-right:5px;vertical-align:middle;box-shadow:0 1px 3px rgba(0,0,0,.06)}
@@ -4498,9 +4507,14 @@ function renderPublications(){
   ).join('') : '<p class="center small">ابھی کوئی مقالہ درج نہیں۔</p>';
 }
 function newsPosterHtml(n){
-  if(n.img) return '<img class="certimg" style="margin-bottom:8px" src="' + n.img + '" alt="اشتہار / پوسٹر">';
+  if(n.img) return '<img class="certimg" style="margin-bottom:8px" loading="lazy" src="' + esc(n.img) + '" alt="' + esc(n.title || 'اشتہار / پوسٹر') + '" onerror="this.remove()">';
   if(n.posterText) return '<div class="poster-ph">' + esc(n.posterText) + '</div>';
   return '';
+}
+/* تفصیلی منظر کے لیے پوسٹر کا طرفی کالم — تصویر ناکام ہو تو پورا خانہ خود ہٹ جاتا ہے */
+function newsPosterSideHtml(n){
+  if(!n.img) return '';
+  return '<div class="nd-poster"><img class="certimg" loading="lazy" src="' + esc(n.img) + '" alt="' + esc(n.title || 'اشتہار / پوسٹر') + '" onerror="var p=this.closest(\'.nd-poster\');if(p)p.remove();"></div>';
 }
 function newsExtraTags(n){
   let t = '';
@@ -4542,11 +4556,14 @@ function openNews(id){
       (isAI
         ? 'اس ٹول کی مرحلہ وار راہنمائی اس کے سرکاری صفحے پر موجود ہے — «ٹول استعمال کریں» سے وہیں جائیں۔'
         : 'اس اعلان کی مرحلہ وار راہنمائی سرکاری صفحے پر موجود ہے — «ابھی اپلائی کریں» سے وہیں جائیں۔') + '</p></div>';
-  document.getElementById('nd-body').innerHTML =
-    '<div class="card">' + newsPosterHtml(n) + '<span class="tag gold">' + esc(n.cat) + '</span><span class="tag">' + esc(n.country) + '</span>' +
+  const headInner = '<span class="tag gold">' + esc(n.cat) + '</span><span class="tag">' + esc(n.country) + '</span>' +
     (n.sample ? '<span class="tag red">نمونہ</span>' : '') + newsExtraTags(n) +
     '<h3>' + esc(n.title) + '</h3><p style="margin:0 0 4px">' + esc(n.desc) + '</p>' +
-    '<p style="margin:0;font-weight:bold;color:var(--c-gold-700)">⏰ آخری تاریخ: ' + esc(n.deadline || '') + '</p></div>' +
+    '<p style="margin:0;font-weight:bold;color:var(--c-gold-700)">⏰ آخری تاریخ: ' + esc(n.deadline || '') + '</p>';
+  document.getElementById('nd-body').innerHTML =
+    (n.img
+      ? '<div class="card"><div class="nd-flex">' + newsPosterSideHtml(n) + '<div class="nd-text">' + headInner + '</div></div></div>'
+      : '<div class="card">' + newsPosterHtml(n) + headInner + '</div>') +
     guideHtml +
     (n.applyUrl
       ? '<a class="btn" style="font-size:1.08em;padding:13px 12px" target="_blank" rel="noopener" href="' + esc(n.applyUrl) + '">' + ctaLabel + '</a>'
@@ -14051,8 +14068,8 @@ window.helpChatSend = function(){
 <script src="config.js"></script>
 <script src="admissions-data.js?v=20261029g"></script>
 <script src="foreign-data.js?v=20261029g"></script>
-<script src="admissions-news.js"></script>
-<script src="admissions.js?v=20261030a"></script>
+<script src="admissions-news.js?v=20261031a"></script>
+<script src="admissions.js?v=20261031a"></script>
 <script type="module" src="api-bridge.js?v=20261030d"></script>
 </body>
 </html>

@@ -309,8 +309,9 @@
   }
 
   function newsCard(it) {
-    var h = '<div style="border:1px solid var(--c-border);border-radius:12px;padding:12px;margin:8px 0;background:var(--c-card)">' +
-      '<p style="margin:0;font-weight:bold">' + esc(it.title) + '</p>' +
+    var h = '<div style="border:1px solid var(--c-border);border-radius:12px;padding:12px;margin:8px 0;background:var(--c-card)">';
+    if (it.img) h += '<img src="' + esc(it.img) + '" alt="' + esc(it.title || '') + '" loading="lazy" onerror="this.remove()" style="display:block;width:100%;border:1px solid var(--c-border);border-radius:10px;margin-bottom:8px">';
+    h += '<p style="margin:0;font-weight:bold">' + esc(it.title) + '</p>' +
       '<p class="small" style="margin:4px 0">' + catLabel(it.cat) + ' • ' + esc(it.org || '') +
       (it.deadlineText ? ' • ' + esc(it.deadlineText) : '') + '</p>';
     if (it.details) h += '<p class="small" style="margin:4px 0">' + esc(it.details) + '</p>';
