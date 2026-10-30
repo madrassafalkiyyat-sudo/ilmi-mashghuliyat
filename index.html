@@ -660,6 +660,42 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div id="help-mod-tools" style="display:none"></div>
 </section>
 
+<section class="view" id="view-abstract">
+  <div class="topbar"><button onclick="absBack()">→ واپس</button><div class="ttl">✍️ ایبسٹریکٹ بنائیں</div><span style="width:52px"></span></div>
+  <p class="small" style="margin:6px 0">کانفرنس کے لیے موضوع چننے سے لے کر باقاعدہ ایبسٹریکٹ تک — پہلے اپنی زبان و ایریا بتائیں، نظام تین تھیم تجویز کرے گا؛ پھر منتخب تھیم پر ایبسٹریکٹ لکھ دیا جائے گا۔</p>
+  <div id="abs-conf"></div>
+  <div class="card">
+    <p style="margin:0 0 6px"><b>قدم 1: تھیم منتخب کریں</b></p>
+    <label style="margin-top:2px">تحریر کی زبان</label>
+    <div id="abs-lang" style="display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px">
+      <button type="button" data-lang="en" onclick="absSetLang('en')" style="padding:7px 16px;border-radius:999px;border:1px solid var(--c-primary-700);font-family:inherit;font-size:15px;font-weight:bold;cursor:pointer">English</button>
+      <button type="button" data-lang="ar" onclick="absSetLang('ar')" style="padding:7px 16px;border-radius:999px;border:1px solid var(--c-primary-700);font-family:inherit;font-size:15px;font-weight:bold;cursor:pointer">العربية</button>
+      <button type="button" data-lang="ur" onclick="absSetLang('ur')" style="padding:7px 16px;border-radius:999px;border:1px solid var(--c-primary-700);font-family:inherit;font-size:15px;font-weight:bold;cursor:pointer">اردو</button>
+    </div>
+    <label>موضوع (اختیاری)</label>
+    <input id="abs-topic" placeholder="مثلاً مصنوعی ذہانت اور مدارس کی تعلیم…" maxlength="300">
+    <label>تحقیقی ایریا</label>
+    <input id="abs-area" placeholder="مثلاً اسلامی تعلیمات / تعلیمی نفسیات…" maxlength="300">
+    <label>اشتہار کا اضافی متن (اختیاری — کال فار پیپرز یہاں لگا دیں)</label>
+    <textarea id="abs-adtext" rows="4" maxlength="6000" placeholder="کانفرنس کے اشتہار یا ویب صفحے کا متن یہاں لگا دیں تو تھیم اسی کے مطابق تجویز ہوں گے…"></textarea>
+    <label>اشتہار کی تصویر (اختیاری)</label>
+    <div id="abs-chip" style="display:none;margin:4px 0"></div>
+    <input type="file" id="abs-img" accept="image/*" style="display:none" onchange="absFile(this)">
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin:6px 0">
+      <button type="button" onclick="document.getElementById('abs-img').click()" style="padding:6px 14px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:15px;font-weight:bold;cursor:pointer">🖼️ تصویر لگائیں</button>
+      <button type="button" id="abs-themes-btn" onclick="absThemes()" style="padding:6px 18px;border-radius:999px;border:1px solid var(--c-primary-700);background:var(--c-primary-700);color:#fff;font-family:inherit;font-size:15px;font-weight:bold;cursor:pointer">🎯 تھیم تجویز کریں</button>
+    </div>
+    <p class="small" id="abs-err" style="color:var(--c-error);margin:4px 0"></p>
+    <div id="abs-themes"></div>
+  </div>
+  <div class="card">
+    <p style="margin:0 0 6px"><b>قدم 2: ایبسٹریکٹ لکھوائیں</b></p>
+    <p class="small" id="abs-sel-note" style="margin:0 0 6px">پہلے اوپر سے کوئی تھیم منتخب کریں — پھر یہ بٹن فعال ہو گا۔</p>
+    <button type="button" id="abs-write-btn" onclick="absWrite()" disabled style="padding:8px 20px;border-radius:999px;border:1px solid var(--c-primary-700);background:var(--c-primary-700);color:#fff;font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;opacity:.55">✍️ ایبسٹریکٹ بنائیں</button>
+    <div id="abs-result"></div>
+  </div>
+</section>
+
 <!-- ============ وژن گیٹ (صرف نئی رجسٹریشن سے پہلے) ============ -->
 <section class="view" id="view-vision">
   <div class="center"><img class="logo-sm" src="assets/logo.png" onerror="this.onerror=null;this.src=window.__LOGO" alt="لوگو" style="width:84px;height:84px"></div>
@@ -971,8 +1007,9 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <label>کوئی اور مہارت ہو تو یہاں لکھیں (کئی ہوں تو کاما سے الگ کریں)</label>
   <input id="p-skills-custom" type="text" placeholder="مثلاً: عربی خطاطی، ترجمہ نگاری">
   <label>LinkedIn پروفائل لنک (لازمی)</label>
-  <input id="p-linkedin" type="url" placeholder="https://www.linkedin.com/in/..." dir="ltr" style="text-align:left">
-  <p class="small" style="margin-top:-4px">یہی لنک ملازمت کی درخواستوں میں اداروں تک جائے گا — LinkedIn نہ ہو تو پریشان نہ ہوں، نیچے سے منٹوں میں مفت بن جائے گا:</p>
+  <input id="p-linkedin" type="url" placeholder="https://www.linkedin.com/in/... یا صرف آئی ڈی" dir="ltr" style="text-align:left" oninput="linkedinPreview()">
+  <p class="small" id="p-linkedin-preview" style="margin-top:2px"></p>
+  <p class="small" style="margin-top:-4px">مکمل لنک یا صرف آئی ڈی — دونوں چلیں گے۔ یہی لنک ملازمت کی درخواستوں میں اداروں تک جائے گا — LinkedIn نہ ہو تو پریشان نہ ہوں، نیچے سے منٹوں میں مفت بن جائے گا:</p>
   <div style="display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 6px">
     <a class="btn goldb" style="text-decoration:none" href="https://www.linkedin.com/signup" target="_blank" rel="noopener">🔗 LinkedIn اکاؤنٹ بنائیں — یہاں کلک کریں</a>
   </div>
@@ -994,7 +1031,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <label>Google Scholar پروفائل لنک (لازمی)</label>
   <input id="p-scholar" type="url" placeholder="https://scholar.google.com/citations?user=... یا صرف user ID" dir="ltr" style="text-align:left" oninput="scholarPreview()">
   <p class="small" id="p-scholar-preview" style="margin-top:2px"></p>
-  <p class="small" style="margin-top:-4px">یہ آپ کا علمی تعارف ہے — آپ کی تحریریں و حوالہ جات دنیا بھر کے محققین کو یہیں نظر آئیں گے اور یہی لنک آپ کی CV میں بھی جائے گا۔ پروفائل نہ ہو تو پریشان نہ ہوں، نیچے سے منٹوں میں مفت بن جائے گا:</p>
+  <p class="small" style="margin-top:-4px">مکمل لنک یا صرف آئی ڈی — دونوں چلیں گے۔ یہ آپ کا علمی تعارف ہے — آپ کی تحریریں و حوالہ جات دنیا بھر کے محققین کو یہیں نظر آئیں گے اور یہی لنک آپ کی CV میں بھی جائے گا۔ پروفائل نہ ہو تو پریشان نہ ہوں، نیچے سے منٹوں میں مفت بن جائے گا:</p>
   <div class="card" style="border-color:var(--c-gold-500);background:var(--c-surface)">
     <p style="margin:0 0 4px"><b>📌 دو پریشانیوں کا حل — پڑھ لیں</b></p>
     <p style="margin:0 0 4px"><b>۱) سٹوڈنٹ ای میل نہیں ہے؟</b> کوئی بات نہیں — Google Scholar پروفائل کے لیے صرف کوئی بھی گوگل اکاؤنٹ (Gmail) چاہیے۔ یونیورسٹی/ادارہ جاتی ای میل صرف تصدیقی بیج (✓) کے لیے ہوتی ہے — اس کے بغیر بھی پروفائل بن جاتی ہے اور یہاں لگ جاتی ہے، اس لیے رکیں نہیں۔</p>
@@ -2945,6 +2982,7 @@ function go(id){
   if(id === 'achievements') renderAchievements();
   if(id === 'wassist') renderWAssist();
   if(id === 'rafiq') rafiqRender();
+  if(id === 'abstract') renderAbstract();
   if(id === 'fields') renderFieldList();
   if(id === 'tools') renderTools();
   if(id === 'journey') renderJourney();
@@ -3806,6 +3844,38 @@ function normalizeScholar(raw){
   if(idm) return 'https://scholar.google.com/citations?user=' + idm[1];
   return '';
 }
+/* LinkedIn لنک کی نارملائزیشن — مفتی کی ہدایت (2026-10-30): Scholar کی طرح
+   یہاں بھی مکمل لنک یا صرف آئی ڈی/ہینڈل — دونوں قبول۔ پرانا چیک صرف
+   https://…/in/… کی عین شکل مانگتا تھا، اس لیے www کے بغیر، http والا،
+   آخر میں / یا اضافی پیرامیٹر والا، «in/…» والا یا خالی ہینڈل — سب رد ہو
+   جاتے تھے۔ اب: linkedin.com کے کسی بھی /in/<handle> لنک سے ہینڈل نکال کر
+   معیاری شکل بنائی جاتی ہے؛ «in/<handle>» اور خالی ہینڈل بھی قبول۔
+   غیر متعلقہ ڈومین (مثلاً facebook.com) یا خالی/فضول متن بدستور رد۔ */
+function normalizeLinkedIn(raw){
+  let s = (raw || '').trim();
+  if(!s) return '';
+  s = s.replace(/^["'«»]+|["'«»]+$/g, '').trim();
+  if(!s || /\s/.test(s)) return '';
+  const m = s.match(/linkedin\.com\/in\/([^/?#\s]+)/i);
+  if(m && m[1]) return 'https://www.linkedin.com/in/' + m[1];
+  if(/linkedin\.com/i.test(s)) return ''; // لنکڈن کا لنک مگر پروفائل (/in/) والا نہیں — کمپنی/عام صفحہ نہیں چلے گا
+  const bare = s.replace(/^in\//i, '').replace(/\/+$/, '');
+  if(/^[A-Za-z0-9][A-Za-z0-9\-_%\.]{2,99}$/.test(bare)) return 'https://www.linkedin.com/in/' + bare;
+  return '';
+}
+/* LinkedIn خانے میں لکھتے/پیسٹ کرتے ہی نارملائز شدہ جھلک (Scholar جیسی) */
+function linkedinPreview(){
+  const el = document.getElementById('p-linkedin-preview'); if(!el) return;
+  const li = document.getElementById('p-linkedin'); if(!li) return;
+  const v = (li.value || '').trim();
+  if(!v){ el.innerHTML = ''; return; }
+  const norm = normalizeLinkedIn(v);
+  if(norm){
+    el.innerHTML = '<span style="color:var(--c-primary-700);font-weight:bold">✓ پروفائل لنک لگ گیا:</span> <a dir="ltr" style="display:inline-block" target="_blank" rel="noopener" href="' + norm + '">' + norm + '</a>';
+  } else {
+    el.innerHTML = '<span style="color:var(--c-warn)">⚠️ یہ درست LinkedIn پروفائل لنک نہیں لگ رہا — اپنا مکمل لنک (linkedin.com/in/…) یا صرف اپنی آئی ڈی لگائیں۔</span>';
+  }
+}
 /* سکالر خانے میں لکھتے/پیسٹ کرتے ہی نارملائز شدہ جھلک — تاکہ طالب علم کو یقین ہو کہ لنک لگ گیا ہے */
 function scholarPreview(){
   const el = document.getElementById('p-scholar-preview'); if(!el) return;
@@ -3840,13 +3910,13 @@ function saveProfile(){
   if(!eduStatus){ showMsg('prof-msg', 'موجودہ تعلیمی حالت منتخب کریں — پانچ آپشنز میں سے صرف ایک، جو صورت آپ پر اس وقت صادق آتی ہے۔', false); return; }
   const customSkills = document.getElementById('p-skills-custom').value.split(/[,،]/).map(s => s.trim()).filter(Boolean);
   const allSkills = profileSkills.concat(customSkills.filter(s => !profileSkills.includes(s)));
-  let linkedin = document.getElementById('p-linkedin').value.trim();
-  /* اصلاح — تشخیص 2026-10-21: صارف نے linkedin.com والا لنک بغیر https:// کے لکھا ہو (عام عادت) تو خود مکمل کر لیں —
-     پہلے یہی صورت بھی مسترد ہو جاتی تھی اور صارف پھنس جاتا تھا۔ */
-  if(linkedin && !/^https?:\/\//i.test(linkedin) && /linkedin\.com/i.test(linkedin)) linkedin = 'https://' + linkedin.replace(/^\/+/, '');
-  if(/^http:\/\//i.test(linkedin)) linkedin = 'https://' + linkedin.slice(7);
+  /* نارملائزیشن (مفتی 2026-10-30): مکمل لنک یا صرف آئی ڈی/ہینڈل — دونوں قبول؛
+     معیاری شکل (https://www.linkedin.com/in/<handle>) ہی محفوظ ہوتی ہے۔
+     پہلے کی سخت جانچ (عین https + /in/ شکل) درست کاپی شدہ لنک کی معمولی
+     صورتوں (www/http/آخر میں /) پر بھی طالب علم کو روک دیتی تھی۔ */
+  const linkedin = normalizeLinkedIn(document.getElementById('p-linkedin').value);
   if(!allSkills.length){ showMsg('prof-msg', 'کم از کم ایک مہارت منتخب یا درج کرنا لازمی ہے — «روزگار کے مواقع» میں جابز کی اہلیت انہی مہارتوں سے خودکار طے ہوگی۔', false); return; }
-  if(!/^https:\/\/\S+$/i.test(linkedin) || !/linkedin\.com\/in\/[^/?#\s]+/i.test(linkedin)){ showMsg('prof-msg', 'درست LinkedIn پروفائل لنک لکھنا لازمی ہے (linkedin.com/in/… والا اپنا پروفائل لنک لکھیں — کمپنی یا عام صفحے کا لنک نہیں چلے گا؛ لنکڈن نہ ہو تو linkedin.com پر مفت بنا لیں)۔', false); return; }
+  if(!linkedin){ showMsg('prof-msg', 'درست LinkedIn پروفائل لکھنا لازمی ہے — مکمل لنک (linkedin.com/in/… والا) یا صرف اپنی آئی ڈی لگا دیں، دونوں چلیں گے (کمپنی یا عام صفحے کا لنک نہیں چلے گا؛ لنکڈن نہ ہو تو linkedin.com پر مفت بنا لیں)۔', false); return; }
   const scholarRaw = document.getElementById('p-scholar').value.trim();
   /* نارملائزیشن (2026-10-25): ہر معقول citations شکل + خالی user ID قبول؛
      ہوم پیج/تلاش کا لنک (جس میں user ID نہ ہو) بدستور رد۔ */
@@ -4336,6 +4406,7 @@ function renderProfileForm(){
   if(li) li.value = P.linkedin || '';
   const sc = document.getElementById('p-scholar');
   if(sc) sc.value = P.scholar || '';
+  linkedinPreview();
   scholarPreview();
   profileCvName = P.cvName || '';
   const cvf = document.getElementById('p-cv'); if(cvf) cvf.value = '';
@@ -4425,7 +4496,8 @@ function newsCard(n){
     (n.sample ? '<span class="tag red">نمونہ</span>' : '<span class="tag">نئی خبر</span>') + newsExtraTags(n) +
     '<h3>' + esc(n.title) + '</h3><p style="margin:0 0 4px">' + esc(n.desc) + '</p>' +
     '<p class="small" style="margin:0 0 6px">⏰ ' + esc(n.deadline || '') + '</p>' +
-    '<button class="btn sm goldb" onclick="openNews(\'' + n.id + '\')">تفصیل و اپلائی کا مکمل طریقہ ←</button></div>';
+    '<button class="btn sm goldb" onclick="openNews(\'' + n.id + '\')">تفصیل و اپلائی کا مکمل طریقہ ←</button>' +
+    (n.cat === 'کانفرنسز' ? ' <button class="btn sm" style="background:transparent;border:1px solid var(--c-gold-500);color:var(--c-primary-700)" onclick="openAbstract(\'' + n.id + '\')">✍️ ایبسٹریکٹ بنائیں</button>' : '') + '</div>';
 }
 /* خبر کے steps متن کو مراحل میں توڑنا — اصل متن نہیں بدلتا، صرف پیشکش ترتیب وار ہوتی ہے:
    پہلے سطروں پر تقسیم؛ ایک ہی سطر ہو تو جملوں («۔» ختم ہونے والے) پر؛
@@ -4465,6 +4537,7 @@ function openNews(id){
     (n.tutUrl
       ? '<a class="btn goldb" target="_blank" rel="noopener" href="' + esc(n.tutUrl) + '">🎥 طریقہ سیکھیں — ٹیوٹوریل دیکھیں</a>'
       : '<button class="btn goldb" style="opacity:.55" onclick="alert(\'اس خبر کا ٹیوٹوریل جلد شامل ہوگا۔\')">🎥 طریقہ سیکھیں — ٹیوٹوریل (جلد شامل ہوگا)</button>') +
+    (n.cat === 'کانفرنسز' ? '<button class="btn" style="background:transparent;border:1px solid var(--c-gold-500);color:var(--c-primary-700)" onclick="openAbstract(\'' + n.id + '\')">✍️ اس کانفرنس کے لیے ایبسٹریکٹ بنائیں</button>' : '') +
     '<p class="small">نوٹ: درخواست جمع کرانے سے پہلے آفیشل ویب سائٹ پر شرائط و آخری تاریخ دوبارہ تصدیق کر لیں۔</p>';
   go('news-detail');
 }
@@ -13424,6 +13497,281 @@ function helpRenderTools(){
     inApp('🧰', 'تمام تحقیقی ٹولز', 'ایپ کا مکمل ٹولز صفحہ — زمرہ وار تمام منتخب ٹولز۔', 'tools') +
     inApp('📚', 'شعبہ جاتِ اسلامیات', 'ہر شعبے کے پلیٹ فارمز، لائبریریاں اور تحقیقی مواد کی ڈائریکٹری۔', 'fields');
 }
+/* ================= ایبسٹریکٹ بلڈر — کانفرنسز (مفتی 2026-10-30) =================
+   بہاؤ: کانفرنس کارڈ/تفصیل سے openAbstract(newsId) → زبان + موضوع +
+   ایریا (+ اختیاری اشتہار متن/تصویر) → /api/help/abstract/themes سے
+   3 تھیم → منتخب تھیم پر /api/help/abstract/write سے ایبسٹریکٹ۔
+   دونوں کالز JWT والی ہیں (بیک اینڈ requireAuth)؛ غلطی پر سرور کا اردو
+   پیغام ہی دکھتا ہے، متن کبھی خود سے ایجاد نہیں ہوتا۔
+   برآمد: Word = تحریری معاون کی اپنی buildDocxBlob مشینری؛ PDF =
+   #print-report پر اسی طرز کی رپورٹ؛ «مکمل آرٹیکل» = مقالہ بلڈر کا
+   مسودہ (title/abstract/keywords خانے بھر کر) startBuilder سے کھلتا ہے۔ */
+var ABS_CONF = null, ABS_RETURN = 'news', ABS_LANG = 'en';
+var ABS_FILE = null, ABS_THEMES = [], ABS_SEL = -1, ABS_RESULT = null;
+
+function absEsc(s){ return esc(s == null ? '' : String(s)); }
+function absBack(){ go(ABS_RETURN || 'news'); }
+function openAbstract(id){
+  const n = allNews().find(x => x.id === id); if(!n) return;
+  ABS_RETURN = (CURRENT_VIEW === 'news-detail') ? 'news-detail' : 'news';
+  ABS_CONF = n; ABS_THEMES = []; ABS_SEL = -1; ABS_RESULT = null; ABS_FILE = null;
+  go('abstract');
+}
+function absConfPayload(){
+  const n = ABS_CONF || {};
+  return { title: n.title || '', details: n.desc || '', deadline: n.deadline || '', link: n.applyUrl || '' };
+}
+function renderAbstract(){
+  const box = document.getElementById('abs-conf'); if(!box) return;
+  const n = ABS_CONF;
+  box.innerHTML = n
+    ? '<div class="card" style="border-color:var(--c-gold-500)"><span class="tag gold">کانفرنس</span> <span class="tag">' + absEsc(n.country) + '</span>' +
+      '<h3 style="margin:6px 0 4px">' + absEsc(n.title) + '</h3>' +
+      (n.desc ? '<p style="margin:0 0 4px">' + absEsc(n.desc) + '</p>' : '') +
+      (n.deadline ? '<p class="small" style="margin:0">⏰ آخری تاریخ: ' + absEsc(n.deadline) + '</p>' : '') + '</div>'
+    : '<div class="card"><p style="margin:0">کانفرنس منتخب نہیں — «خبریں و اسکالرشپس» میں کسی کانفرنس کے کارڈ سے «✍️ ایبسٹریکٹ بنائیں» دبائیں۔ نیچے کے خانے بھر کر بھی تھیم تجویز کرائی جا سکتی ہے۔</p></div>';
+  const area = document.getElementById('abs-area');
+  if(area && !area.value){
+    const u = currentUser();
+    if(u) area.value = u.dept || u.degree || '';
+  }
+  absLangPaint(); absChipPaint(); absThemesPaint(); absResultPaint();
+}
+function absSetLang(l){ ABS_LANG = l; absLangPaint(); }
+function absLangPaint(){
+  document.querySelectorAll('#abs-lang button').forEach(function(b){
+    const on = b.getAttribute('data-lang') === ABS_LANG;
+    b.style.background = on ? 'var(--c-primary-700)' : 'transparent';
+    b.style.color = on ? '#fff' : 'var(--c-primary-700)';
+  });
+}
+function absFile(inp){
+  const f = inp.files && inp.files[0];
+  inp.value = '';
+  if(!f) return;
+  if(f.size > 4 * 1024 * 1024){ absErr('تصویر بہت بڑی ہے — 4 MB سے کم رکھیں۔'); return; }
+  const rd = new FileReader();
+  rd.onload = function(){
+    ABS_FILE = { name: f.name || 'اشتہار کی تصویر', dataUrl: String(rd.result || '') };
+    absChipPaint();
+  };
+  rd.readAsDataURL(f);
+}
+function absClearFile(){ ABS_FILE = null; absChipPaint(); }
+function absChipPaint(){
+  const chip = document.getElementById('abs-chip'); if(!chip) return;
+  if(!ABS_FILE){ chip.style.display = 'none'; chip.innerHTML = ''; return; }
+  chip.style.display = 'block';
+  chip.innerHTML = '<span style="display:inline-block;padding:5px 12px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);font-size:14px">🖼️ ' + absEsc(ABS_FILE.name) +
+    ' <a href="#" onclick="absClearFile();return false" style="color:var(--c-error);font-weight:bold;text-decoration:none">✕ ہٹائیں</a></span>';
+}
+function absErr(msg){
+  const e = document.getElementById('abs-err');
+  if(e) e.textContent = msg || '';
+}
+function absApi(path, body){
+  const base = String(window.ILMI_API_BASE || '').replace(/\/+$/, '');
+  const headers = { 'Content-Type': 'application/json' };
+  try{
+    const tk = localStorage.getItem('ilmi_access');
+    if(tk) headers.Authorization = 'Bearer ' + tk;
+  }catch(e){}
+  return fetch(base + path, { method: 'POST', headers: headers, body: JSON.stringify(body) })
+    .then(function(r){
+      return r.json().catch(function(){ return null; }).then(function(d){ return { status: r.status, data: d }; });
+    });
+}
+function absInputs(){
+  const g = function(id){ const el = document.getElementById(id); return el ? String(el.value || '').trim() : ''; };
+  return { language: ABS_LANG, topic: g('abs-topic'), area: g('abs-area'), conference: absConfPayload() };
+}
+function absThemes(){
+  absErr('');
+  const btn = document.getElementById('abs-themes-btn');
+  const box = document.getElementById('abs-themes');
+  const body = absInputs();
+  const ad = document.getElementById('abs-adtext');
+  if(ad && String(ad.value || '').trim()) body.adText = String(ad.value).trim();
+  if(ABS_FILE) body.imageBase64 = ABS_FILE.dataUrl;
+  if(btn) btn.disabled = true;
+  if(box) box.innerHTML = '<p class="small" style="margin:8px 0">جواب آ رہا ہے…</p>';
+  absApi('/api/help/abstract/themes', body).then(function(r){
+    if(btn) btn.disabled = false;
+    if(!r.data || !r.data.ok){
+      if(box) box.innerHTML = '';
+      absErr((r.data && r.data.error && r.data.error.message) || 'جواب حاصل نہیں ہو سکا — چند لمحے بعد دوبارہ کوشش کریں');
+      ABS_THEMES = []; ABS_SEL = -1;
+      return;
+    }
+    ABS_THEMES = r.data.themes || [];
+    ABS_SEL = -1;
+    absThemesPaint(); absWriteBtnPaint();
+  }).catch(function(){
+    if(btn) btn.disabled = false;
+    if(box) box.innerHTML = '';
+    absErr('نیٹ ورک کی خرابی — انٹرنیٹ جانچ کر دوبارہ کوشش کریں');
+  });
+}
+function absThemesPaint(){
+  const box = document.getElementById('abs-themes'); if(!box) return;
+  if(!ABS_THEMES.length){ box.innerHTML = ''; return; }
+  box.innerHTML = '<p style="margin:10px 0 4px"><b>تجویز کردہ تھیمز</b> <span class="small">(ایک منتخب کریں)</span></p>' + ABS_THEMES.map(function(t, i){
+    const on = i === ABS_SEL;
+    return '<div onclick="absSelectTheme(' + i + ')" style="cursor:pointer;border:1px solid ' + (on ? 'var(--c-primary-700)' : 'var(--c-border)') + ';background:' + (on ? 'var(--c-surface)' : 'var(--c-card)') + ';border-radius:12px;padding:9px 12px;margin:6px 0">' +
+      '<p style="margin:0;font-weight:bold;color:var(--c-primary-900)">' + (on ? '✅ ' : '') + absEsc(t.title) + '</p>' +
+      (t.angle ? '<p class="small" style="margin:2px 0 0">' + absEsc(t.angle) + '</p>' : '') + '</div>';
+  }).join('');
+}
+function absSelectTheme(i){
+  ABS_SEL = i;
+  absThemesPaint(); absWriteBtnPaint();
+  const note = document.getElementById('abs-sel-note');
+  if(note && ABS_THEMES[i]) note.textContent = 'منتخب تھیم: ' + ABS_THEMES[i].title;
+}
+function absWriteBtnPaint(){
+  const btn = document.getElementById('abs-write-btn'); if(!btn) return;
+  const on = ABS_SEL >= 0 && ABS_THEMES[ABS_SEL];
+  btn.disabled = !on;
+  btn.style.opacity = on ? '1' : '.55';
+}
+function absWrite(){
+  if(!(ABS_SEL >= 0 && ABS_THEMES[ABS_SEL])) return;
+  absErr('');
+  const btn = document.getElementById('abs-write-btn');
+  const box = document.getElementById('abs-result');
+  const body = absInputs();
+  body.theme = ABS_THEMES[ABS_SEL].title;
+  if(btn) btn.disabled = true;
+  if(box) box.innerHTML = '<p class="small" style="margin:10px 0">جواب آ رہا ہے… ایبسٹریکٹ لکھا جا رہا ہے</p>';
+  absApi('/api/help/abstract/write', body).then(function(r){
+    absWriteBtnPaint();
+    if(!r.data || !r.data.ok){
+      if(box) box.innerHTML = '';
+      absErr((r.data && r.data.error && r.data.error.message) || 'جواب حاصل نہیں ہو سکا — چند لمحے بعد دوبارہ کوشش کریں');
+      return;
+    }
+    ABS_RESULT = { title: r.data.title || body.theme, abstract: r.data.abstract || '', keywords: r.data.keywords || [], lang: ABS_LANG };
+    absResultPaint();
+  }).catch(function(){
+    absWriteBtnPaint();
+    if(box) box.innerHTML = '';
+    absErr('نیٹ ورک کی خرابی — انٹرنیٹ جانچ کر دوبارہ کوشش کریں');
+  });
+}
+function absResultPaint(){
+  const box = document.getElementById('abs-result'); if(!box) return;
+  const R = ABS_RESULT;
+  if(!R){ box.innerHTML = ''; return; }
+  const L = docLang(R.lang);
+  const rtl = L.dir === 'rtl';
+  const kw = (R.keywords || []).join(R.lang === 'en' ? ', ' : '، ');
+  box.innerHTML =
+    '<div style="border:1px solid var(--c-gold-500);border-radius:12px;padding:12px 14px;margin-top:12px;background:var(--c-card)">' +
+      '<div dir="' + L.dir + '" style="text-align:' + (rtl ? 'right' : 'left') + ';font-family:\'' + absEsc(L.font) + '\',serif">' +
+        '<h3 style="margin:0 0 8px;color:var(--c-primary-900)">' + absEsc(R.title) + '</h3>' +
+        '<p style="white-space:pre-wrap;line-height:1.9;margin:0;font-size:17px">' + absEsc(R.abstract) + '</p>' +
+        (kw ? '<p style="margin:10px 0 0"><b>' + (R.lang === 'en' ? 'Keywords: ' : R.lang === 'ar' ? 'الكلمات المفتاحية: ' : 'کلیدی الفاظ: ') + '</b>' + absEsc(kw) + '</p>' : '') +
+      '</div>' +
+      '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px">' +
+        '<button type="button" class="btn sm" onclick="absCopy()">📋 کاپی</button>' +
+        '<button type="button" class="btn sm goldb" onclick="absWord()">⬇️ Word ڈاؤن لوڈ</button>' +
+        '<button type="button" class="btn sm goldb" onclick="absPrint()">🖨️ PDF / پرنٹ</button>' +
+        '<button type="button" class="btn sm" onclick="absToArticle()">📄 مکمل آرٹیکل لکھیں</button>' +
+        '<a href="#" onclick="go(\'rafiq\');return false" style="align-self:center;color:var(--c-primary-700);font-weight:bold">رفیقِ تحقیق کھولیں</a>' +
+      '</div>' +
+      '<p class="small" style="margin:10px 0 0">یہ ابتدائی مسودہ ہے — اصل ماخذی تحقیق و حوالہ جات کی تصدیق رفیقِ تحقیق اور التراث ٹولز سے خود کریں۔</p>' +
+    '</div>';
+}
+function absPlainText(){
+  const R = ABS_RESULT; if(!R) return '';
+  const kw = (R.keywords || []).join(R.lang === 'en' ? ', ' : '، ');
+  return R.title + '\n\n' + R.abstract + (kw ? '\n\n' + (R.lang === 'en' ? 'Keywords: ' : R.lang === 'ar' ? 'الكلمات المفتاحية: ' : 'کلیدی الفاظ: ') + kw : '');
+}
+function absCopy(){
+  const t = absPlainText(); if(!t) return;
+  const done = function(){ alert('ایبسٹریکٹ کاپی ہو گیا۔'); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(done).catch(function(){ absCopyFallback(t, done); });
+  } else absCopyFallback(t, done);
+}
+function absCopyFallback(t, done){
+  const ta = document.createElement('textarea');
+  ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); done(); }catch(e){ alert('کاپی نہیں ہو سکا — متن منتخب کر کے خود کاپی کر لیں۔'); }
+  ta.remove();
+}
+function absDocObject(){
+  const R = ABS_RESULT; const u = currentUser();
+  const kwLabel = R.lang === 'en' ? 'Keywords' : R.lang === 'ar' ? 'الكلمات المفتاحية' : 'کلیدی الفاظ';
+  const absLabel = R.lang === 'en' ? 'Abstract' : R.lang === 'ar' ? 'الملخص' : 'خلاصہ';
+  return {
+    lang: R.lang, type: 'article', bname: 'ایبسٹریکٹ', layout: 'article',
+    title: R.title,
+    student: { name: u ? u.name : '', degree: u ? u.degree : '', dept: u ? u.dept : '', uni: u ? u.uni : '' },
+    date: todayStr(),
+    secs: [
+      { label: absLabel, text: R.abstract, notes: [] },
+      { label: kwLabel, text: (R.keywords || []).join(R.lang === 'en' ? ', ' : '، '), notes: [] },
+    ],
+    sources: [],
+  };
+}
+function absWord(){
+  if(!ABS_RESULT) return;
+  try{
+    const doc = absDocObject();
+    const blob = buildDocxBlob(doc, 'chicago');
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = docxFileName(doc.title);
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ try{ URL.revokeObjectURL(url); a.remove(); }catch(e){} }, 900);
+  }catch(err){
+    alert('ورڈ فائل بنانے میں خرابی آئی — براؤزر جانچ کر دوبارہ کوشش کریں۔');
+  }
+}
+function absPrint(){
+  const R = ABS_RESULT; if(!R) return;
+  const L = docLang(R.lang);
+  const u = currentUser();
+  const kw = (R.keywords || []).join(R.lang === 'en' ? ', ' : '، ');
+  document.getElementById('print-report').innerHTML =
+    '<div class="rep-head"><img src="assets/logo.png" onerror="this.onerror=null;this.src=window.__LOGO" alt="مدرسہ ڈاٹ پی کے">' +
+    '<div><h1>ایبسٹریکٹ</h1>' +
+    '<p style="margin:2px 0 0">مدرسہ ڈاٹ پی کے — شعبہ علمی مشغولیت (یونیورسٹی سٹڈیز) • طالب علم: <b>' + absEsc(u ? u.name : '') + '</b> • تاریخ: ' + absEsc(todayStr()) + '</p></div></div>' +
+    (ABS_CONF ? '<p style="font-size:15px">کانفرنس: ' + absEsc(ABS_CONF.title) + (ABS_CONF.deadline ? ' — آخری تاریخ: ' + absEsc(ABS_CONF.deadline) : '') + '</p>' : '') +
+    '<div dir="' + L.dir + '" style="text-align:' + (L.dir === 'rtl' ? 'right' : 'left') + ';font-family:\'' + absEsc(L.font) + '\',serif">' +
+    '<h2 style="text-align:center">' + absEsc(R.title) + '</h2>' +
+    '<p style="white-space:pre-line;font-size:17px;line-height:1.9">' + absEsc(R.abstract) + '</p>' +
+    (kw ? '<p style="font-size:16px"><b>' + (R.lang === 'en' ? 'Keywords: ' : R.lang === 'ar' ? 'الكلمات المفتاحية: ' : 'کلیدی الفاظ: ') + '</b>' + absEsc(kw) + '</p>' : '') +
+    '</div>' +
+    '<p style="margin-top:16px;font-size:15px;color:var(--c-ink-2)">یہ ابتدائی مسودہ ہے — اصل ماخذی تحقیق و حوالہ جات کی تصدیق رفیقِ تحقیق اور التراث ٹولز سے خود کریں۔</p>';
+  window.print();
+}
+function absToArticle(){
+  const R = ABS_RESULT; const u = currentUser();
+  if(!R || !u){ go('wassist'); return; }
+  try{
+    const list = DB.get('drafts', []);
+    const id = 'd' + Date.now();
+    list.push({
+      id: id, email: u.email, type: 'article', bname: 'مقالہ بلڈر',
+      title: R.title, date: todayStr(), done: false,
+      values: {
+        lang: R.lang, title: R.title, rtitle: R.title,
+        abstract: R.abstract,
+        keywords: (R.keywords || []).join(R.lang === 'en' ? ', ' : '، '),
+        sources: [], notes: {},
+      },
+    });
+    DB.set('drafts', list);
+    startBuilder('article', id);
+  }catch(e){
+    startBuilder('article');
+  }
+}
+
 /* ================= مدد مرکز — Layer 2: Muse سے پوچھیں (AI چیٹ، مفتی 2026-10-30) =================
    سوال (+ اختیاری ایک اسکرین شاٹ یا PDF) ایپ کے اپنے بیک اینڈ
    /api/help/ask کو جاتا ہے — Gemini کنجی صرف بیک اینڈ میں ہے، براؤزر
