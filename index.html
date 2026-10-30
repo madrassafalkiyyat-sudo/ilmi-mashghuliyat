@@ -3005,9 +3005,20 @@ function go(id){
   if(id === 'idcard') renderIdCard();
   if(id === 'star-contact') renderStarContact();
   if(id === 'intl') renderIntlStudents();
-  if(id === 'admin') renderAdmin();
-  if(id === 'admin') adminHub();
+  if(id === 'admin'){
+    renderAdmin();
+    /* خودکار تازہ کاری (پول) پر ایڈمن مرکز دوبارہ نہ کھلے اور اسکرول اوپر نہ جائے —
+       adminHub() صرف اصل داخلے پر چلے (مفتی کی شکایت 2026-10-30: لیپ ٹاپ پر
+       اسکرولنگ ہو ہی نہیں رہی تھی؛ وجہ: ہر پول اسنیپ شاٹ پر adminHub() کا
+       scrollTo(0,0) اسی go() میں محفوظ شدہ پوزیشن کے بعد چل کر اسے ختم کر دیتا
+       تھا، اور کھلا سیکشن بھی بند کر دیتا تھا) */
+    if(__refreshSame) adminRefreshSection();
+    else adminHub();
+  }
   if(id === 'pending') renderPending();
+  /* اسی منظر کی تازہ کاری میں تمام رینڈرز کے بعد اسکرول پوزیشن حتمی طور پر بحال
+     کریں — رینڈر کے دوران مواد کی اونچائی عارضی گھٹے تو براؤزر پوزیشن کاٹ سکتا ہے */
+  if(__refreshSame && __scrollKeep) window.scrollTo(0, __scrollKeep);
 }
 
 /* ================= وژن گیٹ (لاگ ان سے پہلے) ================= */
@@ -7728,6 +7739,23 @@ function adminHub(){
   window.scrollTo(0, 0);
   renderAdminHub();
 }
+/* پول کی خودکار تازہ کاری پر کھلا ایڈمن سیکشن وہیں تازہ ہو — نہ بند ہو، نہ اسکرول
+   ہلے۔ وہی رینڈررز جو openAdminSec چلاتا ہے، مگر نیویگیشن و scrollTo کے بغیر۔
+   (دیگر سیکشنز کا مواد renderAdmin() پہلے ہی تازہ کر دیتا ہے۔) */
+function adminRefreshSection(){
+  try{
+    if(!ADMIN_SEC) return;
+    const k = ADMIN_SEC;
+    if(k === 'charts') renderCharts();
+    else if(k === 'dashboard') renderAdminDashboard();
+    else if(k === 'dashdata') renderDashData();
+    else if(k === 'courseclass') renderAdminCourseClass();
+    else if(k === 'counsel') renderAdminCounsel();
+    else if(k === 'visionreview') renderVisionReview();
+    else if(k === 'starteam') renderAdminStarTeam();
+    else if(k === 'sessions'){ renderAttCodeBox(); renderAdminCourseContent(); }
+  }catch(e){}
+}
 function openAdminSec(key, skipNav){
   ADMIN_SEC = key;
   const h = document.getElementById('admin-hub'); if(h) h.style.display = 'none';
@@ -12353,7 +12381,7 @@ function dashDataAll(){
 }
 function dashPollTick(){
   if(__dashTimer) return;
-  __dashTimer = setTimeout(function(){ __dashTimer = null; renderAdminDashboard(); renderDashData(); }, 600);
+  __dashTimer = setTimeout(function(){ __dashTimer = null; const __sy = window.scrollY; renderAdminDashboard(); renderDashData(); if(__sy) window.scrollTo(0, __sy); }, 600);
 }
 function hookDashRefresh(){
   const cur = window.__applySnapshot;
