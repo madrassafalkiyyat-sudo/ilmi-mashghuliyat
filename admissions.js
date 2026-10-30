@@ -48,11 +48,17 @@
      استعمال ہوتا ہے؛ دستیاب نہ ہو تو پرانا براہ راست لنک ہی رہتا ہے۔ */
   function ffAnchor(opts, label, style, cls) {
     if (!isUrl(opts.url)) return '';
+    /* class کا اصول (Part 5 درستی، مفتی 2026-10-31): 'btn' صرف اس وقت
+       جب کالر نے class دیا ہی نہ ہو۔ کالر نے '' دیا ہو تو اس کا مطلب
+       ہے «میرا اپنا اسٹائل کافی ہے» — پہلے '' بھی 'btn' بن جاتا تھا،
+       جس سے پراسپیکٹس/ٹیسٹ لنک کو .btn کا گہرا سبز پس منظر ملتا اور
+       اسی کا اپنا گہرا سبز متن اس پر ناقابلِ مطالعہ ہو جاتا تھا۔ */
+    var c = (cls === undefined || cls === null) ? 'btn' : cls;
     if (typeof window !== 'undefined' && window.ffRegister) {
       var k = window.ffRegister(opts);
-      return '<a class="' + (cls || 'btn') + '" style="' + (style || '') + '" href="#" onclick="ffGo(\'' + k + '\');return false">' + label + '</a>';
+      return '<a class="' + c + '" style="' + (style || '') + '" href="#" onclick="ffGo(\'' + k + '\');return false">' + label + '</a>';
     }
-    return '<a class="' + (cls || 'btn') + '" style="' + (style || '') + '" href="' + esc(opts.url) + '" target="_blank" rel="noopener">' + label + '</a>';
+    return '<a class="' + c + '" style="' + (style || '') + '" href="' + esc(opts.url) + '" target="_blank" rel="noopener">' + label + '</a>';
   }
   function val(v) {
     return (v && String(v).trim()) ? esc(v) : '';

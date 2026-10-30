@@ -203,7 +203,7 @@ select.inline{width:auto;flex:1}
 /* سکالرشپ کا ڈیزائن شدہ کور (مفتی 2026-10-31): صرف اس سکالرشپ کے لیے جس کا آفیشل پوسٹر
    (img) نہ ملا ہو — آفیشل پوسٹر ہمیشہ پہلے۔ فلیٹ برانڈ سبز، سنہری جھلک، عنوان نمایاں،
    نیچے ایپ کا اپنا نام؛ یہ ایپ کا اپنا کور ہے، کسی آفیشل اشتہار یا تصویر کی نقل نہیں */
-.nd-cover{background:var(--c-primary-900);border:1px solid var(--c-gold-500);border-radius:12px;padding:20px 16px 14px;box-shadow:0 1px 3px rgba(0,0,0,.06);display:flex;flex-direction:column;gap:9px;min-height:150px;justify-content:center;width:100%;box-sizing:border-box}
+.nd-cover{background:var(--c-primary-900);color:var(--c-gold-100);border:1px solid var(--c-gold-500);border-radius:12px;padding:20px 16px 14px;box-shadow:0 1px 3px rgba(0,0,0,.06);display:flex;flex-direction:column;gap:9px;min-height:150px;justify-content:center;width:100%;box-sizing:border-box}
 .card>.nd-cover{margin-bottom:8px}
 .nd-cover .cv-eyebrow{color:var(--c-gold-500);font-size:14px;font-weight:bold;border-bottom:1px solid rgba(201,162,39,.45);padding-bottom:6px}
 .nd-cover .cv-title{color:var(--c-gold-100);font-size:20px;line-height:1.9;font-weight:bold;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
@@ -2950,6 +2950,10 @@ function navReset(id){
   try{ history.replaceState({emView:id}, ''); }catch(e){}
 }
 function navPush(id){
+  /* واحد PUSH راستہ: اوپر والا فریم وہی ہو تو اندراج نہیں بنتا —
+     لگاتار نقل یہیں ختم ہوتی ہے (تازہ کاری/دوبارہ داخلہ کبھی اسٹیک
+     نہیں بڑھا سکتا) */
+  while(NAV_STACK.length > 1 && NAV_STACK[NAV_STACK.length - 1] === NAV_STACK[NAV_STACK.length - 2]) NAV_STACK.pop();
   const top = NAV_STACK[NAV_STACK.length - 1];
   if(top === id) return;
   if(top === 'splash' || !NAV_STACK.length){ navReset(id); return; }
@@ -2991,6 +2995,17 @@ window.addEventListener('popstate', function(e){
   if(!target) return;                       /* ہمارا اندراج نہیں — ہاتھ نہ لگائیں */
   const idx = NAV_STACK.lastIndexOf(target);
   if(idx === -1) return;                     /* اسٹیک میں نہیں (پرانا/اجنبی اندراج) — نظر انداز */
+  const prevTop = NAV_STACK[NAV_STACK.length - 1];
+  /* لگاتار نقل اندراج (پرانے سیشن کا اسٹیک): براؤزر پیچھے ہوا مگر
+     فریم وہی ہے جو پہلے سے دکھ رہا تھا — یعنی یہ قدم «مردہ» ہے۔
+     نقل کو اسٹیک سے گرا کر ایک اور قدم پیچھے جائیں، تاکہ بیک پہلے
+     مُختلف فریم پر اترے (مفتی 2026-10-31: بیک لوپ کی درستی)۔ یہ
+     جانچ «پہلے ہی وہیں ہیں» والی واپسی سے پہلے ہے، ورنہ lastIndexOf
+     اوپر والی نقل ہی دکھا کر اسے ہمیشہ روک دیتا۔ */
+  if(target === prevTop && NAV_STACK.length > 1){
+    NAV_STACK.length = idx;                  /* جس نقل سے نکل رہے ہیں، اسے بھی گرا دیں */
+    try{ history.back(); return; }catch(e){}
+  }
   if(idx === NAV_STACK.length - 1) return;   /* پہلے ہی وہیں ہیں */
   NAV_STACK.length = idx + 1;                /* درمیانی فریم ختم — براؤزر کی اصل پوزیشن سے ہم آہنگی */
   navShowFrame(target);
@@ -3000,6 +3015,17 @@ function goBack(fallback){
   if(NAV_STACK.length > 1){ try{ history.back(); return; }catch(e){} }
   if(typeof fallback === 'function') fallback();
   else if(fallback) go(fallback);
+}
+/* «واپسی» والے اخراج (فارم ساتھی، مدد مرکز، ایبسٹریکٹ) کے لیے درست سمت:
+   یہ بٹن آگے کا قدم نہیں، پیچھے کا قدم ہے۔ پہلے یہ go(RETURN) سے آگے
+   PUSH کرتے تھے — اسٹیک [سابقہ، فارم] پر «سابقہ» دوبارہ چڑھ جاتا اور
+   اگلا بیک دبانے پر طالب علم پھر فارم/مدد میں آ گرتا (یہی «وہیں بار
+   بار واپس» والی خرابی تھی، مفتی 2026-10-31)۔ اب: ہسٹری سے ایک قدم
+   پیچھے — عین اسی منظر پر جو اصل میں پہلے تھا؛ اسٹیک خالی ہو تو
+   متبادل منظر۔ */
+function goBackTo(fallback){
+  if(NAV_STACK.length > 1){ try{ history.back(); return; }catch(e){} }
+  go(fallback || 'home');
 }
 /* داخلہ جات ہب سے علمی مشغولیت کی طرف واپسی — سیدھا ہوم ہرگز نہیں
    (مفتی کی تنبیہ 2026-10-31): داخلہ جات عوامی حصہ ہے، علمی مشغولیت بند
@@ -4399,7 +4425,7 @@ function spotlightCardHtml(s){
   if(s.gender === 'مرد' && s.photo){
     visual = '<img src="' + s.photo + '" alt="" style="width:58px;height:58px;border-radius:50%;object-fit:cover;border:2.5px solid ' + (isStar ? 'var(--c-gold-500)' : 'var(--c-primary-700)') + ';flex:none">';
   } else {
-    visual = '<div style="flex:none;width:88px;text-align:center;background:var(--c-primary-900);border-radius:12px;padding:7px 4px 5px">' +
+    visual = '<div style="flex:none;width:88px;text-align:center;background:var(--c-primary-900);color:var(--c-card);border-radius:12px;padding:7px 4px 5px">' +
       '<div style="font-family:\'Jameel Noori Nastaleeq\',serif;font-size:17px;line-height:1.9;color:var(--c-card)">' + esc(s.name || '') + '</div>' +
       '<div style="color:var(--c-success-bg);font-size:15px;letter-spacing:2px">✦ 🎓 ✦</div>' +
       '<div style="color:var(--c-success-bg);font-size:15px">نام-پلیٹ</div></div>';
@@ -9800,6 +9826,17 @@ function renderWizard(){
   applyWizLang();
 }
 function wizNav(d){
+  /* پچھلا مرحلہ: آگے جاتے ہوئے جو ذیلی فریم بنا تھا، واپسی عین اسی
+     ہسٹری قدم سے ہو — ورنہ ایک «مردہ» بیک دبانا پڑتا تھا (قدم گھٹتا
+     مگر ہسٹری وہیں رہتی)۔ موجودہ قدر پہلے محفوظ، پھر ہسٹری بیک —
+     popstate کا enter پچھلا مرحلہ خود بحال کرے گا۔ */
+  if(d < 0 && typeof wiz !== 'undefined' && wiz){
+    const top = NAV_STACK[NAV_STACK.length - 1];
+    if(top === 'wizstep:' + wiz.step && NAV_STACK.length > 1){
+      wizCurrentVal();
+      try{ history.back(); return; }catch(e){}
+    }
+  }
   wizCurrentVal();
   wiz.step += d;
   renderWizard();
@@ -13688,7 +13725,7 @@ window.openFormCompanion = function(opts){
   ffRender();
   if(!sess.fields) ffExtract(sess, {});
 };
-function ffBack(){ go(FF_RETURN || 'home'); }
+function ffBack(){ goBackTo(FF_RETURN || 'home'); }
 function ffExtract(sess, opts){
   var body = {};
   if(opts && opts.imageBase64) body.imageBase64 = opts.imageBase64;
@@ -14013,7 +14050,7 @@ window.ffComplete = function(){
   ffSave(sess);
   FF_CUR = null;
   alert('مبارک ہو! آپ کی اپنی تصدیق پر یہ فارم مکمل نشان زد ہو گیا ہے۔');
-  go(FF_RETURN || 'home');
+  goBackTo(FF_RETURN || 'home');
 };
 window.ffDiscard = function(){
   var sess = FF_CUR;
@@ -14021,7 +14058,7 @@ window.ffDiscard = function(){
   if(!confirm('یہ فارم سیشن ختم کر دیں؟ تیار شدہ جوابات حذف ہو جائیں گے۔')) return;
   ffDelete(sess.url);
   FF_CUR = null;
-  go(FF_RETURN || 'home');
+  goBackTo(FF_RETURN || 'home');
 };
 /* ---- مدد مرکز کا «فارم بھریں» ٹیب ---- */
 var FF_HELP_FILE = null;
@@ -14330,7 +14367,7 @@ window.openHelp = function(ctx){
   helpSetTab(HELP_TAB);
   go('help');
 };
-window.helpBack = function(){ go(HELP_RETURN || 'home'); };
+window.helpBack = function(){ goBackTo(HELP_RETURN || 'home'); };
 window.helpSetTab = function(t){
   HELP_TAB = t;
   HELP_TABS.forEach(function(tb){
@@ -14581,7 +14618,7 @@ var ABS_CONF = null, ABS_RETURN = 'news', ABS_LANG = 'en';
 var ABS_FILE = null, ABS_THEMES = [], ABS_SEL = -1, ABS_RESULT = null;
 
 function absEsc(s){ return esc(s == null ? '' : String(s)); }
-function absBack(){ go(ABS_RETURN || 'news'); }
+function absBack(){ goBackTo(ABS_RETURN || 'news'); }
 function openAbstract(id){
   const n = allNews().find(x => x.id === id); if(!n) return;
   ABS_RETURN = (CURRENT_VIEW === 'news-detail') ? 'news-detail' : 'news';
@@ -14998,7 +15035,7 @@ window.helpChatSend = function(){
 <script src="admissions-data.js?v=20261029g"></script>
 <script src="foreign-data.js?v=20261029g"></script>
 <script src="admissions-news.js?v=20261031a"></script>
-<script src="admissions.js?v=20261031h"></script>
+<script src="admissions.js?v=20261031i"></script>
 <script type="module" src="api-bridge.js?v=20261031c"></script>
 </body>
 </html>
