@@ -3257,7 +3257,7 @@ function doRegister(){
 async function doRegisterOnline(u, pass){
   showMsg('reg-msg', 'اکاؤنٹ بنایا جا رہا ہے — چند لمحے انتظار کریں…', true);
   try{
-    const res = await FB.signUp(u.email, pass);
+    const res = await FB.signUp(u.email, pass, u);
     u.uid = res.uid; u.role = 'student';
     LS2.set('pendingReg', u);   // اگر دستاویز اس وقت نہ بن سکے (مثلاً قوانین باقی ہوں) تو لاگ ان پر تکمیل کے لیے محفوظ نقل
     await FB.upsert('users', u.uid, u);
@@ -3486,14 +3486,21 @@ async function doLoginOnline(email, pass){
     const res = await FB.signIn(email, pass);
     if(res.isAdmin){ enterAdminSession(email, res); return; }
     let u = res.userDoc;
-    if(!u){
-      // رجسٹریشن کے وقت دستاویز نہ بن سکی تھی (قوانین باقی تھے) تو اس ڈیوائس پر موجود محفوظ نقل سے اب بنا دیں
-      const pend = LS2.get('pendingReg', null);
-      if(pend && pend.email === email){
-        pend.uid = res.uid; pend.role = 'student';
-        await FB.upsert('users', res.uid, pend);
-        u = pend; LS2.del('pendingReg');
-      }
+    /* اس ڈیوائس پر محفوظ رجسٹریشن نقل (pendingReg) ہو تو سرور ریکارڈ کی تکمیل
+       اب لاگ ان پر ہو گی — چاہے سرور دستاویز موجود ہی کیوں نہ ہو: پرانی صورت
+       میں نقل صرف تب استعمال ہوتی تھی جب دستاویز بالکل نہ ملے، مگر رجسٹریشن
+       اب نام/کوائف/وژن سرور تک پہنچاتی ہے؛ جن طلبہ کی رجسٹریشن اس درستگی سے
+       پہلے ہوئی، ان کی سرور دستاویز موجود مگر نام و وژن سے خالی تھی، اس لیے
+       تکمیل کبھی چلتی ہی نہیں تھی (مفتی کی رپورٹ 2026-10-30)۔ upsert کا اپنا
+       راستہ نام و کوائف /me/profile سے اور وژن /me/vision سے بھیجتا ہے —
+       سرور پر فیصلہ بھی اسی وقت لگ جاتا ہے۔ مقامی پیش کش میں سرور کی قدریں
+       مقدم ہیں، نقل صرف خالی جگہیں بھرتی ہے۔ */
+    const pend = LS2.get('pendingReg', null);
+    if(pend && pend.email === email){
+      pend.uid = res.uid; pend.role = 'student';
+      try{ await FB.upsert('users', res.uid, pend); }catch(e){}
+      u = u ? Object.assign({}, pend, u) : pend;
+      LS2.del('pendingReg');
     }
     if(!u){ showMsg('login-msg', 'اس ای میل کا طالب علم ریکارڈ نہیں ملا — پہلے رجسٹریشن کریں۔', false); await FB.signOut(); return; }
     CACHE.users = CACHE.users || [];
@@ -7875,9 +7882,31 @@ function adminSortedUsers(us){
 }
 /* ایڈمن طلبہ فہرست کا ایک کارڈ — حیثیت (منظور شدہ/زیرِ غور/مسترد) اور واٹس ایپ نمبر اوپر ہی نمایاں،
    تاکہ واٹس ایپ گروپ کی درخواست والے نمبر سے فوراً ملان ہو سکے؛ تفصیل نشان دبانے سے کھلتی ہے */
+/* کارڈ پر نام: اصل جگہ top-level name ہے؛ کسی اور لکھنے والے نے نام
+   profile.* میں رکھا ہو تو وہی اٹھا لیں — خالی نام والا کارڈ ایڈمن کو صرف
+   ای میل دکھاتا تھا (مفتی کی رپورٹ 2026-10-30) */
+function studentDisplayName(u){
+  return (u && u.name) || (u && u.profile && u.profile.name) || '';
+}
+/* کارڈ پر وژن کی صورت: خلاصہ موجود ہو تو متن + خودکار فیصلہ (اگر لگا ہو);
+   خلاصہ نہ ہو مگر فیصلہ ریکارڈ ہو تو وہی صورت؛ ورنہ «ابھی جمع نہیں ہوا» */
+function adminVisionHtml(u){
+  const vr = u.visionReview || null;
+  const verdict = vr && vr.decision
+    ? '<p class="small" style="margin:4px 0 0"><b>فیصلہ:</b> ' +
+      (vr.decision === 'approve' ? '✅ منظور' : vr.decision === 'incomplete' ? '📋 نامکمل' : '⏳ سرحدی — ایڈمن فیصلہ کرے') +
+      (typeof vr.score === 'number' ? ' (اسکور ' + urDigits(vr.score) + '/8)' : '') +
+      (vr.source === 'admin' ? ' — انتظامیہ کا فیصلہ' : ' — خودکار جائزہ') + '</p>'
+    : '';
+  if(u.visionSummary){
+    return '<div style="background:var(--c-surface);border:1px solid var(--c-gold-500);border-radius:12px;padding:8px 10px;margin-top:8px"><b>🌟 وژن کا خلاصہ</b> <span class="small">(طالب علم کے اپنے الفاظ میں' + (u.visionDate ? ' — ' + esc(u.visionDate) : '') + ')</span><p style="white-space:pre-wrap;margin:4px 0 0">' + esc(u.visionSummary) + '</p>' + verdict + '</div>';
+  }
+  if(vr && vr.decision) return '<br><span class="small">🌟 وژن کا خلاصہ: جمع شدہ متن دستیاب نہیں' + '</span>' + verdict;
+  return '<br><span class="small">🌟 وژن کا خلاصہ: ابھی جمع نہیں ہوا</span>';
+}
 function adminStudentCardHtml(u){
   return '' +
-    '<div class="card"><b>' + starNameHtml(u.email, u.name) + '</b> <span class="small">(' + esc(u.email) + ')</span><br>' +
+    '<div class="card"><b>' + starNameHtml(u.email, studentDisplayName(u)) + '</b> <span class="small">(' + esc(u.email) + ')</span><br>' +
     '<span class="small">' + esc(u.degree) + ' • ' + esc(u.dept) + ' • ' + esc(u.uni) + ' • ' + esc(u.country) + '</span><br>' +
     '<span class="small">📧 ' + esc(studentEmail(u)) + ' &nbsp;•&nbsp; 📱 واٹس ایپ: <b dir="ltr">' + esc(studentWaRaw(u) || 'درج نہیں') + '</b></span><br>' +
     '<span style="display:inline-block;margin:4px 0">' + contactBtnsHtml(u) + '</span><br>' +
@@ -7888,7 +7917,7 @@ function adminStudentCardHtml(u){
     (u.status === 'approved' ? ' <button class="btn sm ghost" onclick="openStudentIncomplete(\'' + u.email + '\')">نامکمل</button>' : '') +
     (u.admissionRoute ? ' <span class="tag' + (u.admissionRoute === 'madrasa' ? ' gold' : '') + '">ذریعۂ داخلہ: ' + routeLabel(u.admissionRoute) + '</span>' : '') +
     '<br><span class="small">سیشن رجسٹریشن: ' + (u.sessionReg ? 'ہے' : 'نہیں') + ' • حاضری: ' + (u.sessionAtt ? 'لگی' : 'نہیں') + ' • کورس: ' + (u.courseReg ? 'رجسٹرڈ' : '—') + '</span>' +
-    (u.visionSummary ? '<div style="background:var(--c-surface);border:1px solid var(--c-gold-500);border-radius:12px;padding:8px 10px;margin-top:8px"><b>🌟 وژن کا خلاصہ</b> <span class="small">(طالب علم کے اپنے الفاظ میں' + (u.visionDate ? ' — ' + esc(u.visionDate) : '') + ')</span><p style="white-space:pre-wrap;margin:4px 0 0">' + esc(u.visionSummary) + '</p></div>' : '<br><span class="small">🌟 وژن کا خلاصہ: ابھی جمع نہیں ہوا</span>') +
+    adminVisionHtml(u) +
     '<details style="margin-top:8px"><summary style="cursor:pointer;color:var(--c-primary-900);font-weight:bold">📋 سرگرمی لاگ (آڈٹ) — ' + urDigits((u.activity || []).length) + ' اندراجات</summary>' +
     '<div style="margin-top:4px">' + ((u.activity || []).length ? (u.activity || []).slice().reverse().map(a => '<div class="small" style="border-bottom:1px dashed var(--c-border);padding:2px 0">' + esc(a.date) + ' — ' + esc(a.txt) + '</div>').join('') : '<span class="small">کوئی سرگرمی درج نہیں</span>') + '</div></details>' +
     '</div>';
@@ -13551,6 +13580,6 @@ window.helpChatSend = function(){
 <script src="foreign-data.js?v=20261029g"></script>
 <script src="admissions-news.js"></script>
 <script src="admissions.js?v=20261030a"></script>
-<script type="module" src="api-bridge.js?v=20261030c"></script>
+<script type="module" src="api-bridge.js?v=20261030d"></script>
 </body>
 </html>

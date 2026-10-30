@@ -295,8 +295,20 @@ function startSubscriptions(opts) {
 window.__fb = {
   online: true,
 
-  async signUp(email, pass) {
-    const r = await api('/api/auth/register', { method: 'POST', auth: false, body: { email, password: pass } });
+  async signUp(email, pass, extra) {
+    // The registration form's fields + the vision summary travel WITH
+    // the register call (2026-10-30 fix): the server stores them at top
+    // level and reviews the vision text at submission time. Sending
+    // only {email, password} — the old behaviour — created server docs
+    // with an empty name and no vision summary, which is exactly what
+    // the admin panel then showed («ابھی جمع نہیں ہوا»).
+    const body = { email, password: pass };
+    if (extra && typeof extra === 'object') {
+      for (const k of ['name', 'mobile', 'degree', 'dept', 'madrasa', 'uni', 'country', 'admissionRoute', 'visionSummary']) {
+        if (extra[k] !== undefined && extra[k] !== null && extra[k] !== '') body[k] = extra[k];
+      }
+    }
+    const r = await api('/api/auth/register', { method: 'POST', auth: false, body });
     return { uid: (r.user && (r.user.uid || r.user._id)) || '' };
   },
 
@@ -431,6 +443,21 @@ window.__fb = {
         }
         if (clean.courseReg === true && !CURRENT_USER.courseReg) {
           await api('/api/attendance/course-register', { method: 'POST', body: {} });
+        }
+        // Vision text (2026-10-30 fix): a changed visionSummary goes to
+        // its own endpoint, which stores the text AND applies the
+        // auto-verdict (approve / incomplete / borderline) server-side.
+        // /me/profile would have silently dropped it — it is not a
+        // profile field — which is why logged-in resubmissions never
+        // reached the admin panel either. A repeat send of the same
+        // text is harmless: the server decides once per text hash.
+        if (typeof clean.visionSummary === 'string' && clean.visionSummary.trim().length >= 20
+          && clean.visionSummary !== (CURRENT_USER && CURRENT_USER.visionSummary)) {
+          try {
+            await api('/api/users/me/vision', { method: 'POST', body: { text: clean.visionSummary } });
+          } catch (e) {
+            console.warn('vision submit failed:', e && e.code);
+          }
         }
         return;
       }
