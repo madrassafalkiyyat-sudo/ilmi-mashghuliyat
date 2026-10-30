@@ -1187,7 +1187,8 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div class="grid">
     <button class="gbtn" onclick="go('sessions')"><span class="ic">🎓</span>سیشنز</button>
     <button class="gbtn" onclick="go('announcements')"><span class="ic">📢</span>اعلانات</button>
-    <button class="gbtn" onclick="go('news')"><span class="ic">🌐</span>خبریں و اسکالرشپس</button>
+    <button class="gbtn" onclick="goNewsScope('conf')"><span class="ic">🏛️</span>کانفرنسز و سکالرشپس</button>
+    <button class="gbtn" onclick="goNewsScope('other')"><span class="ic">📰</span>دیگر اہم علمی خبریں</button>
     <button class="gbtn" onclick="go('rcourses')"><span class="ic">🔬</span>تحقیقی و تربیتی کورسز</button>
     <button class="gbtn" onclick="go('jobs')"><span class="ic">💼</span>ملازمتیں</button>
     <button class="gbtn" onclick="go('competitions')"><span class="ic">🏆</span>مسابقات</button>
@@ -1894,7 +1895,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 
 <!-- ============ تمام خبریں ============ -->
 <section class="view" id="view-news">
-  <div class="topbar"><button onclick="goBack('home')">→ واپس</button><div class="ttl">علمی خبریں</div><span style="width:52px"></span></div>
+  <div class="topbar"><button onclick="goBack('home')">→ واپس</button><div class="ttl" id="news-ttl">علمی خبریں</div><span style="width:52px"></span></div>
   <p class="small">سکالرشپس، کانفرنسز اور جامعات کے داخلوں و ایونٹس کی تازہ ترین معلومات — اصل نظام میں یہ خبریں <b>روزانہ تصدیق شدہ تحقیق</b> سے یہیں شائع ہوں گی اور نوٹیفکیشن بھی جائے گا، تاکہ آپ کو کہیں اور جانے کی ضرورت نہ پڑے۔ زیادہ تر خبریں پاکستان کی، اس کے بعد ملیشیا اور دنیا بھر کی اہم خبریں۔ «نمونہ» نشان والے اندراجات آزمائشی ہیں۔</p>
   <div id="news-filters" style="margin:8px 0"></div>
   <div id="news-list"></div>
@@ -4765,14 +4766,34 @@ function renderDeadlines(){
   }).join('');
 }
 /* گروپ سے خبریں کسی خاص زمرے کے ساتھ کھولنا (مثلاً تربیتی کورسز) */
-function goNewsCat(cat){ newsFilter = cat; go('news'); }
+function goNewsCat(cat){ newsScope = 'all'; newsFilter = cat; go('news'); }
+/* خبروں کی دو خانوں میں تقسیم (Part D — مفتی، 2026-10-31): مجموعہ ایک ہی
+   رہتا ہے، تقسیم صرف منظر کی سطح پر ہے — باکس 1 «کانفرنسز و سکالرشپس»،
+   باکس 2 «دیگر اہم علمی خبریں» (باقی تمام زمرے) */
+const NEWS_CONF_CATS = ['کانفرنسز', 'سکالرشپس'];
+let newsScope = 'all';
+function newsInScope(n){
+  const isConf = NEWS_CONF_CATS.indexOf(n.cat) !== -1;
+  if(newsScope === 'conf') return isConf;
+  if(newsScope === 'other') return !isConf;
+  return true;
+}
+function goNewsScope(scope){ newsScope = scope; newsFilter = 'سب'; go('news'); }
 let newsFilter = 'سب';
 function setNewsFilter(c){ newsFilter = c; renderNewsPage(); }
 function renderNewsPage(){
-  const cats = ['سب', 'سکالرشپس', 'کانفرنسز', 'داخلے و ایونٹس', 'AI و تحقیق', 'کورسز و تربیتی مواقع'];
+  const ALL_CATS = ['سب', 'سکالرشپس', 'کانفرنسز', 'داخلے و ایونٹس', 'AI و تحقیق', 'کورسز و تربیتی مواقع'];
+  const cats = newsScope === 'conf'
+    ? ALL_CATS.filter(c => c === 'سب' || NEWS_CONF_CATS.indexOf(c) !== -1)
+    : newsScope === 'other'
+      ? ALL_CATS.filter(c => c === 'سب' || NEWS_CONF_CATS.indexOf(c) === -1)
+      : ALL_CATS;
+  if(cats.indexOf(newsFilter) === -1) newsFilter = 'سب';
+  const ttl = document.getElementById('news-ttl');
+  if(ttl) ttl.textContent = newsScope === 'conf' ? 'کانفرنسز و سکالرشپس' : newsScope === 'other' ? 'دیگر اہم علمی خبریں' : 'علمی خبریں';
   const f = document.getElementById('news-filters');
   if(f) f.innerHTML = cats.map(c => '<button class="chip' + (newsFilter === c ? ' on' : '') + '" onclick="setNewsFilter(\'' + c + '\')">' + c + '</button>').join('');
-  const list = allNews().filter(n => (newsFilter === 'سب' || n.cat === newsFilter) && notExpired(n));
+  const list = allNews().filter(n => newsInScope(n) && (newsFilter === 'سب' || n.cat === newsFilter) && notExpired(n));
   const el = document.getElementById('news-list');
   if(el) el.innerHTML = list.length ? list.map(newsCard).join('') : '<p class="center small">اس زمرے میں ابھی کوئی خبر نہیں۔</p>';
 }
@@ -7873,7 +7894,7 @@ function counselRoute(t){
     cTopic('علمی خبریں');
     cBot('تازہ اسکالرشپس، کانفرنسز و مواقع «علمی خبریں» میں ہر رات تازہ ہوتے ہیں — وہیں لے چلتا ہوں:');
     cActs([
-      { label: '🌐 خبریں دکھائیں', say: 'خبریں دکھائیں', fn(){ go('news'); } },
+      { label: '🌐 خبریں دکھائیں', say: 'خبریں دکھائیں', fn(){ goNewsScope('all'); } },
       { label: '🧭 واپس مینو', say: 'واپس مینو', fn: counselMenu }
     ]);
     return;
