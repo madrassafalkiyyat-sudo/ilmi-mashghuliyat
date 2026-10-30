@@ -43,6 +43,17 @@
     return '<a href="' + esc(u.trim()) + '" target="_blank" rel="noopener" ' +
       'style="color:var(--c-primary-700);font-weight:bold">' + esc(label) + '</a>';
   }
+  /* فارم ساتھی (Part F): اپلائی/فارم نوعیت کے لنک سیدھے باہر جانے کی بجائے
+     ایپ کے اندر Muse رہنما میں کھلتے ہیں — مرکزی اسکرپٹ کا ffRegister/ffGo
+     استعمال ہوتا ہے؛ دستیاب نہ ہو تو پرانا براہ راست لنک ہی رہتا ہے۔ */
+  function ffAnchor(opts, label, style, cls) {
+    if (!isUrl(opts.url)) return '';
+    if (typeof window !== 'undefined' && window.ffRegister) {
+      var k = window.ffRegister(opts);
+      return '<a class="' + (cls || 'btn') + '" style="' + (style || '') + '" href="#" onclick="ffGo(\'' + k + '\');return false">' + label + '</a>';
+    }
+    return '<a class="' + (cls || 'btn') + '" style="' + (style || '') + '" href="' + esc(opts.url) + '" target="_blank" rel="noopener">' + label + '</a>';
+  }
   function val(v) {
     return (v && String(v).trim()) ? esc(v) : '';
   }
@@ -200,7 +211,7 @@
       html += row('داخلہ تاریخ', val(u.admissionDates));
       html += row('انٹری ٹیسٹ زبان', val(u.testLanguage));
       html += row('انٹری ٹیسٹ نوع', val(u.testType));
-      html += row('ٹیسٹ معلومات / مواد', link(u.testLink ? String(u.testLink).trim().replace(/ /g, '%20') : '', u.testLinkLabel || 'ٹیسٹ معلومات / مواد'));
+      html += row('ٹیسٹ معلومات / مواد', u.testLink ? ffAnchor({ title: g.name + ' — انٹری ٹیسٹ', url: String(u.testLink).trim().replace(/ /g, '%20'), sourceLabel: 'انٹری ٹیسٹ' }, '📝 ' + esc(u.testLinkLabel || 'ٹیسٹ معلومات / مواد'), 'color:var(--c-primary-700);font-weight:bold', '') : '');
       var pl = row('شعبہ کا صفحہ', link(u.deptLink, 'شعبہ کا صفحہ')) +
         row('فیس نوٹیفیکیشن', link(u.feeLink, 'فیس نوٹیفیکیشن'));
       if (pl) html += '<div style="margin-top:6px">' + pl + '</div>';
@@ -250,7 +261,7 @@
       '<p style="margin:0 0 4px;font-weight:bold">📝 اپلائی کریں</p>' +
       '<p class="small" style="margin:0 0 10px">' + esc(applyNote) + '</p>';
     if (isUrl(applyUrl)) {
-      html += '<a class="btn goldb" style="display:block;text-align:center;text-decoration:none;padding:12px" href="' + esc(applyUrl.trim()) + '" target="_blank" rel="noopener">ایڈمیشن فارم کھولیں</a>';
+      html += ffAnchor({ title: g.name + ' — ایڈمیشن فارم', url: applyUrl.trim(), sourceLabel: 'یونیورسٹی داخلہ جات' }, '📝 Muse کے ساتھ ایڈمیشن فارم بھریں', 'display:block;text-align:center;text-decoration:none;padding:12px', 'btn goldb');
     }
     html += '<div style="margin-top:12px;border-top:1px dashed var(--c-gold-500);padding-top:10px">' +
       '<p style="margin:0 0 6px"><b>اپلائی میں مدد چاہیے؟</b></p>';
@@ -313,7 +324,7 @@
       '<p class="small" style="margin:4px 0">' + catLabel(it.cat) + ' • ' + esc(it.org || '') +
       (it.deadlineText ? ' • ' + esc(it.deadlineText) : '') + '</p>';
     if (it.details) body += '<p class="small" style="margin:4px 0">' + esc(it.details) + '</p>';
-    if (isUrl(it.link)) body += '<a class="btn" style="display:inline-block;text-align:center;text-decoration:none;margin-top:6px;padding:8px 16px" href="' + esc(it.link.trim()) + '" target="_blank" rel="noopener">سرکاری صفحہ کھولیں</a>';
+    if (isUrl(it.link)) body += ffAnchor({ title: it.title, url: it.link.trim(), sourceLabel: 'داخلہ جات — ' + catLabel(it.cat) }, '📝 Muse کے ساتھ کھولیں', 'display:inline-block;text-align:center;text-decoration:none;margin-top:6px;padding:8px 16px');
     var h = '<div style="border:1px solid var(--c-border);border-radius:12px;padding:12px;margin:8px 0;background:var(--c-card)">';
     // سرکاری پوسٹر (Part A-addendum, Mufti 2026-10-31): مرکزی خبر کی تفصیل
     // والا ہی اصول و لے آؤٹ — .nd-flex: فون پر پوسٹر اوپر، ڈیسک ٹاپ پر متن کے
@@ -507,7 +518,7 @@
         return '<div style="border:1px solid var(--c-border);border-radius:12px;padding:10px;margin:8px 0;background:var(--c-card)">' +
           '<p style="margin:0;font-weight:bold">' + esc(u.name) + (u.level ? ' — ' + esc(u.level) : '') + '</p>' +
           '<p class="small" style="margin:4px 0">' + [u.testLanguage ? 'زبان: ' + esc(u.testLanguage) : '', u.testType ? 'نوع: ' + esc(u.testType) : ''].filter(Boolean).join(' • ') + '</p>' +
-          (u.testLink ? '<p style="margin:6px 0 0"><a style="display:inline-block;padding:6px 14px;border-radius:20px;background:var(--c-gold-100);border:1px solid var(--c-gold-500);font-weight:bold;color:var(--c-primary-700);text-decoration:none" href="' + esc(String(u.testLink).trim().replace(/ /g, '%20')) + '" target="_blank" rel="noopener">📝 ' + esc(u.testLinkLabel || 'ٹیسٹ معلومات / مواد') + ' ←</a></p>' : '') + '</div>';
+          (u.testLink ? '<p style="margin:6px 0 0">' + ffAnchor({ title: u.name + ' — انٹری ٹیسٹ', url: String(u.testLink).trim().replace(/ /g, '%20'), sourceLabel: 'انٹری ٹیسٹ' }, '📝 ' + esc(u.testLinkLabel || 'ٹیسٹ معلومات / مواد') + ' ←', 'display:inline-block;padding:6px 14px;border-radius:20px;background:var(--c-gold-100);border:1px solid var(--c-gold-500);font-weight:bold;color:var(--c-primary-700);text-decoration:none', '') + '</p>' : '') + '</div>';
       }).join('') : '<p class="small">ابھی کوئی انٹری ٹیسٹ معلومات درج نہیں۔</p>');
   }
 

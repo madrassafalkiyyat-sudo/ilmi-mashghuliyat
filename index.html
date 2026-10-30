@@ -531,6 +531,8 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <p class="center small" id="adm-hub-intro" style="margin:6px 0">ملکی و غیر ملکی یونیورسٹیز، سکالرشپس، ملازمتیں اور داخلہ کیلنڈر — سب ایک جگہ۔</p>
   <div id="adm-strip" style="margin:8px 0;padding:8px 10px;border:1px solid var(--c-gold-500);border-radius:12px;background:var(--c-gold-100)"></div>
   <div id="adm-sections" style="margin:10px 0"></div>
+  <div style="margin:8px 0"><button type="button" onclick="openHelp('formfill')" style="display:inline-block;padding:6px 16px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;line-height:1.6">💬 مدد چاہیے؟</button></div>
+  <div id="ff-reminders-adm"></div>
   <div id="adm-sec-unis">
     <button class="btn" style="margin-bottom:10px" onclick="admSection(null)">→ ہب پر واپس</button>
     <div style="margin:0 0 8px"><button type="button" onclick="openHelp('general')" style="display:inline-block;padding:6px 16px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;line-height:1.6">💬 مدد چاہیے؟</button></div>
@@ -653,6 +655,21 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
     <p class="small" id="help-chat-err" style="color:var(--c-error);margin:4px 0"></p>
   </div>
   <div id="help-mod-form"></div>
+  <div id="help-mod-formfill" style="display:none">
+    <p style="margin:8px 0"><b>📝 فارم بھریں</b></p>
+    <p class="small" style="margin:0 0 6px">کسی بھی داخلہ / اسکالرشپ / کانفرنس فارم کا لنک دیں — Muse اس کے خانے پڑھ کر آپ کے اپنے پروفائل سے جوابات تیار کر دے گا، اور پھر قدم بہ قدم ساتھ رہ کر فارم مکمل کرائے گا۔ لنک نہ ہو تو فارم کا اسکرین شاٹ لگا دیں۔</p>
+    <label>فارم کا لنک</label>
+    <input id="ff-link" type="url" dir="ltr" style="text-align:left" placeholder="https://…">
+    <label>یا فارم کا اسکرین شاٹ</label>
+    <div id="ff-shot-chip" style="display:none;margin:4px 0"></div>
+    <input type="file" id="ff-shot" accept="image/*" style="display:none" onchange="ffHelpFile(this)">
+    <div style="margin:6px 0"><button type="button" onclick="document.getElementById('ff-shot').click()" style="padding:6px 14px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:15px;font-weight:bold;cursor:pointer">🖼️ اسکرین شاٹ لگائیں</button></div>
+    <label>اضافی نوٹ (اختیاری) — جو بات آپ کے پروفائل میں نہیں، یہاں لکھ دیں</label>
+    <textarea id="ff-note" rows="2" placeholder="مثلاً والد کا نام، موجودہ پتہ…"></textarea>
+    <button type="button" class="btn" onclick="ffHelpExtract()">خانے نکالیں اور جوابات تیار کریں</button>
+    <p class="small" id="ff-err" style="color:var(--c-error);margin:4px 0"></p>
+    <div id="ff-result"></div>
+  </div>
   <div id="help-mod-data" style="display:none">
     <p style="margin:8px 0"><b>🎒 میرا ڈیٹا پیک</b></p>
     <p class="small" style="margin:0 0 6px">آپ کی اپنی معلومات — کسی بھی فارم میں جہاں درکار ہو، «کاپی» دبا کر وہیں لگا دیں۔ یہ صرف آپ کا اپنا ڈیٹا ہے۔</p>
@@ -667,6 +684,44 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   </div>
   <div id="help-mod-link" style="display:none"></div>
   <div id="help-mod-tools" style="display:none"></div>
+</section>
+
+<!-- ============ فارم ساتھی (Part F) ============ -->
+<section class="view" id="view-formfill">
+  <div class="topbar"><button onclick="ffBack()">→ واپس</button><div class="ttl">📝 فارم رہنما</div><span style="width:52px"></span></div>
+  <div id="ff-head"></div>
+  <div style="border:1px solid var(--c-border);border-radius:999px;height:12px;overflow:hidden;background:var(--c-card);margin:8px 0 2px"><div id="ff-progress-bar" style="height:100%;width:0%;background:var(--c-gold-500);transition:width .3s"></div></div>
+  <p class="small center" id="ff-progress-text" style="margin:0 0 6px"></p>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin:8px 0">
+    <button type="button" onclick="ffPane('form')" style="padding:6px 14px;border-radius:999px;border:1px solid var(--c-primary-700);background:var(--c-primary-700);color:#fff;font-family:inherit;font-size:15px;font-weight:bold;cursor:pointer">فارم</button>
+    <button type="button" onclick="ffPane('guide')" style="padding:6px 14px;border-radius:999px;border:1px solid var(--c-primary-700);background:transparent;color:var(--c-primary-700);font-family:inherit;font-size:15px;font-weight:bold;cursor:pointer">Muse رہنما</button>
+    <button type="button" onclick="ffShowLoginCard()" style="padding:6px 14px;border-radius:999px;border:1px solid var(--c-border);background:var(--c-card);color:var(--c-ink);font-family:inherit;font-size:15px;cursor:pointer">یہ فارم پہلے لاگ ان مانگ رہا ہے؟</button>
+  </div>
+  <div id="ff-pane-form">
+    <div id="ff-frame-wrap"></div>
+    <div id="ff-frame-fallback" style="display:none">
+      <div class="card" style="border-color:var(--c-gold-500);background:var(--c-gold-100)">
+        <p style="margin:0 0 6px"><b>یہ ویب سائٹ ایپ کے اندر کھلنے کی اجازت نہیں دیتی</b></p>
+        <p class="small" style="margin:0 0 8px">کوئی بات نہیں — فارم الگ ونڈو میں کھولیں، Muse رہنما یہیں ساتھ رہے گا۔ یا فارم کا اسکرین شاٹ دیں تو خانے یہیں نکال دیے جائیں گے۔</p>
+        <button type="button" class="btn" onclick="ffExternalOpen()">فارم الگ ونڈو میں کھولیں ↗</button>
+        <input type="file" id="ff-pane-shot" accept="image/*" style="display:none" onchange="ffPaneShot(this)">
+        <button type="button" class="btn goldb" onclick="document.getElementById('ff-pane-shot').click()">🖼️ فارم کا اسکرین شاٹ دیں</button>
+      </div>
+    </div>
+  </div>
+  <div id="ff-pane-guide">
+    <div id="ff-login-card" style="display:none">
+      <div class="card" style="border-color:var(--c-gold-500);background:var(--c-surface)">
+        <p style="margin:0 0 6px"><b>🔐 لاگ ان کا مرحلہ</b></p>
+        <p style="margin:0 0 8px">یہ مرحلہ آپ کا اپنا ہے — یہاں خود اپنا جی میل اور پاس ورڈ لگائیں۔ یہ معلومات Muse کو مت دیں، براہِ راست اسی ویب سائٹ کے خانوں میں لکھیں۔</p>
+        <button type="button" class="btn" onclick="ffLoginDone()">لاگ ان ہو گیا — آگے بڑھیں</button>
+      </div>
+    </div>
+    <div id="ff-ask"></div>
+    <div id="ff-fields"></div>
+    <div id="ff-actions" style="margin:10px 0"></div>
+  </div>
+  <p class="small" style="margin:10px 0">یہ جوابات آپ کے اپنے پروفائل سے تیار ہوئے ہیں — فارم میں لگانے سے پہلے ایک نظر ضرور دیکھ لیں۔ جمع کرانا آپ خود کریں گے۔</p>
 </section>
 
 <section class="view" id="view-abstract">
@@ -1094,6 +1149,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div id="home-badge" class="center" style="margin-bottom:6px"></div>
   <div id="home-incomplete"></div>
   <div id="home-announce"></div>
+  <div id="ff-reminders-home"></div>
   <div class="groups-grid" style="margin-top:2px">
     <button class="gcard" onclick="go('hub-opp')"><span class="ic">🌟</span><span class="nm">مواقع و پروگرامز</span></button>
     <button class="gcard" onclick="go('hub-research')"><span class="ic">🔬</span><span class="nm">تحقیقی معاونت</span></button>
@@ -2961,6 +3017,7 @@ function go(id){
       const v = (le && le.value.trim()) || LS2.get('lastEmail', ''); if(st && v && !st.value) st.value = v; }catch(e){}
   }
   if(id === 'home') renderHome();
+  if(id === 'home' || id === 'admissions') renderFormReminders();
   if(id === 'groupgate') renderGroupGate();
   if(id === 'vision') renderVision();
   if(id === 'register'){ const rl = document.getElementById('reg-login-row'); if(rl) rl.style.display = window.__postVision ? 'none' : '';
@@ -4618,7 +4675,9 @@ function openNews(id){
       : '<div class="card">' + newsPosterHtml(n) + headInner + '</div>') +
     guideHtml +
     (n.applyUrl
-      ? '<a class="btn" style="font-size:1.08em;padding:13px 12px" target="_blank" rel="noopener" href="' + esc(n.applyUrl) + '">' + ctaLabel + '</a>'
+      ? (isAI
+          ? '<a class="btn" style="font-size:1.08em;padding:13px 12px" target="_blank" rel="noopener" href="' + esc(n.applyUrl) + '">' + ctaLabel + '</a>'
+          : '<a class="btn" style="font-size:1.08em;padding:13px 12px" href="#" onclick="ffGo(\'' + ffRegister({ title: n.title, url: n.applyUrl, sourceLabel: n.cat }) + '\');return false">📝 Muse کے ساتھ فارم بھریں</a>')
       : '<button class="btn" style="opacity:.55" onclick="alert(\'' + ctaAlert + '\')">' + ctaLabel + '</button>') +
     (n.tutUrl
       ? '<a class="btn goldb" target="_blank" rel="noopener" href="' + esc(n.tutUrl) + '">🎥 طریقہ سیکھیں — ٹیوٹوریل دیکھیں</a>'
@@ -8707,7 +8766,7 @@ function openJob(id){
     (applied
       ? '<p><span class="tag gold" style="font-size:17px">✓ آپ کی درخواست درج ہو چکی ہے</span></p>'
       : (j.applyUrl
-          ? '<a class="btn" target="_blank" rel="noopener" href="' + esc(j.applyUrl) + '" onclick="markJobApplied(\'' + j.id + '\')">✅ ابھی اپلائی کریں — آفیشل لنک</a>'
+          ? '<a class="btn" href="#" onclick="markJobApplied(\'' + j.id + '\');ffGo(\'' + ffRegister({ title: j.title, url: j.applyUrl, sourceLabel: 'جاب — ' + (j.org || '') }) + '\');return false">📝 Muse کے ساتھ اپلائی کریں</a>'
           : '<button class="btn" onclick="markJobApplied(\'' + j.id + '\')">✅ درخواست درج کریں (نمونہ جاب — اصل لنک انتظامیہ شامل کرے گی)</button>')) +
     '<p class="small">درخواست کی بنیاد آپ کی پروفائل مہارتیں، LinkedIn اور CV ہیں — انہیں ہمیشہ تازہ و درست رکھیں۔</p>';
   go('job-detail');
@@ -13256,6 +13315,429 @@ function routeGuest(){
   });
 })();
 
+/* ================= فارم ساتھی (Part F — مفتی، 2026-10-31) =================
+   ہر اپلائی/فارم لنک ایپ کے اندر Muse کی رہنمائی میں کھلتا ہے: فارم کے
+   خانے طالب علم کے اپنے پروفائل سے تیار، جو خانہ خالی رہ جائے وہ قدم بہ
+   قدم پوچھ کر بھرا جاتا ہے، اور سیشن اسی ڈیوائس پر محفوظ رہتا ہے تاکہ
+   طالب علم جہاں چھوڑے وہیں سے جاری رکھ سکے۔ سخت حد: بیرونی سائٹ کا
+   پاس ورڈ Muse کبھی نہیں لیتا/رکھتا/بھیجتا — لاگ ان مرحلے پر کارڈ
+   طالب علم کو یہی بتاتا ہے؛ حتمی جمع کرانا ہمیشہ طالب علم خود کرتا ہے۔ */
+var FF_SESSIONS_KEY = 'formSessions';
+var FF_CUR = null;
+var FF_RETURN = 'home';
+var FF_LINKS = {};
+window.ffRegister = function(opts){
+  var k = 'k' + Math.random().toString(36).slice(2, 10);
+  FF_LINKS[k] = opts;
+  return k;
+};
+window.ffGo = function(k){
+  var o = FF_LINKS[k];
+  if(o) openFormCompanion(o);
+};
+function ffStore(){
+  try{ return LS2.get(FF_SESSIONS_KEY, {}) || {}; }catch(e){ return {}; }
+}
+function ffSave(sess){
+  sess.updatedAt = Date.now();
+  var all = ffStore();
+  all[sess.url] = sess;
+  try{ LS2.set(FF_SESSIONS_KEY, all); }catch(e){}
+  renderFormReminders();
+}
+function ffDelete(url){
+  var all = ffStore();
+  delete all[url];
+  try{ LS2.set(FF_SESSIONS_KEY, all); }catch(e){}
+  renderFormReminders();
+}
+function ffNormFields(fields){
+  return (fields || []).map(function(f){
+    return {
+      label: f.label, kind: f.kind || 'text',
+      answer: (f.answer == null ? null : String(f.answer)),
+      source: f.source || null,
+      state: (f.answer != null) ? 'ready' : 'needed'
+    };
+  });
+}
+function ffProgress(sess){
+  var fs = sess.fields || [];
+  var ready = 0;
+  fs.forEach(function(f){ if(f.state === 'ready') ready++; });
+  return { total: fs.length, ready: ready };
+}
+function ffNextAsk(sess){
+  var fs = sess.fields || [];
+  for(var i = 0; i < fs.length; i++){ if(fs[i].state !== 'ready') return i; }
+  return -1;
+}
+function ffIncompleteSessions(){
+  var all = ffStore();
+  return Object.keys(all).map(function(k){ return all[k]; }).filter(function(s){ return s && !s.done; });
+}
+function renderFormReminders(){
+  var list = ffIncompleteSessions();
+  var html = '';
+  list.forEach(function(s){
+    var pr = ffProgress(s);
+    var label = s.fields ? ('تیار خانے ' + urDigits(pr.ready) + ' از ' + urDigits(pr.total)) : 'رہنمائی جاری ہے';
+    html += '<div class="card" style="border-color:var(--c-gold-500);background:var(--c-gold-100);cursor:pointer;margin:8px 0" onclick="ffResume(\'' + encodeURIComponent(s.url) + '\')"><p style="margin:0"><b>✍️ جاری فارم:</b> ' + esc(s.title || 'فارم') + '</p><p class="small" style="margin:2px 0 0">' + label + ' — جہاں چھوڑا تھا وہیں سے جاری رکھیں ←</p></div>';
+  });
+  ['ff-reminders-home', 'ff-reminders-adm'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.innerHTML = html;
+  });
+}
+window.ffResume = function(enc){
+  var sess = ffStore()[decodeURIComponent(enc)];
+  if(sess) openFormCompanion({ url: sess.url, title: sess.title, sourceLabel: sess.source });
+};
+window.openFormCompanion = function(opts){
+  opts = opts || {};
+  var url = String(opts.url || '').trim();
+  if(!url) return;
+  if(typeof CURRENT_VIEW !== 'undefined' && CURRENT_VIEW && CURRENT_VIEW !== 'formfill') FF_RETURN = CURRENT_VIEW;
+  var all = ffStore();
+  var sess = all[url];
+  if(!sess){
+    sess = { url: url, title: opts.title || 'فارم', source: opts.sourceLabel || '', fields: null, done: false, loginCardDone: false, createdAt: Date.now(), updatedAt: Date.now() };
+    all[url] = sess;
+    try{ LS2.set(FF_SESSIONS_KEY, all); }catch(e){}
+  }
+  if(opts.fields && (!sess.fields || !sess.fields.length)){
+    sess.fields = ffNormFields(opts.fields);
+    ffSave(sess);
+  }
+  FF_CUR = sess;
+  go('formfill');
+  ffRender();
+  if(!sess.fields) ffExtract(sess, {});
+};
+function ffBack(){ go(FF_RETURN || 'home'); }
+function ffExtract(sess, opts){
+  var body = {};
+  if(opts && opts.imageBase64) body.imageBase64 = opts.imageBase64;
+  else body.link = sess.url;
+  var ask = document.getElementById('ff-ask');
+  if(ask) ask.innerHTML = '<div class="card"><p style="margin:0">فارم کے خانے پڑھے جا رہے ہیں — چند لمحے انتظار کریں…</p></div>';
+  absApi('/api/help/formfill', body).then(function(r){
+    if(!r.data || !r.data.ok){
+      var msg = (r.data && r.data.error && r.data.error.message) || 'خانے حاصل نہیں ہو سکے — چند لمحے بعد دوبارہ کوشش کریں';
+      if(r.status === 401) msg = 'رہنمائی کے لیے پہلے علمی مشغولیت میں لاگ ان کریں — پھر یہ فارم آپ کے اپنے پروفائل سے خود تیار ہو جائے گا۔';
+      sess.fields = [];
+      sess.extractError = msg;
+      ffSave(sess); ffRender();
+      return;
+    }
+    sess.fields = ffNormFields(r.data.fields);
+    if(r.data.formTitle) sess.formTitle = r.data.formTitle;
+    delete sess.extractError;
+    ffSave(sess); ffRender();
+  }).catch(function(){
+    sess.fields = [];
+    sess.extractError = 'نیٹ ورک کی خرابی — انٹرنیٹ جانچ کر دوبارہ کوشش کریں';
+    ffSave(sess); ffRender();
+  });
+}
+function ffRender(){
+  var sess = FF_CUR;
+  if(!sess) return;
+  var head = document.getElementById('ff-head');
+  if(head){
+    head.innerHTML = '<h1 style="margin-bottom:2px">📝 ' + esc(sess.title || 'فارم') + '</h1>' +
+      (sess.source ? '<p class="center small" style="margin:0">ماخذ: ' + esc(sess.source) + '</p>' : '') +
+      '<p class="center" style="margin:6px 0"><a href="' + esc(sess.url) + '" target="_blank" rel="noopener" style="color:var(--c-primary-700);font-weight:bold">براہ راست لنک کھولیں ↗</a></p>';
+  }
+  var pr = ffProgress(sess);
+  var ptxt = document.getElementById('ff-progress-text');
+  var pbar = document.getElementById('ff-progress-bar');
+  if(ptxt) ptxt.textContent = sess.fields ? ('تیار خانے ' + urDigits(pr.ready) + ' از ' + urDigits(pr.total)) : '';
+  if(pbar) pbar.style.width = (pr.total ? Math.round(pr.ready * 100 / pr.total) : 0) + '%';
+  var lc = document.getElementById('ff-login-card');
+  if(lc && sess.loginCardDone) lc.style.display = 'none';
+  ffRenderFrame(sess);
+  ffRenderGuide(sess);
+}
+var FF_FRAME_TIMER = null;
+function ffRenderFrame(sess){
+  var wrap = document.getElementById('ff-frame-wrap');
+  var fb = document.getElementById('ff-frame-fallback');
+  if(!wrap) return;
+  if(fb) fb.style.display = 'none';
+  wrap.style.display = '';
+  wrap.innerHTML = '<iframe id="ff-frame" src="' + esc(sess.url) + '" style="width:100%;height:520px;border:1px solid var(--c-border);border-radius:12px;background:#fff" title="فارم"></iframe>';
+  var fr = document.getElementById('ff-frame');
+  if(FF_FRAME_TIMER) clearTimeout(FF_FRAME_TIMER);
+  FF_FRAME_TIMER = setTimeout(function(){
+    var f2 = document.getElementById('ff-frame');
+    if(f2 && !f2.dataset.loaded) ffFrameFailed();
+  }, 8000);
+  if(fr) fr.onload = function(){ fr.dataset.loaded = '1'; if(FF_FRAME_TIMER) clearTimeout(FF_FRAME_TIMER); };
+}
+window.ffFrameFailed = function(){
+  var wrap = document.getElementById('ff-frame-wrap');
+  var fb = document.getElementById('ff-frame-fallback');
+  if(wrap) wrap.style.display = 'none';
+  if(fb) fb.style.display = '';
+  /* فارم اندر نہ کھل سکے تو طالب علم اکثر بیرونی ونڈو سے آگے بڑھے گا —
+     وہاں لاگ ان مرحلہ آ سکتا ہے، اس کی رہنمائی سامنے رکھ دیں */
+  ffShowLoginCard();
+};
+window.ffExternalOpen = function(){
+  var sess = FF_CUR;
+  if(!sess) return;
+  sess.awaitLogin = true;
+  ffSave(sess);
+  window.open(sess.url, '_blank', 'noopener');
+};
+window.ffPaneShot = function(inp){
+  var f = inp && inp.files && inp.files[0];
+  if(!f || !FF_CUR) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    ffExtract(FF_CUR, { imageBase64: String(rd.result) });
+  };
+  rd.readAsDataURL(f);
+  inp.value = '';
+};
+window.ffPane = function(which){
+  var pf = document.getElementById('ff-pane-form');
+  var pg = document.getElementById('ff-pane-guide');
+  if(!pf || !pg) return;
+  pf.style.display = (which === 'form') ? '' : 'none';
+  pg.style.display = (which === 'guide') ? '' : 'none';
+};
+/* لاگ ان مرحلے کا کارڈ: یہ واحد «کریڈینشل» تعامل ہے — اور یہ طالب علم کو
+   Muse سے دور، سیدھا ویب سائٹ کے اپنے خانوں کی طرف بھیجتا ہے */
+window.ffShowLoginCard = function(){
+  var lc = document.getElementById('ff-login-card');
+  if(lc) lc.style.display = '';
+};
+window.ffLoginDone = function(){
+  var sess = FF_CUR;
+  if(sess){ sess.loginCardDone = true; sess.awaitLogin = false; ffSave(sess); }
+  var lc = document.getElementById('ff-login-card');
+  if(lc) lc.style.display = 'none';
+  if(sess) ffRenderGuide(sess); /* پوچھنے کا سلسلہ وہیں سے آگے بڑھے گا جہاں رکا تھا */
+};
+document.addEventListener('visibilitychange', function(){
+  if(document.hidden) return;
+  var sess = FF_CUR;
+  if(sess && sess.awaitLogin && !sess.loginCardDone) ffShowLoginCard();
+});
+function ffQuestionFor(f){
+  var l = String(f.label || '');
+  if(f.kind === 'file') return 'دستاویز اپ لوڈ کا خانہ «' + l + '» — مطلوبہ دستاویز/تصویر تیار رکھیں اور فارم میں وہیں اپ لوڈ کریں۔ تیار ہو تو «تیار ہے» دبا دیں۔';
+  if(/cnic|شناختی/i.test(l)) return 'خانہ «' + l + '» کے لیے اپنا شناختی کارڈ نمبر لکھیں:';
+  if(/father|والد/i.test(l)) return 'خانہ «' + l + '» کے لیے والد کا نام لکھیں:';
+  if(f.kind === 'email' || /e-?mail|ای میل/i.test(l)) return 'خانہ «' + l + '» کے لیے اپنا ای میل ایڈریس لکھیں:';
+  if(f.kind === 'phone' || /mobile|phone|موبائل|رابطہ/i.test(l)) return 'خانہ «' + l + '» کے لیے اپنا موبائل / واٹس ایپ نمبر لکھیں:';
+  if(f.kind === 'date' || /تاریخ|date/i.test(l)) return 'خانہ «' + l + '» کے لیے درست تاریخ لکھیں:';
+  if(/address|پتہ/i.test(l)) return 'خانہ «' + l + '» کے لیے اپنا مکمل پتہ لکھیں:';
+  return 'خانہ «' + l + '» کے لیے مطلوبہ معلومات لکھیں:';
+}
+function ffRenderGuide(sess){
+  var ask = document.getElementById('ff-ask');
+  var list = document.getElementById('ff-fields');
+  var acts = document.getElementById('ff-actions');
+  if(!ask || !list || !acts) return;
+  if(sess.extractError){
+    ask.innerHTML = '<div class="card" style="border-color:var(--c-gold-500)"><p style="margin:0 0 6px"><b>خانے نہیں مل سکے</b></p><p class="small" style="margin:0 0 8px">' + esc(sess.extractError) + '</p><button type="button" class="btn" onclick="ffExtract(FF_CUR, {})">دوبارہ کوشش کریں</button></div>';
+    list.innerHTML = '';
+    acts.innerHTML = '';
+    return;
+  }
+  if(!sess.fields){
+    ask.innerHTML = '<div class="card"><p style="margin:0">فارم کے خانے پڑھے جا رہے ہیں…</p></div>';
+    list.innerHTML = '';
+    acts.innerHTML = '';
+    return;
+  }
+  var idx = ffNextAsk(sess);
+  if(idx === -1){
+    ask.innerHTML = '<div class="card" style="border-color:var(--c-gold-500);background:var(--c-gold-100)"><p style="margin:0"><b>🎉 تمام خانے تیار ہیں</b> — اب فارم میں یہی جوابات لگا کر جمع کرا دیں۔ جمع کرانے کے بعد نیچے «فارم جمع کرا دیا ✓» دبا دیں۔</p></div>';
+  } else {
+    var f = sess.fields[idx];
+    var inner = '<div class="card" style="border-color:var(--c-gold-500)"><p style="margin:0 0 6px"><b>ایک خانہ رہ گیا ہے</b> <span class="small">(' + urDigits(idx + 1) + ' از ' + urDigits(sess.fields.length) + ')</span></p>' +
+      '<p style="margin:0 0 8px">' + esc(ffQuestionFor(f)) + '</p>';
+    if(f.kind === 'file'){
+      inner += '<button type="button" class="btn" onclick="ffMarkReady(' + idx + ')">تیار ہے ✓</button>';
+    } else {
+      inner += '<input id="ff-ask-input" type="text" style="width:100%;padding:10px;border:1px solid var(--c-border);border-radius:10px;font-family:inherit;font-size:17px;background:var(--c-card);box-sizing:border-box" placeholder="یہاں لکھیں…">' +
+        '<button type="button" class="btn" style="margin-top:8px" onclick="ffAskSave(' + idx + ')">محفوظ کریں</button>';
+    }
+    ask.innerHTML = inner + '</div>';
+  }
+  list.innerHTML = sess.fields.map(function(f, i){
+    var chip = (f.state === 'ready')
+      ? '<span class="tag gold">تیار ✓</span>'
+      : '<span class="tag">درکار</span>';
+    var ans = f.answer
+      ? '<span style="font-weight:bold">' + esc(f.answer) + '</span> <button type="button" onclick="ffCopyText(\'' + i + '\', this)" style="padding:3px 10px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:14px;font-weight:bold;cursor:pointer">کاپی</button>'
+      : '<span class="small" style="color:var(--c-gold-700)">آپ کے پروفائل میں موجود نہیں — یہ خانہ خود بھریں</span>';
+    return '<div style="border:1px solid var(--c-border);border-radius:12px;padding:10px 12px;margin:6px 0;background:var(--c-card)"><p style="margin:0 0 4px">' + chip + ' <b>' + esc(f.label) + '</b></p><p style="margin:0">' + ans + '</p></div>';
+  }).join('');
+  var anyAns = sess.fields.some(function(f){ return !!f.answer; });
+  acts.innerHTML =
+    (anyAns ? '<button type="button" class="btn goldb" onclick="ffCopyAll(this)">📋 تمام جوابات کاپی کریں</button>' : '') +
+    '<button type="button" class="btn" onclick="ffComplete()">فارم جمع کرا دیا ✓</button>' +
+    '<button type="button" class="btn ghost" onclick="ffDiscard()">سیشن ختم کریں</button>' +
+    '<p class="small" style="margin:6px 0 0">«فارم جمع کرا دیا» آپ کی اپنی تصدیق ہے — ایپ بیرونی فارم کی جمع آوری خود جانچ نہیں سکتی۔</p>';
+}
+window.ffAskSave = function(i){
+  var sess = FF_CUR;
+  if(!sess || !sess.fields || !sess.fields[i]) return;
+  var inp = document.getElementById('ff-ask-input');
+  var v = inp ? String(inp.value || '').trim() : '';
+  if(!v){ if(inp) inp.focus(); return; }
+  sess.fields[i].answer = v;
+  sess.fields[i].source = 'typed';
+  sess.fields[i].state = 'ready';
+  ffSave(sess);
+  ffRender();
+};
+window.ffMarkReady = function(i){
+  var sess = FF_CUR;
+  if(!sess || !sess.fields || !sess.fields[i]) return;
+  sess.fields[i].state = 'ready';
+  ffSave(sess);
+  ffRender();
+};
+window.ffCopyText = function(i, btn){
+  var sess = FF_CUR;
+  if(!sess || !sess.fields || !sess.fields[i] || !sess.fields[i].answer) return;
+  var v = String(sess.fields[i].answer);
+  var done = function(){ if(btn){ var old = btn.textContent; btn.textContent = '✓ کاپی ہو گیا'; setTimeout(function(){ btn.textContent = old; }, 1600); } };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(v).then(done).catch(function(){ helpCopyFallback(v); done(); });
+  } else { helpCopyFallback(v); done(); }
+};
+window.ffCopyAll = function(btn){
+  var sess = FF_CUR;
+  if(!sess || !sess.fields) return;
+  var lines = sess.fields.filter(function(f){ return !!f.answer; }).map(function(f){ return f.label + ': ' + f.answer; });
+  if(!lines.length) return;
+  var v = lines.join('\n');
+  var done = function(){ if(btn){ var old = btn.textContent; btn.textContent = '✓ کاپی ہو گیا'; setTimeout(function(){ btn.textContent = old; }, 1600); } };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(v).then(done).catch(function(){ helpCopyFallback(v); done(); });
+  } else { helpCopyFallback(v); done(); }
+};
+window.ffComplete = function(){
+  var sess = FF_CUR;
+  if(!sess) return;
+  sess.done = true;
+  ffSave(sess);
+  FF_CUR = null;
+  alert('مبارک ہو! آپ کی اپنی تصدیق پر یہ فارم مکمل نشان زد ہو گیا ہے۔');
+  go(FF_RETURN || 'home');
+};
+window.ffDiscard = function(){
+  var sess = FF_CUR;
+  if(!sess) return;
+  if(!confirm('یہ فارم سیشن ختم کر دیں؟ تیار شدہ جوابات حذف ہو جائیں گے۔')) return;
+  ffDelete(sess.url);
+  FF_CUR = null;
+  go(FF_RETURN || 'home');
+};
+/* ---- مدد مرکز کا «فارم بھریں» ٹیب ---- */
+var FF_HELP_FILE = null;
+var FF_HELP_ROWS = [];
+var FF_HELP_TITLE = '';
+window.ffHelpFile = function(inp){
+  var f = inp && inp.files && inp.files[0];
+  var chip = document.getElementById('ff-shot-chip');
+  if(!f){ FF_HELP_FILE = null; if(chip) chip.style.display = 'none'; return; }
+  var rd = new FileReader();
+  rd.onload = function(){
+    FF_HELP_FILE = { name: f.name, dataUrl: String(rd.result) };
+    if(chip){
+      chip.style.display = 'block';
+      chip.innerHTML = '<span style="display:inline-block;padding:5px 12px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);font-size:14px">🖼️ ' + helpEsc(f.name) + ' <a href="#" onclick="ffHelpClearFile();return false" style="color:var(--c-error);font-weight:bold;text-decoration:none">✕ ہٹائیں</a></span>';
+    }
+  };
+  rd.readAsDataURL(f);
+};
+window.ffHelpClearFile = function(){
+  FF_HELP_FILE = null;
+  var inp = document.getElementById('ff-shot');
+  if(inp) inp.value = '';
+  var chip = document.getElementById('ff-shot-chip');
+  if(chip) chip.style.display = 'none';
+};
+function ffHelpErr(msg){
+  var e = document.getElementById('ff-err');
+  if(e) e.textContent = msg || '';
+}
+window.ffHelpExtract = function(){
+  ffHelpErr('');
+  var linkEl = document.getElementById('ff-link');
+  var noteEl = document.getElementById('ff-note');
+  var link = linkEl ? String(linkEl.value || '').trim() : '';
+  var note = noteEl ? String(noteEl.value || '').trim() : '';
+  if(!link && !FF_HELP_FILE){ ffHelpErr('فارم کا لنک لکھیں یا اس کا اسکرین شاٹ لگائیں'); return; }
+  var box = document.getElementById('ff-result');
+  if(box) box.innerHTML = '<p class="small" style="margin:8px 0">جواب آ رہا ہے…</p>';
+  var body = {};
+  if(note) body.note = note;
+  if(link) body.link = link; else body.imageBase64 = FF_HELP_FILE.dataUrl;
+  absApi('/api/help/formfill', body).then(function(r){
+    if(!r.data || !r.data.ok){
+      if(box) box.innerHTML = '';
+      ffHelpErr((r.data && r.data.error && r.data.error.message) || 'جواب حاصل نہیں ہو سکا — چند لمحے بعد دوبارہ کوشش کریں');
+      FF_HELP_ROWS = [];
+      return;
+    }
+    FF_HELP_ROWS = r.data.fields || [];
+    FF_HELP_TITLE = r.data.formTitle || '';
+    ffHelpRender(link);
+  }).catch(function(){
+    if(box) box.innerHTML = '';
+    ffHelpErr('نیٹ ورک کی خرابی — انٹرنیٹ جانچ کر دوبارہ کوشش کریں');
+  });
+};
+function ffHelpRender(link){
+  var box = document.getElementById('ff-result');
+  if(!box) return;
+  var h = '';
+  if(FF_HELP_TITLE) h += '<p style="margin:8px 0 2px"><b>' + helpEsc(FF_HELP_TITLE) + '</b></p>';
+  FF_HELP_ROWS.forEach(function(f, i){
+    var ans = f.answer
+      ? '<span style="font-weight:bold">' + helpEsc(f.answer) + '</span> <button type="button" onclick="ffHelpCopy(' + i + ', this)" style="padding:3px 10px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:14px;font-weight:bold;cursor:pointer">کاپی</button>'
+      : '<span class="small" style="color:var(--c-gold-700)">آپ کے پروفائل میں موجود نہیں — یہ خانہ خود بھریں</span>';
+    h += '<div style="border:1px solid var(--c-border);border-radius:12px;padding:10px 12px;margin:6px 0;background:var(--c-card)"><p style="margin:0 0 4px"><b>' + helpEsc(f.label) + '</b></p><p style="margin:0">' + ans + '</p></div>';
+  });
+  if(FF_HELP_ROWS.some(function(f){ return !!f.answer; })) h += '<button type="button" class="btn goldb" onclick="ffHelpCopyAll(this)">📋 تمام جوابات کاپی کریں</button>';
+  if(link) h += '<button type="button" class="btn" onclick="ffHelpCompanion()">📝 ساتھ رہ کر فارم بھریں ←</button>';
+  h += '<p class="small" style="margin:8px 0">یہ جوابات آپ کے اپنے پروفائل سے تیار ہوئے ہیں — فارم میں لگانے سے پہلے ایک نظر ضرور دیکھ لیں۔ جمع کرانا آپ خود کریں گے۔</p>';
+  box.innerHTML = h;
+}
+window.ffHelpCopy = function(i, btn){
+  var f = FF_HELP_ROWS[i];
+  if(!f || !f.answer) return;
+  var v = String(f.answer);
+  var done = function(){ if(btn){ var old = btn.textContent; btn.textContent = '✓ کاپی ہو گیا'; setTimeout(function(){ btn.textContent = old; }, 1600); } };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(v).then(done).catch(function(){ helpCopyFallback(v); done(); });
+  } else { helpCopyFallback(v); done(); }
+};
+window.ffHelpCopyAll = function(btn){
+  var lines = FF_HELP_ROWS.filter(function(f){ return !!f.answer; }).map(function(f){ return f.label + ': ' + f.answer; });
+  if(!lines.length) return;
+  var v = lines.join('\n');
+  var done = function(){ if(btn){ var old = btn.textContent; btn.textContent = '✓ کاپی ہو گیا'; setTimeout(function(){ btn.textContent = old; }, 1600); } };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(v).then(done).catch(function(){ helpCopyFallback(v); done(); });
+  } else { helpCopyFallback(v); done(); }
+};
+window.ffHelpCompanion = function(){
+  var linkEl = document.getElementById('ff-link');
+  var link = linkEl ? String(linkEl.value || '').trim() : '';
+  if(!link) return;
+  openFormCompanion({ title: FF_HELP_TITLE || 'فارم', url: link, sourceLabel: 'مدد مرکز — فارم بھریں', fields: FF_HELP_ROWS });
+};
+
 /* ================= انسٹال بینر — ویب ایپ کو ہوم اسکرین پر لگانے کی دعوت =================
    رویہ: standalone (پہلے سے انسٹال شدہ) یا APK ویب ویو میں کبھی نہیں؛ «بعد میں» پر 3 دن کی مہلت؛
    انسٹال ہو جائے تو مستقل غائب؛ ہوم و پروفائل میں مستقل چھوٹا اندراج بینر بند کرنے کے بعد بھی رہتا ہے۔ */
@@ -13445,6 +13927,7 @@ var HELP_CTX = 'general';
 var HELP_TABS = [
   ['chat', '🤖 Muse سے پوچھیں'],
   ['form', '📝 فارم رہنمائی'],
+  ['formfill', '📝 فارم بھریں'],
   ['data', '🎒 میرا ڈیٹا پیک'],
   ['test', '📝 انٹری ٹیسٹ تیاری'],
   ['link', '🔗 لنک مسئلہ؟'],
@@ -13459,7 +13942,7 @@ window.helpBtn = function(ctx){
 window.openHelp = function(ctx){
   HELP_CTX = ctx || 'general';
   if(typeof CURRENT_VIEW !== 'undefined' && CURRENT_VIEW && CURRENT_VIEW !== 'help') HELP_RETURN = CURRENT_VIEW;
-  HELP_TAB = ({ 'chat':'chat', 'adm-form':'form', 'apply':'form', 'ilmi':'form', 'general':'form', 'test':'test', 'jobs':'data', 'rafiq':'tools' })[HELP_CTX] || 'form';
+  HELP_TAB = ({ 'chat':'chat', 'adm-form':'form', 'apply':'form', 'ilmi':'form', 'general':'form', 'test':'test', 'jobs':'data', 'rafiq':'tools', 'formfill':'formfill' })[HELP_CTX] || 'form';
   helpRenderAll();
   helpSetTab(HELP_TAB);
   go('help');
@@ -14132,7 +14615,7 @@ window.helpChatSend = function(){
 <script src="admissions-data.js?v=20261029g"></script>
 <script src="foreign-data.js?v=20261029g"></script>
 <script src="admissions-news.js?v=20261031a"></script>
-<script src="admissions.js?v=20261031c"></script>
+<script src="admissions.js?v=20261031d"></script>
 <script type="module" src="api-bridge.js?v=20261031c"></script>
 </body>
 </html>
