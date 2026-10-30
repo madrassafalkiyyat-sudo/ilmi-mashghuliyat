@@ -103,6 +103,8 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--c-gold-500);bord
 .btn:active{transform:scale(.985)}
 .btn.goldb{background:var(--c-gold-fill);color:var(--c-gold-ink)}
 .btn.ghost{background:var(--c-card);color:var(--c-primary-900);border:1px solid var(--c-border)}
+.btn.xswitch{background:var(--c-card);color:var(--c-primary-900);border:1.5px solid var(--c-gold-500);box-shadow:none}
+.btn.xswitch .xsub{display:block;font-size:.78em;font-weight:normal;color:var(--c-primary-700);line-height:1.7}
 .btn.sm{width:auto;display:inline-block;font-size:17px;padding:8px 18px 12px;margin:6px 2px}
 .msg{border-radius:12px;padding:8px 14px;margin:10px 0;font-size:17px;line-height:1.9;display:none}
 .msg.err{display:block;background:var(--c-warn-bg);color:var(--c-warn);border:1px solid var(--c-border)}
@@ -538,6 +540,9 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 <section class="view" id="view-admissions">
   <div class="topbar"><button onclick="goBack('entry')">→ واپس</button><div class="ttl">یونیورسٹی داخلہ جات</div><span style="width:52px"></span></div>
   <p class="center small" id="adm-hub-intro" style="margin:6px 0">ملکی و غیر ملکی یونیورسٹیز، سکالرشپس، ملازمتیں اور داخلہ کیلنڈر — سب ایک جگہ۔</p>
+  <div id="adm-hub-switch" style="margin:8px 0">
+    <button class="btn xswitch" style="margin:0" onclick="goIlmiHome()">📚 علمی مشغولیت<span class="xsub">علمی مشغولیت کے ہوم پر واپس</span></button>
+  </div>
   <div id="adm-strip" style="margin:8px 0;padding:8px 10px;border:1px solid var(--c-gold-500);border-radius:12px;background:var(--c-gold-100)"></div>
   <div id="adm-sections" style="margin:10px 0"></div>
   <div style="margin:8px 0"><button type="button" onclick="openHelp('formfill')" style="display:inline-block;padding:6px 16px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;line-height:1.6">💬 مدد چاہیے؟</button></div>
@@ -1156,6 +1161,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <p class="center" style="margin-top:2px">السلام علیکم، <b id="home-name" style="color:var(--c-primary-900)"></b> 🌿</p>
   <p class="center small" id="home-meta" style="margin-top:-8px"></p>
   <div id="home-badge" class="center" style="margin-bottom:6px"></div>
+  <button class="btn xswitch" onclick="go('admissions')">🎓 یونیورسٹی داخلہ جات<span class="xsub">یونیورسٹیز، داخلے اور فارم رہنمائی کے لیے</span></button>
   <div id="home-incomplete"></div>
   <div id="home-announce"></div>
   <div id="ff-reminders-home"></div>
@@ -2978,6 +2984,29 @@ function goBack(fallback){
   if(NAV_STACK.length > 1){ try{ history.back(); return; }catch(e){} }
   if(typeof fallback === 'function') fallback();
   else if(fallback) go(fallback);
+}
+/* داخلہ جات ہب سے علمی مشغولیت کی طرف واپسی — سیدھا ہوم ہرگز نہیں
+   (مفتی کی تنبیہ 2026-10-31): داخلہ جات عوامی حصہ ہے، علمی مشغولیت بند
+   دروازے والا (ویژن → رجسٹریشن → انتظامی منظوری)۔ اس لیے یہ بٹن عین وہی
+   داخلی گیٹ چلاتا ہے جو بوٹ/لاگ ان کی سمت بندی (routeOnline و
+   finishStudentLogin) چلاتی ہے — کوئی متوازی راستہ نہیں:
+   ایڈمن سیشن → ایڈمن پینل؛ منظور شدہ ریکارڈ → enterApprovedSession
+   (وہی فنکشن جو لاگ ان کی کامیابی پر چلتا ہے)؛ زیرِ منظوری/مسترد ریکارڈ
+   → زیرِ منظوری اسکرین؛ کوئی سیشن/ریکارڈ نہیں → routeGuest (داخلے کا
+   انتخاب — ویژن و لاگ ان والا اصل دروازہ؛ کچھ بھی نظرانداز نہیں ہوتا،
+   داخلہ جات کی آسان رجسٹریشن علمی مشغولیت کی رکنیت نہیں بناتی) */
+function goIlmiHome(){
+  if(IS_ADMIN){ go('admin'); return; }
+  const u = currentUser();
+  if(u && u.status === 'approved'){ enterApprovedSession(u); return; }
+  if(u){
+    DB.set('session', u.email);
+    syncLocalFromRecord(u);
+    pendingEmail = u.email;
+    goRoot('pending');
+    return;
+  }
+  routeGuest();
 }
 function go(id){
   /* یوزر پریوو (مفتی، 2026-10-24): ایڈمن منظر پریوو کے اندر نہیں کھلتا — واپسی صرف اوپر والی پٹی کے بٹن سے */
@@ -14667,7 +14696,7 @@ window.helpChatSend = function(){
 <script src="admissions-data.js?v=20261029g"></script>
 <script src="foreign-data.js?v=20261029g"></script>
 <script src="admissions-news.js?v=20261031a"></script>
-<script src="admissions.js?v=20261031e"></script>
+<script src="admissions.js?v=20261031f"></script>
 <script type="module" src="api-bridge.js?v=20261031c"></script>
 </body>
 </html>
