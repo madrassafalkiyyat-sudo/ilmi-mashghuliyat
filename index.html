@@ -12251,6 +12251,72 @@ function renderAdminDashboard(){
   if(DASH_TAB === 'ilmi') renderDashIlmi();
   else renderDashAdm();
 }
+/* ادارہ سازی کورس — ڈیش بورڈ کا اجمالی بلاک (مفتی کی ہدایت 2026-10-30)۔
+   تمام اعداد اسی پول ڈیٹا سے براہِ راست بنتے ہیں جو ایڈمن کلائنٹ پہلے سے لاتا ہے
+   (courseOverview کا سرور-شمار registered، courseSessions، attendanceClaims،
+   courseAssignments، courseSubmissions) — اس لیے ڈیش بورڈ کے خودکار تازہ چکر
+   (dashPollTick) میں یہ بلاک بھی خود بخود تازہ ہوتا ہے۔ تفصیل «ادارہ سازی
+   کلاس روم» سیکشن میں رہتی ہے؛ یہاں صرف اجمالی صورت، کوئی نام نہیں۔ */
+function dashCourseBlock(){
+  let h = '<h3>🏛️ ادارہ سازی کورس — اجمالی صورتِ حال</h3>';
+  const ov = (DB.get('courseOverview', []) || [])[0];
+  const gb = (DB.get('courseGradebook', []) || [])[0];
+  const sess = (typeof courseBatchSessions === 'function') ? courseBatchSessions() : [];
+  if(!ov && !sess.length && !gb){
+    return h + '<p class="small">کورس کا ڈیٹا ابھی لوڈ نہیں ہوا — اگلے پول (60 سیکنڈ) پر خود تازہ ہو جائے گا۔</p>';
+  }
+  const now = Date.now();
+  let registered = null;
+  if(ov && typeof ov.registered === 'number') registered = ov.registered;
+  else if(gb && gb.rows) registered = gb.rows.length;
+  /* تصدیق شدہ حاضری: فی سیشن الگ طلبہ (ای میل وار — ایک طالب علم فی سیشن ایک بار) */
+  const claims = DB.get('attendanceClaims', []) || [];
+  const attBy = {};
+  claims.forEach(function(c){
+    if(!c || c.status !== 'تصدیق شدہ' || !c.sessionId || !c.email) return;
+    (attBy[c.sessionId] = attBy[c.sessionId] || {})[String(c.email).toLowerCase()] = true;
+  });
+  const asgs = DB.get('courseAssignments', []) || [];
+  const subs = DB.get('courseSubmissions', []) || [];
+  const asgById = {};
+  asgs.forEach(function(a){ if(a && a.id) asgById[a.id] = a; });
+  const released = asgs.filter(function(a){ return a && (a.releaseAtMs || 0) <= now; });
+  let held = 0, attSum = 0, nextSess = null;
+  const rows = sess.map(function(s, i){
+    const n = i + 1;
+    const st = courseWinState(s);
+    const isHeld = st.state === 'closed';
+    if(isHeld) held++;
+    if(!nextSess && st.state !== 'closed') nextSess = s;
+    const att = attBy[s.sessionId] ? Object.keys(attBy[s.sessionId]).length : 0;
+    if(isHeld) attSum += att;
+    const relN = released.filter(function(a){ return Number(a.session) === n; });
+    const ss = subs.filter(function(x){ const a = asgById[x.assignmentId]; return a && Number(a.session) === n; });
+    const graded = ss.filter(function(x){ return typeof x.marks === 'number'; });
+    const avg = graded.length ? Math.round(graded.reduce(function(t, x){ return t + x.marks; }, 0) / graded.length) : null;
+    return [
+      urDigits(n), urDigits(s.sessionDate || ''),
+      isHeld ? 'ہو چکی' : (st.state === 'open' ? 'جاری ہے' : 'آنے والی'),
+      urDigits(att),
+      (registered && st.state !== 'upcoming') ? urDigits(Math.round(att / registered * 100)) + '٪' : '—',
+      urDigits(relN.length), urDigits(ss.length), urDigits(graded.length),
+      avg === null ? '—' : urDigits(avg)
+    ];
+  });
+  const avgAtt = (held > 0 && registered) ? Math.round(attSum / (registered * held) * 100) : null;
+  h += dashChips([
+    ['کل رجسٹریشنز', registered === null ? '—' : urDigits(registered)],
+    ['ہو چکی کلاسیں', sess.length ? (urDigits(held) + ' / ' + urDigits(sess.length)) : '—'],
+    ['اگلی کلاس', nextSess ? urDigits(nextSess.sessionDate || '') : '—'],
+    ['اوسط حاضری (ہو چکی کلاسیں)', avgAtt === null ? '—' : urDigits(avgAtt) + '٪'],
+    ['کل مشقیں جاری', urDigits(released.length)],
+    ['جمع شدہ مشقیں', urDigits(subs.length)]
+  ]);
+  if(sess.length) h += dashTable(['کلاس', 'تاریخ', 'حالت', 'حاضر', 'حاضری شرح', 'جاری مشقیں', 'جمع', 'نمبر لگے', 'اوسط نمبر'], rows);
+  else h += '<p class="small">کلاسوں کی فہرست ابھی لوڈ نہیں ہوئی — اگلے پول پر خود تازہ ہو جائے گی۔</p>';
+  h += '<p><button class="btn goldb" onclick="openAdminSec(\'courseclass\')">مکمل تفصیل — ادارہ سازی کلاس روم ←</button></p>';
+  return h;
+}
 function renderDashIlmi(){
   const box = document.getElementById('dash-ilmi'); if(!box) return;
   const us = users();
@@ -12334,6 +12400,7 @@ function renderDashIlmi(){
   verified.forEach(function(c){ if(c.email) claimedEmails[c.email] = true; });
   const zeroN = approved.filter(function(u){ return u.email && !claimedEmails[u.email]; }).length;
   h += '<p>صفر تصدیق شدہ دعوے والے منظور شدہ طلبہ: <b>' + urDigits(zeroN) + '</b> — ان سے رابطہ کر کے حاضری کی پیروی کریں۔</p>';
+  h += dashCourseBlock();
   const pubs = DB.get('publications', []) || [];
   const topAuth = approved.map(function(u){
     if(!u.name) return null;
