@@ -103,8 +103,10 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--c-gold-500);bord
 .btn:active{transform:scale(.985)}
 .btn.goldb{background:var(--c-gold-fill);color:var(--c-gold-ink)}
 .btn.ghost{background:var(--c-card);color:var(--c-primary-900);border:1px solid var(--c-border)}
-.btn.xswitch{background:var(--c-card);color:var(--c-primary-900);border:1.5px solid var(--c-gold-500);box-shadow:none}
-.btn.xswitch .xsub{display:block;font-size:.78em;font-weight:normal;color:var(--c-primary-700);line-height:1.7}
+/* پورشن سوئچ — چھوٹی سادہ گولی (مفتی 2026-10-31): بڑا نمایاں بٹن ختم؛
+   اصل مقصد علمی مشغولیت ہے، اس لیے سوئچ موجود مگر غیر نمایاں رہے */
+.xsw{display:inline-block;cursor:pointer;font-family:inherit;font-size:15.5px;line-height:1.7;padding:2px 14px 5px;border-radius:999px;background:var(--c-card);color:var(--c-primary-900);border:1px solid var(--c-border);box-shadow:none}
+.xsw:active{transform:scale(.97)}
 .btn.sm{width:auto;display:inline-block;font-size:17px;padding:8px 18px 12px;margin:6px 2px}
 .msg{border-radius:12px;padding:8px 14px;margin:10px 0;font-size:17px;line-height:1.9;display:none}
 .msg.err{display:block;background:var(--c-warn-bg);color:var(--c-warn);border:1px solid var(--c-border)}
@@ -546,10 +548,10 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 <!-- ============ یونیورسٹی داخلہ جات (فیز 2: ملکی/غیر ملکی + سکالرشپس + ملازمتیں + کیلنڈر) ============ -->
 <section class="view" id="view-admissions">
   <div class="topbar"><button onclick="goBack('entry')">→ واپس</button><div class="ttl">یونیورسٹی داخلہ جات</div><span style="width:52px"></span></div>
-  <p class="center small" id="adm-hub-intro" style="margin:6px 0">ملکی و غیر ملکی یونیورسٹیز، سکالرشپس، ملازمتیں اور داخلہ کیلنڈر — سب ایک جگہ۔</p>
-  <div id="adm-hub-switch" style="margin:8px 0">
-    <button class="btn xswitch" style="margin:0" onclick="goIlmiHome()">📚 علمی مشغولیت<span class="xsub">علمی مشغولیت کے ہوم پر واپس</span></button>
+  <div id="adm-hub-switch" class="center" style="margin:8px 0 0">
+    <button type="button" class="xsw" onclick="goIlmiHome()">📚 علمی مشغولیت</button>
   </div>
+  <p class="center small" id="adm-hub-intro" style="margin:6px 0">ملکی و غیر ملکی یونیورسٹیز، سکالرشپس، ملازمتیں اور داخلہ کیلنڈر — سب ایک جگہ۔</p>
   <div id="adm-strip" style="margin:8px 0;padding:8px 10px;border:1px solid var(--c-gold-500);border-radius:12px;background:var(--c-gold-100)"></div>
   <div id="adm-sections" style="margin:10px 0"></div>
   <div style="margin:8px 0"><button type="button" onclick="openHelp('formfill')" style="display:inline-block;padding:6px 16px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;line-height:1.6">💬 مدد چاہیے؟</button></div>
@@ -1163,12 +1165,12 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 <!-- ============ ہوم ============ -->
 <section class="view" id="view-home">
   <div class="topbar"><button onclick="logout()">لاگ آؤٹ</button><div class="ttl">علمی مشغولیت</div><img src="assets/logo.png" onerror="this.onerror=null;this.src=window.__LOGO" style="width:38px;height:38px;background:var(--c-card);border-radius:8px;padding:2px" alt=""></div>
+  <div class="center" style="margin:8px 0 0"><button type="button" class="xsw" onclick="go('admissions')">🎓 یونیورسٹی داخلہ جات</button></div>
   <div class="layout-switch-slot"></div>
   <div class="center" id="home-avatar" style="margin-top:4px"></div>
   <p class="center" style="margin-top:2px">السلام علیکم، <b id="home-name" style="color:var(--c-primary-900)"></b> 🌿</p>
   <p class="center small" id="home-meta" style="margin-top:-8px"></p>
   <div id="home-badge" class="center" style="margin-bottom:6px"></div>
-  <button class="btn xswitch" onclick="go('admissions')">🎓 یونیورسٹی داخلہ جات<span class="xsub">یونیورسٹیز، داخلے اور فارم رہنمائی کے لیے</span></button>
   <div id="home-incomplete"></div>
   <div id="home-announce"></div>
   <div id="ff-reminders-home"></div>
