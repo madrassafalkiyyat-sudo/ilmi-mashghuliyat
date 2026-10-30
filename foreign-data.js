@@ -3,6 +3,8 @@
    Al-Azhar, Istanbul Theology) + Planner Foreign tab basic links
    for Al-Mustafa, whose program pages are still unverified.
    Never edit by hand — re-run the merge.    Patched 2026-10-29: data-completion fill patches (fill-patch-*.json, fill-empty only).
+   Patched 2026-10-31: direct-form linkfix (linkfix-patch.json) —
+   apply buttons land on verified official admission portals/forms.
 */
 window.FOREIGN_DATA = {
  "generated": "2026-10-29",
@@ -27,7 +29,7 @@ window.FOREIGN_DATA = {
    "sector": "گورنمنٹ",
    "website": "https://iu.edu.sa",
    "attributes": {
-    "داخلہ فارم / پورٹل": "https://eduportal.iu.edu.sa/iu/init?service=academicCalendar"
+    "داخلہ فارم / پورٹل": "https://iu.edu.sa/Deanship-Admission-Registration"
    },
    "source": "official university website (foreign research 2026-10-29)"
   },
@@ -51,7 +53,7 @@ window.FOREIGN_DATA = {
    "sector": "گورنمنٹ",
    "website": "https://iu.edu.sa",
    "attributes": {
-    "داخلہ فارم / پورٹل": "https://eduportal.iu.edu.sa/iu/init?service=academicCalendar"
+    "داخلہ فارم / پورٹل": "https://iu.edu.sa/Deanship-Admission-Registration"
    },
    "source": "official university website (foreign research 2026-10-29)"
   },
@@ -75,7 +77,7 @@ window.FOREIGN_DATA = {
    "sector": "گورنمنٹ",
    "website": "https://iu.edu.sa",
    "attributes": {
-    "داخلہ فارم / پورٹل": "https://eduportal.iu.edu.sa/iu/init?service=academicCalendar"
+    "داخلہ فارم / پورٹل": "https://iu.edu.sa/Deanship-Admission-Registration"
    },
    "source": "official university website (foreign research 2026-10-29)"
   },
@@ -99,7 +101,7 @@ window.FOREIGN_DATA = {
    "sector": "گورنمنٹ",
    "website": "https://iu.edu.sa",
    "attributes": {
-    "داخلہ فارم / پورٹل": "https://eduportal.iu.edu.sa/iu/init?service=academicCalendar"
+    "داخلہ فارم / پورٹل": "https://iu.edu.sa/Deanship-Admission-Registration"
    },
    "source": "official university website (foreign research 2026-10-29)"
   },
@@ -123,7 +125,7 @@ window.FOREIGN_DATA = {
    "sector": "گورنمنٹ",
    "website": "https://uqu.edu.sa",
    "attributes": {
-    "داخلہ فارم / پورٹل": "https://uqu.edu.sa/en/dadregis/172"
+    "داخلہ فارم / پورٹل": "https://uqu.edu.sa/App/Admission"
    },
    "source": "official university website (foreign research 2026-10-29)"
   },
@@ -147,7 +149,7 @@ window.FOREIGN_DATA = {
    "sector": "گورنمنٹ",
    "website": "https://uqu.edu.sa",
    "attributes": {
-    "داخلہ فارم / پورٹل": "https://uqu.edu.sa/en/dadregis/172"
+    "داخلہ فارم / پورٹل": "https://uqu.edu.sa/App/Admission"
    },
    "source": "official university website (foreign research 2026-10-29)"
   },
@@ -171,7 +173,7 @@ window.FOREIGN_DATA = {
    "sector": "گورنمنٹ",
    "website": "https://uqu.edu.sa",
    "attributes": {
-    "داخلہ فارم / پورٹل": "https://uqu.edu.sa/en/dadregis/172"
+    "داخلہ فارم / پورٹل": "https://uqu.edu.sa/App/Admission"
    },
    "source": "official university website (foreign research 2026-10-29)"
   },
@@ -195,7 +197,7 @@ window.FOREIGN_DATA = {
    "sector": "گورنمنٹ",
    "website": "https://uqu.edu.sa",
    "attributes": {
-    "داخلہ فارم / پورٹل": "https://uqu.edu.sa/en/dadregis/172"
+    "داخلہ فارم / پورٹل": "https://uqu.edu.sa/App/Admission"
    },
    "source": "official university website (foreign research 2026-10-29)"
   },
@@ -219,7 +221,7 @@ window.FOREIGN_DATA = {
    "sector": "گورنمنٹ",
    "website": "https://uqu.edu.sa",
    "attributes": {
-    "داخلہ فارم / پورٹل": "https://uqu.edu.sa/en/dadregis/172"
+    "داخلہ فارم / پورٹل": "https://uqu.edu.sa/App/Admission"
    },
    "source": "official university website (foreign research 2026-10-29)"
   },
@@ -442,7 +444,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://usim.edu.my",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.usim.edu.my/apply-now/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -464,7 +468,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://usim.edu.my",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.usim.edu.my/apply-now/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -486,7 +492,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://usim.edu.my",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.usim.edu.my/apply-now/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -508,7 +516,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://usim.edu.my",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.usim.edu.my/apply-now/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -530,7 +540,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://usim.edu.my",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.usim.edu.my/apply-now/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -552,7 +564,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "پرائیویٹ",
    "website": "https://mediu.edu.my",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.mediu.edu.my/apply-now/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -574,7 +588,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "پرائیویٹ",
    "website": "https://mediu.edu.my",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.mediu.edu.my/apply-now/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -596,7 +612,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "پرائیویٹ",
    "website": "https://mediu.edu.my",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.mediu.edu.my/apply-now/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -618,7 +636,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "پرائیویٹ",
    "website": "https://inceif.edu.my",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.inceif.edu.my/register"
+   },
    "source": "official university website (foreign research 2026-10-29)",
    "admissionDates": "International applicants: 30 October 2026 (January 2027 semester); 31 March 2027 (June 2027 semester)."
   },
@@ -641,7 +661,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "پرائیویٹ",
    "website": "https://inceif.edu.my",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.inceif.edu.my/register"
+   },
    "source": "official university website (foreign research 2026-10-29)",
    "admissionDates": "International applicants: 30 October 2026 (January 2027 semester); 31 May 2027 (September semester)."
   },
@@ -664,7 +686,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uiii.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.uiii.ac.id/login"
+   },
    "source": "official university website (foreign research 2026-10-29)",
    "admissionDates": "Admission applications close 31 March 2027 (2027 cycle; scholarship applications 22–29 April 2027)."
   },
@@ -687,7 +711,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uiii.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.uiii.ac.id/login"
+   },
    "source": "official university website (foreign research 2026-10-29)",
    "admissionDates": "Admission applications close 31 March 2027 (2027 cycle; scholarship applications 22–29 April 2027)."
   },
@@ -710,7 +736,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uiii.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.uiii.ac.id/login"
+   },
    "source": "official university website (foreign research 2026-10-29)",
    "admissionDates": "Admission applications close 31 March 2027 (2027 cycle; scholarship applications 22–29 April 2027)."
   },
@@ -733,7 +761,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uiii.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.uiii.ac.id/login"
+   },
    "source": "official university website (foreign research 2026-10-29)",
    "admissionDates": "Admission applications close 31 March 2027 (2027 cycle; scholarship applications 22–29 April 2027)."
   },
@@ -756,7 +786,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uiii.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.uiii.ac.id/login"
+   },
    "source": "official university website (foreign research 2026-10-29)",
    "admissionDates": "Admission applications close 31 March 2027 (2027 cycle; scholarship applications 22–29 April 2027)."
   },
@@ -779,7 +811,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uinjkt.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uinjkt.ac.id/index.php/en/student-admission"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -801,7 +835,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uinjkt.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uinjkt.ac.id/index.php/en/student-admission"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -823,7 +859,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uinjkt.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uinjkt.ac.id/index.php/en/student-admission"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -845,7 +883,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uinjkt.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uinjkt.ac.id/index.php/en/student-admission"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -867,7 +907,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uinjkt.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uinjkt.ac.id/index.php/en/student-admission"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -889,7 +931,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uinjkt.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uinjkt.ac.id/index.php/en/student-admission"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -911,7 +955,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uinjkt.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uinjkt.ac.id/index.php/en/student-admission"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -933,7 +979,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uinjkt.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uinjkt.ac.id/index.php/en/student-admission"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -955,7 +1003,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uinjkt.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uinjkt.ac.id/index.php/en/student-admission"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -977,7 +1027,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uinjkt.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uinjkt.ac.id/index.php/en/student-admission"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -999,7 +1051,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uinjkt.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uinjkt.ac.id/index.php/en/student-admission"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1021,7 +1075,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://uinjkt.ac.id",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uinjkt.ac.id/index.php/en/student-admission"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1043,7 +1099,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://ilahiyat.marmara.edu.tr",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "http://aday.marmara.edu.tr/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1065,7 +1123,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://ilahiyat.marmara.edu.tr",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "http://aday.marmara.edu.tr/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1087,7 +1147,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://ilahiyat.marmara.edu.tr",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "http://aday.marmara.edu.tr/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1373,7 +1435,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "پرائیویٹ",
    "website": "https://fsm.edu.tr",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://int.fsm.edu.tr/International-Office-New-Students--Online-Application-System"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1395,7 +1459,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "پرائیویٹ",
    "website": "https://fsm.edu.tr",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://int.fsm.edu.tr/International-Office-New-Students--Online-Application-System"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1417,7 +1483,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "پرائیویٹ",
    "website": "https://fsm.edu.tr",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://int.fsm.edu.tr/International-Office-New-Students--Online-Application-System"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1439,7 +1507,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "پرائیویٹ",
    "website": "https://ihu.edu.tr",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.ihu.edu.tr/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1461,7 +1531,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "پرائیویٹ",
    "website": "https://ihu.edu.tr",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.ihu.edu.tr/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1483,7 +1555,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "پرائیویٹ",
    "website": "https://ihu.edu.tr",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.ihu.edu.tr/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1505,7 +1579,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "پرائیویٹ",
    "website": "https://ihu.edu.tr",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.ihu.edu.tr/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1527,7 +1603,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "پرائیویٹ",
    "website": "https://ihu.edu.tr",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.ihu.edu.tr/"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1549,7 +1627,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://iiau.uz",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://iiau.uz/en/category/153"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1571,7 +1651,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://iiau.uz",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://iiau.uz/en/category/153"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1593,7 +1675,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://iiau.uz",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://iiau.uz/en/category/153"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {
@@ -1615,7 +1699,9 @@ window.FOREIGN_DATA = {
    "scholarshipLink": "",
    "sector": "گورنمنٹ",
    "website": "https://iiau.uz",
-   "attributes": {},
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://iiau.uz/en/category/153"
+   },
    "source": "official university website (foreign research 2026-10-29)"
   },
   {

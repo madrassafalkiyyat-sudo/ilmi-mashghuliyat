@@ -2,6 +2,8 @@
    University Studies Planner sheet + Drive Universities Details PDFs +
    official university websites. Never edit by hand — re-run merge_all.py.    Patched 2026-10-29: entry-test links from test-links.json + GSCWU testType cleanup.
    Patched 2026-10-29: data-completion fill patches (fill-patch-*.json, fill-empty only).
+   Patched 2026-10-31: direct-form linkfix (linkfix-patch.json) —
+   apply buttons land on verified official admission portals/forms.
 */
 window.ADMISSIONS_DATA = {
  "generated": "2026-10-29",
@@ -57,7 +59,10 @@ window.ADMISSIONS_DATA = {
    ],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://online.aiou.edu.pk/LIVE_SITE/admission/prospectus/Spring_2025/PhaseI/Prospectus%20PhD-MS-MPhil%20&%20MSc.pdf",
-   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ"
+   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://aiou.edu.pk/admission-open"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -101,7 +106,10 @@ window.ADMISSIONS_DATA = {
    ],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -132,7 +140,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "http://admissiontest.pu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.pu.edu.pk/admissions/"
+   }
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -163,7 +174,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -203,7 +217,10 @@ window.ADMISSIONS_DATA = {
    ],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "جامعہ کراچی",
@@ -239,7 +256,10 @@ window.ADMISSIONS_DATA = {
    ],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://www.uok.edu.pk/admissions/pg-index.php",
-   "testLinkLabel": "پوسٹ گریجویٹ داخلہ — انٹری ٹیسٹ فارم"
+   "testLinkLabel": "پوسٹ گریجویٹ داخلہ — انٹری ٹیسٹ فارم",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uokadmission.edu.pk/login"
+   }
   },
   {
    "name": "پشاور یونیورسٹی",
@@ -301,7 +321,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://admissions.hu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.hu.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -332,7 +355,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://su.edu.pk/upload/Prospectus-2026.pdf",
-   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.su.edu.pk/"
+   }
   },
   {
    "name": "ہائیٹیک یونیورسٹی",
@@ -363,7 +389,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://www.hitecuni.edu.pk/Faculties/FAQs",
-   "testLinkLabel": "عمومی سوالات — گریجویٹ داخلہ ٹیسٹ"
+   "testLinkLabel": "عمومی سوالات — گریجویٹ داخلہ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "http://admissions.hitecuni.edu.pk/CMIS/LoginToRSTFileUpload.aspx"
+   }
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -403,7 +432,10 @@ window.ADMISSIONS_DATA = {
    ],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "http://www.uoh.edu.pk/admissions/entry-test",
-   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل"
+   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.admission.uoh.edu.pk/"
+   }
   },
   {
    "name": "عبدالولی خان یونیورسٹی",
@@ -434,7 +466,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://awkum.edu.pk/admissions/eligibility-criteria/",
-   "testLinkLabel": "اہلیت کا معیار — گیٹ ٹیسٹ"
+   "testLinkLabel": "اہلیت کا معیار — گیٹ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://awkum.edu.pk/admissions/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -474,7 +509,10 @@ window.ADMISSIONS_DATA = {
    ],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف لاہور",
@@ -541,7 +579,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://bahria.edu.pk/content/Downloads/fba5713a-0270-411c-a5c7-2ff96678e727.pdf",
-   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن"
+   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://cms.bahria.edu.pk/Logins/candidate/Login.aspx"
+   }
   },
   {
    "name": "قرطبہ یونیورسٹی آف سائنس اینڈ انفارمیشن ٹیکنالوجی",
@@ -572,7 +613,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://qurtuba.edu.pk/U_assets/downloads/statutes/graduates.pdf",
-   "testLinkLabel": "گریجویٹ ضوابط — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "گریجویٹ ضوابط — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://ams.qurtuba.edu.pk/online_admissions"
+   }
   },
   {
    "name": "الحمد اسلامی یونیورسٹی",
@@ -607,8 +651,11 @@ window.ADMISSIONS_DATA = {
     }
    ],
    "source": "University Studies Planner (Google Sheet)",
-   "testLink": "http://www.qta.aiu.edu.pk/adp-islamic.php",
-   "testLinkLabel": "اے آئی یو انٹری ٹیسٹ شرط (50٪)"
+   "testLink": "https://admission.aiu.edu.pk/",
+   "testLinkLabel": "اے آئی یو انٹری ٹیسٹ شرط (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.aiu.edu.pk/"
+   }
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -644,7 +691,10 @@ window.ADMISSIONS_DATA = {
    ],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://mul.edu.pk/en/admissions-open",
-   "testLinkLabel": "داخلہ صفحہ — ایم فل ٹیسٹ (گیٹ/میٹ)"
+   "testLinkLabel": "داخلہ صفحہ — ایم فل ٹیسٹ (گیٹ/میٹ)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.mul.edu.pk/registration.php"
+   }
   },
   {
    "name": "الغزالی یونیورسٹی",
@@ -675,7 +725,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://agu.edu.pk/ms-islamic-banking-finance/",
-   "testLinkLabel": "یونیورسٹی کا اپٹیٹیوڈ ٹیسٹ"
+   "testLinkLabel": "یونیورسٹی کا اپٹیٹیوڈ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://alghazaliuniversity.arpl.pk/registration.php"
+   }
   },
   {
    "name": "یونیورسٹی آف بلوچستان",
@@ -733,7 +786,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "16 years of education / Level 06 qualification in the field of Islamic Studies; candidates having Shahadat-ul-Almia (from HEC-recognized bodies) are also eligible; NTS GAT General, GRE, UGAT or equivalent with a minimum 50% score",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.must.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف آزاد جموں و کشمیر",
@@ -762,7 +818,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.ajku.edu.pk/"
+   }
   },
   {
    "name": "القادر یونیورسٹی",
@@ -791,7 +850,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://alqadir.edu.pk/admission-form"
+   }
   },
   {
    "name": "قراقرم یونیورسٹی",
@@ -822,7 +884,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://admissions.kiu.edu.pk/p/kgs-spring-admissions-2026-CMTKBS",
-   "testLinkLabel": "داخلہ اعلان — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ اعلان — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.kiu.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی (بہاول نگر کیمپس)",
@@ -853,7 +918,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی [رحیم یار خان کیمپس]",
@@ -884,7 +952,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سرگودھا (کمانڈ کیمپس ساہیوال)",
@@ -915,7 +986,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://su.edu.pk/upload/Prospectus-2026.pdf",
-   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.su.edu.pk/"
+   }
   },
   {
    "name": "الحمد اسلامی یونیورسٹی  (کوئٹہ کیمپس)",
@@ -949,7 +1023,10 @@ window.ADMISSIONS_DATA = {
      "number": "0333 3554605"
     }
    ],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.aiu.edu.pk/"
+   }
   },
   {
    "name": "بحریہ یونیورسٹی (کراچی کیمپس)",
@@ -980,7 +1057,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://bahria.edu.pk/content/Downloads/fba5713a-0270-411c-a5c7-2ff96678e727.pdf",
-   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن"
+   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://cms.bahria.edu.pk/Logins/candidate/Login.aspx"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -1016,7 +1096,10 @@ window.ADMISSIONS_DATA = {
    ],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "قرطبہ یونیورسٹی آف سائنس اینڈ ٹیکنالوجی (ڈی آئی خان)",
@@ -1047,7 +1130,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://qurtuba.edu.pk/U_assets/downloads/statutes/graduates.pdf",
-   "testLinkLabel": "گریجویٹ ضوابط — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "گریجویٹ ضوابط — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://dikhan.qurtuba.edu.pk/online_admissions"
+   }
   },
   {
    "name": "گورنمنٹ صادق کالج ویمن یونیورسٹی",
@@ -1078,7 +1164,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://admissions.gscwu.edu.pk/howto",
-   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل — طریقہ کار"
+   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل — طریقہ کار",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.gscwu.edu.pk/"
+   }
   },
   {
    "name": "نمل یونیورسٹی",
@@ -1114,7 +1203,10 @@ window.ADMISSIONS_DATA = {
    ],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://numl.edu.pk/downloads/1715745634Booklet for MPhil & MS (2).pdf",
-   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ"
+   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://portals.numl.edu.pk/AdmissionPortal/Login"
+   }
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی",
@@ -1143,7 +1235,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Sixteen years of education or 4 years education after F.A./F.Sc./A-Level or equivalent (at least 130 credit hours) with at least second division/CGPA 2.50 in the degree on the basis of which admission is requested, and qualified (60% marks) GRE (subject) as adopted by the Directorate of Academics of GCWUF",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "http://admission.gcwuf.edu.pk/"
+   }
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی",
@@ -1201,7 +1296,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://app.paktech24.com/onlineAdmission/RegistrationHome?PrivateKey=wus/wus_01"
+   }
   },
   {
    "name": "سردار بہادر خان ویمن یونیورسٹی",
@@ -1230,7 +1328,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Sixteen years of education or 4 years BS (minimum 120 credit hours) or equivalent program or Master degree in Islamic Studies / related field from a recognized university/institution with minimum 50% marks in annual system or CGPA 2.5 out of 4 in semester system; Al-Shahdah Al-Aalmiyah (with HEC equivalence certificate) also accepted; valid GAT (General)/GRE/HAT test with minimum 50 score.",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.sbkwu.edu.pk/bs-admission.html"
+   }
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -1259,7 +1360,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Sixteen years of schooling or 4-year education (minimum 120 credit hours) after HSSC/F.A./F.Sc./Grade 12 or equivalent; 2.50/4.00 CGPA in semester system or 50% marks in annual system in the last degree; university admission test with 50% passing score plus interview by the Departmental Admission Committee. Women only.",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission-lcwu.effii.app/application/"
+   }
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -1288,7 +1392,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Sixteen years of education in a relevant subject with a minimum CGPA of 2.5 (on a scale of 4.0); a department test is conducted as entrance test with a 50% score as pass criterion",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmission.fjwu.edu.pk/"
+   }
   },
   {
    "name": "دی ویمن یونیورسٹی",
@@ -1346,7 +1453,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uog.edu.pk/uog/login.php"
+   }
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -1375,7 +1485,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.tuf.edu.pk/"
+   }
   },
   {
    "name": "وفاقی اردو یونیورسٹی آف آرٹس سائنس اینڈ ٹیکنالوجی اسلام آباد",
@@ -1404,7 +1517,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://isbadmission.fuuast.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف اوکاڑہ",
@@ -1433,7 +1549,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uoadmissions.uo.edu.pk/"
+   }
   },
   {
    "name": "ٹائمز انسٹی ٹیوٹ",
@@ -1462,7 +1581,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.tum.edu.pk/application.php"
+   }
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -1493,7 +1615,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "http://ssh.umt.edu.pk/PoliticalScience/News/PhD-IR-Admission-Test-Guidelines.aspx",
-   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط"
+   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmissions.umt.edu.pk/"
+   }
   },
   {
    "name": "غازی یونیورسٹی",
@@ -1551,7 +1676,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.gift.edu.pk/"
+   }
   },
   {
    "name": "لاہور گیریژن یونیورسٹی",
@@ -1580,7 +1708,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "16 years of education with at least 2.5 CGPA or 50% marks, plus GAT or university test",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.lgu.edu.pk/"
+   }
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -1609,7 +1740,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.leads.edu.pk/registration"
+   }
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -1638,7 +1772,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "16 years of education in Islamic Studies, Arabic with Shariah subjects, Al-Shahadat-ul-Aalamiyya, or any other equivalent degree; 2.0/4.0 or 3.0/5.0 in semester system or 45% in the annual system; NTS GAT General Test with minimum 50% cumulative score / KFGAT with a minimum 50% cumulative score are mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.kfueit.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سائنس اینڈ ٹیکنالوجی",
@@ -1696,7 +1833,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "16 years of education with a CGPA of 2.5/4.0 or at least 2nd Division.",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://cms.uom.edu.pk/web/signup"
+   }
   },
   {
    "name": "گومل یونیورسٹی",
@@ -1812,7 +1952,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://lms.upr.edu.pk/admissions"
+   }
   },
   {
    "name": "الخیر یونیورسٹی",
@@ -1841,7 +1984,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://alkhair.edu.pk/download-admission-forms/"
+   }
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -1870,7 +2016,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "University Studies Planner (Google Sheet)"
+   "source": "University Studies Planner (Google Sheet)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://miu.edu.pk/Admission"
+   }
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -1901,7 +2050,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://online.aiou.edu.pk/LIVE_SITE/admission/prospectus/Spring_2025/PhaseI/Prospectus%20PhD-MS-MPhil%20&%20MSc.pdf",
-   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ"
+   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://aiou.edu.pk/admission-open"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -1932,7 +2084,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف لاہور",
@@ -1994,7 +2149,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "http://admissiontest.pu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.pu.edu.pk/admissions/"
+   }
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2023,7 +2181,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -2054,7 +2215,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "جامعہ کراچی",
@@ -2085,7 +2249,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://www.uok.edu.pk/admissions/pg-index.php",
-   "testLinkLabel": "پوسٹ گریجویٹ داخلہ — انٹری ٹیسٹ فارم"
+   "testLinkLabel": "پوسٹ گریجویٹ داخلہ — انٹری ٹیسٹ فارم",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uokadmission.edu.pk/login"
+   }
   },
   {
    "name": "پشاور یونیورسٹی",
@@ -2143,7 +2310,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://admissions.hu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.hu.edu.pk/"
+   }
   },
   {
    "name": "ورچوئل یونیورسٹی",
@@ -2201,7 +2371,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "University Studies Planner (Google Sheet)",
    "testLink": "https://agu.edu.pk/ms-islamic-banking-finance/",
-   "testLinkLabel": "یونیورسٹی کا اپٹیٹیوڈ ٹیسٹ"
+   "testLinkLabel": "یونیورسٹی کا اپٹیٹیوڈ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://alghazaliuniversity.arpl.pk/registration.php"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2232,7 +2405,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2263,7 +2439,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2294,7 +2473,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2325,7 +2507,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2356,7 +2541,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2387,7 +2575,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2418,7 +2609,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2449,7 +2643,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2480,7 +2677,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2511,7 +2711,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -2542,7 +2745,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2573,7 +2779,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://admissiontest.pu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.pu.edu.pk/admissions/"
+   }
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2604,7 +2813,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://admissiontest.pu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.pu.edu.pk/admissions/"
+   }
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2635,7 +2847,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://admissiontest.pu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.pu.edu.pk/admissions/"
+   }
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2666,7 +2881,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://admissiontest.pu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.pu.edu.pk/admissions/"
+   }
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2697,7 +2915,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://admissiontest.pu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.pu.edu.pk/admissions/"
+   }
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2728,7 +2949,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://admissiontest.pu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.pu.edu.pk/admissions/"
+   }
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2759,7 +2983,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://admissiontest.pu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.pu.edu.pk/admissions/"
+   }
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2790,7 +3017,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://admissiontest.pu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.pu.edu.pk/admissions/"
+   }
   },
   {
    "name": "پنجاب یونیورسٹی",
@@ -2821,7 +3051,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://admissiontest.pu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ ٹیسٹ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.pu.edu.pk/admissions/"
+   }
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2852,7 +3085,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2883,7 +3119,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2914,7 +3153,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2945,7 +3187,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -2976,7 +3221,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -3007,7 +3255,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -3038,7 +3289,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -3069,7 +3323,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3100,7 +3357,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3131,7 +3391,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3162,7 +3425,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3193,7 +3459,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admissions.hu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.hu.edu.pk/"
+   }
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3224,7 +3493,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admissions.hu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.hu.edu.pk/"
+   }
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3255,7 +3527,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admissions.hu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.hu.edu.pk/"
+   }
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3286,7 +3561,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admissions.hu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.hu.edu.pk/"
+   }
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3317,7 +3595,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admissions.hu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.hu.edu.pk/"
+   }
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3348,7 +3629,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admissions.hu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.hu.edu.pk/"
+   }
   },
   {
    "name": "ہزارہ یونیورسٹی",
@@ -3379,7 +3663,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admissions.hu.edu.pk",
-   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل"
+   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.hu.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3410,7 +3697,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://su.edu.pk/upload/Prospectus-2026.pdf",
-   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.su.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3441,7 +3731,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://su.edu.pk/upload/Prospectus-2026.pdf",
-   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.su.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3472,7 +3765,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://su.edu.pk/upload/Prospectus-2026.pdf",
-   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.su.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3503,7 +3799,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://su.edu.pk/upload/Prospectus-2026.pdf",
-   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.su.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3534,7 +3833,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://su.edu.pk/upload/Prospectus-2026.pdf",
-   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.su.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3565,7 +3867,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://su.edu.pk/upload/Prospectus-2026.pdf",
-   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.su.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3596,7 +3901,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://su.edu.pk/upload/Prospectus-2026.pdf",
-   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.su.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3627,7 +3935,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://su.edu.pk/upload/Prospectus-2026.pdf",
-   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.su.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -3658,7 +3969,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://su.edu.pk/upload/Prospectus-2026.pdf",
-   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.su.edu.pk/"
+   }
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -3689,7 +4003,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://online.aiou.edu.pk/LIVE_SITE/admission/prospectus/Spring_2025/PhaseI/Prospectus%20PhD-MS-MPhil%20&%20MSc.pdf",
-   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ"
+   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://aiou.edu.pk/admission-open"
+   }
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -3720,7 +4037,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://online.aiou.edu.pk/LIVE_SITE/admission/prospectus/Spring_2025/PhaseI/Prospectus%20PhD-MS-MPhil%20&%20MSc.pdf",
-   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ"
+   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://aiou.edu.pk/admission-open"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3751,7 +4071,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3782,7 +4105,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3813,7 +4139,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -3844,7 +4173,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "ہائیٹیک یونیورسٹی",
@@ -3875,7 +4207,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://www.hitecuni.edu.pk/Faculties/FAQs",
-   "testLinkLabel": "عمومی سوالات — گریجویٹ داخلہ ٹیسٹ"
+   "testLinkLabel": "عمومی سوالات — گریجویٹ داخلہ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "http://admissions.hitecuni.edu.pk/CMIS/LoginToRSTFileUpload.aspx"
+   }
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3906,7 +4241,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://www.uoh.edu.pk/admissions/entry-test",
-   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل"
+   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.admission.uoh.edu.pk/"
+   }
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3937,7 +4275,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://www.uoh.edu.pk/admissions/entry-test",
-   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل"
+   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.admission.uoh.edu.pk/"
+   }
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3968,7 +4309,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://www.uoh.edu.pk/admissions/entry-test",
-   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل"
+   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.admission.uoh.edu.pk/"
+   }
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -3999,7 +4343,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://www.uoh.edu.pk/admissions/entry-test",
-   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل"
+   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.admission.uoh.edu.pk/"
+   }
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -4030,7 +4377,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://www.uoh.edu.pk/admissions/entry-test",
-   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل"
+   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.admission.uoh.edu.pk/"
+   }
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -4061,7 +4411,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://www.uoh.edu.pk/admissions/entry-test",
-   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل"
+   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.admission.uoh.edu.pk/"
+   }
   },
   {
    "name": "ہریپور یونیورسٹی",
@@ -4092,7 +4445,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://www.uoh.edu.pk/admissions/entry-test",
-   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل"
+   "testLinkLabel": "انٹری ٹیسٹ کی تفصیل",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.admission.uoh.edu.pk/"
+   }
   },
   {
    "name": "عبدالولی خان یونیورسٹی",
@@ -4123,7 +4479,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://awkum.edu.pk/admissions/eligibility-criteria/",
-   "testLinkLabel": "اہلیت کا معیار — گیٹ ٹیسٹ"
+   "testLinkLabel": "اہلیت کا معیار — گیٹ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://awkum.edu.pk/admissions/"
+   }
   },
   {
    "name": "عبدالولی خان یونیورسٹی",
@@ -4154,7 +4513,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://awkum.edu.pk/admissions/eligibility-criteria/",
-   "testLinkLabel": "اہلیت کا معیار — گیٹ ٹیسٹ"
+   "testLinkLabel": "اہلیت کا معیار — گیٹ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://awkum.edu.pk/admissions/"
+   }
   },
   {
    "name": "عبدالولی خان یونیورسٹی",
@@ -4185,7 +4547,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://awkum.edu.pk/admissions/eligibility-criteria/",
-   "testLinkLabel": "اہلیت کا معیار — گیٹ ٹیسٹ"
+   "testLinkLabel": "اہلیت کا معیار — گیٹ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://awkum.edu.pk/admissions/"
+   }
   },
   {
    "name": "یونیورسٹی آف لاہور",
@@ -4247,7 +4612,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bahria.edu.pk/content/Downloads/fba5713a-0270-411c-a5c7-2ff96678e727.pdf",
-   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن"
+   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://cms.bahria.edu.pk/Logins/candidate/Login.aspx"
+   }
   },
   {
    "name": "بحریہ یونیورسٹی",
@@ -4278,7 +4646,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bahria.edu.pk/content/Downloads/fba5713a-0270-411c-a5c7-2ff96678e727.pdf",
-   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن"
+   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://cms.bahria.edu.pk/Logins/candidate/Login.aspx"
+   }
   },
   {
    "name": "بحریہ یونیورسٹی",
@@ -4309,7 +4680,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bahria.edu.pk/content/Downloads/fba5713a-0270-411c-a5c7-2ff96678e727.pdf",
-   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن"
+   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://cms.bahria.edu.pk/Logins/candidate/Login.aspx"
+   }
   },
   {
    "name": "بحریہ یونیورسٹی",
@@ -4340,7 +4714,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bahria.edu.pk/content/Downloads/fba5713a-0270-411c-a5c7-2ff96678e727.pdf",
-   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن"
+   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://cms.bahria.edu.pk/Logins/candidate/Login.aspx"
+   }
   },
   {
    "name": "بحریہ یونیورسٹی",
@@ -4371,7 +4748,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bahria.edu.pk/content/Downloads/fba5713a-0270-411c-a5c7-2ff96678e727.pdf",
-   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن"
+   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://cms.bahria.edu.pk/Logins/candidate/Login.aspx"
+   }
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4402,7 +4782,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://mul.edu.pk/en/admissions-open",
-   "testLinkLabel": "داخلہ صفحہ — ایم فل ٹیسٹ (گیٹ/میٹ)"
+   "testLinkLabel": "داخلہ صفحہ — ایم فل ٹیسٹ (گیٹ/میٹ)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.mul.edu.pk/registration.php"
+   }
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4433,7 +4816,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://mul.edu.pk/en/admissions-open",
-   "testLinkLabel": "داخلہ صفحہ — ایم فل ٹیسٹ (گیٹ/میٹ)"
+   "testLinkLabel": "داخلہ صفحہ — ایم فل ٹیسٹ (گیٹ/میٹ)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.mul.edu.pk/registration.php"
+   }
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4464,7 +4850,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://mul.edu.pk/en/admissions-open",
-   "testLinkLabel": "داخلہ صفحہ — ایم فل ٹیسٹ (گیٹ/میٹ)"
+   "testLinkLabel": "داخلہ صفحہ — ایم فل ٹیسٹ (گیٹ/میٹ)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.mul.edu.pk/registration.php"
+   }
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4495,7 +4884,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://mul.edu.pk/en/admissions-open",
-   "testLinkLabel": "داخلہ صفحہ — ایم فل ٹیسٹ (گیٹ/میٹ)"
+   "testLinkLabel": "داخلہ صفحہ — ایم فل ٹیسٹ (گیٹ/میٹ)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.mul.edu.pk/registration.php"
+   }
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4526,7 +4918,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://mul.edu.pk/en/admissions-open",
-   "testLinkLabel": "داخلہ صفحہ — ایم فل ٹیسٹ (گیٹ/میٹ)"
+   "testLinkLabel": "داخلہ صفحہ — ایم فل ٹیسٹ (گیٹ/میٹ)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.mul.edu.pk/registration.php"
+   }
   },
   {
    "name": "منہاج یونیورسٹی",
@@ -4557,7 +4952,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://mul.edu.pk/en/admissions-open",
-   "testLinkLabel": "داخلہ صفحہ — ایم فل ٹیسٹ (گیٹ/میٹ)"
+   "testLinkLabel": "داخلہ صفحہ — ایم فل ٹیسٹ (گیٹ/میٹ)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.mul.edu.pk/registration.php"
+   }
   },
   {
    "name": "الغزالی یونیورسٹی",
@@ -4588,7 +4986,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://agu.edu.pk/ms-islamic-banking-finance/",
-   "testLinkLabel": "یونیورسٹی کا اپٹیٹیوڈ ٹیسٹ"
+   "testLinkLabel": "یونیورسٹی کا اپٹیٹیوڈ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://alghazaliuniversity.arpl.pk/registration.php"
+   }
   },
   {
    "name": "یونیورسٹی آف آزاد جموں و کشمیر",
@@ -4617,7 +5018,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.ajku.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف آزاد جموں و کشمیر",
@@ -4646,7 +5050,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.ajku.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف آزاد جموں و کشمیر",
@@ -4675,7 +5082,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.ajku.edu.pk/"
+   }
   },
   {
    "name": "القادر یونیورسٹی",
@@ -4704,7 +5114,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "45% marks in intermediate or equivalent",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://alqadir.edu.pk/admission-form"
+   }
   },
   {
    "name": "قراقرم یونیورسٹی",
@@ -4735,7 +5148,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admissions.kiu.edu.pk/p/kgs-spring-admissions-2026-CMTKBS",
-   "testLinkLabel": "داخلہ اعلان — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ اعلان — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.kiu.edu.pk/"
+   }
   },
   {
    "name": "قراقرم یونیورسٹی",
@@ -4766,7 +5182,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admissions.kiu.edu.pk/p/kgs-spring-admissions-2026-CMTKBS",
-   "testLinkLabel": "داخلہ اعلان — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ اعلان — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.kiu.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی (بہاول نگر کیمپس)",
@@ -4797,7 +5216,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی (بہاول نگر کیمپس)",
@@ -4828,7 +5250,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی (بہاول نگر کیمپس)",
@@ -4859,7 +5284,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی (بہاول نگر کیمپس)",
@@ -4890,7 +5318,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی [رحیم یار خان کیمپس]",
@@ -4921,7 +5352,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی [رحیم یار خان کیمپس]",
@@ -4952,7 +5386,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی [رحیم یار خان کیمپس]",
@@ -4983,7 +5420,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "الحمد اسلامی یونیورسٹی (کوئٹہ کیمپس)",
@@ -5013,8 +5453,11 @@ window.ADMISSIONS_DATA = {
    "videoLink": "",
    "contacts": [],
    "source": "official website (research 2026-10-29)",
-   "testLink": "http://www.qta.aiu.edu.pk/adp-islamic.php",
-   "testLinkLabel": "اے آئی یو انٹری ٹیسٹ شرط (50٪)"
+   "testLink": "https://admission.aiu.edu.pk/",
+   "testLinkLabel": "اے آئی یو انٹری ٹیسٹ شرط (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.aiu.edu.pk/"
+   }
   },
   {
    "name": "بحریہ یونیورسٹی (کراچی کیمپس)",
@@ -5045,7 +5488,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bahria.edu.pk/content/Downloads/fba5713a-0270-411c-a5c7-2ff96678e727.pdf",
-   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن"
+   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://cms.bahria.edu.pk/Logins/candidate/Login.aspx"
+   }
   },
   {
    "name": "بحریہ یونیورسٹی (کراچی کیمپس)",
@@ -5076,7 +5522,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bahria.edu.pk/content/Downloads/fba5713a-0270-411c-a5c7-2ff96678e727.pdf",
-   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن"
+   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://cms.bahria.edu.pk/Logins/candidate/Login.aspx"
+   }
   },
   {
    "name": "بحریہ یونیورسٹی (کراچی کیمپس)",
@@ -5107,7 +5556,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bahria.edu.pk/content/Downloads/fba5713a-0270-411c-a5c7-2ff96678e727.pdf",
-   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن"
+   "testLinkLabel": "داخلہ پالیسی — ٹیسٹ پیٹرن",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://cms.bahria.edu.pk/Logins/candidate/Login.aspx"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -5138,7 +5590,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -5169,7 +5624,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -5200,7 +5658,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -5231,7 +5692,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -5262,7 +5726,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -5293,7 +5760,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -5324,7 +5794,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی (فیصل آباد کیمپس)",
@@ -5355,7 +5828,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "گورنمنٹ صادق کالج ویمن یونیورسٹی",
@@ -5386,7 +5862,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admissions.gscwu.edu.pk/howto",
-   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل — طریقہ کار"
+   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل — طریقہ کار",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.gscwu.edu.pk/"
+   }
   },
   {
    "name": "گورنمنٹ صادق کالج ویمن یونیورسٹی",
@@ -5417,7 +5896,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admissions.gscwu.edu.pk/howto",
-   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل — طریقہ کار"
+   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل — طریقہ کار",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.gscwu.edu.pk/"
+   }
   },
   {
    "name": "گورنمنٹ صادق کالج ویمن یونیورسٹی",
@@ -5448,7 +5930,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admissions.gscwu.edu.pk/howto",
-   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل — طریقہ کار"
+   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل — طریقہ کار",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.gscwu.edu.pk/"
+   }
   },
   {
    "name": "گورنمنٹ صادق کالج ویمن یونیورسٹی",
@@ -5479,7 +5964,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://admissions.gscwu.edu.pk/howto",
-   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل — طریقہ کار"
+   "testLinkLabel": "یونیورسٹی کا داخلہ پورٹل — طریقہ کار",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.gscwu.edu.pk/"
+   }
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5510,7 +5998,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://numl.edu.pk/downloads/1715745634Booklet for MPhil & MS (2).pdf",
-   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ"
+   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://portals.numl.edu.pk/AdmissionPortal/Login"
+   }
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5541,7 +6032,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://numl.edu.pk/downloads/1715745634Booklet for MPhil & MS (2).pdf",
-   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ"
+   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://portals.numl.edu.pk/AdmissionPortal/Login"
+   }
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5572,7 +6066,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://numl.edu.pk/downloads/1715745634Booklet for MPhil & MS (2).pdf",
-   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ"
+   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://portals.numl.edu.pk/AdmissionPortal/Login"
+   }
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5603,7 +6100,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://numl.edu.pk/downloads/1715745634Booklet for MPhil & MS (2).pdf",
-   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ"
+   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://portals.numl.edu.pk/AdmissionPortal/Login"
+   }
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5634,7 +6134,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://numl.edu.pk/downloads/1715745634Booklet for MPhil & MS (2).pdf",
-   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ"
+   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://portals.numl.edu.pk/AdmissionPortal/Login"
+   }
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5665,7 +6168,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://numl.edu.pk/downloads/1715745634Booklet for MPhil & MS (2).pdf",
-   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ"
+   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://portals.numl.edu.pk/AdmissionPortal/Login"
+   }
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5696,7 +6202,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://numl.edu.pk/downloads/1715745634Booklet for MPhil & MS (2).pdf",
-   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ"
+   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://portals.numl.edu.pk/AdmissionPortal/Login"
+   }
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5727,7 +6236,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://numl.edu.pk/downloads/1715745634Booklet for MPhil & MS (2).pdf",
-   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ"
+   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://portals.numl.edu.pk/AdmissionPortal/Login"
+   }
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5758,7 +6270,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://numl.edu.pk/downloads/1715745634Booklet for MPhil & MS (2).pdf",
-   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ"
+   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://portals.numl.edu.pk/AdmissionPortal/Login"
+   }
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5789,7 +6304,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://numl.edu.pk/downloads/1715745634Booklet for MPhil & MS (2).pdf",
-   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ"
+   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://portals.numl.edu.pk/AdmissionPortal/Login"
+   }
   },
   {
    "name": "نمل یونیورسٹی",
@@ -5820,7 +6338,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://numl.edu.pk/downloads/1715745634Booklet for MPhil & MS (2).pdf",
-   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ"
+   "testLinkLabel": "ایم فل/ایم ایس کتابچہ — داخلہ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://portals.numl.edu.pk/AdmissionPortal/Login"
+   }
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی فیصل آباد",
@@ -5849,7 +6370,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate with minimum 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "http://admission.gcwuf.edu.pk/"
+   }
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی فیصل آباد",
@@ -5878,7 +6402,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate with minimum 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "http://admission.gcwuf.edu.pk/"
+   }
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی فیصل آباد",
@@ -5907,7 +6434,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate with minimum 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "http://admission.gcwuf.edu.pk/"
+   }
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی فیصل آباد",
@@ -5936,7 +6466,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MA/MSc or BS 4 years or equivalent degree in the relevant field from an HEC-recognized institution with at least 50% marks (annual system) or 2.50 CGPA (semester system); minimum 50% marks in the subject GRE conducted by the Directorate of Academics, GCWUF",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "http://admission.gcwuf.edu.pk/"
+   }
   },
   {
    "name": "شہید بے نظیر بھٹو ویمن یونیورسٹی پشاور",
@@ -6197,7 +6730,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://app.paktech24.com/onlineAdmission/RegistrationHome?PrivateKey=wus/wus_01"
+   }
   },
   {
    "name": "سردار بہادر خان ویمن یونیورسٹی کوئٹہ",
@@ -6226,7 +6762,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.sbkwu.edu.pk/bs-admission.html"
+   }
   },
   {
    "name": "سردار بہادر خان ویمن یونیورسٹی کوئٹہ",
@@ -6255,7 +6794,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.sbkwu.edu.pk/bs-admission.html"
+   }
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی سیالکوٹ",
@@ -6284,7 +6826,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.gcwus.com/"
+   }
   },
   {
    "name": "گورنمنٹ کالج ویمن یونیورسٹی سیالکوٹ",
@@ -6313,7 +6858,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.gcwus.com/"
+   }
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6342,7 +6890,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission-lcwu.effii.app/application/"
+   }
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6371,7 +6922,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission-lcwu.effii.app/application/"
+   }
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6400,7 +6954,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Female candidates who have passed (BS) examinations or 16 years of education with psychology from HEC recognized University; 2.50/4.00 CGPA in semester system or 50% marks in annual system; Entry Test (50% qualifying marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission-lcwu.effii.app/application/"
+   }
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6429,7 +6986,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Female candidates having 4 Years BS Education or Master degree in education or Relevant Subject (School Subject) from HEC recognized University with minimum 2.50/4.00 CGPA in semester system or 50% marks in annual system; Entry Test (50% qualifying marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission-lcwu.effii.app/application/"
+   }
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6458,7 +7018,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Female candidates having 18 years of education MS/MPhil in relevant field from HEC recognized University; 3.00/4.00 CGPA in semester or 60% Marks in Annual system; Entry Test (60% qualifying Marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission-lcwu.effii.app/application/"
+   }
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6487,7 +7050,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Minimum 18 years of education MS/MPhil in Relevant Field from HEC recognized University; 3.00/4.00 CGPA in semester or 60% Marks in Annual system; Entry Test (60% qualifying Marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission-lcwu.effii.app/application/"
+   }
   },
   {
    "name": "لاہور کالج برائے خواتین یونیورسٹی",
@@ -6516,7 +7082,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Female candidates having 18 years of education in relevant field (MS/MPhil/or equivalent) from HEC recognized University; 3.00/4.00 CGPA in semester or 60% Marks in Annual system; Entry Test (60% qualifying Marks) and interview organized by University is mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission-lcwu.effii.app/application/"
+   }
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6545,7 +7114,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmission.fjwu.edu.pk/"
+   }
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6574,7 +7146,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmission.fjwu.edu.pk/"
+   }
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6603,7 +7178,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "For admission to MS/M.Phil. applicants are required to have minimum CGPA 2.5 out of 4.0 in semester system or 1st division in annual system in Masters/BS 4 years from any HEC-recognized university/institution; minimum score of 50 in GAT General Test conducted by NTS (except where specific tests will be taken by respective Departments)",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmission.fjwu.edu.pk/"
+   }
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6632,7 +7210,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Sixteen Years of Education in Behavioral Sciences or any field of Psychology; minimum score of 50 in GAT General Test conducted by NTS",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmission.fjwu.edu.pk/"
+   }
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6661,7 +7242,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Minimum CGPA 3.0 or 1st Division; a minimum of 60 marks in the GAT; supervisor's consent letter",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmission.fjwu.edu.pk/"
+   }
   },
   {
    "name": "فاطمہ جناح ویمن یونیورسٹی",
@@ -6690,7 +7274,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Minimum CGPA 3.0 or 1st Division; a minimum of 60 marks in the GAT; supervisor's consent letter",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmission.fjwu.edu.pk/"
+   }
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6719,7 +7306,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate or equivalent with at least 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://wum.edu.pk/admissions/"
+   }
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6748,7 +7338,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate or equivalent with at least 45% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://wum.edu.pk/admissions/"
+   }
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6777,7 +7370,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Four years of study after FA/FSc (16 years of education) with at least CGPA 2.50/4.00, and GAT General with 50% marks in the university entrance test",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://wum.edu.pk/admissions/"
+   }
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6806,7 +7402,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Four years of study after FA/FSc (16 years of education) with at least CGPA 2.50/4.00, and GAT General with 50% marks in the university entrance test",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://wum.edu.pk/admissions/"
+   }
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6835,7 +7434,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "18 years of study in the field with at least CGPA 3.00/4.00, and 60% or more marks in GAT General or the university entrance test",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://wum.edu.pk/admissions/"
+   }
   },
   {
    "name": "دی ویمن یونیورسٹی ملتان",
@@ -6864,7 +7466,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "18 years of study in the field with at least CGPA 3.00/4.00, and 60% or more marks in GAT General or the university entrance test",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://wum.edu.pk/admissions/"
+   }
   },
   {
    "name": "یونیورسٹی آف گجرات",
@@ -6893,7 +7498,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "F.A / Intermediate / equivalent (first year) or three-year DAE (first two years), as listed on the official program page",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uog.edu.pk/uog/login.php"
+   }
   },
   {
    "name": "یونیورسٹی آف گجرات",
@@ -6922,7 +7530,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "At least 45% marks in intermediate or equivalent, as stated on the official program page",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uog.edu.pk/uog/login.php"
+   }
   },
   {
    "name": "یونیورسٹی آف گجرات",
@@ -6951,7 +7562,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "16 years of education in a relevant discipline with a minimum 2.5 CGPA out of 4.0 (or 45% marks in the annual system) in the terminal degree; an entry test and/or interview may be required",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uog.edu.pk/uog/login.php"
+   }
   },
   {
    "name": "یونیورسٹی آف گجرات",
@@ -6980,7 +7594,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uog.edu.pk/uog/login.php"
+   }
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -7009,7 +7626,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate with a minimum of 45% marks or equivalent",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.tuf.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -7038,7 +7658,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.tuf.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -7067,7 +7690,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.tuf.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -7096,7 +7722,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "16 years of education: BS (4 years) / MA (2 years) / MEd in Education or equivalent field, as stated in the official prospectus",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.tuf.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -7125,7 +7754,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "18 years of education, MPhil (with research) in Education from an HEC-recognized university with minimum 3.00/4.00 CGPA in semester system or 60% marks in annual system",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.tuf.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف فیصل آباد",
@@ -7154,7 +7786,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Minimum CGPA of 3.0 out of 4.0 in the semester system OR First Division in the annual system in MS/MPhil/equivalent (with research) in Islamic Studies.",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.tuf.edu.pk/"
+   }
   },
   {
    "name": "وفاقی اردو یونیورسٹی آف آرٹس سائنس اینڈ ٹیکنالوجی اسلام آباد",
@@ -7183,7 +7818,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://isbadmission.fuuast.edu.pk/"
+   }
   },
   {
    "name": "ٹائمز انسٹی ٹیوٹ ملتان",
@@ -7212,7 +7850,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.tum.edu.pk/application.php"
+   }
   },
   {
    "name": "ٹائمز انسٹی ٹیوٹ ملتان",
@@ -7241,7 +7882,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://www.tum.edu.pk/application.php"
+   }
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7272,7 +7916,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://ssh.umt.edu.pk/PoliticalScience/News/PhD-IR-Admission-Test-Guidelines.aspx",
-   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط"
+   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmissions.umt.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7303,7 +7950,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://ssh.umt.edu.pk/PoliticalScience/News/PhD-IR-Admission-Test-Guidelines.aspx",
-   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط"
+   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmissions.umt.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7334,7 +7984,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://ssh.umt.edu.pk/PoliticalScience/News/PhD-IR-Admission-Test-Guidelines.aspx",
-   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط"
+   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmissions.umt.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7365,7 +8018,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://ssh.umt.edu.pk/PoliticalScience/News/PhD-IR-Admission-Test-Guidelines.aspx",
-   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط"
+   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmissions.umt.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7396,7 +8052,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://ssh.umt.edu.pk/PoliticalScience/News/PhD-IR-Admission-Test-Guidelines.aspx",
-   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط"
+   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmissions.umt.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7427,7 +8086,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://ssh.umt.edu.pk/PoliticalScience/News/PhD-IR-Admission-Test-Guidelines.aspx",
-   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط"
+   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmissions.umt.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7458,7 +8120,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://ssh.umt.edu.pk/PoliticalScience/News/PhD-IR-Admission-Test-Guidelines.aspx",
-   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط"
+   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmissions.umt.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف مینجمنٹ اینڈ ٹیکنالوجی",
@@ -7489,7 +8154,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "http://ssh.umt.edu.pk/PoliticalScience/News/PhD-IR-Admission-Test-Guidelines.aspx",
-   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط"
+   "testLinkLabel": "پی ایچ ڈی داخلہ ٹیسٹ رہنما خطوط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://onlineadmissions.umt.edu.pk/"
+   }
   },
   {
    "name": "غازی یونیورسٹی",
@@ -7634,7 +8302,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.gift.edu.pk/"
+   }
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7663,7 +8334,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.gift.edu.pk/"
+   }
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7692,7 +8366,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.gift.edu.pk/"
+   }
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7721,7 +8398,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.gift.edu.pk/"
+   }
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7750,7 +8430,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Sixteen years of education for admission in MPhil; GAT-General conducted by NTS with a minimum 50% cumulative score at the time of admission (valid two years); MPhil requires 24 credit hours of coursework plus a minimum 6 credit hours of research work/thesis",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.gift.edu.pk/"
+   }
   },
   {
    "name": "گفٹ یونیورسٹی",
@@ -7779,7 +8462,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.gift.edu.pk/"
+   }
   },
   {
    "name": "لاہور گیریژن یونیورسٹی",
@@ -7808,7 +8494,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Minimum 50% marks in Intermediate (FA/FSc/ICS/ICom or equivalent)",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.lgu.edu.pk/"
+   }
   },
   {
    "name": "لاہور گیریژن یونیورسٹی",
@@ -7837,7 +8526,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "16 years of education with at least 2.5 CGPA or 50% marks, plus GAT or university test",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.lgu.edu.pk/"
+   }
   },
   {
    "name": "لاہور گیریژن یونیورسٹی",
@@ -7866,7 +8558,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.lgu.edu.pk/"
+   }
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -7895,7 +8590,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.leads.edu.pk/registration"
+   }
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -7924,7 +8622,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.leads.edu.pk/registration"
+   }
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -7953,7 +8654,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.leads.edu.pk/registration"
+   }
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -7982,7 +8686,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.leads.edu.pk/registration"
+   }
   },
   {
    "name": "لاہور لیڈز یونیورسٹی",
@@ -8011,7 +8718,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.leads.edu.pk/registration"
+   }
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -8040,7 +8750,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "HSSC with Pre-Medical or equivalent with 50% marks; KFUEIT recognized/valid aptitude test (KFAT / NAT / MDCAT)",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.kfueit.edu.pk/"
+   }
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -8069,7 +8782,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "HSSC / DAE in all fields or equivalent with 45% marks; KFUEIT recognized/valid aptitude test (KFAT / NAT / KFEAT / ECAT / MDCAT)",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.kfueit.edu.pk/"
+   }
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -8098,7 +8814,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "M.Phil Education: 16 years of education in M.A Education, M.Ed, B.Ed (Hons) 4 Years, B.Ed (2.5 Years) or B.Ed (1.5 Years); 2.0/4.0 or 45% in annual system; NTS GAT General / KFGAT minimum 50% mandatory",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.kfueit.edu.pk/"
+   }
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -8127,7 +8846,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "18 years of education: M.Phil/MS with thesis in Education (MS without thesis: additional research work mandatory); 3.0/4.0 or 60% in annual system; NTS GAT/HEC/GRE Subject/KFGAT minimum 60%",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.kfueit.edu.pk/"
+   }
   },
   {
    "name": "خواجہ فرید یونیورسٹی آف انجینئرنگ اینڈ انفارمیشن ٹیکنالوجی",
@@ -8156,7 +8878,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "18 years of education in Islamic Studies; MS/M.Phil with thesis (MS without thesis: additional research work mandatory); 3.0/4.0 or 60% in annual system; NTS GAT/HEC/GRE Subject/KFGAT minimum 60%",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.kfueit.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سائنس اینڈ ٹیکنالوجی بنوں",
@@ -8185,7 +8910,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "At least 45% marks in 12 years of education; 50% marks in the entry test",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://ustbportal.com.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سائنس اینڈ ٹیکنالوجی بنوں",
@@ -8214,7 +8942,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "At least CGPA 2.5/4.0 or 45% marks in the annual system in 16 years of education; 50% in the entry test",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://ustbportal.com.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سائنس اینڈ ٹیکنالوجی بنوں",
@@ -8243,7 +8974,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "18 years of field-related education from an HEC-recognized university with at least CGPA 3.0/4.0 or first division in annual system; GAT (Subject) or GRE Subject with at least 60% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://ustbportal.com.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سائنس اینڈ ٹیکنالوجی بنوں",
@@ -8272,7 +9006,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "18 years of field-related education from an HEC-recognized university with at least CGPA 3.0/4.0 or first division in annual system; GAT (Subject) or GRE Subject with at least 60% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://ustbportal.com.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف ملاکنڈ",
@@ -8301,7 +9038,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate/HSSC or equivalent with at least 45% marks; candidates with 3rd division or less than 45% marks are not eligible.",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://cms.uom.edu.pk/web/signup"
+   }
   },
   {
    "name": "یونیورسٹی آف ملاکنڈ",
@@ -8330,7 +9070,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Intermediate/HSSC or equivalent with at least 45% marks; candidates with 3rd division or less than 45% marks are not eligible.",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://cms.uom.edu.pk/web/signup"
+   }
   },
   {
    "name": "یونیورسٹی آف ملاکنڈ",
@@ -8359,7 +9102,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MS/MPhil with at least 3.0/4.0 CGPA; MPhil or equivalent with thesis is required for PhD admission.",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://cms.uom.edu.pk/web/signup"
+   }
   },
   {
    "name": "یونیورسٹی آف صوابی",
@@ -8591,7 +9337,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://lms.upr.edu.pk/admissions"
+   }
   },
   {
    "name": "یونیورسٹی آف دی پونچھ راولا کوٹ",
@@ -8620,7 +9369,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://lms.upr.edu.pk/admissions"
+   }
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8649,7 +9401,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://miu.edu.pk/Admission"
+   }
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8678,7 +9433,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://miu.edu.pk/Admission"
+   }
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8707,7 +9465,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "Masters in Education, M.Ed, B.Ed (1.5 year) or B.Ed (Hons 4 year) with a minimum second division; entry test with 60% or GAT General with 50% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://miu.edu.pk/Admission"
+   }
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8736,7 +9497,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "MPhil/MS Education with at least 60% marks or 3 CGPA out of 4; university entry test with 70% marks or GAT Subject with 60% marks",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://miu.edu.pk/Admission"
+   }
   },
   {
    "name": "محی الدین اسلامی یونیورسٹی",
@@ -8765,7 +9529,10 @@ window.ADMISSIONS_DATA = {
    "eligibility": "M.Phil./MS (Islamic Studies) with a minimum CGPA of 3/4 or equivalent; departmental test or HEC-approved test; interview",
    "videoLink": "",
    "contacts": [],
-   "source": "official website (research 2026-10-29)"
+   "source": "official website (research 2026-10-29)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://miu.edu.pk/Admission"
+   }
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -8796,7 +9563,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://online.aiou.edu.pk/LIVE_SITE/admission/prospectus/Spring_2025/PhaseI/Prospectus%20PhD-MS-MPhil%20&%20MSc.pdf",
-   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ"
+   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://aiou.edu.pk/admission-open"
+   }
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -8827,7 +9597,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://online.aiou.edu.pk/LIVE_SITE/admission/prospectus/Spring_2025/PhaseI/Prospectus%20PhD-MS-MPhil%20&%20MSc.pdf",
-   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ"
+   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://aiou.edu.pk/admission-open"
+   }
   },
   {
    "name": "یونیورسٹی آف لاہور",
@@ -8920,7 +9693,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -8951,7 +9727,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "اسلامیہ یونیورسٹی بہاولپور",
@@ -8982,7 +9761,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://new.iub.edu.pk/uploads/2340/1676619168-mfil-advertise.pdf",
-   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط"
+   "testLinkLabel": "ایم فل داخلہ اشتہار — ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://eportal.iub.edu.pk/"
+   }
   },
   {
    "name": "جامعہ کراچی",
@@ -9013,7 +9795,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://www.uok.edu.pk/admissions/pg-index.php",
-   "testLinkLabel": "پوسٹ گریجویٹ داخلہ — انٹری ٹیسٹ فارم"
+   "testLinkLabel": "پوسٹ گریجویٹ داخلہ — انٹری ٹیسٹ فارم",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uokadmission.edu.pk/login"
+   }
   },
   {
    "name": "جامعہ کراچی",
@@ -9044,7 +9829,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://www.uok.edu.pk/admissions/pg-index.php",
-   "testLinkLabel": "پوسٹ گریجویٹ داخلہ — انٹری ٹیسٹ فارم"
+   "testLinkLabel": "پوسٹ گریجویٹ داخلہ — انٹری ٹیسٹ فارم",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://uokadmission.edu.pk/login"
+   }
   },
   {
    "name": "پشاور یونیورسٹی",
@@ -9195,7 +9983,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "official website (research 2026-10-29)",
    "testLink": "https://agu.edu.pk/ms-islamic-banking-finance/",
-   "testLinkLabel": "یونیورسٹی کا اپٹیٹیوڈ ٹیسٹ"
+   "testLinkLabel": "یونیورسٹی کا اپٹیٹیوڈ ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://alghazaliuniversity.arpl.pk/registration.php"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -9226,7 +10017,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -9257,7 +10051,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -9288,7 +10085,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -9319,7 +10119,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -9350,7 +10153,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -9381,7 +10187,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -9412,7 +10221,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "رفاہ انٹرنیشنل یونیورسٹی",
@@ -9443,7 +10255,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: Riphah_Academic_Program_Blueprint.pdf",
    "testLink": "https://riphah.edu.pk/programs/detail/?p=79",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.riphah.edu.pk/"
+   }
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -9474,7 +10289,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: BZU_1.pdf",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -9505,7 +10323,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: BZU_1.pdf",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -9536,7 +10357,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: BZU_1.pdf",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "بہاؤالدین زکریا یونیورسٹی ملتان",
@@ -9567,7 +10391,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: BZU_1.pdf",
    "testLink": "https://bzu.edu.pk/programs.php?did=80&ptype=2",
-   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط"
+   "testLinkLabel": "ایم فل اسلامک سٹڈیز — انٹری ٹیسٹ شرط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://apply.bzu.edu.pk/"
+   }
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9598,7 +10425,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: AIOU_programs.pdf",
    "testLink": "https://online.aiou.edu.pk/LIVE_SITE/admission/prospectus/Spring_2025/PhaseI/Prospectus%20PhD-MS-MPhil%20&%20MSc.pdf",
-   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ"
+   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://aiou.edu.pk/admission-open"
+   }
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9629,7 +10459,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: AIOU_programs.pdf",
    "testLink": "https://online.aiou.edu.pk/LIVE_SITE/admission/prospectus/Spring_2025/PhaseI/Prospectus%20PhD-MS-MPhil%20&%20MSc.pdf",
-   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ"
+   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://aiou.edu.pk/admission-open"
+   }
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9660,7 +10493,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: AIOU_programs.pdf",
    "testLink": "https://online.aiou.edu.pk/LIVE_SITE/admission/prospectus/Spring_2025/PhaseI/Prospectus%20PhD-MS-MPhil%20&%20MSc.pdf",
-   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ"
+   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://aiou.edu.pk/admission-open"
+   }
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9691,7 +10527,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: AIOU_programs.pdf",
    "testLink": "https://online.aiou.edu.pk/LIVE_SITE/admission/prospectus/Spring_2025/PhaseI/Prospectus%20PhD-MS-MPhil%20&%20MSc.pdf",
-   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ"
+   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://aiou.edu.pk/admission-open"
+   }
   },
   {
    "name": "علامہ اقبال اوپن یونیورسٹی",
@@ -9722,7 +10561,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: AIOU_programs.pdf",
    "testLink": "https://online.aiou.edu.pk/LIVE_SITE/admission/prospectus/Spring_2025/PhaseI/Prospectus%20PhD-MS-MPhil%20&%20MSc.pdf",
-   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ"
+   "testLinkLabel": "پراسپیکٹس — ایم فل/پی ایچ ڈی انٹری ٹیسٹ",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://aiou.edu.pk/admission-open"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -9756,7 +10598,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: IIUI_programs.pdf",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -9790,7 +10635,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: IIUI_programs.pdf",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "انٹر نیشنل اسلامک یونیورسٹی",
@@ -9824,7 +10672,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Drive PDF: IIUI_programs.pdf",
    "testLink": "https://admission.iiu.edu.pk/programes",
-   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط"
+   "testLinkLabel": "داخلہ صفحہ — ایم ایس/پی ایچ ڈی ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.iiu.edu.pk/"
+   }
   },
   {
    "name": "الحمد اسلامی یونیورسٹی",
@@ -9854,8 +10705,11 @@ window.ADMISSIONS_DATA = {
    "videoLink": "",
    "contacts": [],
    "source": "Drive PDF: Alhamd.pdf",
-   "testLink": "http://www.qta.aiu.edu.pk/adp-islamic.php",
-   "testLinkLabel": "اے آئی یو انٹری ٹیسٹ شرط (50٪)"
+   "testLink": "https://admission.aiu.edu.pk/",
+   "testLinkLabel": "اے آئی یو انٹری ٹیسٹ شرط (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.aiu.edu.pk/"
+   }
   },
   {
    "name": "الحمد اسلامی یونیورسٹی",
@@ -9885,8 +10739,11 @@ window.ADMISSIONS_DATA = {
    "videoLink": "",
    "contacts": [],
    "source": "Drive PDF: Alhamd.pdf",
-   "testLink": "http://www.qta.aiu.edu.pk/adp-islamic.php",
-   "testLinkLabel": "اے آئی یو انٹری ٹیسٹ شرط (50٪)"
+   "testLink": "https://admission.aiu.edu.pk/",
+   "testLinkLabel": "اے آئی یو انٹری ٹیسٹ شرط (50٪)",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admission.aiu.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -9917,7 +10774,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Planner tab (2026-10-29)",
    "testLink": "https://su.edu.pk/upload/Prospectus-2026.pdf",
-   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.su.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -9948,7 +10808,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Planner tab (2026-10-29)",
    "testLink": "https://su.edu.pk/upload/Prospectus-2026.pdf",
-   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.su.edu.pk/"
+   }
   },
   {
    "name": "یونیورسٹی آف سرگودھا",
@@ -9979,7 +10842,10 @@ window.ADMISSIONS_DATA = {
    "contacts": [],
    "source": "Planner tab (2026-10-29)",
    "testLink": "https://su.edu.pk/upload/Prospectus-2026.pdf",
-   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط"
+   "testLinkLabel": "پراسپیکٹس — انٹری ٹیسٹ شرائط",
+   "attributes": {
+    "داخلہ فارم / پورٹل": "https://admissions.su.edu.pk/"
+   }
   }
  ]
 };
