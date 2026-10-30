@@ -185,6 +185,15 @@ select.inline{width:auto;flex:1}
   body:not(.layout-mobile) .nd-text{order:1;flex:1;min-width:0}
   body:not(.layout-mobile) .nd-poster{order:2;flex:0 0 32%;max-width:330px}
 }
+/* سکالرشپ کا ڈیزائن شدہ کور (مفتی 2026-10-31): صرف اس سکالرشپ کے لیے جس کا آفیشل پوسٹر
+   (img) نہ ملا ہو — آفیشل پوسٹر ہمیشہ پہلے۔ فلیٹ برانڈ سبز، سنہری جھلک، عنوان نمایاں،
+   نیچے ایپ کا اپنا نام؛ یہ ایپ کا اپنا کور ہے، کسی آفیشل اشتہار یا تصویر کی نقل نہیں */
+.nd-cover{background:var(--c-primary-900);border:1px solid var(--c-gold-500);border-radius:12px;padding:20px 16px 14px;box-shadow:0 1px 3px rgba(0,0,0,.06);display:flex;flex-direction:column;gap:9px;min-height:150px;justify-content:center;width:100%;box-sizing:border-box}
+.card>.nd-cover{margin-bottom:8px}
+.nd-cover .cv-eyebrow{color:var(--c-gold-500);font-size:14px;font-weight:bold;border-bottom:1px solid rgba(201,162,39,.45);padding-bottom:6px}
+.nd-cover .cv-title{color:var(--c-gold-100);font-size:20px;line-height:1.9;font-weight:bold;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.nd-cover .cv-chip{align-self:flex-start;display:inline-block;border:1px solid var(--c-gold-500);color:var(--c-gold-300);border-radius:12px;font-size:13.5px;line-height:1.8;padding:0 9px 2px}
+.nd-cover .cv-mark{color:var(--c-gold-300);opacity:.75;font-size:13px}
 .featured-card{border:1px solid var(--c-border);background:var(--c-surface);border-radius:16px;padding:12px 14px;margin:8px 0 4px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 /* سٹار امتیاز: سنہرا بیج، نام کی جھلک، تصویر کا سنہرا فریم، ڈیجیٹل ID کارڈ (CR80 تناسب) */
 .star-badge{display:inline-block;background:var(--c-gold-fill);color:var(--c-gold-ink);border:1px solid var(--c-gold-700);border-radius:12px;font-size:15px;line-height:1.9;padding:0 8px 2px;margin-right:5px;vertical-align:middle;box-shadow:0 1px 3px rgba(0,0,0,.06)}
@@ -4616,15 +4625,36 @@ function renderPublications(){
     '</div>'
   ).join('') : '<p class="center small">ابھی کوئی مقالہ درج نہیں۔</p>';
 }
+/* ڈیزائن شدہ کور (مفتی 2026-10-31): صرف اس سکالرشپ کے لیے جس کا آفیشل پوسٹر (img)
+   نہ ملا ہو۔ آفیشل پوسٹر ہمیشہ پہلے آتا ہے؛ جو سکالرشپ بعد میں تصدیق شدہ آفیشل پوسٹر
+   پا لے وہ خودکار طور پر اصل پوسٹر پر چلی جاتی ہے۔ کور ایپ کا اپنا ڈیزائن ہے —
+   آفیشل اشتہار کی نقل نہیں۔ دیگر زمروں میں بغیر img کے کوئی کور نہیں بنتا۔ */
+function newsCoverDeadline(n){
+  let d = String(n.deadlineText || n.deadline || '').trim();
+  if(!d) return '';
+  if(d.indexOf('آخری تاریخ') === -1) d = 'آخری تاریخ: ' + d;
+  return d;
+}
+function newsCoverHtml(n){
+  const dl = newsCoverDeadline(n);
+  return '<div class="nd-cover" role="img" aria-label="' + esc(n.title || 'سکالرشپ') + '">' +
+    '<div class="cv-eyebrow">🎓 سکالرشپ</div>' +
+    '<div class="cv-title">' + esc(n.title || '') + '</div>' +
+    (dl ? '<span class="cv-chip">⏰ ' + esc(dl) + '</span>' : '') +
+    '<div class="cv-mark">علمی مشغولیت</div></div>';
+}
 function newsPosterHtml(n){
   if(n.img) return '<img class="certimg" style="margin-bottom:8px" loading="lazy" src="' + esc(n.img) + '" alt="' + esc(n.title || 'اشتہار / پوسٹر') + '" onerror="this.remove()">';
+  if(n.cat === 'سکالرشپس') return newsCoverHtml(n);
   if(n.posterText) return '<div class="poster-ph">' + esc(n.posterText) + '</div>';
   return '';
 }
-/* تفصیلی منظر کے لیے پوسٹر کا طرفی کالم — تصویر ناکام ہو تو پورا خانہ خود ہٹ جاتا ہے */
+/* تفصیلی منظر کے لیے پوسٹر کا طرفی کالم — تصویر ناکام ہو تو پورا خانہ خود ہٹ جاتا ہے؛
+   بغیر آفیشل پوسٹر والی سکالرشپ کے لیے اسی خانے میں ڈیزائن شدہ کور آتا ہے */
 function newsPosterSideHtml(n){
-  if(!n.img) return '';
-  return '<div class="nd-poster"><img class="certimg" loading="lazy" src="' + esc(n.img) + '" alt="' + esc(n.title || 'اشتہار / پوسٹر') + '" onerror="var p=this.closest(\'.nd-poster\');if(p)p.remove();"></div>';
+  if(n.img) return '<div class="nd-poster"><img class="certimg" loading="lazy" src="' + esc(n.img) + '" alt="' + esc(n.title || 'اشتہار / پوسٹر') + '" onerror="var p=this.closest(\'.nd-poster\');if(p)p.remove();"></div>';
+  if(n.cat === 'سکالرشپس') return '<div class="nd-poster">' + newsCoverHtml(n) + '</div>';
+  return '';
 }
 function newsExtraTags(n){
   let t = '';
@@ -4670,9 +4700,10 @@ function openNews(id){
     (n.sample ? '<span class="tag red">نمونہ</span>' : '') + newsExtraTags(n) +
     '<h3>' + esc(n.title) + '</h3><p style="margin:0 0 4px">' + esc(n.desc) + '</p>' +
     '<p style="margin:0;font-weight:bold;color:var(--c-gold-700)">⏰ آخری تاریخ: ' + esc(n.deadline || '') + '</p>';
+  const sideHtml = newsPosterSideHtml(n);
   document.getElementById('nd-body').innerHTML =
-    (n.img
-      ? '<div class="card"><div class="nd-flex">' + newsPosterSideHtml(n) + '<div class="nd-text">' + headInner + '</div></div></div>'
+    (sideHtml
+      ? '<div class="card"><div class="nd-flex">' + sideHtml + '<div class="nd-text">' + headInner + '</div></div></div>'
       : '<div class="card">' + newsPosterHtml(n) + headInner + '</div>') +
     guideHtml +
     (n.applyUrl
@@ -14636,7 +14667,7 @@ window.helpChatSend = function(){
 <script src="admissions-data.js?v=20261029g"></script>
 <script src="foreign-data.js?v=20261029g"></script>
 <script src="admissions-news.js?v=20261031a"></script>
-<script src="admissions.js?v=20261031d"></script>
+<script src="admissions.js?v=20261031e"></script>
 <script type="module" src="api-bridge.js?v=20261031c"></script>
 </body>
 </html>

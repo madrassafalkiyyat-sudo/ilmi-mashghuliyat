@@ -319,6 +319,25 @@
       c === 'admission' ? '📢 داخلہ' : c === 'conference' ? '🎤 کانفرنس' : '📰 خبر';
   }
 
+  /* ڈیزائن شدہ کور — index.html کے newsCoverHtml کا عکس (مفتی 2026-10-31): صرف وہ
+     سکالرشپ جس کا آفیشل پوسٹر (img) نہ ملا ہو۔ آفیشل پوسٹر ہمیشہ پہلے؛ جو سکالرشپ
+     بعد میں تصدیق شدہ آفیشل پوسٹر پا لے وہ خودکار اصل پوسٹر پر چلی جاتی ہے۔
+     کور ایپ کا اپنا ڈیزائن ہے — آفیشل اشتہار کی نقل نہیں۔ */
+  function coverDeadline(it) {
+    var d = String(it.deadlineText || it.deadline || '').trim();
+    if (!d) return '';
+    if (d.indexOf('آخری تاریخ') === -1) d = 'آخری تاریخ: ' + d;
+    return d;
+  }
+  function coverHtml(it) {
+    var dl = coverDeadline(it);
+    return '<div class="nd-cover" role="img" aria-label="' + esc(it.title || 'سکالرشپ') + '">' +
+      '<div class="cv-eyebrow">🎓 سکالرشپ</div>' +
+      '<div class="cv-title">' + esc(it.title || '') + '</div>' +
+      (dl ? '<span class="cv-chip">⏰ ' + esc(dl) + '</span>' : '') +
+      '<div class="cv-mark">علمی مشغولیت</div></div>';
+  }
+
   function newsCard(it) {
     var body = '<p style="margin:0;font-weight:bold">' + esc(it.title) + '</p>' +
       '<p class="small" style="margin:4px 0">' + catLabel(it.cat) + ' • ' + esc(it.org || '') +
@@ -331,6 +350,9 @@
     // پہلو میں کالم؛ خراب تصویر خود خاموشی سے ہٹ جاتی ہے، کوئی پلیس ہولڈر نہیں۔
     if (it.img) {
       h += '<div class="nd-flex"><div class="nd-poster"><img src="' + esc(it.img) + '" alt="' + esc(it.title || '') + '" loading="lazy" onerror="var p=this.closest(\'.nd-poster\');if(p)p.remove();" style="display:block;width:100%;border:1px solid var(--c-border);border-radius:10px"></div><div class="nd-text">' + body + '</div></div>';
+    } else if (it.cat === 'scholarship') {
+      // آفیشل پوسٹر نہ ملنے والی سکالرشپ: اسی پوسٹر خانے میں ایپ کا ڈیزائن شدہ کور
+      h += '<div class="nd-flex"><div class="nd-poster">' + coverHtml(it) + '</div><div class="nd-text">' + body + '</div></div>';
     } else {
       h += body;
     }
