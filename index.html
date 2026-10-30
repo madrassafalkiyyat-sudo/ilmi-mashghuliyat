@@ -107,6 +107,10 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--c-gold-500);bord
    اصل مقصد علمی مشغولیت ہے، اس لیے سوئچ موجود مگر غیر نمایاں رہے */
 .xsw{display:inline-block;cursor:pointer;font-family:inherit;font-size:15.5px;line-height:1.7;padding:2px 14px 5px;border-radius:999px;background:var(--c-card);color:var(--c-primary-900);border:1px solid var(--c-border);box-shadow:none}
 .xsw:active{transform:scale(.97)}
+/* ہوم کی سہولتی پٹی میں داخلہ جات گولی (مفتی 2026-10-31): «ویب صورت» اور
+   «تازہ کریں» کے درمیان، اسی پٹی کے بٹنوں جیسی — لمبے عنوان کے لیے نسبتاً چوڑی */
+.lsw button.xswrow{flex:2 1 0}
+@media (max-width:430px){.lsw button.xswrow{font-size:11px}}
 .btn.sm{width:auto;display:inline-block;font-size:17px;padding:8px 18px 12px;margin:6px 2px}
 .msg{border-radius:12px;padding:8px 14px;margin:10px 0;font-size:17px;line-height:1.9;display:none}
 .msg.err{display:block;background:var(--c-warn-bg);color:var(--c-warn);border:1px solid var(--c-border)}
@@ -1165,7 +1169,6 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 <!-- ============ ہوم ============ -->
 <section class="view" id="view-home">
   <div class="topbar"><button onclick="logout()">لاگ آؤٹ</button><div class="ttl">علمی مشغولیت</div><img src="assets/logo.png" onerror="this.onerror=null;this.src=window.__LOGO" style="width:38px;height:38px;background:var(--c-card);border-radius:8px;padding:2px" alt=""></div>
-  <div class="center" style="margin:8px 0 0"><button type="button" class="xsw" onclick="go('admissions')">🎓 یونیورسٹی داخلہ جات</button></div>
   <div class="layout-switch-slot"></div>
   <div class="center" id="home-avatar" style="margin-top:4px"></div>
   <p class="center" style="margin-top:2px">السلام علیکم، <b id="home-name" style="color:var(--c-primary-900)"></b> 🌿</p>
@@ -13994,6 +13997,7 @@ function renderLayoutSwitches(){
     slot.innerHTML = '<div class="lsw" role="group" aria-label="صورت منتخب کریں">' +
       '<button type="button" class="' + (mode === 'mobile' ? 'on' : '') + '" onclick="setLayout(\'mobile\')">📱 موبائل صورت</button>' +
       '<button type="button" class="' + (mode === 'desktop' ? 'on' : '') + '" onclick="setLayout(\'desktop\')">💻 ویب صورت</button>' +
+      (slot.closest && slot.closest('#view-home') ? '<button type="button" class="xswrow" onclick="go(\'admissions\')">🎓 یونیورسٹی داخلہ جات</button>' : '') +
       (showInst ? '<button type="button" onclick="installAppAction()">📲 ایپ انسٹال کریں</button>' : '') +
       '<button type="button" onclick="hardRefreshApp()">🔄 تازہ کریں</button>' +
       '<button type="button" onclick="openAppBrochure()">📖 ایپ بروشر</button>' +
