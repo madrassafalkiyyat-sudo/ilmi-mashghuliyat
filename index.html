@@ -13191,6 +13191,17 @@ function routeGuest(){
       routeOnline(info);
     }
   });
+  /* مستقل سیشن کی پس منظر بحالی (مفتی، 2026-10-31): بوٹ کے وقت سرور نہ ملے
+     (کولڈ اسٹارٹ/نیٹ ورک) تو bridge ٹوکن برقرار رکھ کر خاموشی سے کوشش جاری
+     رکھتا ہے؛ بحالی مکمل ہوتے ہی یہ ایونٹ آتا ہے — صارف نے اس دوران خود
+     لاگ ان/رجسٹریشن شروع نہ کیا ہو تو اسی سمت بندی سے اندر لے جائیں۔ */
+  window.addEventListener('ilmi-session-restored', function(e){
+    if(window.__authTouched) return;
+    const info = e && e.detail;
+    if(!info || !info.authed) return;
+    bootDecided = 'online';
+    routeOnline(info);
+  });
 })();
 
 /* ================= انسٹال بینر — ویب ایپ کو ہوم اسکرین پر لگانے کی دعوت =================
@@ -14070,6 +14081,6 @@ window.helpChatSend = function(){
 <script src="foreign-data.js?v=20261029g"></script>
 <script src="admissions-news.js?v=20261031a"></script>
 <script src="admissions.js?v=20261031a"></script>
-<script type="module" src="api-bridge.js?v=20261030d"></script>
+<script type="module" src="api-bridge.js?v=20261031b"></script>
 </body>
 </html>

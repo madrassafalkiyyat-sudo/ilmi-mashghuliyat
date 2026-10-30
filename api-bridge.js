@@ -165,6 +165,7 @@ const ADMIN_LISTS = [
 
 async function pollOnce(ctx) {
   try {
+    await ensureFreshAccess();
     if (ctx.isAdmin) {
       const u = await api('/api/admin/users?limit=200', {});
       window.__applySnapshot('users', normList(u.docs));
@@ -691,6 +692,166 @@ function injectReRegisterPanel() {
   } catch (e) { /* login view absent — nothing to inject */ }
 }
 
+// ---- persistent-session machinery (Mufti, 2026-10-31) ----
+// A student who logged in once on a device must never be asked again on
+// that device. Tokens already live in localStorage (ilmi_access /
+// ilmi_refresh); what changes here is the RESTORE discipline:
+//   * the stored refresh token is given up ONLY on the server's
+//     definitive word — 401/403 with code 'bad_token' (revoked/expired);
+//   * network failures, Render cold starts and proxy 5xx NEVER clear the
+//     tokens — boot retries with backoff, then a background loop keeps
+//     trying and routes the student in when the server answers;
+//   * a localStorage timestamp lock + re-reading the CURRENT stored
+//     token after the wait keeps two tabs from rotating against each
+//     other (the server's 60s grace absorbs any residual race).
+const TAB_ID = 'tab-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+const RLOCK_KEY = 'ilmi_refresh_lock';
+function sleepMs(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+async function acquireRefreshLock() {
+  const deadline = Date.now() + 12000;
+  while (Date.now() < deadline) {
+    let cur = null;
+    try { cur = JSON.parse(localStorage.getItem(RLOCK_KEY) || 'null'); } catch (e) {}
+    const now = Date.now();
+    if (!cur || !cur.t || (now - cur.t) > 15000 || cur.id === TAB_ID) {
+      try { localStorage.setItem(RLOCK_KEY, JSON.stringify({ id: TAB_ID, t: now })); } catch (e) { return false; }
+      await sleepMs(120);
+      let mine = null;
+      try { mine = JSON.parse(localStorage.getItem(RLOCK_KEY) || 'null'); } catch (e) {}
+      if (mine && mine.id === TAB_ID) return true;
+    }
+    await sleepMs(500);
+  }
+  return false;
+}
+function releaseRefreshLock() {
+  try {
+    const cur = JSON.parse(localStorage.getItem(RLOCK_KEY) || 'null');
+    if (cur && cur.id === TAB_ID) localStorage.removeItem(RLOCK_KEY);
+  } catch (e) {}
+}
+
+function isDefinitiveInvalid(e) {
+  return !!e && (e.status === 401 || e.status === 403) && e.code === 'bad_token';
+}
+
+let REFRESH_INFLIGHT = null;
+function refreshStoredSession() {
+  if (REFRESH_INFLIGHT) return REFRESH_INFLIGHT;
+  REFRESH_INFLIGHT = doRefreshStored().finally(() => { REFRESH_INFLIGHT = null; });
+  return REFRESH_INFLIGHT;
+}
+
+// One stubborn refresh attempt against the CURRENT stored token.
+// Returns {kind:'ok', data} | {kind:'invalid'} | {kind:'network', error}
+// | {kind:'none'} (no token stored). Never clears tokens itself — the
+// caller decides what a definitive 'invalid' means in its context.
+async function doRefreshStored() {
+  let rt = getRefresh();
+  if (!rt) return { kind: 'none' };
+  const locked = await acquireRefreshLock();
+  try {
+    // Another tab may have rotated while we waited for the lock — always
+    // present the token that is stored NOW, not the one we started with.
+    const cur = getRefresh();
+    if (!cur) return { kind: 'none' };
+    rt = cur;
+    try {
+      const r = await api('/api/auth/refresh', { method: 'POST', auth: false, body: { refreshToken: rt } });
+      setTokens(r.accessToken, r.refreshToken);
+      return { kind: 'ok', data: r };
+    } catch (e) {
+      if (isDefinitiveInvalid(e)) {
+        // Last chance: storage may have changed between our read and the
+        // call (a sibling tab rotated first). A different stored token
+        // gets one try before the session is declared dead.
+        const cur2 = getRefresh();
+        if (cur2 && cur2 !== rt) {
+          try {
+            const r2 = await api('/api/auth/refresh', { method: 'POST', auth: false, body: { refreshToken: cur2 } });
+            setTokens(r2.accessToken, r2.refreshToken);
+            return { kind: 'ok', data: r2 };
+          } catch (e2) {
+            return isDefinitiveInvalid(e2) ? { kind: 'invalid' } : { kind: 'network', error: e2 };
+          }
+        }
+        return { kind: 'invalid' };
+      }
+      return { kind: 'network', error: e };
+    }
+  } finally {
+    if (locked) releaseRefreshLock();
+  }
+}
+
+// Shared completion for boot + background restore: fetch the profile,
+// start polling, hand the info object to the UI router (via the boot
+// promise's resolve at boot, via a window event afterwards).
+async function completeRestore(r, resolve) {
+  let me = null;
+  try { me = await fetchMe(); } catch (e) { me = null; }
+  if (!me || !me.user) {
+    // The refresh SUCCEEDED — the session is valid — but the profile
+    // fetch failed transiently. Keep the session; routeOnline shows the
+    // login screen with its honest message instead of signing out.
+    const info = { online: true, authed: true, userDoc: null, isAdmin: false };
+    if (resolve) resolve(info);
+    else { try { window.dispatchEvent(new CustomEvent('ilmi-session-restored', { detail: info })); } catch (e) {} }
+    return;
+  }
+  const userDoc = normDoc(me.user);
+  const isAdmin = !!me.isAdmin;
+  startSubscriptions({ uid: userDoc.uid, email: userDoc.email, isAdmin, approved: userDoc.status === 'approved' });
+  const info = { online: true, authed: true, email: userDoc.email, isAdmin, userDoc };
+  if (resolve) resolve(info);
+  else { try { window.dispatchEvent(new CustomEvent('ilmi-session-restored', { detail: info })); } catch (e) {} }
+}
+
+let BG_RESTORE_TIMER = null;
+function startBackgroundRestore(rt0) {
+  if (BG_RESTORE_TIMER) return;
+  let tries = 0;
+  BG_RESTORE_TIMER = setInterval(async () => {
+    tries++;
+    // Abandon quietly if the session changed under us (manual login or
+    // logout in this or another tab changed the stored token), if a
+    // session is already live, or after ~9 minutes of trying.
+    if (CURRENT_USER || getRefresh() !== rt0 || tries > 12) {
+      clearInterval(BG_RESTORE_TIMER); BG_RESTORE_TIMER = null; return;
+    }
+    const out = await refreshStoredSession();
+    if (out.kind === 'ok') {
+      clearInterval(BG_RESTORE_TIMER); BG_RESTORE_TIMER = null;
+      await completeRestore(out.data, null);
+    } else if (out.kind === 'invalid') {
+      clearInterval(BG_RESTORE_TIMER); BG_RESTORE_TIMER = null;
+      clearTokens();
+    }
+  }, 45000);
+}
+
+// Keep a RUNNING session alive past the access token's hour: when the
+// stored access token is expired (or within 2 minutes of it) the 60s
+// poll refreshes it silently instead of letting every feed start 401ing.
+function accessExpMs() {
+  const a = getAccess();
+  if (!a) return 0;
+  try {
+    const seg = a.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+    const p = JSON.parse(atob(seg));
+    return (p.exp || 0) * 1000;
+  } catch (e) { return 0; }
+}
+async function ensureFreshAccess() {
+  try {
+    if (!getRefresh()) return;
+    const exp = accessExpMs();
+    if (exp && exp - Date.now() > 120000) return;
+    await refreshStoredSession(); // outcome ignored — the poll retries in a minute
+  } catch (e) {}
+}
+
 // ---- boot: restore session from refresh token, then resolve __fbBoot ----
 (async function boot() {
   const resolve = window.__fbResolve || function () {};
@@ -703,21 +864,29 @@ function injectReRegisterPanel() {
   try {
     injectReRegisterPanel();
   } catch (e) {}
-  const rt = getRefresh();
-  if (!rt) {
+  const rt0 = getRefresh();
+  if (!rt0) {
     resolve({ online: true, authed: false });
     return;
   }
-  try {
-    const r = await api('/api/auth/refresh', { method: 'POST', auth: false, body: { refreshToken: rt } });
-    setTokens(r.accessToken, r.refreshToken);
-    const me = await fetchMe();
-    const userDoc = normDoc(me.user);
-    const isAdmin = !!me.isAdmin;
-    startSubscriptions({ uid: userDoc.uid, email: userDoc.email, isAdmin, approved: userDoc.status === 'approved' });
-    resolve({ online: true, authed: true, email: userDoc.email, isAdmin, userDoc });
-  } catch (e) {
+  // Stubborn silent restore: paced retries now; if the network/server is
+  // still unreachable, the tokens STAY and a background loop keeps
+  // restoring quietly — the login screen appears only on a definitive
+  // server rejection (or when no token was ever stored).
+  let out = null;
+  const delays = [0, 4000, 10000];
+  for (let i = 0; i < delays.length; i++) {
+    if (delays[i]) await sleepMs(delays[i]);
+    out = await refreshStoredSession();
+    if (out.kind !== 'network') break;
+  }
+  if (out.kind === 'ok') { await completeRestore(out.data, resolve); return; }
+  if (out.kind === 'invalid') {
     clearTokens();
     resolve({ online: true, authed: false });
+    return;
   }
+  if (out.kind === 'none') { resolve({ online: true, authed: false }); return; }
+  resolve({ online: true, authed: false, restorePending: true });
+  startBackgroundRestore(rt0);
 })();
