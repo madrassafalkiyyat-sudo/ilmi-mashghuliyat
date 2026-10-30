@@ -1977,6 +1977,12 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div id="admin-course-gradebook"></div>
   </div>
 
+  <!-- حصہ: ادارہ سازی کورس — رجسٹرڈ طلبہ کی فہرست (ڈیش بورڈ بلاک سے کلک پر کھلتی ہے) + PDF -->
+  <div class="admin-sec" id="asec-coursestudents" style="display:none">
+  <div class="admin-sec-head"><button class="btn sm" onclick="adminBack()"><span>← ایڈمن مرکز</span></button><h2>🏛️ ادارہ سازی کورس — رجسٹرڈ طلبہ</h2></div>
+  <div id="admin-course-students"></div>
+  </div>
+
   <!-- حصہ: ڈیش بورڈ ڈیٹا — خام اندراج کی واحد جگہ -->
   <div class="admin-sec" id="asec-dashdata" style="display:none">
   <div class="admin-sec-head"><button class="btn sm" onclick="adminBack()">← ایڈمن مرکز</button><h2>📝 ڈیش بورڈ ڈیٹا</h2></div>
@@ -6177,6 +6183,93 @@ function renderAdminGradebook(){
     '<p class="small" style="margin:6px 0 0">ح = حاضری (کلاس نمبر کے مطابق)؛ * = تاخیر سے جمع (پوائنٹس نصف)۔ گریڈ بک ہر پول (60 سیکنڈ) پر خود تازہ ہوتی ہے۔</p>';
 }
 
+/* ---------- ایڈمن: ادارہ سازی کورس — رجسٹرڈ طلبہ کی فہرست + PDF ----------
+   (مفتی کی ہدایت 2026-10-31: ڈیش بورڈ میں کلک کرنے پر رجسٹرڈ طلبہ کی فہرست
+   کھلے اور اسی فہرست کی PDF بھی مل جایا کرے۔)
+   آبادی: سرور کی گریڈ بک (courseGradebook.rows) — یہی کورس رجسٹرڈ
+   (courseReg + منظور شدہ) طلبہ کی مستند فہرست ہے جو ایڈمن پول پہلے سے لاتا ہے۔
+   ہر خانے کا ماخذ: نام = users() سے studentDisplayName (نہ ملے تو قطار کا
+   name)؛ ڈگری / تعلیمی درجہ / یونیورسٹی / واٹس ایپ = ای میل سے ملان شدہ
+   users() ریکارڈ؛ حاضری = قطار کا attCount (تصدیق شدہ دعوے + ایڈمن درج
+   courseAtt — سرور کا اپنا عدد، گریڈ بک والا)؛ جمع شدہ مشقیں = قطار کے
+   marks میں جمع اندراجات کی گنتی؛ کل نمبر = قطار کا totalMarks؛ پوائنٹس =
+   سرور کے عین اصول (lib/course.js: recomputeCoursePoints) سے انہی خانوں سے
+   حساب — حاضری × 10 + مشقوں کے نمبر (تاخیر پر نصف، floor)۔ ایڈمن پول میں
+   فی طالب علم پوائنٹس کی الگ کلیکشن نہیں آتی، اس لیے پوائنٹس گریڈ بک کے
+   خانوں سے بنتے ہیں؛ فارم قسم کی مشقیں ایپ میں جمع ہی نہیں ہوتیں، اس لیے
+   یہ حساب سرور کے عدد سے نہیں ٹکراتا۔ */
+function courseStudentRows(){
+  const gb = (DB.get('courseGradebook', []) || [])[0];
+  if(!gb || !gb.rows) return null;
+  const byEmail = {};
+  users().forEach(function(u){ const e = String((u && u.email) || '').toLowerCase(); if(e) byEmail[e] = u; });
+  const sessFallback = (typeof courseBatchSessions === 'function') ? (courseBatchSessions() || []) : [];
+  const totalSess = (gb.sessions && gb.sessions.length) || sessFallback.length || 10;
+  return gb.rows.map(function(r){
+    const u = byEmail[String(r.email || '').toLowerCase()] || null;
+    let points = (r.attCount || 0) * 10, submitted = 0;
+    (r.marks || []).forEach(function(m){
+      if(!m) return;
+      submitted++;
+      if(typeof m.marks === 'number') points += m.late ? Math.floor(m.marks / 2) : m.marks;
+    });
+    return {
+      email: r.email || '',
+      name: (u && studentDisplayName(u)) || r.name || '',
+      user: u,
+      degree: u ? (u.degree || '') : '',
+      edu: u ? eduStatusFormValue((u.profile && u.profile.eduStatus) || '', u.degree || '') : '',
+      uni: u ? (u.uni || '') : '',
+      waRaw: u ? studentWaRaw(u) : '',
+      att: r.attCount || 0, totalSess: totalSess,
+      submitted: submitted, totalMarks: r.totalMarks || 0, points: points
+    };
+  });
+}
+function renderAdminCourseStudents(){
+  const el = document.getElementById('admin-course-students'); if(!el) return;
+  const rows = courseStudentRows();
+  if(rows === null){
+    el.innerHTML = '<p class="small">کورس کا ڈیٹا ابھی لوڈ نہیں ہوا — اگلے پول (60 سیکنڈ) پر خود تازہ ہو جائے گا۔</p>';
+    return;
+  }
+  let h = '<p>کل رجسٹرڈ طلبہ: <b>' + urDigits(rows.length) + '</b> ' +
+    '<button class="btn sm goldb" onclick="printCourseStudents()">🖨️ PDF ڈاؤن لوڈ</button></p>' +
+    '<p class="small">یہ فہرست ہر پول (60 سیکنڈ) پر خود تازہ ہوتی ہے۔ پوائنٹس کا حساب: تصدیق شدہ حاضری × 10 + مشقوں کے حاصل نمبر (تاخیر سے جمع پر نصف)۔</p>';
+  if(!rows.length){
+    h += '<p class="small">ابھی کوئی طالب علم اس کورس میں رجسٹرڈ نہیں — اہل طالب علم کے رجسٹر ہوتے ہی فہرست یہاں بن جائے گی۔</p>';
+  } else {
+    h += rows.map(function(r, i){
+      const cu = r.user || { email: r.email, name: r.name, profile: {} };
+      return '<div class="card"><b>' + urDigits(i + 1) + '۔ ' + esc(r.name || r.email) + '</b> <span class="small">(' + esc(r.email) + ')</span><br>' +
+        '<span class="small">' + esc(r.degree || '—') + (r.edu ? ' • ' + esc(r.edu) : '') + (r.uni ? ' • ' + esc(r.uni) : '') + '</span><br>' +
+        '<span class="small">📧 ' + esc(r.email) + ' &nbsp;•&nbsp; 📱 واٹس ایپ: <b dir="ltr">' + esc(r.waRaw || 'درج نہیں') + '</b></span><br>' +
+        '<span style="display:inline-block;margin:4px 0">' + contactBtnsHtml(cu) + '</span><br>' +
+        '<span class="small">حاضری: <b>' + urDigits(r.att) + '/' + urDigits(r.totalSess) + '</b> • جمع شدہ مشقیں: <b>' + urDigits(r.submitted) + '</b> • کل نمبر: <b>' + urDigits(r.totalMarks) + '</b> • پوائنٹس: <b>' + urDigits(r.points) + '</b></span></div>';
+    }).join('');
+  }
+  el.innerHTML = h;
+}
+/* فہرست کی PDF — ایپ کا اپنا پرنٹ نظام (#print-report): براؤزر پرنٹ سے
+   «Save as PDF»۔ absPrint کی طرح صرف #print-report بھرتا ہے، کسی اور
+   فیچر کی پرنٹ حالت نہیں چھیڑتا۔ */
+function printCourseStudents(){
+  const rows = courseStudentRows() || [];
+  let h = '<div class="rep-head"><img src="assets/logo.png" onerror="this.onerror=null;this.src=window.__LOGO" alt="مدرسہ ڈاٹ پی کے">' +
+    '<div><h1>ادارہ سازی کورس — رجسٹرڈ طلبہ کی فہرست</h1>' +
+    '<p style="margin:2px 0 0">مدرسہ ڈاٹ پی کے — شعبہ علمی مشغولیت (یونیورسٹی سٹڈیز) • تاریخ: ' + esc(todayStr()) + ' • کل تعداد: <b>' + urDigits(rows.length) + '</b></p></div></div>';
+  h += '<table class="rep-table"><tr><th>نمبر</th><th>نام</th><th>ڈگری</th><th>یونیورسٹی</th><th>ای میل</th><th>واٹس ایپ</th><th>حاضری</th><th>پوائنٹس</th></tr>';
+  rows.forEach(function(r, i){
+    h += '<tr><td>' + urDigits(i + 1) + '</td><td>' + esc(r.name || r.email) + '</td><td>' + esc(r.degree) + '</td><td>' + esc(r.uni) + '</td>' +
+      '<td dir="ltr" style="text-align:left">' + esc(r.email) + '</td>' +
+      '<td dir="ltr" style="text-align:left">' + esc(r.waRaw || 'درج نہیں') + '</td>' +
+      '<td>' + urDigits(r.att) + '/' + urDigits(r.totalSess) + '</td><td>' + urDigits(r.points) + '</td></tr>';
+  });
+  h += '</table>';
+  document.getElementById('print-report').innerHTML = h;
+  window.print();
+}
+
 /* ================= تحقیقی کورسز (بیرونی پلیٹ فارم) ================= */
 const SEED_RCOURSES = [
  {id:"rc1", platform:"Coursera", sample:true,
@@ -7750,6 +7843,7 @@ function adminRefreshSection(){
     else if(k === 'dashboard') renderAdminDashboard();
     else if(k === 'dashdata') renderDashData();
     else if(k === 'courseclass') renderAdminCourseClass();
+    else if(k === 'coursestudents') renderAdminCourseStudents();
     else if(k === 'counsel') renderAdminCounsel();
     else if(k === 'visionreview') renderVisionReview();
     else if(k === 'starteam') renderAdminStarTeam();
@@ -7766,6 +7860,7 @@ function openAdminSec(key, skipNav){
   if(key === 'dashboard') renderAdminDashboard();
   if(key === 'dashdata') renderDashData();
   if(key === 'courseclass') renderAdminCourseClass();
+  if(key === 'coursestudents') renderAdminCourseStudents();
   if(key === 'counsel') renderAdminCounsel();
   if(key === 'visionreview') renderVisionReview();
   if(key === 'starteam') renderAdminStarTeam();
@@ -12344,7 +12439,9 @@ function dashTblOrEmpty(headers, rows){
 }
 function dashChips(items){
   return '<div class="ahub-stats">' + items.map(function(it){
-    return '<div class="stat-chip">' + esc(it[0]) + '<b>' + esc(String(it[1])) + '</b></div>';
+    /* it[2] (اختیاری) = کلک پر چلنے والا عمل — چپ بٹن بن جاتی ہے (ڈرل ڈاؤن) */
+    const clk = it[2] ? ' style="cursor:pointer" title="کھولنے کے لیے کلک کریں" onclick="' + it[2] + '"' : '';
+    return '<div class="stat-chip"' + clk + '>' + esc(it[0]) + '<b>' + esc(String(it[1])) + '</b></div>';
   }).join('') + '</div>';
 }
 function dashCount(map){
@@ -12461,7 +12558,7 @@ function dashCourseBlock(){
   });
   const avgAtt = (held > 0 && registered) ? Math.round(attSum / (registered * held) * 100) : null;
   h += dashChips([
-    ['کل رجسٹریشنز', registered === null ? '—' : urDigits(registered)],
+    ['کل رجسٹریشنز', registered === null ? '—' : urDigits(registered), "openAdminSec('coursestudents')"],
     ['ہو چکی کلاسیں', sess.length ? (urDigits(held) + ' / ' + urDigits(sess.length)) : '—'],
     ['اگلی کلاس', nextSess ? urDigits(nextSess.sessionDate || '') : '—'],
     ['اوسط حاضری (ہو چکی کلاسیں)', avgAtt === null ? '—' : urDigits(avgAtt) + '٪'],
@@ -12470,7 +12567,7 @@ function dashCourseBlock(){
   ]);
   if(sess.length) h += dashTable(['کلاس', 'تاریخ', 'حالت', 'حاضر', 'حاضری شرح', 'جاری مشقیں', 'جمع', 'نمبر لگے', 'اوسط نمبر'], rows);
   else h += '<p class="small">کلاسوں کی فہرست ابھی لوڈ نہیں ہوئی — اگلے پول پر خود تازہ ہو جائے گی۔</p>';
-  h += '<p><button class="btn goldb" onclick="openAdminSec(\'courseclass\')">مکمل تفصیل — ادارہ سازی کلاس روم ←</button></p>';
+  h += '<p><button class="btn" onclick="openAdminSec(\'coursestudents\')">رجسٹرڈ طلبہ کی فہرست ←</button> <button class="btn goldb" onclick="openAdminSec(\'courseclass\')">مکمل تفصیل — ادارہ سازی کلاس روم ←</button></p>';
   return h;
 }
 function renderDashIlmi(){
