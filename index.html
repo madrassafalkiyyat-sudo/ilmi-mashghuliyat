@@ -2983,6 +2983,12 @@ function navShowFrame(frame){
       if(frame === 'wizard' && typeof wiz !== 'undefined' && wiz) wiz.step = 0;
       go(frame);
       if(frame === 'wizard' && typeof wiz !== 'undefined' && wiz) renderWizard();
+      /* ذیلی فریم (ایڈمن سیکشن) سے اس کے والد منظر پر اترنا: منظر وہی
+         ہونے کی وجہ سے go() اسے «اسی منظر کی تازہ کاری» سمجھ کر کھلا
+         سیکشن وہیں چھوڑ دیتا تھا — فریم پیچھے ہو جاتا مگر آنکھ کو کچھ
+         نہ بدلتا (مردہ واپسی جیسا)۔ ایڈمن میں اصل منزل مرکز ہے: سیکشن
+         بند کر کے مرکز دکھائیں (یہی navAdminSec کی اصل نیت تھی)۔ */
+      if(frame === 'admin' && typeof ADMIN_SEC !== 'undefined' && ADMIN_SEC) adminHub();
     }
   } finally { NAV_POP = false; }
 }
