@@ -3010,22 +3010,61 @@ window.addEventListener('popstate', function(e){
   NAV_STACK.length = idx + 1;                /* درمیانی فریم ختم — براؤزر کی اصل پوزیشن سے ہم آہنگی */
   navShowFrame(target);
 });
-/* اسکرین کا «واپس» بٹن: ایک قدم پیچھے (ہی ہسٹری سے)، ممکن نہ ہو تو دیا گیا متبادل */
+/* اسکرین کا «واپس» بٹن — تصدیق شدہ واپسی (مفتی 2026-10-31، تیسری درستی):
+   پہلی خرابی (لوپ) یہ تھی کہ اخراج go(RETURN) سے آگے PUSH کرتے تھے —
+   وہ درستی برقرار ہے: واپسی ہسٹری سے ہی ہوتی ہے۔ مگر اسی فارم ساتھی
+   پر بٹن پھر مردہ نکلا، اور وجہ براہِ راست تجربے سے ثابت ہوئی: بیرونی
+   صفحہ iframe میں کھلتا ہے اور اس صفحے کی ہر navigation (یونیورسٹی
+   پورٹلز کی redirect زنجیریں: http→https→www→لاگ ان) براؤزر کی
+   «مشترکہ» ہسٹری میں اندراج بناتی ہے۔ history.back() پہلے انہی
+   اندرونی اندراجوں میں قدم رکھتا ہے — مرکزی دستاویز کی حالت نہیں
+   بدلتی، popstate آتا ہی نہیں، منظر وہیں رہتا ہے؛ اور خود redirect
+   کرنے والا صفحہ کھایا ہوا قدم دوبارہ بنا دیتا ہے، اس لیے چھ دباؤ
+   بھی بے اثر رہے (ہارنیس میں عین یہی منظر دوبارہ چلا کر ثابت کیا)۔
+   اصول اب یہ ہے: history.back() کے بعد ایک سانس (380ms) میں تصدیق —
+   منظر بدلا، یا ہسٹری ٹیگ متوقع پچھلے فریم پر اترا؟ نہ ہو تو بٹن
+   خود متبادل منظر پر «اتر» آئے (navLand: دھکیلنا نہیں، موجودہ
+   اندراج بدل کر popstate جیسی ہم آہنگی)۔ ایک دباؤ میں نظر آنے
+   والی تبدیلی کی ضمانت — ہر راستے پر، ہر انجن پر۔ */
+let __navBackBusy = false;
+function navStateTag(){
+  try{ const s = history.state; return (s && s.emView) ? s.emView : ''; }catch(e){ return ''; }
+}
+function navLand(dest){
+  if(dest === 'home' || dest === 'admin'){ goRoot(dest); return; }
+  const idx = NAV_STACK.lastIndexOf(dest);
+  if(idx >= 0) NAV_STACK.length = idx + 1; else NAV_STACK.push(dest);
+  try{ history.replaceState({emView: dest}, ''); }catch(e){}
+  NAV_POP = true;
+  try{ go(dest); } finally { NAV_POP = false; }
+}
+function navBackOr(fallback){
+  const runFallback = function(){
+    if(typeof fallback === 'function') fallback();
+    else navLand(fallback || 'home');
+  };
+  if(NAV_STACK.length <= 1){ runFallback(); return; }
+  if(__navBackBusy) return;
+  const beforeView = CURRENT_VIEW;
+  const expected = NAV_STACK[NAV_STACK.length - 2];
+  __navBackBusy = true;
+  try{ history.back(); }catch(e){}
+  setTimeout(function(){
+    __navBackBusy = false;
+    const moved = (CURRENT_VIEW !== beforeView) || (!!expected && navStateTag() === expected);
+    if(!moved) runFallback();
+  }, 380);
+}
 function goBack(fallback){
-  if(NAV_STACK.length > 1){ try{ history.back(); return; }catch(e){} }
+  if(NAV_STACK.length > 1){ navBackOr(fallback); return; }
   if(typeof fallback === 'function') fallback();
   else if(fallback) go(fallback);
 }
-/* «واپسی» والے اخراج (فارم ساتھی، مدد مرکز، ایبسٹریکٹ) کے لیے درست سمت:
-   یہ بٹن آگے کا قدم نہیں، پیچھے کا قدم ہے۔ پہلے یہ go(RETURN) سے آگے
-   PUSH کرتے تھے — اسٹیک [سابقہ، فارم] پر «سابقہ» دوبارہ چڑھ جاتا اور
-   اگلا بیک دبانے پر طالب علم پھر فارم/مدد میں آ گرتا (یہی «وہیں بار
-   بار واپس» والی خرابی تھی، مفتی 2026-10-31)۔ اب: ہسٹری سے ایک قدم
-   پیچھے — عین اسی منظر پر جو اصل میں پہلے تھا؛ اسٹیک خالی ہو تو
-   متبادل منظر۔ */
+/* «واپسی» والے اخراج (فارم ساتھی، مدد مرکز، ایبسٹریکٹ): ہسٹری سے ایک
+   قدم پیچھے — عین اسی منظر پر جو اصل میں پہلے تھا؛ قدم کھا جائے
+   (iframe اندراج وغیرہ) تو تصدیق شدہ متبادل خود اتر آئے۔ */
 function goBackTo(fallback){
-  if(NAV_STACK.length > 1){ try{ history.back(); return; }catch(e){} }
-  go(fallback || 'home');
+  navBackOr(fallback || 'home');
 }
 /* داخلہ جات ہب سے علمی مشغولیت کی طرف واپسی — سیدھا ہوم ہرگز نہیں
    (مفتی کی تنبیہ 2026-10-31): داخلہ جات عوامی حصہ ہے، علمی مشغولیت بند
@@ -8140,7 +8179,7 @@ function navAdminSec(key){
 /* سیکشن کا «← ایڈمن مرکز» بٹن: ہسٹری سے ایک قدم واپس (ڈیوائس بیک جیسا ہی)، نہ ہو تو براہِ راست مرکز */
 function adminBack(){
   const top = NAV_STACK[NAV_STACK.length - 1];
-  if(top && top.indexOf('adminsec:') === 0 && NAV_STACK.length > 1){ try{ history.back(); return; }catch(e){} }
+  if(top && top.indexOf('adminsec:') === 0 && NAV_STACK.length > 1){ navBackOr(function(){ adminHub(); }); return; }
   adminHub();
 }
 /* مشورہ کیجیے کے خلاصے — تازہ ترین پہلے؛ موضوعات، اطمینان و تاریخ کے ساتھ */
@@ -13776,6 +13815,7 @@ function ffRender(){
   ffRenderGuide(sess);
 }
 var FF_FRAME_TIMER = null;
+var FF_FRAME_URL = null;   /* اس وقت فریم میں کھلا پتہ — وہی پتہ دوبارہ نہ بنائیں */
 function ffRenderFrame(sess){
   var wrap = document.getElementById('ff-frame-wrap');
   var fb = document.getElementById('ff-frame-fallback');
@@ -13786,6 +13826,7 @@ function ffRenderFrame(sess){
      («refused to connect») دکھاتا ہے۔ سیدھا دوستانہ پینل (مفتی 2026-10-31) */
   if(sess.embeddable === false){
     if(FF_FRAME_TIMER) clearTimeout(FF_FRAME_TIMER);
+    FF_FRAME_URL = null;
     wrap.innerHTML = '';
     wrap.style.display = 'none';
     if(fb) fb.style.display = '';
@@ -13798,6 +13839,13 @@ function ffRenderFrame(sess){
   /* Google فارم ہو اور جوابات موجود ہوں تو پین میں خام لنک نہیں،
      بھرا ہوا (prefilled) فارم کھلتا ہے — ہر render تازہ جوابات سے۔ */
   var frameUrl = ffPrefillUrl(sess, true) || sess.url;
+  /* فریم پہلے سے عین اسی پتے پر کھلا ہو تو دوبارہ نہ بنائیں: ہر تعمیر
+     نو اس صفحے کی redirect زنجیر پھر چلا کر براؤزر کی مشترکہ ہسٹری
+     میں نئے اندراج جوڑتی ہے (یہی اندراج پھر «واپس» کھاتے ہیں) اور
+     طالب علم کا بھرا ہوا فارم بھی ضائع ہو جاتا ہے۔ پتہ بدل جائے
+     (نیا جواب → نیا prefill) تو تعمیر نو لازمی ہے۔ */
+  if(document.getElementById('ff-frame') && FF_FRAME_URL === frameUrl) return;
+  FF_FRAME_URL = frameUrl;
   wrap.innerHTML = '<iframe id="ff-frame" src="' + esc(frameUrl) + '" style="width:100%;height:520px;border:1px solid var(--c-border);border-radius:12px;background:#fff" title="فارم"></iframe>';
   var fr = document.getElementById('ff-frame');
   if(FF_FRAME_TIMER) clearTimeout(FF_FRAME_TIMER);
