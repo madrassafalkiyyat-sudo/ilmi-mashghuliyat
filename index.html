@@ -552,8 +552,8 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 <!-- ============ یونیورسٹی داخلہ جات (فیز 2: ملکی/غیر ملکی + سکالرشپس + ملازمتیں + کیلنڈر) ============ -->
 <section class="view" id="view-admissions">
   <div class="topbar"><button onclick="goBack('entry')">→ واپس</button><div class="ttl">یونیورسٹی داخلہ جات</div><span style="width:52px"></span></div>
-  <div id="adm-hub-switch" class="center" style="margin:8px 0 0">
-    <button type="button" class="xsw" onclick="goIlmiHome()">📚 علمی مشغولیت</button>
+  <div id="adm-hub-switch" style="display:flex;justify-content:flex-end;margin:8px 0 0">
+    <button type="button" class="xsw" onclick="goIlmiHome()">📚 علمی مشغولیت والے پیج پر جائیں</button>
   </div>
   <p class="center small" id="adm-hub-intro" style="margin:6px 0">ملکی و غیر ملکی یونیورسٹیز، سکالرشپس، ملازمتیں اور داخلہ کیلنڈر — سب ایک جگہ۔</p>
   <div id="adm-strip" style="margin:8px 0;padding:8px 10px;border:1px solid var(--c-gold-500);border-radius:12px;background:var(--c-gold-100)"></div>
@@ -3072,6 +3072,8 @@ function go(id){
       const v = (le && le.value.trim()) || LS2.get('lastEmail', ''); if(st && v && !st.value) st.value = v; }catch(e){}
   }
   if(id === 'home') renderHome();
+  if(id === 'admissions-apply' && typeof admPrefillApplyForm === 'function') admPrefillApplyForm();
+  if(id === 'admissions-form' && typeof admPrefillEasyForm === 'function') admPrefillEasyForm();
   if(id === 'home' || id === 'admissions') renderFormReminders();
   if(id === 'groupgate') renderGroupGate();
   if(id === 'vision') renderVision();
@@ -13490,19 +13492,158 @@ function ffNormFields(fields){
       label: f.label, kind: f.kind || 'text',
       answer: (f.answer == null ? null : String(f.answer)),
       source: f.source || null,
-      state: (f.answer != null) ? 'ready' : 'needed'
+      state: (f.answer != null) ? 'ready' : 'needed',
+      /* Google Forms prefill metadata (Part 7) — preserved verbatim so
+         the prefilled link can be rebuilt from session answers. */
+      entryId: (f.entryId == null ? null : f.entryId),
+      gType: (f.gType == null ? null : f.gType),
+      options: Array.isArray(f.options) ? f.options : [],
+      prefillCapable: (typeof f.prefillCapable === 'boolean') ? f.prefillCapable : null,
+      manualDone: !!f.manualDone
     };
   });
 }
+/* انسانی شناخت (Part 6): ہر خانہ طالب علم کے سامنے خام (اکثر انگریزی)
+   لیبل سے نہیں، اردو مفہوم + «فارم میں N واں خانہ» سے پہچانا جائے —
+   تاکہ وہ اصل فارم میں وہی خانہ ڈھونڈ سکے۔ نامعلوم لیبل خام ہی رہے گا۔ */
+function ffFieldName(f){
+  var l = String((f && f.label) || '');
+  var low = l.toLowerCase();
+  if(f && f.kind === 'file') return /photo|image|تصویر/i.test(l) ? 'تصویر اپ لوڈ کریں' : 'دستاویز اپ لوڈ کریں';
+  if(/cnic|national id|identity card|شناختی کارڈ/.test(low) || /شناختی/.test(l)) return 'شناختی کارڈ نمبر';
+  if(/father|والد/.test(low) || /والد/.test(l)) return 'والد کا نام';
+  if(/mother|والدہ/.test(low) || /والدہ/.test(l)) return 'والدہ کا نام';
+  if(/date of birth|dob|birth date|تاریخ پیدائش|پیدائش/.test(low) || /پیدائش/.test(l)) return 'تاریخ پیدائش';
+  if(/e-?mail|ای میل/.test(low) || /ای میل/.test(l)) return 'ای میل';
+  if(/whats ?app|واٹس ایپ/.test(low) || /واٹس ایپ/.test(l)) return 'واٹس ایپ نمبر';
+  if(/linkedin|لنکڈن/.test(low)) return 'LinkedIn پروفائل لنک';
+  if(/google scholar|scholar profile|سکالر/.test(low)) return 'Google Scholar پروفائل لنک'; // «scholarship» اس سے نہیں پکڑا جائے گا
+  if(/mobile|phone|contact|موبائل|رابطہ|فون/.test(low) || /موبائل|رابطہ/.test(l)) return 'موبائل نمبر';
+  if(/passport|پاسپورٹ/.test(low) || /پاسپورٹ/.test(l)) return 'پاسپورٹ نمبر';
+  if(/address|پتہ|رہائش/.test(low) || /پتہ/.test(l)) return 'پتہ';
+  if(/gender|sex|جنس/.test(low) || /جنس/.test(l)) return 'جنس';
+  if(/cgpa/.test(low)) return 'سی جی پی اے';
+  if(/marks|percentage|grade|نمبر|فیصد/.test(low) || /نمبر/.test(l)) return 'نمبر / فیصد';
+  if(/district|ضلع/.test(low) || /ضلع/.test(l)) return 'ضلع';
+  if(/city|شہر/.test(low) || /شہر/.test(l)) return 'شہر';
+  if(/country|ملک/.test(low) || /ملک/.test(l)) return 'ملک';
+  if(/madrasa|مدرسہ/.test(low) || /مدرسہ/.test(l)) return 'مدرسہ';
+  if(/semester|سمسٹر/.test(low) || /سمسٹر/.test(l)) return 'سمسٹر';
+  if(/roll|رول نمبر/.test(low)) return 'رول نمبر';
+  if(/session|academic year|\byear\b|سیشن|سال/.test(low) || /سیشن/.test(l)) return 'سال / سیشن';
+  if(/department|discipline|field of study|subject|شعبہ/.test(low) || /شعبہ/.test(l)) return 'شعبہ';
+  if(/degree|program|course|ڈگری|پروگرام/.test(low) || /ڈگری/.test(l)) return 'ڈگری / پروگرام';
+  if(/universit|institution|college|یونیورسٹی|ادار/.test(low) || /یونیورسٹی/.test(l)) return 'یونیورسٹی / ادارہ';
+  if(/occupation|profession|ملازمت|پیشہ/.test(low)) return 'پیشہ / ملازمت';
+  if(/nationality|قومیت/.test(low) || /قومیت/.test(l)) return 'قومیت';
+  if(/guardian|سرپرست/.test(low) || /سرپرست/.test(l)) return 'سرپرست کا نام';
+  if(/name|نام/.test(low) || /نام/.test(l)) return 'نام';
+  return l;
+}
+function ffOrdinalText(i){ return 'فارم میں ' + urDigits(i + 1) + ' واں خانہ'; }
+/* Google موڈ میں جو خانہ prefill میں جا ہی نہیں سکتا (فائل اپ لوڈ،
+   گرڈ، یا entry id کے بغیر) وہ «خود کرنا ہے» ہے — پوچھنے کے سلسلے
+   میں نہیں آتا۔ عام (guidance) موڈ میں فائل خانہ تیاری کے لیے آتا ہے۔ */
+function ffIsManualField(sess, f){
+  if(!f) return false;
+  if(sess && sess.provider === 'google' && (f.kind === 'file' || f.prefillCapable === false)) return true;
+  return false;
+}
+function ffFieldStatus(sess, f){
+  if(ffIsManualField(sess, f)) return 'manual';
+  if(f.answer || f.state === 'ready') return 'filled';
+  return 'needed';
+}
+/* Google Forms prefill (Part 7): سیشن کے موجودہ جوابات سے بھرا ہوا
+   لنک دوبارہ بنتا ہے — ہر نیا جواب محفوظ ہوتے ہی اگلا render اسی
+   تازہ لنک سے فارم کھولتا ہے۔ بیک اینڈ کے googlePrefillParams کا
+   عکس — دونوں کو ہم قدم رکھیں۔ جو قدر سفر نہ کر سکے (فائل، گرڈ،
+   ڈراپ ڈاؤن سے باہر کی قدر، بے ترتیب تاریخ) وہ شامل نہیں ہوتی۔ */
+function ffPrefillParams(f){
+  if(!f || f.entryId == null || f.prefillCapable !== true) return [];
+  var v = (f.answer == null ? '' : String(f.answer)).trim();
+  if(!v) return [];
+  var key = 'entry.' + f.entryId;
+  if(f.kind === 'date'){
+    var y, mo, d, m;
+    m = v.match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/);
+    if(m){ y = +m[1]; mo = +m[2]; d = +m[3]; }
+    else {
+      m = v.match(/^(\d{1,2})[-/](\d{1,2})[-/](\d{4})$/);
+      if(m){ d = +m[1]; mo = +m[2]; y = +m[3]; }
+    }
+    if(!y || mo < 1 || mo > 12 || d < 1 || d > 31) return [];
+    return [[key + '_year', String(y)], [key + '_month', String(mo)], [key + '_day', String(d)]];
+  }
+  if(f.kind === 'time'){
+    var tm = v.match(/^(\d{1,2}):(\d{2})$/);
+    if(!tm) return [];
+    return [[key + '_hour', String(+tm[1])], [key + '_minute', String(+tm[2])]];
+  }
+  if(f.kind === 'checkbox'){
+    var opts = Array.isArray(f.options) ? f.options : [];
+    var vals = v.split(/\s*[,،\n]\s*/).map(function(x){ return x.trim(); }).filter(Boolean);
+    var pairs = [], other = [];
+    vals.forEach(function(val){
+      if(!opts.length || opts.indexOf(val) >= 0) pairs.push([key, val]);
+      else other.push(val);
+    });
+    if(other.length){
+      pairs.push([key, '__other_option__']);
+      pairs.push([key + '.other_option_response', other.join(', ')]);
+    }
+    return pairs;
+  }
+  if(f.kind === 'choice'){
+    var copts = Array.isArray(f.options) ? f.options : [];
+    if(copts.length && copts.indexOf(v) < 0){
+      if(f.gType === 2) return [[key, '__other_option__'], [key + '.other_option_response', v]];
+      return [];
+    }
+    return [[key, v]];
+  }
+  return [[key, v]];
+}
+function ffPrefillUrl(sess, embedded){
+  if(!sess || sess.provider !== 'google' || !sess.formBaseUrl || !sess.prefillAvailable) return null;
+  var pairs = [['usp', 'pp_url']];
+  (sess.fields || []).forEach(function(f){
+    ffPrefillParams(f).forEach(function(p){ pairs.push(p); });
+  });
+  if(pairs.length === 1) return null; // ابھی کوئی جواب سفر کے قابل نہیں — جعلی prefill نہیں
+  var url = sess.formBaseUrl + '?' + pairs.map(function(p){ return encodeURIComponent(p[0]) + '=' + encodeURIComponent(p[1]); }).join('&');
+  return embedded ? (url + '&embedded=true') : url;
+}
+window.ffOpenPrefilled = function(){
+  var sess = FF_CUR;
+  if(!sess) return;
+  var url = ffPrefillUrl(sess, false);
+  if(!url) return;
+  if(sess.embeddable === false){
+    sess.awaitLogin = false;
+    ffSave(sess);
+    window.open(url, '_blank', 'noopener');
+  } else {
+    ffPane('form');
+    ffRenderFrame(sess);
+  }
+};
 function ffProgress(sess){
   var fs = sess.fields || [];
-  var ready = 0;
-  fs.forEach(function(f){ if(f.state === 'ready') ready++; });
-  return { total: fs.length, ready: ready };
+  var ready = 0, total = 0, manual = 0;
+  fs.forEach(function(f){
+    if(ffIsManualField(sess, f)){ manual++; return; }
+    total++;
+    if(f.state === 'ready' || f.answer) ready++;
+  });
+  return { total: total, ready: ready, manual: manual };
 }
 function ffNextAsk(sess){
   var fs = sess.fields || [];
-  for(var i = 0; i < fs.length; i++){ if(fs[i].state !== 'ready') return i; }
+  for(var i = 0; i < fs.length; i++){
+    if(ffIsManualField(sess, fs[i])) continue; // prefill میں نہ جا سکنے والا خانہ نہیں پوچھا جاتا
+    if(fs[i].state !== 'ready') return i;
+  }
   return -1;
 }
 function ffIncompleteSessions(){
@@ -13563,6 +13704,9 @@ function ffExtract(sess, opts){
       ffSave(sess); ffRender();
       return;
     }
+    sess.provider = r.data.provider || null;
+    sess.formBaseUrl = r.data.formBaseUrl || null;
+    sess.prefillAvailable = !!r.data.prefillAvailable;
     sess.fields = ffNormFields(r.data.fields);
     if(r.data.formTitle) sess.formTitle = r.data.formTitle;
     if(typeof r.data.embeddable === 'boolean') sess.embeddable = r.data.embeddable;
@@ -13614,7 +13758,10 @@ function ffRenderFrame(sess){
   if(fb) fb.style.display = 'none';
   wrap.style.display = '';
   if(rb) rb.style.display = '';
-  wrap.innerHTML = '<iframe id="ff-frame" src="' + esc(sess.url) + '" style="width:100%;height:520px;border:1px solid var(--c-border);border-radius:12px;background:#fff" title="فارم"></iframe>';
+  /* Google فارم ہو اور جوابات موجود ہوں تو پین میں خام لنک نہیں،
+     بھرا ہوا (prefilled) فارم کھلتا ہے — ہر render تازہ جوابات سے۔ */
+  var frameUrl = ffPrefillUrl(sess, true) || sess.url;
+  wrap.innerHTML = '<iframe id="ff-frame" src="' + esc(frameUrl) + '" style="width:100%;height:520px;border:1px solid var(--c-border);border-radius:12px;background:#fff" title="فارم"></iframe>';
   var fr = document.getElementById('ff-frame');
   if(FF_FRAME_TIMER) clearTimeout(FF_FRAME_TIMER);
   FF_FRAME_TIMER = setTimeout(function(){
@@ -13639,7 +13786,8 @@ window.ffExternalOpen = function(){
   if(!sess) return;
   sess.awaitLogin = true;
   ffSave(sess);
-  window.open(sess.url, '_blank', 'noopener');
+  /* بیرونی ونڈو میں بھی بھرا ہوا فارم ہی جائے — خام لنک نہیں (Part 7) */
+  window.open(ffPrefillUrl(sess, false) || sess.url, '_blank', 'noopener');
 };
 window.ffPaneShot = function(inp){
   var f = inp && inp.files && inp.files[0];
@@ -13684,14 +13832,15 @@ document.addEventListener('visibilitychange', function(){
 });
 function ffQuestionFor(f){
   var l = String(f.label || '');
-  if(f.kind === 'file') return 'دستاویز اپ لوڈ کا خانہ «' + l + '» — مطلوبہ دستاویز/تصویر تیار رکھیں اور فارم میں وہیں اپ لوڈ کریں۔ تیار ہو تو «تیار ہے» دبا دیں۔';
-  if(/cnic|شناختی/i.test(l)) return 'خانہ «' + l + '» کے لیے اپنا شناختی کارڈ نمبر لکھیں:';
-  if(/father|والد/i.test(l)) return 'خانہ «' + l + '» کے لیے والد کا نام لکھیں:';
-  if(f.kind === 'email' || /e-?mail|ای میل/i.test(l)) return 'خانہ «' + l + '» کے لیے اپنا ای میل ایڈریس لکھیں:';
-  if(f.kind === 'phone' || /mobile|phone|موبائل|رابطہ/i.test(l)) return 'خانہ «' + l + '» کے لیے اپنا موبائل / واٹس ایپ نمبر لکھیں:';
-  if(f.kind === 'date' || /تاریخ|date/i.test(l)) return 'خانہ «' + l + '» کے لیے درست تاریخ لکھیں:';
-  if(/address|پتہ/i.test(l)) return 'خانہ «' + l + '» کے لیے اپنا مکمل پتہ لکھیں:';
-  return 'خانہ «' + l + '» کے لیے مطلوبہ معلومات لکھیں:';
+  var d = ffFieldName(f); // اردو مفہوم — خام لیبل نہیں (Part 6)
+  if(f.kind === 'file') return 'دستاویز اپ لوڈ کا خانہ — مطلوبہ دستاویز/تصویر تیار رکھیں اور فارم میں وہیں اپ لوڈ کریں۔ تیار ہو تو «تیار ہے» دبا دیں۔';
+  if(/cnic|شناختی/i.test(l)) return 'خانہ «' + d + '» کے لیے اپنا شناختی کارڈ نمبر لکھیں:';
+  if(/father|والد/i.test(l)) return 'خانہ «' + d + '» کے لیے والد کا نام لکھیں:';
+  if(f.kind === 'email' || /e-?mail|ای میل/i.test(l)) return 'خانہ «' + d + '» کے لیے اپنا ای میل ایڈریس لکھیں:';
+  if(f.kind === 'phone' || /mobile|phone|موبائل|رابطہ/i.test(l)) return 'خانہ «' + d + '» کے لیے اپنا موبائل / واٹس ایپ نمبر لکھیں:';
+  if(f.kind === 'date' || /تاریخ|date/i.test(l)) return 'خانہ «' + d + '» کے لیے درست تاریخ لکھیں (مثلاً 2001-03-04):';
+  if(/address|پتہ/i.test(l)) return 'خانہ «' + d + '» کے لیے اپنا مکمل پتہ لکھیں:';
+  return 'خانہ «' + d + '» کے لیے مطلوبہ معلومات لکھیں:';
 }
 /* لاگ ان والا صفحہ (loginFirst): رہنما سب سے پہلے مکمل لاگ ان مرحلہ دیتا
    ہے — دروازے سمیت: بیرونی کھولنے کا بٹن، اندر کے اصل فارم کے لنک کا خانہ،
@@ -13728,6 +13877,9 @@ window.ffInnerLink = function(){
   sess.url = url;
   sess.fields = null;
   sess.loginFirst = false;
+  sess.provider = null;
+  sess.formBaseUrl = null;
+  sess.prefillAvailable = false;
   delete sess.embeddable;
   delete sess.extractError;
   sess.loginCardDone = false;
@@ -13761,11 +13913,18 @@ function ffRenderGuide(sess){
     return;
   }
   var idx = ffNextAsk(sess);
+  var prefillUrl = ffPrefillUrl(sess, false);
   if(idx === -1){
-    ask.innerHTML = '<div class="card" style="border-color:var(--c-gold-500);background:var(--c-gold-100)"><p style="margin:0"><b>🎉 تمام خانے تیار ہیں</b> — اب فارم میں یہی جوابات لگا کر جمع کرا دیں۔ جمع کرانے کے بعد نیچے «فارم جمع کرا دیا ✓» دبا دیں۔</p></div>';
+    ask.innerHTML = '<div class="card" style="border-color:var(--c-gold-500);background:var(--c-gold-100)"><p style="margin:0"><b>🎉 تمام خانے تیار ہیں</b>' +
+      (prefillUrl
+        ? ' — نیچے «📝 بھرا ہوا فارم کھولیں» دبائیں: اصل فارم آپ کے جوابات سمیت کھلے گا۔ ایک نظر جائزہ لیں، «فارم پر خود کرنا ہے» والے خانے وہیں مکمل کریں، اور Submit آپ خود دبائیں۔'
+        : ' — اب فارم میں یہی جوابات لگا کر جمع کرا دیں۔') +
+      ' جمع کرانے کے بعد نیچے «فارم جمع کرا دیا ✓» دبا دیں۔</p></div>';
   } else {
     var f = sess.fields[idx];
-    var inner = '<div class="card" style="border-color:var(--c-gold-500)"><p style="margin:0 0 6px"><b>ایک خانہ رہ گیا ہے</b> <span class="small">(' + urDigits(idx + 1) + ' از ' + urDigits(sess.fields.length) + ')</span></p>' +
+    var disp = ffFieldName(f);
+    var inner = '<div class="card" style="border-color:var(--c-gold-500)"><p style="margin:0 0 6px"><b>یہ خانہ رہ گیا ہے: ' + esc(disp) + '</b> <span class="small">(' + esc(ffOrdinalText(idx)) + ')</span></p>' +
+      (disp !== String(f.label || '') ? '<p class="small" style="margin:0 0 6px">فارم میں یہ خانہ اس نام سے ہے: «' + esc(f.label) + '»</p>' : '') +
       '<p style="margin:0 0 8px">' + esc(ffQuestionFor(f)) + '</p>';
     if(f.kind === 'file'){
       inner += '<button type="button" class="btn" onclick="ffMarkReady(' + idx + ')">تیار ہے ✓</button>';
@@ -13776,16 +13935,32 @@ function ffRenderGuide(sess){
     ask.innerHTML = inner + '</div>';
   }
   list.innerHTML = sess.fields.map(function(f, i){
-    var chip = (f.state === 'ready')
-      ? '<span class="tag gold">تیار ✓</span>'
-      : '<span class="tag">درکار</span>';
-    var ans = f.answer
-      ? '<span style="font-weight:bold">' + esc(f.answer) + '</span> <button type="button" onclick="ffCopyText(\'' + i + '\', this)" style="padding:3px 10px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:14px;font-weight:bold;cursor:pointer">کاپی</button>'
-      : '<span class="small" style="color:var(--c-gold-700)">آپ کے پروفائل میں موجود نہیں — یہ خانہ خود بھریں</span>';
-    return '<div style="border:1px solid var(--c-border);border-radius:12px;padding:10px 12px;margin:6px 0;background:var(--c-card)"><p style="margin:0 0 4px">' + chip + ' <b>' + esc(f.label) + '</b></p><p style="margin:0">' + ans + '</p></div>';
+    var st = ffFieldStatus(sess, f);
+    var disp = ffFieldName(f);
+    var chip = st === 'manual'
+      ? '<span class="tag">فارم پر خود کرنا ہے</span>'
+      : (st === 'filled'
+        ? (sess.provider === 'google' && f.prefillCapable === true
+          ? '<span class="tag gold">پہلے سے بھرا ہوا ✓</span>'
+          : '<span class="tag gold">تیار ✓</span>')
+        : '<span class="tag">ابھی درکار ہے</span>');
+    var ans;
+    if(st === 'manual'){
+      ans = '<span class="small" style="color:var(--c-gold-700)">یہ خانہ بھری ہوئی کاپی میں نہیں جا سکتا — اصل فارم پر خود ' + (f.kind === 'file' ? 'اپ لوڈ' : 'منتخب/درج') + ' کریں۔</span>' +
+        (f.manualDone ? ' <span class="tag gold">تیار نشان زد ✓</span>' : ' <button type="button" onclick="ffMarkReady(' + i + ')" style="padding:3px 10px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:14px;font-weight:bold;cursor:pointer">تیار ہے ✓</button>');
+    } else if(f.answer){
+      ans = '<span style="font-weight:bold">' + esc(f.answer) + '</span> <button type="button" onclick="ffCopyText(\'' + i + '\', this)" style="padding:3px 10px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:14px;font-weight:bold;cursor:pointer">کاپی</button>';
+    } else {
+      ans = '<span class="small" style="color:var(--c-gold-700)">آپ کے پروفائل میں موجود نہیں — یہ خانہ خود بھریں</span>';
+    }
+    return '<div style="border:1px solid var(--c-border);border-radius:12px;padding:10px 12px;margin:6px 0;background:var(--c-card)">' +
+      '<p style="margin:0 0 2px">' + chip + ' <b>' + esc(disp) + '</b> <span class="small">(' + esc(ffOrdinalText(i)) + ')</span></p>' +
+      (disp !== String(f.label || '') ? '<p class="small" style="margin:0 0 4px">فارم میں درج نام: «' + esc(f.label) + '»</p>' : '') +
+      '<p style="margin:0">' + ans + '</p></div>';
   }).join('');
   var anyAns = sess.fields.some(function(f){ return !!f.answer; });
   acts.innerHTML =
+    (prefillUrl ? '<button type="button" class="btn goldb" onclick="ffOpenPrefilled()">📝 بھرا ہوا فارم کھولیں</button>' : '') +
     (anyAns ? '<button type="button" class="btn goldb" onclick="ffCopyAll(this)">📋 تمام جوابات کاپی کریں</button>' : '') +
     '<button type="button" class="btn" onclick="ffComplete()">فارم جمع کرا دیا ✓</button>' +
     '<button type="button" class="btn ghost" onclick="ffDiscard()">سیشن ختم کریں</button>' +
@@ -13806,6 +13981,7 @@ window.ffAskSave = function(i){
 window.ffMarkReady = function(i){
   var sess = FF_CUR;
   if(!sess || !sess.fields || !sess.fields[i]) return;
+  if(ffIsManualField(sess, sess.fields[i])) sess.fields[i].manualDone = true; // «خود کرنا ہے» — تیار نشان زد، حیثیت manual ہی رہتی ہے
   sess.fields[i].state = 'ready';
   ffSave(sess);
   ffRender();
@@ -13822,7 +13998,7 @@ window.ffCopyText = function(i, btn){
 window.ffCopyAll = function(btn){
   var sess = FF_CUR;
   if(!sess || !sess.fields) return;
-  var lines = sess.fields.filter(function(f){ return !!f.answer; }).map(function(f){ return f.label + ': ' + f.answer; });
+  var lines = sess.fields.filter(function(f){ return !!f.answer; }).map(function(f){ return ffFieldName(f) + ' (' + f.label + '): ' + f.answer; });
   if(!lines.length) return;
   var v = lines.join('\n');
   var done = function(){ if(btn){ var old = btn.textContent; btn.textContent = '✓ کاپی ہو گیا'; setTimeout(function(){ btn.textContent = old; }, 1600); } };
@@ -14822,7 +14998,7 @@ window.helpChatSend = function(){
 <script src="admissions-data.js?v=20261029g"></script>
 <script src="foreign-data.js?v=20261029g"></script>
 <script src="admissions-news.js?v=20261031a"></script>
-<script src="admissions.js?v=20261031g"></script>
+<script src="admissions.js?v=20261031h"></script>
 <script type="module" src="api-bridge.js?v=20261031c"></script>
 </body>
 </html>

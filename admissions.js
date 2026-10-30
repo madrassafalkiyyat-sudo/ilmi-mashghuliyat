@@ -308,6 +308,93 @@
       }).join('');
   }
 
+  /* ---- PROFILE AUTOFILL (Part 7): لاگ ان طالب علم کے اپنے فارم
+     (اپلائی تصدیق + آسان رجسٹریشن) اس کے علمی مشغولیت پروفائل سے خود
+     بھر جائیں۔ اصول: جو خانہ طالب علم اس وزٹ میں خود چھیڑ چکا ہو
+     (dirty) یا جس میں پہلے سے کچھ لکھا ہو، اسے کبھی نہیں چھوا جاتا۔
+     مہمان (guest) کو فارم آج کی طرح خالی ملتا ہے۔ ---- */
+  var ADM_PREFILL_BOUND = false;
+  var ADM_EASY_FIELDS_DIRTY = false;
+  function admProfileValue(u, keys) {
+    if (!u) return '';
+    var p = (u.profile && typeof u.profile === 'object') ? u.profile : {};
+    for (var i = 0; i < keys.length; i++) {
+      var v = u[keys[i]];
+      if (typeof v === 'string' && v.trim()) return v.trim();
+      v = p[keys[i]];
+      if (typeof v === 'string' && v.trim()) return v.trim();
+    }
+    return '';
+  }
+  function admSetPrefill(id, value) {
+    var e = el(id);
+    if (!e || !value) return;
+    if (e.dataset && e.dataset.admDirty === '1') return; // طالب علم خود لکھ چکا ہے
+    if (e.value) return; // پہلے سے بھرا ہوا (مثلاً تفصیل سے آیا ہوا) نہ چھیڑیں
+    if (e.tagName === 'SELECT' && e.options) {
+      var found = false;
+      for (var i = 0; i < e.options.length; i++) if (e.options[i].value === value) { found = true; break; }
+      if (!found) return;
+    }
+    e.value = value;
+  }
+  function admBindPrefillDirty() {
+    if (ADM_PREFILL_BOUND) return;
+    ADM_PREFILL_BOUND = true;
+    ['ap-name', 'ap-cnic', 'ap-mobile', 'ap-email', 'ap-university', 'ap-program', 'ap-level', 'ap-discipline',
+     'af-gmail', 'af-name', 'af-madrasa', 'af-occupation', 'af-whatsapp', 'af-email', 'af-degrees', 'af-university'
+    ].forEach(function (id) {
+      var e = el(id);
+      if (!e) return;
+      var mark = function () { e.dataset.admDirty = '1'; };
+      e.addEventListener('input', mark);
+      e.addEventListener('change', mark);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.adm-f-check'), function (c) {
+      c.addEventListener('change', function () { ADM_EASY_FIELDS_DIRTY = true; });
+    });
+  }
+  window.admPrefillApplyForm = function () {
+    var u = (typeof currentUser === 'function') ? currentUser() : null;
+    if (!u) return; // مہمان: خالی فارم
+    admBindPrefillDirty();
+    admSetPrefill('ap-name', admProfileValue(u, ['name']));
+    admSetPrefill('ap-cnic', admProfileValue(u, ['cnic']));
+    admSetPrefill('ap-mobile', admProfileValue(u, ['mobile', 'whatsapp']));
+    admSetPrefill('ap-email', admProfileValue(u, ['email']));
+    admSetPrefill('ap-university', admProfileValue(u, ['uni', 'university']));
+    admSetPrefill('ap-program', admProfileValue(u, ['degree']));
+    admSetPrefill('ap-discipline', admProfileValue(u, ['dept']));
+    var deg = admProfileValue(u, ['degree']);
+    var lvl = /ph\.?d|پی ایچ ڈی/i.test(deg) ? 'PhD' : /(m\.?phil|ms|ایم فل)/i.test(deg) ? 'MS/MPhil' : /\bbs\b|بی ایس/i.test(deg) ? 'BS' : '';
+    admSetPrefill('ap-level', lvl);
+  };
+  window.admPrefillEasyForm = function () {
+    var u = (typeof currentUser === 'function') ? currentUser() : null;
+    if (!u) return;
+    admBindPrefillDirty();
+    admSetPrefill('af-gmail', admProfileValue(u, ['email']));
+    admSetPrefill('af-name', admProfileValue(u, ['name']));
+    admSetPrefill('af-madrasa', admProfileValue(u, ['madrasa']));
+    admSetPrefill('af-whatsapp', admProfileValue(u, ['whatsapp', 'mobile']));
+    var alt = (u.profile && typeof u.profile.email === 'string') ? u.profile.email.trim() : '';
+    if (alt && alt !== (u.email || '')) admSetPrefill('af-email', alt);
+    admSetPrefill('af-degrees', admProfileValue(u, ['degree']));
+    admSetPrefill('af-university', admProfileValue(u, ['uni', 'university']));
+    if (!ADM_EASY_FIELDS_DIRTY) {
+      var dept = admProfileValue(u, ['dept']);
+      var map = [[/islamic|اسلامی/i, 'اسلامک سٹڈیز'], [/arab|عربی/i, 'عربی'], [/bank|بینک/i, 'اسلامک بینکنگ'], [/education|تعلیم/i, 'ایجوکیشن'], [/psych|نفسیات/i, 'سائیکالوجی']];
+      for (var i = 0; i < map.length; i++) {
+        if (map[i][0].test(dept)) {
+          Array.prototype.forEach.call(document.querySelectorAll('.adm-f-check'), function (c) {
+            if (c.value === map[i][1] && !c.checked) c.checked = true;
+          });
+          break;
+        }
+      }
+    }
+  };
+
   /* ---- Phase 2 sections: strip, scholarships, jobs, calendar, tests ---- */
 
   function newsItems() {
@@ -654,6 +741,8 @@
     renderTests();
     admSection(null);
     fillUniversitySelects();
+    if (window.admPrefillApplyForm) window.admPrefillApplyForm();
+    if (window.admPrefillEasyForm) window.admPrefillEasyForm();
     if (!SCRIPT_URL) {
       var n1 = el('af-note');
       if (n1) n1.textContent = 'نوٹ: آن لائن جمع کرانا ابھی فعال نہیں ہوا — فارم بھر کر رکھیں، فعال ہوتے ہی جمع ہو جائے گا۔';
