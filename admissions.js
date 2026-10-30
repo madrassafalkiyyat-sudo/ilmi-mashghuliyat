@@ -382,7 +382,7 @@
     state.section = (sec === state.section) ? null : sec;
     renderSecButtons();
     var hub = (state.section === null);
-    ['adm-strip', 'adm-sections', 'adm-hub-intro', 'adm-hub-foot', 'adm-hub-switch'].forEach(function (id) {
+    ['adm-strip', 'adm-sections', 'adm-hub-intro', 'adm-hub-foot', 'adm-hub-switch', 'adm-hub-help'].forEach(function (id) {
       var e = el(id);
       if (e) e.style.display = hub ? '' : 'none';
     });
