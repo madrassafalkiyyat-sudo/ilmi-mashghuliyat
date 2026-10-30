@@ -735,6 +735,10 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
         <button type="button" class="btn goldb" onclick="document.getElementById('ff-pane-shot').click()">🖼️ فارم کا اسکرین شاٹ دیں</button>
       </div>
     </div>
+    <div id="ff-recovery-bar" style="display:none;margin:8px 0 0">
+      <span class="small" style="font-weight:bold">فارم نظر نہیں آ رہا؟</span>
+      <button type="button" onclick="ffExternalOpen()" style="padding:4px 12px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-gold-100);color:var(--c-primary-700);font-family:inherit;font-size:14px;font-weight:bold;cursor:pointer">الگ ونڈو میں کھولیں ↗</button>
+    </div>
   </div>
   <div id="ff-pane-guide">
     <div id="ff-login-card" style="display:none">
@@ -13561,6 +13565,8 @@ function ffExtract(sess, opts){
     }
     sess.fields = ffNormFields(r.data.fields);
     if(r.data.formTitle) sess.formTitle = r.data.formTitle;
+    if(typeof r.data.embeddable === 'boolean') sess.embeddable = r.data.embeddable;
+    sess.loginFirst = !!r.data.loginFirst;
     delete sess.extractError;
     ffSave(sess); ffRender();
   }).catch(function(){
@@ -13581,7 +13587,7 @@ function ffRender(){
   var pr = ffProgress(sess);
   var ptxt = document.getElementById('ff-progress-text');
   var pbar = document.getElementById('ff-progress-bar');
-  if(ptxt) ptxt.textContent = sess.fields ? ('تیار خانے ' + urDigits(pr.ready) + ' از ' + urDigits(pr.total)) : '';
+  if(ptxt) ptxt.textContent = (sess.fields && !sess.loginFirst) ? ('تیار خانے ' + urDigits(pr.ready) + ' از ' + urDigits(pr.total)) : '';
   if(pbar) pbar.style.width = (pr.total ? Math.round(pr.ready * 100 / pr.total) : 0) + '%';
   var lc = document.getElementById('ff-login-card');
   if(lc && sess.loginCardDone) lc.style.display = 'none';
@@ -13592,9 +13598,22 @@ var FF_FRAME_TIMER = null;
 function ffRenderFrame(sess){
   var wrap = document.getElementById('ff-frame-wrap');
   var fb = document.getElementById('ff-frame-fallback');
+  var rb = document.getElementById('ff-recovery-bar');
   if(!wrap) return;
+  /* سرور نے سرخیوں (X-Frame-Options/CSP) سے بتا دیا کہ یہ صفحہ فریم میں
+     نہیں کھل سکتا — iframe بنانا ہی بند: ورنہ براؤزر اپنی خام خرابی
+     («refused to connect») دکھاتا ہے۔ سیدھا دوستانہ پینل (مفتی 2026-10-31) */
+  if(sess.embeddable === false){
+    if(FF_FRAME_TIMER) clearTimeout(FF_FRAME_TIMER);
+    wrap.innerHTML = '';
+    wrap.style.display = 'none';
+    if(fb) fb.style.display = '';
+    if(rb) rb.style.display = 'none';
+    return;
+  }
   if(fb) fb.style.display = 'none';
   wrap.style.display = '';
+  if(rb) rb.style.display = '';
   wrap.innerHTML = '<iframe id="ff-frame" src="' + esc(sess.url) + '" style="width:100%;height:520px;border:1px solid var(--c-border);border-radius:12px;background:#fff" title="فارم"></iframe>';
   var fr = document.getElementById('ff-frame');
   if(FF_FRAME_TIMER) clearTimeout(FF_FRAME_TIMER);
@@ -13607,8 +13626,10 @@ function ffRenderFrame(sess){
 window.ffFrameFailed = function(){
   var wrap = document.getElementById('ff-frame-wrap');
   var fb = document.getElementById('ff-frame-fallback');
+  var rb = document.getElementById('ff-recovery-bar');
   if(wrap) wrap.style.display = 'none';
   if(fb) fb.style.display = '';
+  if(rb) rb.style.display = 'none';
   /* فارم اندر نہ کھل سکے تو طالب علم اکثر بیرونی ونڈو سے آگے بڑھے گا —
      وہاں لاگ ان مرحلہ آ سکتا ہے، اس کی رہنمائی سامنے رکھ دیں */
   ffShowLoginCard();
@@ -13642,6 +13663,12 @@ window.ffPane = function(which){
 window.ffShowLoginCard = function(){
   var lc = document.getElementById('ff-login-card');
   if(lc) lc.style.display = '';
+  /* کارڈ کبھی تنہا نہ رہے: فون کے ایک-پین منظر میں اگر اس وقت صرف رہنما
+     پین کھلا ہے تو فارم پین سامنے لے آئیں — طالب علم کو دروازہ نظر آئے
+     (مفتی 2026-10-31: «طالب علم لاگ ان کے لیے کدھر جائے گا») */
+  var pf = document.getElementById('ff-pane-form');
+  var pg = document.getElementById('ff-pane-guide');
+  if(pf && pg && pf.style.display === 'none') ffPane('form');
 };
 window.ffLoginDone = function(){
   var sess = FF_CUR;
@@ -13666,6 +13693,50 @@ function ffQuestionFor(f){
   if(/address|پتہ/i.test(l)) return 'خانہ «' + l + '» کے لیے اپنا مکمل پتہ لکھیں:';
   return 'خانہ «' + l + '» کے لیے مطلوبہ معلومات لکھیں:';
 }
+/* لاگ ان والا صفحہ (loginFirst): رہنما سب سے پہلے مکمل لاگ ان مرحلہ دیتا
+   ہے — دروازے سمیت: بیرونی کھولنے کا بٹن، اندر کے اصل فارم کے لنک کا خانہ،
+   اسکرین شاٹ کا راستہ۔ پورٹل کے اپنے یوزر/پاس ورڈ خانے کبھی «بھرنے والے
+   خانے» بن کر نہیں آتے (مفتی 2026-10-31) */
+function ffLoginFirstHtml(){
+  return '<div class="card" style="border-color:var(--c-gold-500);background:var(--c-gold-100)">' +
+    '<p style="margin:0 0 6px"><b>🔐 یہ لنک لاگ ان والا صفحہ ہے</b></p>' +
+    '<p class="small" style="margin:0 0 8px">یہ لنک لاگ ان والا صفحہ ہے۔ (1) نیچے کے بٹن سے فارم الگ ونڈو میں کھولیں اور وہاں خود لاگ ان کریں — جی میل/پاس ورڈ وہیں لکھیں، Muse کو مت دیں۔ (2) لاگ ان کے بعد اندر جو اصل فارم کھلے، اس کا لنک نیچے لکھیں یا اسکرین شاٹ دیں — پھر میں اس کے خانے نکال کر آپ کے ساتھ بھروں گا۔</p>' +
+    '<button type="button" class="btn" onclick="ffExternalOpen()">فارم الگ ونڈو میں کھولیں ↗</button>' +
+    '<p style="margin:10px 0 2px"><b>اصل فارم کا لنک یہاں لکھیں</b></p>' +
+    '<input id="ff-inner-link" type="url" dir="ltr" placeholder="https://…" style="width:100%;padding:10px;border:1px solid var(--c-border);border-radius:10px;font-family:inherit;font-size:16px;background:var(--c-card);box-sizing:border-box;text-align:left">' +
+    '<p class="small" id="ff-inner-err" style="margin:4px 0 0;color:var(--c-warn)"></p>' +
+    '<button type="button" class="btn goldb" style="margin-top:8px" onclick="ffInnerLink()">اصل فارم کے خانے نکالیں</button>' +
+    '<input type="file" id="ff-login-shot" accept="image/*" style="display:none" onchange="ffPaneShot(this)">' +
+    '<button type="button" class="btn ghost" onclick="document.getElementById(\'ff-login-shot\').click()">🖼️ یا اصل فارم کا اسکرین شاٹ دیں</button>' +
+    '</div>';
+}
+window.ffInnerLink = function(){
+  var sess = FF_CUR;
+  var inp = document.getElementById('ff-inner-link');
+  var err = document.getElementById('ff-inner-err');
+  var url = inp ? String(inp.value || '').trim() : '';
+  if(!sess) return;
+  if(!/^https?:\/\/\S+$/i.test(url)){
+    if(err) err.textContent = 'درست مکمل لنک لکھیں (https:// سے شروع ہونے والا)';
+    return;
+  }
+  /* سیشن اسی طالب علم کے ساتھ نئے ہدف پر منتقل: پرانا کلید-اندراج ہٹا کر
+     سیشن نئے لنک کے تحت محفوظ؛ خانے و پیش رفت نئے سیٹ سے دوبارہ شروع */
+  var all = ffStore();
+  delete all[sess.url];
+  try{ LS2.set(FF_SESSIONS_KEY, all); }catch(e){}
+  sess.url = url;
+  sess.fields = null;
+  sess.loginFirst = false;
+  delete sess.embeddable;
+  delete sess.extractError;
+  sess.loginCardDone = false;
+  sess.awaitLogin = false;
+  sess.done = false;
+  ffSave(sess);
+  ffRender();
+  ffExtract(sess, {});
+};
 function ffRenderGuide(sess){
   var ask = document.getElementById('ff-ask');
   var list = document.getElementById('ff-fields');
@@ -13681,6 +13752,12 @@ function ffRenderGuide(sess){
     ask.innerHTML = '<div class="card"><p style="margin:0">فارم کے خانے پڑھے جا رہے ہیں…</p></div>';
     list.innerHTML = '';
     acts.innerHTML = '';
+    return;
+  }
+  if(sess.loginFirst){
+    ask.innerHTML = ffLoginFirstHtml();
+    list.innerHTML = '';
+    acts.innerHTML = '<button type="button" class="btn ghost" onclick="ffDiscard()">سیشن ختم کریں</button>';
     return;
   }
   var idx = ffNextAsk(sess);
