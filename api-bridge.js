@@ -338,6 +338,20 @@ window.__fb = {
     return { uid: userDoc.uid, isAdmin, userDoc };
   },
 
+  // Gmail-only entry for EXISTING students (Mufti, 2026-10-31): the
+  // server checks the users collection itself — an email with a record
+  // gets a full session, no password, no re-register step. Unknown email
+  // gets the generic 403; the login screen shows its own guidance line.
+  async signInStudent(email) {
+    const r = await api('/api/auth/student-login', { method: 'POST', auth: false, body: { email } });
+    setTokens(r.accessToken, r.refreshToken);
+    const me = await fetchMe();
+    const userDoc = normDoc(me.user);
+    const isAdmin = !!me.isAdmin;
+    startSubscriptions({ uid: userDoc.uid, email, isAdmin, approved: userDoc.status === 'approved' });
+    return { uid: userDoc.uid, isAdmin, userDoc };
+  },
+
   async signOut() {
     try {
       const rt = getRefresh();
@@ -644,54 +658,6 @@ window.__fcmRegisterAdmin = async function (email) {
   return { ok: true, saved: r.saved, mirrored: false, token: r.token };
 };
 
-// ---- re-register panel on the login screen (the migration entry point) ----
-function injectReRegisterPanel() {
-  try {
-    const loginBtn = document.querySelector('button[onclick="doLogin()"]');
-    if (!loginBtn || document.getElementById('rereg-panel')) return;
-    const wrap = document.createElement('div');
-    wrap.id = 'rereg-panel';
-    wrap.style.cssText = 'margin:12px 0;padding:12px;border:1px solid var(--c-gold-500,#c9a227);border-radius:12px;background:var(--c-gold-100,#fbf7ea)';
-    wrap.innerHTML =
-      '<p style="margin:0 0 8px;font-weight:bold">پرانا طالب علم؟ نئی ایپ میں پہلی بار لاگ ان</p>' +
-      '<p class="small" style="margin:0 0 10px">اپنی <b>پرانی رجسٹرڈ ای میل</b> اور نیا پاس ورڈ اوپر والے خانوں میں لکھیں، پھر یہ بٹن دبائیں — پرانا ریکارڈ اور ہسٹری خود بحال ہو جائے گی۔</p>' +
-      '<button class="btn" type="button" id="rereg-btn">پہلی بار نئی ایپ میں لاگ ان کریں</button>';
-    loginBtn.insertAdjacentElement('afterend', wrap);
-    document.getElementById('rereg-btn').addEventListener('click', async () => {
-      const emailEl = document.getElementById('l-email');
-      const passEl = document.getElementById('l-pass');
-      const msgEl = document.getElementById('login-msg');
-      const email = (emailEl && emailEl.value || '').trim().toLowerCase();
-      const pass = (passEl && passEl.value) || '';
-      const show = (t, ok) => { if (msgEl) { msgEl.textContent = t; } };
-      if (!email || !pass) { show('ای میل اور نیا پاس ورڈ دونوں لکھیں۔', false); return; }
-      if (pass.length < 8) { show('نیا پاس ورڈ کم از کم 8 حروف کا ہو۔', false); return; }
-      show('دوبارہ رجسٹریشن ہو رہی ہے — چند لمحے انتظار کریں…', true);
-      try {
-        const r = await window.__fb.reRegister(email, pass);
-        if (r.outcome === 'duplicate_email') {
-          show('یہ ای میل ایک سے زیادہ ریکارڈز میں ہے — انتظامیہ سے رابطہ کریں۔', false);
-          return;
-        }
-        if (r.outcome === 'already_migrated') {
-          show('پاس ورڈ پہلے سے بنا ہوا ہے — سیدھا لاگ ان ہو رہا ہے…', true);
-        } else if (r.outcome === 'migrated' && r.status === 'approved') {
-          show('پاس ورڈ بن گیا — لاگ ان ہو رہا ہے…', true);
-        } else if (r.outcome === 'migrated') {
-          show('پاس ورڈ بن گیا — منظوری کے بعد رسائی کھلے گی۔ لاگ ان ہو رہا ہے…', true);
-        } else {
-          show('درخواست موصول — منظوری کے بعد رسائی کھلے گی۔ لاگ ان ہو رہا ہے…', true);
-        }
-        // Reuse the normal login path: it routes approved/pending/admin
-        // exactly as the app already does.
-        if (typeof window.doLoginOnline === 'function') await window.doLoginOnline(email, pass);
-      } catch (e) {
-        show('دوبارہ رجسٹریشن میں مسئلہ: ' + ((e && e.message) || e), false);
-      }
-    });
-  } catch (e) { /* login view absent — nothing to inject */ }
-}
-
 // ---- persistent-session machinery (Mufti, 2026-10-31) ----
 // A student who logged in once on a device must never be asked again on
 // that device. Tokens already live in localStorage (ilmi_access /
@@ -861,9 +827,6 @@ async function ensureFreshAccess() {
     resolve({ online: false, error: 'API_BASE not configured (see frontend/config.js)' });
     return;
   }
-  try {
-    injectReRegisterPanel();
-  } catch (e) {}
   const rt0 = getRefresh();
   if (!rt0) {
     resolve({ online: true, authed: false });

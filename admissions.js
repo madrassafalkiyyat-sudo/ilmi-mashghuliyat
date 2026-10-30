@@ -309,13 +309,20 @@
   }
 
   function newsCard(it) {
-    var h = '<div style="border:1px solid var(--c-border);border-radius:12px;padding:12px;margin:8px 0;background:var(--c-card)">';
-    if (it.img) h += '<img src="' + esc(it.img) + '" alt="' + esc(it.title || '') + '" loading="lazy" onerror="this.remove()" style="display:block;width:100%;border:1px solid var(--c-border);border-radius:10px;margin-bottom:8px">';
-    h += '<p style="margin:0;font-weight:bold">' + esc(it.title) + '</p>' +
+    var body = '<p style="margin:0;font-weight:bold">' + esc(it.title) + '</p>' +
       '<p class="small" style="margin:4px 0">' + catLabel(it.cat) + ' • ' + esc(it.org || '') +
       (it.deadlineText ? ' • ' + esc(it.deadlineText) : '') + '</p>';
-    if (it.details) h += '<p class="small" style="margin:4px 0">' + esc(it.details) + '</p>';
-    if (isUrl(it.link)) h += '<a class="btn" style="display:inline-block;text-align:center;text-decoration:none;margin-top:6px;padding:8px 16px" href="' + esc(it.link.trim()) + '" target="_blank" rel="noopener">سرکاری صفحہ کھولیں</a>';
+    if (it.details) body += '<p class="small" style="margin:4px 0">' + esc(it.details) + '</p>';
+    if (isUrl(it.link)) body += '<a class="btn" style="display:inline-block;text-align:center;text-decoration:none;margin-top:6px;padding:8px 16px" href="' + esc(it.link.trim()) + '" target="_blank" rel="noopener">سرکاری صفحہ کھولیں</a>';
+    var h = '<div style="border:1px solid var(--c-border);border-radius:12px;padding:12px;margin:8px 0;background:var(--c-card)">';
+    // سرکاری پوسٹر (Part A-addendum, Mufti 2026-10-31): مرکزی خبر کی تفصیل
+    // والا ہی اصول و لے آؤٹ — .nd-flex: فون پر پوسٹر اوپر، ڈیسک ٹاپ پر متن کے
+    // پہلو میں کالم؛ خراب تصویر خود خاموشی سے ہٹ جاتی ہے، کوئی پلیس ہولڈر نہیں۔
+    if (it.img) {
+      h += '<div class="nd-flex"><div class="nd-poster"><img src="' + esc(it.img) + '" alt="' + esc(it.title || '') + '" loading="lazy" onerror="var p=this.closest(\'.nd-poster\');if(p)p.remove();" style="display:block;width:100%;border:1px solid var(--c-border);border-radius:10px"></div><div class="nd-text">' + body + '</div></div>';
+    } else {
+      h += body;
+    }
     return h + '</div>';
   }
 

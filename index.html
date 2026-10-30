@@ -515,7 +515,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div class="divider"></div>
   <p class="center" style="margin:2px 0 8px"><b>— یا —</b></p>
   <button class="btn" onclick="go('login')">🔐 انتظامیہ اور پہلے سے رجسٹرڈ افراد کے لیے — لاگ ان کریں</button>
-  <p class="center small" style="margin-top:6px">یونیورسٹی میں داخلہ کے بعد یہاں سے رجسٹریشن لازمی ہے۔ پہلے والی لاگ ان نہیں چلے گی۔</p>
+  <p class="center small" style="margin-top:6px">یونیورسٹی میں داخلہ کے بعد یہاں سے رجسٹریشن لازمی ہے۔ پہلے سے رجسٹرڈ طلبہ صرف اپنی جی میل لکھ کر داخل ہو سکتے ہیں — پاس ورڈ کی ضرورت نہیں۔</p>
   <div class="divider"></div>
   <div style="border:1px dashed var(--c-gold-500);border-radius:12px;padding:10px 12px;background:var(--c-paper)">
     <p style="margin:0 0 4px"><b>📲 ایپ کا لنک محفوظ کریں — ساتھی طلبہ کو بھی بھیجیں</b></p>
@@ -721,26 +721,16 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   </div>
   <div class="divider"></div>
   <p>ادارے کے سفر کا حصہ بننے سے پہلے یہ جاننا ضروری ہے کہ <b>یہ شعبہ ہے کیوں</b> اور آپ اس کے کس بڑے مقصد سے جڑ رہے ہیں۔ اس شعبے کا مقصد یہ ہے کہ مدارس کے فضلاء و فاضلات اعلیٰ یونیورسٹیوں میں تحقیق کی راہ اپنائیں اور آنے والے برسوں میں اپنے اپنے ممالک میں علمی و فکری ادارے قائم کریں۔ آپ بھی اسی سفر کے مسافر ہیں — آپ کی ڈگری اس مشن کی ایک کڑی ہے۔</p>
-  <h2>قدم 1: وژن و تعارفی مواد دیکھیں / سنیں / پڑھیں</h2>
-  <p class="small">نیچے دیا گیا مواد ادارے کے ڈرائیو فولڈر میں موجود ہے — اس میں یہ چیزیں شامل ہیں:</p>
-  <div class="card">
-    <p style="margin:2px 0">🎥 <b>ویڈیو:</b> «مدرسہ کا علمی وژن»</p>
-    <p style="margin:2px 0">🎥 <b>ویڈیو:</b> «ویژن 2035 — مستقبل کی تعمیر»</p>
-    <p style="margin:2px 0">📄 <b>دستاویز:</b> «دس سالہ وژن» و PDF جات</p>
-    <p style="margin:2px 0">🎧 <b>آڈیو:</b> «پانچ ہزار ادارہ ساز اسکالرز کا مشن»</p>
-    <p style="margin:2px 0">🎧 <b>آڈیو:</b> «مدارس سے یونیورسٹی تک علمی انقلاب»</p>
-  </div>
+  <div class="divider"></div>
+  <p class="center" style="font-weight:bold">اس ویژن کو پڑھیں اور نیچے اس کا خلاصہ اپنے الفاظ میں لکھیں</p>
   <a class="btn goldb" href="https://drive.google.com/drive/folders/1WTsLZ3dkxfIsIEYK2xkgtSHpf61Bf7sl?usp=sharing" target="_blank" rel="noopener" onclick="visionOpened()">📂 وژن و تعارفی مواد کھولیں</a>
   <p class="small center" id="v-open-note">مواد کھولنے کے بعد نیچے خلاصے کا خانہ فعال ہو جائے گا۔</p>
-  <div class="divider"></div>
-  <h2>قدم 2: وژن کا خلاصہ اپنے الفاظ میں لکھیں</h2>
   <div class="msg" id="v-msg"></div>
-  <label>ادارے کے وژن کا خلاصہ اپنے الفاظ میں لکھیں (تقریباً 100 الفاظ)</label>
+  <label>وژن کا خلاصہ (تقریباً 100 الفاظ)</label>
   <textarea id="v-summary" rows="7" placeholder="پہلے اوپر والے بٹن سے وژن و تعارفی مواد کھولیں، پھر یہاں خلاصہ لکھیں…" disabled oninput="onVisionInput()"></textarea>
   <p class="small" style="margin-top:2px"><span id="v-count">الفاظ: 0 / 100</span> <span id="v-count-hint" style="color:var(--c-gold-700)">(کم از کم 90 الفاظ درکار ہیں)</span></p>
   <button class="btn" id="v-submit" onclick="submitVision()" disabled>خلاصہ جمع کرائیں اور آگے بڑھیں</button>
   <button class="btn ghost" id="v-proceed-anyway" onclick="visionAdvanceAfterSubmit()" style="display:none;margin-top:6px">بہرحال آگے بڑھیں — حتمی فیصلہ نظام کرے گا</button>
-  <p class="center small">نئے اکاؤنٹ کی رجسٹریشن کے لیے خلاصہ جمع کرانا ضروری ہے — یہ خلاصہ انتظامیہ بھی پڑھے گی۔</p>
   <p class="center">پہلے سے رجسٹرڈ ہیں اور اکاؤنٹ منظور شدہ ہے؟ <a href="#" onclick="go('login');return false" style="color:var(--c-primary-700);font-weight:bold">لاگ ان کریں</a><br><span class="small">منظور شدہ اکاؤنٹ کے لیے وژن دوبارہ لکھنا ضروری نہیں — لاگ ان پر آپ کی محفوظ پیش رفت (وژن، پروفائل، گروپ تصدیق) خود بحال ہو جائے گی۔</span></p>
 </section>
 
@@ -897,27 +887,31 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div id="login-offline-warn" style="display:none;background:var(--c-gold-100);border:1px solid var(--c-gold-500);border-radius:12px;padding:10px 12px;margin:10px 0;font-size:15px;line-height:1.9">
     ⚠️ اس وقت ایپ <b>آف لائن ڈیمو موڈ</b> میں ہے — یہاں صرف اسی فون پر مقامی آزمائشی اکاؤنٹ چلتے ہیں۔ مرکزی نظام والے اکاؤنٹ سے لاگ ان کے لیے انٹرنیٹ سے جُڑیں اور بیج «آن لائن — مرکزی نظام» ہونے کا انتظار کریں۔
   </div>
-  <label>ای میل</label>
+  <label>جی میل / ای میل</label>
   <input id="l-email" type="email" placeholder="example@mail.com" dir="ltr" style="text-align:left">
-  <label>پاس ورڈ</label>
-  <div class="passwrap">
-    <input id="l-pass" type="password" dir="ltr" style="text-align:left">
-    <button type="button" class="pass-eye" onclick="togglePass('l-pass', this)" aria-label="پاس ورڈ دکھائیں" title="پاس ورڈ دکھائیں">👁</button>
+  <button class="btn" onclick="doGmailEntry()">داخل ہوں</button>
+  <p class="center small" style="margin:6px 0 0">پہلے سے رجسٹرڈ طلبہ اور انتظامیہ: صرف اپنی جی میل لکھیں — پاس ورڈ کی ضرورت نہیں</p>
+  <p class="center" style="margin:12px 0 0"><a href="#" onclick="togglePassLogin();return false" style="color:var(--c-primary-700);font-weight:bold">پاس ورڈ سے لاگ ان</a> <span class="small">— صرف ان کے لیے جنہوں نے پاس ورڈ بنایا ہو اور اسی سے داخل ہونا چاہیں</span></p>
+  <div id="login-pass-block" style="display:none">
+    <label>پاس ورڈ</label>
+    <div class="passwrap">
+      <input id="l-pass" type="password" dir="ltr" style="text-align:left">
+      <button type="button" class="pass-eye" onclick="togglePass('l-pass', this)" aria-label="پاس ورڈ دکھائیں" title="پاس ورڈ دکھائیں">👁</button>
+    </div>
+    <p style="margin:4px 0 0"><a href="#" onclick="go('reset');return false" style="color:var(--c-primary-700);font-weight:bold">پاس ورڈ بھول گئے؟</a></p>
+    <button class="btn" onclick="doLogin()">لاگ ان</button>
   </div>
-  <p style="margin:4px 0 0"><a href="#" onclick="go('reset');return false" style="color:var(--c-primary-700);font-weight:bold">پاس ورڈ بھول گئے؟</a> <span class="small">— نیا پاس ورڈ بنانے کا طریقہ</span></p>
-  <button class="btn" onclick="doLogin()">لاگ ان</button>
-  <p class="center small" style="margin:6px 0 0">ایڈمن کے لیے: صرف اپنا جی میل لکھیں — پاس ورڈ کی ضرورت نہیں</p>
-  <p class="center">اکاؤنٹ نہیں ہے؟ <a href="#" onclick="go('register');return false" style="color:var(--c-primary-700);font-weight:bold">رجسٹریشن کریں</a></p>
+  <p class="center" id="login-reg-row">اکاؤنٹ نہیں ہے؟ <a href="#" onclick="go('register');return false" style="color:var(--c-primary-700);font-weight:bold">رجسٹریشن کریں</a></p>
 </section>
 
 <!-- ============ پاس ورڈ بھول گئے — نئی ایپ میں ای میل لنک نہیں آتا ============ -->
 <section class="view" id="view-reset">
   <div class="center"><img class="logo-sm" src="assets/logo.png" onerror="this.onerror=null;this.src=window.__LOGO" alt="لوگو" style="width:84px;height:84px"></div>
   <h1>پاس ورڈ بھول گئے؟</h1>
-  <p class="center small">نئی ایپ میں پاس ورڈ <b>ای میل لنک سے نہیں</b> بنتا — کوئی لنک آپ کی ای میل پر نہیں آئے گا۔ طریقہ یہ ہے: لاگ ان اسکرین پر واپس جا کر اوپر والے خانوں میں اپنی <b>پرانی رجسٹرڈ ای میل</b> اور ایک <b>نیا پاس ورڈ (کم از کم 8 حروف)</b> لکھیں، پھر نیچے سنہری بٹن <b>«پہلی بار نئی ایپ میں لاگ ان کریں»</b> دبائیں — اسی نئے پاس ورڈ سے آئندہ لاگ ان ہو گا۔</p>
+  <p class="center small">نئی ایپ میں پاس ورڈ <b>ای میل لنک سے نہیں</b> بنتا — اور اب پاس ورڈ کی ضرورت بھی نہیں: لاگ ان اسکرین پر صرف اپنی <b>رجسٹرڈ جی میل</b> لکھ کر <b>«داخل ہوں»</b> دبائیں، ایپ کھل جائے گی۔ پاس ورڈ آپ نے خود بنایا ہو اور اسی سے داخل ہونا چاہیں تو «پاس ورڈ سے لاگ ان» کا چھوٹا لنک لاگ ان اسکرین پر موجود ہے۔</p>
   <div class="divider"></div>
   <div class="msg" id="reset-msg"></div>
-  <button class="btn goldb" onclick="go('login')">← لاگ ان اسکرین پر واپس جائیں — وہیں نیا پاس ورڈ بنائیں</button>
+  <button class="btn goldb" onclick="go('login')">← لاگ ان اسکرین پر واپس جائیں — صرف جی میل سے داخل ہوں</button>
 </section>
 
 <!-- ============ انتظامیہ و ٹیم — نئی ایپ میں ای میل لنک نہیں آتا ============ -->
@@ -3548,6 +3542,15 @@ async function doLoginOnline(email, pass){
   showMsg('login-msg', 'لاگ ان ہو رہا ہے — چند لمحے انتظار کریں…', true);
   try{
     const res = await FB.signIn(email, pass);
+    await finishStudentLogin(email, res);
+  }catch(e){
+    showMsg('login-msg', loginErrText(e), false);
+  }
+}
+/* سائن اِن کے بعد کی مشترکہ سمت بندی — پاس ورڈ لاگ ان اور جی میل داخلہ دونوں کے لیے یکساں:
+   زیرِ منظوری/مسترد کو زیرِ منظوری اسکرین، منظور شدہ کو ہوم؛ اس ڈیوائس کی محفوظ
+   رجسٹریشن نقل (pendingReg) کی تکمیل بھی یہیں ہوتی ہے */
+async function finishStudentLogin(email, res){
     if(res.isAdmin){ enterAdminSession(email, res); return; }
     let u = res.userDoc;
     /* اس ڈیوائس پر محفوظ رجسٹریشن نقل (pendingReg) ہو تو سرور ریکارڈ کی تکمیل
@@ -3584,14 +3587,63 @@ async function doLoginOnline(email, pass){
     DB.set('session', email);
     syncLocalFromRecord(u);
     goRoot(nextAfterLogin(u));
-  }catch(e){
-    showMsg('login-msg', loginErrText(e), false);
+}
+/* جی میل سے داخلہ (مفتی، 2026-10-31): پہلے سے رجسٹرڈ طالب علم یا ایڈمن صرف
+   جی میل لکھے — ایپ کھل جائے؛ نہ پاس ورڈ، نہ دوبارہ رجسٹریشن کا سنہری پینل۔
+   ترتیب: پہلے ایڈمن داخلہ (امیر راستہ)، پھر طالب علم داخلہ۔ ریکارڈ نہ ملے تو
+   ایک واضح سطر اور رجسٹریشن کی قطار نمایاں کر دی جاتی ہے۔ */
+async function doGmailEntry(){
+  window.__authTouched = true;
+  const emailEl = document.getElementById('l-email');
+  const email = (emailEl && emailEl.value || '').trim().toLowerCase();
+  if(!email){ showMsg('login-msg', 'اپنی جی میل / ای میل لکھیں۔', false); return; }
+  LS2.set('lastEmail', email);
+  if(!ONLINE){
+    /* آف لائن ڈیمو میں اکاؤنٹ پاس ورڈ سے بندھے ہیں — پاس ورڈ والا حصہ کھول دیں */
+    const blk = document.getElementById('login-pass-block');
+    if(blk) blk.style.display = 'block';
+    showMsg('login-msg', 'آف لائن ڈیمو موڈ میں پاس ورڈ درکار ہے — نیچے پاس ورڈ لکھ کر لاگ ان کریں۔', false);
+    return;
   }
+  showMsg('login-msg', 'داخلہ ہو رہا ہے — چند لمحے انتظار کریں…', true);
+  try{
+    if(FB && FB.signInAdmin){
+      const res = await FB.signInAdmin(email);
+      if(res && res.isAdmin){ enterAdminSession(email, res); return; }
+      if(FB.signOut) await FB.signOut();
+    }
+  }catch(e){ /* ایڈمن نہیں — نیچے طالب علم داخلہ آزمائیں */ }
+  try{
+    const res = await FB.signInStudent(email);
+    await finishStudentLogin(email, res);
+  }catch(e){
+    if(FB && FB.signOut){ try{ await FB.signOut(); }catch(_){} }
+    if(e && e.status === 403){
+      showMsg('login-msg', 'یہ جی میل ہمارے ریکارڈ میں نہیں ہے — اگر آپ نئے طالب علم ہیں تو اوپر رجسٹریشن سے تشریف لائیں', false);
+      highlightRegLink();
+    }else{
+      showMsg('login-msg', 'سرور سے رابطہ نہیں ہو سکا — انٹرنیٹ جانچ کر دوبارہ کوشش کریں۔', false);
+    }
+  }
+}
+function togglePassLogin(){
+  const blk = document.getElementById('login-pass-block');
+  if(!blk) return;
+  const open = blk.style.display !== 'none';
+  blk.style.display = open ? 'none' : 'block';
+  if(!open){ const pi = document.getElementById('l-pass'); if(pi){ try{ pi.focus(); }catch(e){} } }
+}
+function highlightRegLink(){
+  const row = document.getElementById('login-reg-row');
+  if(!row) return;
+  row.style.cssText = 'background:var(--c-gold-100);border:1px solid var(--c-gold-500);border-radius:12px;padding:10px';
+  try{ row.scrollIntoView({ block: 'center', behavior: 'smooth' }); }catch(e){}
+  setTimeout(() => { row.style.cssText = ''; }, 6000);
 }
 function loginErrText(e){
   const c = (e && e.code) || '';
-  if(c.includes('no_password_set')) return 'آپ کا ریکارڈ موجود ہے مگر نئی ایپ کے لیے پاس ورڈ ابھی نہیں بنا۔ اوپر والے خانوں میں اپنی پرانی رجسٹرڈ ای میل اور نیا پاس ورڈ (کم از کم 8 حروف) لکھیں، پھر نیچے سنہری بٹن «پہلی بار نئی ایپ میں لاگ ان کریں» دبائیں — اس کے بعد اسی نئے پاس ورڈ سے لاگ ان ہو گا۔';
-  if(c.includes('invalid-credential') || c.includes('wrong-password') || c.includes('user-not-found') || c.includes('bad_credentials')) return 'ای میل یا پاس ورڈ غلط ہے۔ اگر آپ پرانی ایپ کے طالب علم ہیں اور پہلی بار نئی ایپ میں لاگ ان کر رہے ہیں تو پرانا پاس ورڈ کام نہیں کرے گا — اپنی پرانی رجسٹرڈ ای میل اور نیا پاس ورڈ اوپر والے خانوں میں لکھ کر نیچے سنہری بٹن «پہلی بار نئی ایپ میں لاگ ان کریں» دبائیں۔';
+  if(c.includes('no_password_set')) return 'آپ کا ریکارڈ موجود ہے مگر اس کھاتے کا پاس ورڈ نہیں بنا — پاس ورڈ کی ضرورت بھی نہیں: اوپر والے خانے میں صرف اپنی جی میل لکھ کر «داخل ہوں» دبائیں، ایپ کھل جائے گی۔';
+  if(c.includes('invalid-credential') || c.includes('wrong-password') || c.includes('user-not-found') || c.includes('bad_credentials')) return 'ای میل یا پاس ورڈ غلط ہے۔ اگر آپ پہلے سے رجسٹرڈ طالب علم ہیں تو پاس ورڈ کی ضرورت نہیں — صرف اپنی جی میل لکھ کر «داخل ہوں» دبائیں۔';
   if(c.includes('permission-denied') || c.includes('PERMISSION_DENIED')) return 'ڈیٹا بیس سے رابطہ نہیں ہو سکا — Firestore قوانین ابھی شائع نہیں ہوئے۔ انتظامیہ کو اطلاع کریں۔';
   if(c.includes('network')) return 'انٹرنیٹ کا مسئلہ ہے — کنکشن جانچ کر دوبارہ کوشش کریں۔';
   if(c.includes('too-many-requests')) return 'بہت زیادہ ناکام کوششیں ہو گئی ہیں — کچھ دیر بعد دوبارہ کوشش کریں۔';
@@ -3618,13 +3670,13 @@ function togglePass(id, btn){
   try{ inp.focus(); }catch(e){}
 }
 /* نئی ایپ میں ای میل لنک کا راستہ بند ہے — doReset اب کوئی لنک نہیں منگواتا،
-   صرف لاگ ان اسکرین کے سنہری بٹن کا طریقہ بتاتا ہے (پرانا کیشڈ بٹن بھی اسی
-   رہنمائی پر آئے گا، جھوٹی «لنک بھیج دیا» کامیابی کبھی نہیں دکھائے گا) */
+   صرف جی میل داخلے کا طریقہ بتاتا ہے (جھوٹی «لنک بھیج دیا» کامیابی کبھی نہیں
+   دکھائے گا) */
 async function doReset(){
-  showMsg('reset-msg', 'نئی ایپ میں کوئی ای میل لنک نہیں آتا۔ لاگ ان اسکرین پر اپنی پرانی رجسٹرڈ ای میل اور نیا پاس ورڈ (کم از کم 8 حروف) اوپر والے خانوں میں لکھ کر نیچے سنہری بٹن «پہلی بار نئی ایپ میں لاگ ان کریں» دبائیں — اسی نئے پاس ورڈ سے آئندہ لاگ ان ہو گا۔', true);
+  showMsg('reset-msg', 'نئی ایپ میں کوئی ای میل لنک نہیں آتا — اور پاس ورڈ کی ضرورت بھی نہیں: لاگ ان اسکرین پر صرف اپنی رجسٹرڈ جی میل لکھ کر «داخل ہوں» دبائیں۔', true);
 }
 function resetErrText(e){
-  return 'نئی ایپ میں کوئی ای میل لنک نہیں آتا — لاگ ان اسکرین پر سنہری بٹن سے نیا پاس ورڈ بنائیں۔';
+  return 'نئی ایپ میں کوئی ای میل لنک نہیں آتا — لاگ ان اسکرین پر صرف جی میل لکھ کر «داخل ہوں» دبائیں۔';
 }
 
 /* ================= انتظامیہ و ٹیم — ای میل تصدیقی لنک سے داخلہ (بغیر رجسٹریشن) =================
@@ -3639,7 +3691,7 @@ const STAFF_APP_URL = 'https://madrassafalkiyyat-sudo.github.io/ilmi-mashghuliya
    منگواتا، صرف لاگ ان اسکرین کے پاس ورڈ والے طریقے کی رہنمائی دیتا ہے */
 async function sendStaffLink(){
   window.__authTouched = true;
-  showMsg('staff-msg', 'نئی ایپ میں کوئی تصدیقی لنک ای میل پر نہیں آتا۔ لاگ ان اسکرین پر اپنی ایڈمن ای میل اور نیا پاس ورڈ لکھیں (پہلی بار سنہری بٹن «پہلی بار نئی ایپ میں لاگ ان کریں» سے پاس ورڈ بنائیں) — ایڈمن کی ای میل خود پہچان کر ایڈمن پینل کھل جائے گا۔', true);
+  showMsg('staff-msg', 'نئی ایپ میں کوئی تصدیقی لنک ای میل پر نہیں آتا۔ لاگ ان اسکرین پر صرف اپنی ایڈمن جی میل لکھ کر «داخل ہوں» دبائیں — ایڈمن کی ای میل خود پہچان کر ایڈمن پینل کھل جائے گا؛ پاس ورڈ کی ضرورت نہیں۔', true);
 }
 function staffLinkErrText(e){
   const c = (e && e.code) || '';
@@ -14080,7 +14132,7 @@ window.helpChatSend = function(){
 <script src="admissions-data.js?v=20261029g"></script>
 <script src="foreign-data.js?v=20261029g"></script>
 <script src="admissions-news.js?v=20261031a"></script>
-<script src="admissions.js?v=20261031a"></script>
-<script type="module" src="api-bridge.js?v=20261031b"></script>
+<script src="admissions.js?v=20261031c"></script>
+<script type="module" src="api-bridge.js?v=20261031c"></script>
 </body>
 </html>
