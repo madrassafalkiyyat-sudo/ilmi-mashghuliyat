@@ -187,6 +187,16 @@ async function pollOnce(ctx) {
         const sec = await api('/api/admin/secrets', {});
         window.__applySnapshot('sessionSecrets', normList(sec.docs));
       } catch (e) {}
+      try {
+        const ov = await api('/api/course/admin/overview', {});
+        window.__applySnapshot('courseAssignments', normList(ov.assignments));
+        window.__applySnapshot('courseSubmissions', normList(ov.submissions));
+        window.__applySnapshot('courseOverview', [{ id: 'overview', sessionsSeeded: ov.sessionsSeeded, registered: ov.registered, gaps: ov.gaps || [], plan: ov.plan || [] }]);
+      } catch (e) {}
+      try {
+        const gb = await api('/api/course/admin/gradebook', {});
+        window.__applySnapshot('courseGradebook', [Object.assign({ id: 'gradebook' }, gb)]);
+      } catch (e) {}
       return;
     }
     // Student: own doc first (pending students stop here — gated feeds
@@ -228,10 +238,46 @@ async function pollOnce(ctx) {
       const star = await api('/api/star/members', {});
       window.__applySnapshot('starTeam', normList(star.members));
     } catch (e) {}
+    // Idara Sazi course classroom: released assignments + my submissions,
+    // my points (+badges), and the course leaderboard.
+    try {
+      const ca = await api('/api/course/assignments', {});
+      window.__applySnapshot('courseAssignments', normList(ca.assignments));
+      window.__applySnapshot('courseSubmissions', normList(ca.submissions));
+    } catch (e) {}
+    try {
+      const cp = await api('/api/course/points', {});
+      window.__applySnapshot('coursePoints', cp.points ? [Object.assign({}, cp.points, { badges: cp.badges || [] })] : []);
+    } catch (e) {}
+    try {
+      const lb = await api('/api/course/leaderboard', {});
+      window.__applySnapshot('courseLeaderboard', lb.leaderboard || []);
+    } catch (e) {}
   } catch (e) {
     console.warn('poll failed:', e && e.message);
   }
 }
+
+// ---- Idara Sazi course classroom actions (direct API; errors carry the
+// server's Urdu message on err.message, exactly like the bridge's api()) ----
+window.__courseApi = {
+  async submit(id, text, link) {
+    return api('/api/course/assignments/' + encodeURIComponent(id) + '/submit', { method: 'POST', body: { text, link } });
+  },
+  async saveAssignment(doc) {
+    const r = await api('/api/course/admin/assignments', { method: 'POST', body: { doc } });
+    return r.doc;
+  },
+  async grade(submissionId, marks, feedback) {
+    return api('/api/course/admin/grade', { method: 'POST', body: { submissionId, marks, feedback } });
+  },
+  async seed() {
+    return api('/api/course/admin/seed', { method: 'POST', body: {} });
+  },
+  async releases() {
+    return api('/api/course/admin/releases', { method: 'POST', body: {} });
+  },
+};
 
 function startSubscriptions(opts) {
   hookSnapshots();

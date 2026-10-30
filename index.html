@@ -1210,6 +1210,8 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div id="course-hub-summary"></div>
   <div class="grid">
     <button class="gbtn" onclick="go('course-register')"><span class="ic">📝</span>رجسٹریشن<span class="sub">اہلیت، رجسٹریشن و ریوارڈز</span></button>
+    <button class="gbtn" onclick="go('course-attendance')"><span class="ic">✅</span>حاضری<span class="sub">دس کلاسیں — ہر کلاس کا حاضری کوڈ یہیں درج کریں</span></button>
+    <button class="gbtn" onclick="go('course-assignments')"><span class="ic">✍️</span>اسائنمنٹس<span class="sub">مشقیں، نمبر، پوائنٹس، بیجز و لیڈر بورڈ</span></button>
     <button class="gbtn" onclick="go('course-schedule')"><span class="ic">📅</span>شیڈول و تفصیل<span class="sub">دس ہفتوں کا مکمل شیڈول و ٹرینرز</span></button>
     <button class="gbtn" onclick="go('course-material')"><span class="ic">📚</span>کورس کا مواد<span class="sub">زمرہ وار نکات و ریکارڈنگ فولڈرز</span></button>
     <button class="gbtn" onclick="go('course-brochure')"><span class="ic">📖</span>کورس کتابچہ<span class="sub">مکمل تعارفی کتابچہ (PDF)</span></button>
@@ -1275,6 +1277,22 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 <section class="view" id="view-course-cat">
   <div class="topbar"><button onclick="goBack('course-material')">→ واپس</button><div class="ttl">زمرے کی تفصیل</div><span style="width:52px"></span></div>
   <div id="course-cat-body"></div>
+</section>
+
+<!-- ============ ادارہ سازی کورس — حاضری (دس کلاسیں، کوڈ نظام) ============ -->
+<section class="view" id="view-course-attendance">
+  <div class="topbar"><button onclick="goBack('course')">→ واپس</button><div class="ttl">✅ کورس حاضری</div><span style="width:52px"></span></div>
+  <div class="msg" id="course-att-msg"></div>
+  <div id="course-att-body"></div>
+</section>
+
+<!-- ============ ادارہ سازی کورس — اسائنمنٹس (کلاس روم) ============ -->
+<section class="view" id="view-course-assignments">
+  <div class="topbar"><button onclick="goBack('course')">→ واپس</button><div class="ttl">✍️ اسائنمنٹس</div><span style="width:52px"></span></div>
+  <div class="msg" id="course-asg-msg"></div>
+  <div id="course-points-body"></div>
+  <div id="course-asg-body"></div>
+  <div id="course-leaderboard-body"></div>
 </section>
 
 <!-- ============ تحقیقی و تربیتی کورسز (ضم شدہ — مفتی کا فیصلہ 2026-10-23) ============ -->
@@ -1852,6 +1870,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
       <button class="gbtn" onclick="openAdminSec('news')"><span class="ic">📰</span>خبریں شائع کریں<span class="sub">روزانہ علمی خبریں و کورس اشتہارات</span></button>
       <button class="gbtn" onclick="openAdminSec('jobs')"><span class="ic">💼</span>جاب شامل کریں<span class="sub">روزگار کے مواقع</span></button>
       <button class="gbtn" onclick="openAdminSec('courses')"><span class="ic">📚</span>تحقیقی کورسز<span class="sub">اسائنمنٹ منظوریاں و نیا کورس</span></button>
+      <button class="gbtn" onclick="openAdminSec('courseclass')"><span class="ic">🏛️</span>ادارہ سازی کلاس روم<span class="sub">سیشنز و کوڈز، مشقیں، نمبر و گریڈ بک</span></button>
       <button class="gbtn" onclick="openAdminSec('comps')"><span class="ic">🏆</span>مسابقات<span class="sub">جمع شدہ مقالات کی فہرست</span></button>
       <button class="gbtn" onclick="openAdminSec('broadcast')"><span class="ic">📣</span>براڈکاسٹ اعلان<span class="sub">تمام طلبہ کو ایک پیغام</span></button>
       <button class="gbtn" onclick="openAdminSec('notify')"><span class="ic">🔔</span>اطلاعات مرکز<span class="sub">واٹس ایپ تیار پیغام + ایپ اطلاع</span></button>
@@ -1876,6 +1895,48 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div id="dash-tabs"></div>
   <div id="dash-ilmi"></div>
   <div id="dash-adm"></div>
+  </div>
+
+  <!-- حصہ: ادارہ سازی کلاس روم — سیشنز/کوڈز، مشق سازی، نمبر و گریڈ بک -->
+  <div class="admin-sec" id="asec-courseclass" style="display:none">
+  <div class="admin-sec-head"><button class="btn sm" onclick="adminBack()"><span>← ایڈمن مرکز</span></button><h2>🏛️ ادارہ سازی کلاس روم</h2></div>
+  <div class="msg" id="cc-msg"></div>
+  <div id="admin-course-status"></div>
+  <h3>✍️ نئی مشق بنائیں / مشق بدلیں</h3>
+  <p class="small">سلائیڈ سرگرمی کی مکمل ہدایات یہاں لکھیں — اجراء کا وقت آنے پر مشق صرف کورس رجسٹرڈ طلبہ کو نظر آئے گی۔ خودکار مشق (فارم/سرگرمی) بدلنی ہو تو نیچے فہرست سے «تدوین» دبائیں، خانے خود بھر جائیں گے۔</p>
+  <input type="hidden" id="ca-id">
+  <label>عنوان</label>
+  <input id="ca-title" type="text" placeholder="مثلاً: سلائیڈ سرگرمی — کلاس 3: شوریٰ کا انتخاب">
+  <label>مکمل ہدایات (طالب علم کو یہی دکھیں گی)</label>
+  <textarea id="ca-instructions" rows="5" placeholder="مشق کی تفصیل، طریقہ اور شرائط مرحلہ وار لکھیں…"></textarea>
+  <label>کلاس نمبر (1 تا 10 — خالی بھی رکھ سکتے ہیں)</label>
+  <input id="ca-session" type="number" min="1" max="10" style="width:120px">
+  <label>قسم</label>
+  <select id="ca-type" style="width:100%" onchange="document.getElementById('ca-formurl-wrap').style.display = this.value === 'google-form' ? 'block' : 'none'">
+    <option value="in-app">ایپ کے اندر جمع (تحریری جواب)</option>
+    <option value="google-form">گوگل فارم (لنک)</option>
+  </select>
+  <div id="ca-formurl-wrap" style="display:none">
+    <label>گوگل فارم کا لنک</label>
+    <input id="ca-formurl" type="url" dir="ltr" style="text-align:left" placeholder="https://docs.google.com/forms/d/.../viewform">
+  </div>
+  <label>اجراء کا وقت (اس سے پہلے طالب علم کو نظر نہیں آئے گی)</label>
+  <input id="ca-release" type="datetime-local">
+  <label>آخری تاریخ (ڈیڈ لائن)</label>
+  <input id="ca-deadline" type="datetime-local">
+  <label>کل نمبر (گوگل فارم پر 0 رکھیں)</label>
+  <input id="ca-marks" type="number" min="0" max="100" value="20" style="width:120px">
+  <div style="margin-top:10px">
+    <button class="btn goldb" onclick="saveCourseAssignment()">💾 مشق محفوظ کریں</button>
+    <button class="btn ghost" onclick="clearCourseAssignmentForm()">نیا خانہ</button>
+  </div>
+  <div id="admin-course-asg-list" style="margin-top:14px"></div>
+  <h3 style="margin-top:22px">📥 جمع شدہ مشقیں و نمبر</h3>
+  <label>مشق منتخب کریں</label>
+  <select id="cg-asg-select" style="width:100%" onchange="renderAdminCourseSubs()"></select>
+  <div id="admin-course-subs" style="margin-top:10px"></div>
+  <h3 style="margin-top:22px">📊 گریڈ بک — بیچ 1</h3>
+  <div id="admin-course-gradebook"></div>
   </div>
 
   <!-- حصہ: ڈیش بورڈ ڈیٹا — خام اندراج کی واحد جگہ -->
@@ -2406,7 +2467,10 @@ const COLL = { users:'users', news:'news', announcements:'announcements', notifi
   publications:'publications', sessionSecrets:'sessionSecrets', attendanceClaims:'attendanceClaims', courseSessions:'courseSessions', journals:'journals', counselLogs:'counselLogs',
   starTeam:'starTeam', starRecommendations:'starRecommendations', starRequests:'starRequests',
   spotlights:'spotlights', sessionAttendees:'sessionAttendees', courseContent:'courseContent',
-  dashboardData:'dashboardData' };
+  dashboardData:'dashboardData',
+  /* ادارہ سازی کلاس روم — صرف پڑھنے کے عکس (لکھائی صرف __courseApi سے؛ پل ان کلیدوں کی upsert قبول نہیں کرتا) */
+  courseAssignments:'assignments', courseSubmissions:'assignmentSubmissions', coursePoints:'coursePoints',
+  courseLeaderboard:'courseLeaderboard', courseOverview:'courseOverview', courseGradebook:'courseGradebook' };
 const CACHE = {};          // کلید ← دستاویزات کی فہرست (eventSession کے لیے واحد شے)
 const SHADOW = {};         // کلید ← {docId: json} — آخری معلوم سرور حالت، فرق سے لکھنے کے لیے
 let PREVIEW = null;        // ایڈمن یوزر پریوو (مفتی، 2026-10-24): آن ہو تو شناخت منتخب طالب علم شخصیت کی۔ دو صورتیں: ڈیمو شخصیت = صرف دیکھنا (تمام تحریریں بند)؛ ٹیسٹ کھاتہ (محمد حسن) = اصل اعمال بھی چلتے ہیں، مگر لکھائی کی نالی پر گارڈ صرف ٹیسٹ کھاتے کی اپنی دستاویزات گزارتا ہے — تفصیل نیچے «ایڈمن یوزر پریوو» حصے میں
@@ -2455,7 +2519,7 @@ function persistSettings(){
 }
 /* ماڈیول اسکرپٹ سے آنے والی تازہ سرور حالت یہاں لاگو ہوتی ہے */
 let CURRENT_VIEW = 'splash';
-const REFRESHABLE = ['home','announcements','notifications','news','deadlines','sessions','competitions','comp-detail','publications','course','course-register','course-schedule','course-brochure','course-book','course-material','course-cat','rcourses','jobs','journey','certificates','achievements','admin','graduates','transfer','contact','myreport','wassist','alumni-mphil','alumni-phd','current-bs','current-mphil','current-phd','journals','starteam','star-members','star-guide','intl','idcard','star-contact','pending'];
+const REFRESHABLE = ['home','announcements','notifications','news','deadlines','sessions','competitions','comp-detail','publications','course','course-register','course-schedule','course-brochure','course-book','course-material','course-cat','course-attendance','course-assignments','rcourses','jobs','journey','certificates','achievements','admin','graduates','transfer','contact','myreport','wassist','alumni-mphil','alumni-phd','current-bs','current-mphil','current-phd','journals','starteam','star-members','star-guide','intl','idcard','star-contact','pending'];
 window.__applySnapshot = function(k, data){
   if(k === 'users'){
     if(IS_ADMIN){ CACHE.users = data; }
@@ -2863,6 +2927,8 @@ function go(id){
   if(id === 'comp-detail') renderCompDetail();
   if(id === 'course') renderCourseHub();
   if(id === 'course-register') renderCourse();
+  if(id === 'course-attendance') renderCourseAttendance();
+  if(id === 'course-assignments') renderCourseAssignments();
   if(id === 'course-schedule') renderCourseSchedule();
   if(id === 'course-brochure') renderCourseBrochure();
   if(id === 'course-book') renderCourseBook();
@@ -5643,6 +5709,358 @@ function registerCourse(){
   renderCourse();
 }
 
+/* ================= ادارہ سازی کورس — کلاس روم: حاضری، اسائنمنٹس، پوائنٹس (مفتی کی ہدایت 2026-10-30) =================
+   سیشنز پہلے سے کھلے ہیں (بیچ 1 کی دس کلاسیں، ہر ایک کا خفیہ حاضری کوڈ نظام کے پاس —
+   طالب علم کو کبھی نظر نہیں آتا)۔ حاضری اسی پرانے دعویٰ راستے سے جاتی ہے (bridge →
+   /api/attendance/claim؛ نظام کوڈ و کھڑکی خود جانچتا ہے)۔ مشقیں، نمبر و پوائنٹس
+   سرور کے کورس API سے آتے ہیں (عکس: courseAssignments/courseSubmissions/coursePoints)۔ */
+function courseBatchSessions(){
+  return (DB.get('courseSessions', []) || [])
+    .filter(s => s && (s.isCourseSession || s.courseBatch))
+    .slice().sort((a, b) => String(a.sessionDate || '').localeCompare(String(b.sessionDate || '')));
+}
+function courseWinState(s){
+  /* حاضری کھڑکی پاکستانی وقت (+05:00) سے — ڈیوائس ٹائم زون کی خرابی یہاں نہیں دہرائی جاتی */
+  if(!s || !s.sessionDate) return { open:false, state:'none' };
+  const off = '+05:00';
+  const start = Date.parse(s.sessionDate + 'T' + (s.startTime || '00:00') + ':00' + off);
+  const endBase = Date.parse(s.sessionDate + 'T' + (s.endTime || '23:59') + ':00' + off);
+  const end = isNaN(endBase) ? Date.parse(s.sessionDate + 'T23:59:59' + off) : endBase + 30 * 60000;
+  const now = Date.now();
+  if(isNaN(start)) return { open:false, state:'none' };
+  if(now < start) return { open:false, state:'upcoming' };
+  if(now > end) return { open:false, state:'closed' };
+  return { open:true, state:'open' };
+}
+function fmtMs(ms){
+  if(!ms) return '';
+  const d = new Date(ms); const p = n => ('0' + n).slice(-2);
+  return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) + ' • ' + p(d.getHours()) + ':' + p(d.getMinutes());
+}
+function renderCourseAttendance(){
+  const el = document.getElementById('course-att-body'); if(!el) return;
+  const u = currentUser(); if(!u) return;
+  if(!u.courseReg){
+    el.innerHTML = courseEligible(u)
+      ? '<div class="card" style="text-align:center"><h3>📝 پہلے کورس میں رجسٹریشن کریں</h3><p style="margin:0 0 10px">حاضری صرف کورس رجسٹرڈ طلبہ کے لیے ہے — رجسٹریشن کے بعد دس کلاسیں، ان کا مواد اور حاضری کوڈ خانہ یہیں ملے گا۔</p><button class="btn goldb" onclick="go(\'course-register\')">رجسٹریشن کی طرف جائیں</button></div>'
+      : '<div class="card" style="text-align:center"><p style="margin:0;font-size:19px">🔒 <b>یہ کورس صرف ایم فل فارغ التحصیل اور پی ایچ ڈی طلبہ کے لیے ہے</b> — اسی لیے حاضری بھی انہی کے لیے کھلتی ہے۔</p></div>';
+    return;
+  }
+  const sessions = courseBatchSessions();
+  if(!sessions.length){
+    el.innerHTML = '<div class="card"><p style="margin:0">کلاسوں کا شیڈول یہاں آ رہا ہے — پہلی کلاس پیر 2 نومبر 2026، رات 8:00 تا 9:30 (پاکستانی وقت) ہے۔</p></div>';
+    return;
+  }
+  const attended = courseAttendedIds(u);
+  const claims = (DB.get('attendanceClaims', []) || []).filter(c => c && c.email === u.email);
+  const head = '<div class="card" style="background:var(--c-surface)"><h3 style="margin:0 0 4px">🗓️ میری حاضری — بیچ 1</h3>' +
+    '<p style="margin:0">تصدیق شدہ حاضری: <b>' + urDigits(sessions.filter(s => attended.has(s.sessionId)).length) + ' / ' + urDigits(sessions.length) + ' کلاسیں</b> — ہر تصدیق شدہ حاضری پر <b>10 پوائنٹس</b> ملتے ہیں۔ حاضری کوڈ ہر کلاس کے دوران ٹرینر بتاتے ہیں؛ کوڈ اسی کلاس کی کھڑکی (رات 8:00 تا 10:00، پاکستانی وقت) میں یہیں درج کریں۔</p></div>';
+  el.innerHTML = head + sessions.map((s, i) => {
+    const claim = claims.find(c => c.sessionId === s.sessionId);
+    let status = '';
+    if(attended.has(s.sessionId)){
+      status = '<p style="color:var(--c-primary-700);font-weight:bold;margin:8px 0 0">✓ حاضری تصدیق شدہ — کورس ریکارڈ میں شامل (+10 پوائنٹس)</p>';
+    } else if(claim && claim.status === 'مسترد'){
+      status = '<p style="font-weight:bold;margin:8px 0 0">✗ حاضری مسترد</p><p class="small" style="margin:2px 0 0">' + esc(claim.reason || 'درج کردہ کوڈ درست نہیں تھا یا وقت سے باہر تھا۔') + ' کسی مسئلے پر انتظامیہ سے رابطہ کریں۔</p>';
+    } else if(claim){
+      status = '<p style="font-weight:bold;margin:8px 0 0">⏳ حاضری درج — جانچ جاری</p><p class="small" style="margin:2px 0 0">تصدیق ہوتے ہی اطلاع مل جائے گی۔</p>';
+    } else {
+      const w = courseWinState(s);
+      if(w.open){
+        status = '<label>حاضری کوڈ درج کریں</label>' +
+          '<input id="catt-code-' + s.sessionId + '" type="text" dir="ltr" style="text-align:center;font-size:21px;letter-spacing:3px;text-transform:uppercase" placeholder="XXXXX" maxlength="8">' +
+          '<button class="btn goldb" onclick="submitCourseClaim(\'' + s.sessionId + '\')">حاضری درج کریں</button>';
+      } else if(w.state === 'upcoming'){
+        status = '<p class="small" style="margin:8px 0 0">🔒 حاضری اس کلاس کے وقت (رات 8:00، پاکستانی وقت) کھلے گی۔</p>';
+      } else {
+        status = '<p class="small" style="margin:8px 0 0">اس کلاس کی حاضری کا وقت گزر گیا — کوئی مسئلہ ہو تو انتظامیہ سے رابطہ کریں۔</p>';
+      }
+    }
+    const topics = (s.points || []).length
+      ? '<p class="small" style="margin:4px 0 0">📖 نکات: ' + esc(s.points.join(' • ')) + '</p>' : '';
+    return '<div class="card"><span class="tag gold">کلاس ' + urDigits(s.week || (i + 1)) + '</span>' +
+      '<h3 style="margin:6px 0 2px">' + esc(s.title || '') + '</h3>' +
+      '<p class="small" style="margin:0">📅 ' + esc(s.sessionDate || '') + ' — 🕗 رات 8:00 تا 9:30 (پاکستانی وقت)</p>' + topics +
+      (s.materialUrl ? '<div style="margin-top:8px"><a class="btn ghost" target="_blank" rel="noopener" href="' + esc(s.materialUrl) + '">📚 کلاس کا مواد (سلائیڈز، ریکارڈنگ و مشقیں) ←</a></div>' : '') +
+      status + '</div>';
+  }).join('');
+}
+function submitCourseClaim(sid){
+  if(previewGuard('حاضری دعویٰ جمع کرانا')) return;
+  const u = currentUser(); if(!u) return;
+  const inp = document.getElementById('catt-code-' + sid);
+  const code = (inp && inp.value || '').trim().toUpperCase();
+  if(!code){ showMsg('course-att-msg', 'حاضری کوڈ لکھنا ضروری ہے — کوڈ کلاس کے دوران ٹرینر بتاتے ہیں۔', false); return; }
+  const claims = (DB.get('attendanceClaims', []) || []).slice();
+  if(claims.some(c => c.email === u.email && c.sessionId === sid)){ showMsg('course-att-msg', 'آپ اس کلاس کی حاضری پہلے درج کر چکے ہیں — ایک طالب علم کا ایک ہی دعویٰ ہو سکتا ہے۔', false); return; }
+  const s = courseBatchSessions().find(x => x.sessionId === sid) || {};
+  claims.push({ id: 'claim-' + Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36),
+    email: u.email, name: u.name, sessionId: sid, sessionTitle: s.title || '', code,
+    at: new Date().toISOString(), date: todayStr(), status: 'زیرِ جانچ' });
+  DB.set('attendanceClaims', claims);
+  showMsg('course-att-msg', 'حاضری درج ہو گئی — جانچ جاری ہے۔ کوڈ درست ہوا تو تصدیق کی اطلاع مل جائے گی اور حاضری کورس ریکارڈ میں شامل ہو جائے گی۔', true);
+  renderCourseAttendance();
+}
+function renderCourseAssignments(){
+  const pEl = document.getElementById('course-points-body');
+  const aEl = document.getElementById('course-asg-body');
+  const lEl = document.getElementById('course-leaderboard-body');
+  if(!aEl) return;
+  const u = currentUser(); if(!u) return;
+  const pts = (DB.get('coursePoints', []) || [])[0] || null;
+  if(pEl){
+    pEl.innerHTML = u.courseReg
+      ? '<div class="card" style="border-color:var(--c-gold-500);background:var(--c-gold-100)"><h3 style="margin:0 0 4px">🏆 میرے پوائنٹس: ' + urDigits(pts ? (pts.totalPoints || 0) : 0) + '</h3>' +
+        '<p style="margin:0">حاضری: ' + urDigits(pts ? (pts.attendanceCount || 0) : 0) + ' کلاسیں (' + urDigits(pts ? (pts.attendancePoints || 0) : 0) + ' پوائنٹس) • مشقوں کے نمبر: ' + urDigits(pts ? (pts.assignmentPoints || 0) : 0) + ' پوائنٹس • جمع شدہ مشقیں: ' + urDigits(pts ? (pts.submittedCount || 0) : 0) + '</p>' +
+        ((pts && pts.badges && pts.badges.length) ? '<p style="margin:6px 0 0">' + pts.badges.map(b => '<span class="tag gold">🏅 ' + esc(b) + '</span>').join(' ') + '</p>' : '') +
+        '<p class="small" style="margin:6px 0 0">اصول: تصدیق شدہ حاضری = 10 پوائنٹس؛ مشق کے حاصل نمبر = اتنے ہی پوائنٹس (تاخیر سے جمع مشق کے پوائنٹس نصف)۔</p></div>'
+      : '';
+  }
+  if(!u.courseReg){
+    aEl.innerHTML = courseEligible(u)
+      ? '<div class="card" style="text-align:center"><h3>📝 پہلے کورس میں رجسٹریشن کریں</h3><p style="margin:0 0 10px">مشقیں صرف کورس رجسٹرڈ طلبہ کو ملتی ہیں۔</p><button class="btn goldb" onclick="go(\'course-register\')">رجسٹریشن کی طرف جائیں</button></div>'
+      : '<div class="card" style="text-align:center"><p style="margin:0;font-size:19px">🔒 <b>یہ کورس صرف ایم فل فارغ التحصیل اور پی ایچ ڈی طلبہ کے لیے ہے</b> — مشقیں بھی انہی کو ملتی ہیں۔</p></div>';
+    if(lEl) lEl.innerHTML = '';
+    return;
+  }
+  const now = Date.now();
+  const asgs = (DB.get('courseAssignments', []) || []).filter(a => (a.releaseAtMs || 0) <= now)
+    .slice().sort((a, b) => (a.releaseAtMs || 0) - (b.releaseAtMs || 0));
+  const subs = DB.get('courseSubmissions', []) || [];
+  const mySub = id => subs.find(s => s.assignmentId === id && s.email === u.email) || null;
+  aEl.innerHTML = '<h3 style="margin:14px 0 6px">✍️ مشقیں</h3>' + (asgs.length ? asgs.map(a => {
+    const sub = mySub(a.id);
+    const pastDue = now > (a.deadlineMs || Infinity);
+    let body = '';
+    if(a.type === 'google-form'){
+      body = '<a class="btn goldb" target="_blank" rel="noopener" href="' + esc(a.formUrl || '') + '">📝 گوگل فارم کھولیں ←</a>' +
+        '<p class="small" style="margin:6px 0 0">یہ مشق گوگل فارم پر مکمل ہوتی ہے — آپ کے جوابات براہِ راست انتظامیہ کے ریکارڈ (فارم شیٹ) میں جاتے ہیں، اس لیے اس کے نمبر ایپ میں نہیں لگتے۔</p>';
+    } else if(sub && typeof sub.marks === 'number'){
+      body = '<p style="margin:6px 0 0"><span class="tag gold">🏅 نمبر: ' + urDigits(sub.marks) + (a.maxMarks ? ' / ' + urDigits(a.maxMarks) : '') + '</span>' + (sub.late ? ' <span class="tag red">تاخیر سے جمع</span>' : '') + '</p>' +
+        (sub.feedback ? '<p style="margin:6px 0 0">💬 <b>استاد کی رائے:</b> ' + esc(sub.feedback) + '</p>' : '') +
+        '<p class="small" style="margin:6px 0 0">آپ کا جمع شدہ جواب:</p><div class="card" style="margin:0;background:var(--c-surface)"><p style="margin:0;white-space:pre-wrap">' + esc(sub.text || '') + '</p>' + (sub.link ? '<p style="margin:6px 0 0"><a target="_blank" rel="noopener" href="' + esc(sub.link) + '">معاون لنک ←</a></p>' : '') + '</div>';
+    } else if(sub){
+      body = '<p style="margin:6px 0 0"><span class="tag">✓ جمع شدہ — نمبر باقی</span>' + (sub.late ? ' <span class="tag red">تاخیر سے جمع</span>' : '') + '</p>' +
+        (pastDue
+          ? '<div class="card" style="margin:8px 0 0;background:var(--c-surface)"><p style="margin:0;white-space:pre-wrap">' + esc(sub.text || '') + '</p></div>'
+          : '<label>جواب (ڈیڈ لائن سے پہلے ترمیم ہو سکتی ہے)</label><textarea id="casg-text-' + a.id + '" rows="6">' + esc(sub.text || '') + '</textarea>' +
+            '<label>معاون لنک (اختیاری)</label><input id="casg-link-' + a.id + '" type="url" dir="ltr" style="text-align:left" value="' + escq(sub.link || '') + '">' +
+            '<button class="btn" onclick="submitCourseAssignment(\'' + a.id + '\')">ترمیم محفوظ کریں</button>');
+    } else {
+      body = (pastDue ? '<p class="small" style="margin:6px 0 0">⏰ ڈیڈ لائن گزر گئی — اب جمع کرانے پر «تاخیر» لگے گی: نمبر مکمل ملیں گے مگر پوائنٹس نصف شمار ہوں گے۔</p>' : '') +
+        '<label>اپنا جواب یہاں لکھیں</label><textarea id="casg-text-' + a.id + '" rows="6" placeholder="مشق کا مکمل جواب یہاں لکھیں…"></textarea>' +
+        '<label>معاون لنک (اختیاری — دستاویز/فائل کا ربط)</label><input id="casg-link-' + a.id + '" type="url" dir="ltr" style="text-align:left" placeholder="https://…">' +
+        '<button class="btn goldb" onclick="submitCourseAssignment(\'' + a.id + '\')">✍️ مشق جمع کرائیں</button>';
+    }
+    return '<div class="card"><span class="tag gold">' + (a.session ? 'کلاس ' + urDigits(a.session) : 'مشق') + '</span> ' +
+      '<span class="tag">' + (a.type === 'google-form' ? 'گوگل فارم' : 'ایپ مشق') + '</span>' +
+      (a.maxMarks ? ' <span class="tag">کل نمبر: ' + urDigits(a.maxMarks) + '</span>' : '') +
+      '<h3 style="margin:6px 0 2px">' + esc(a.title || '') + '</h3>' +
+      '<p class="small" style="margin:0">⏰ آخری تاریخ: ' + esc(fmtMs(a.deadlineMs)) + '</p>' +
+      '<p style="margin:6px 0 0;white-space:pre-wrap">' + esc(a.instructions || '') + '</p>' + body + '</div>';
+  }).join('') : '<div class="card"><p style="margin:0">ابھی کوئی مشق جاری نہیں ہوئی — ہر کلاس کے بعد مشقیں خود یہاں آتی جائیں گی: اگلے دن پہلا گوگل فارم، دو دن بعد دوسرا فارم اور سلائیڈ سرگرمی۔</p></div>');
+  if(lEl){
+    const board = DB.get('courseLeaderboard', []) || [];
+    lEl.innerHTML = board.length
+      ? '<h3 style="margin:16px 0 6px">🏆 لیڈر بورڈ — ٹاپ 10</h3><div class="card"><table class="rep-table"><tr><th>درجہ</th><th>طالب علم</th><th>حاضری</th><th>مشقیں</th><th>پوائنٹس</th></tr>' +
+        board.map(b => '<tr' + (b.name === u.name ? ' style="background:var(--c-gold-100)"' : '') + '><td>' + urDigits(b.rank) + '</td><td>' + esc(b.name || '') + (b.rank <= 3 ? ' ⭐' : '') + '</td><td>' + urDigits(b.attendanceCount || 0) + '</td><td>' + urDigits(b.submittedCount || 0) + '</td><td><b>' + urDigits(b.totalPoints || 0) + '</b></td></tr>').join('') + '</table>' +
+        '<p class="small" style="margin:6px 0 0">⭐ ٹاپ 3 طلبہ «ستارہ طالب علم» کہلاتے ہیں۔</p></div>'
+      : '';
+  }
+}
+async function submitCourseAssignment(id){
+  if(previewGuard('مشق جمع کرانا')) return;
+  const u = currentUser(); if(!u) return;
+  const ta = document.getElementById('casg-text-' + id);
+  const li = document.getElementById('casg-link-' + id);
+  const text = (ta && ta.value || '').trim();
+  const link = (li && li.value || '').trim();
+  if(!text && !link){ showMsg('course-asg-msg', 'پہلے جواب لکھیں یا معاون لنک دیں۔', false); return; }
+  if(!window.__courseApi){ showMsg('course-asg-msg', 'رابطہ اس وقت دستیاب نہیں — کچھ دیر بعد دوبارہ کوشش کریں۔', false); return; }
+  showMsg('course-asg-msg', 'جمع ہو رہا ہے…', true);
+  try{
+    const r = await window.__courseApi.submit(id, text, link);
+    showMsg('course-asg-msg', r.late ? 'مشق جمع ہو گئی (تاخیر سے — نمبر مکمل ملیں گے مگر پوائنٹس نصف شمار ہوں گے)۔' : 'مشق جمع ہو گئی — نمبر لگتے ہی اطلاع ملے گی۔', true);
+    const subs = (DB.get('courseSubmissions', []) || []).slice();
+    const ix = subs.findIndex(s => s.assignmentId === id && s.email === u.email);
+    const doc = { id: id + ':' + u.email, assignmentId: id, email: u.email, name: u.name, text, link, late: !!r.late, submittedAt: new Date().toISOString(), marks: ix >= 0 ? subs[ix].marks : null, feedback: ix >= 0 ? (subs[ix].feedback || '') : '' };
+    if(ix >= 0) subs[ix] = doc; else subs.push(doc);
+    CACHE.courseSubmissions = subs;
+    renderCourseAssignments();
+  }catch(e){
+    showMsg('course-asg-msg', (e && e.message) || 'جمع نہ ہو سکی — دوبارہ کوشش کریں۔', false);
+  }
+}
+/* ---------- ایڈمن: ادارہ سازی کلاس روم ---------- */
+let CC_SUBS = [];
+function renderAdminCourseClass(){
+  const st = document.getElementById('admin-course-status'); if(!st) return;
+  const ov = (DB.get('courseOverview', []) || [])[0] || {};
+  const secrets = DB.get('sessionSecrets', []) || [];
+  const sess = courseBatchSessions();
+  const codeRows = sess.map(s => {
+    const sec = secrets.find(x => x.sessionId === s.sessionId);
+    return '<tr><td>' + esc(s.sessionDate || '') + '</td><td>' + esc(s.title || '') + '</td><td dir="ltr" style="text-align:center"><b>' + esc(sec ? sec.code : '—') + '</b></td></tr>';
+  }).join('');
+  st.innerHTML = '<div class="card"><h3 style="margin:0 0 4px">📋 بیچ 1 صورتِ حال</h3>' +
+    '<p style="margin:0">کھولی گئی کلاسیں: <b>' + urDigits(ov.sessionsSeeded || 0) + ' / 10</b> • کورس رجسٹرڈ طلبہ: <b>' + urDigits(ov.registered || 0) + '</b></p>' +
+    ((ov.gaps && ov.gaps.length) ? '<p class="small" style="margin:6px 0 0">⚠️ مواد کی کمیاں (اصل فولڈرز سے تصدیق شدہ):<br>' + ov.gaps.map(g => '• ' + esc(g)).join('<br>') + '</p>' : '') +
+    '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">' +
+    '<button class="btn sm goldb" onclick="runCourseSeed()">🔄 بیچ سیٹ اپ دوبارہ چلائیں (محفوظ — دوبارہ اندراج نہیں ہوتا)</button>' +
+    '<button class="btn sm" onclick="runCourseReleasesNow()">🚀 واجب مشقیں ابھی جاری کریں</button></div>' +
+    '<p class="small" style="margin:8px 0 0">خودکار نظام: سرور ہر گھنٹے + جاگنے پر واجب مشقیں خود جاری کرتا ہے (کلاس کے اگلے دن فارم 1، دو دن بعد فارم 2 و سلائیڈ سرگرمی) اور رجسٹرڈ طلبہ کو اطلاع جاتی ہے۔ سیٹ/فہرست اگلے پول (60 سیکنڈ) پر تازہ ہوتی ہے۔</p>' +
+    (codeRows ? '<h4 style="margin:12px 0 4px">🔑 کلاس وار حاضری کوڈز (صرف ایڈمن کے لیے)</h4><table class="rep-table"><tr><th>تاریخ</th><th>کلاس</th><th>کوڈ</th></tr>' + codeRows + '</table>' : '') +
+    '</div>';
+  renderAdminCourseAsgList();
+  fillGradeSelect();
+  renderAdminCourseSubs();
+  renderAdminGradebook();
+}
+async function runCourseSeed(){
+  if(!window.__courseApi) return;
+  showMsg('cc-msg', 'سیٹ اپ چل رہا ہے…', true);
+  try{
+    const r = await window.__courseApi.seed();
+    const s = r.summary || {};
+    showMsg('cc-msg', 'سیٹ اپ مکمل: کلاسیں ' + urDigits(s.sessions || 0) + '، نئے کوڈز ' + urDigits(s.codesCreated || 0) + '، اعلان: ' + esc(String(s.announcement || '')) + '، اہل طلبہ کو نئی اطلاعات: ' + urDigits(s.notified || 0) + '۔ فہرست اگلے پول پر تازہ ہوگی۔', true);
+  }catch(e){ showMsg('cc-msg', (e && e.message) || 'سیٹ اپ نہ چل سکا۔', false); }
+}
+async function runCourseReleasesNow(){
+  if(!window.__courseApi) return;
+  showMsg('cc-msg', 'اجراء جانچ ہو رہی ہے…', true);
+  try{
+    const r = await window.__courseApi.releases();
+    showMsg('cc-msg', (r.created && r.created.length) ? 'نئی جاری شدہ مشقیں: ' + r.created.map(x => esc(x)).join('، ') : 'اس وقت کوئی نئی واجب مشق نہیں — سب پہلے سے جاری ہیں۔', true);
+  }catch(e){ showMsg('cc-msg', (e && e.message) || 'اجراء نہ ہو سکا۔', false); }
+}
+function renderAdminCourseAsgList(){
+  const el = document.getElementById('admin-course-asg-list'); if(!el) return;
+  const asgs = (DB.get('courseAssignments', []) || []).slice().sort((a, b) => (a.releaseAtMs || 0) - (b.releaseAtMs || 0));
+  const subs = DB.get('courseSubmissions', []) || [];
+  const now = Date.now();
+  el.innerHTML = '<h4 style="margin:0 0 6px">تمام مشقیں — ' + urDigits(asgs.length) + '</h4>' + (asgs.length ? asgs.map(a => {
+    const n = subs.filter(s => s.assignmentId === a.id).length;
+    const graded = subs.filter(s => s.assignmentId === a.id && typeof s.marks === 'number').length;
+    return '<div class="card" style="margin-bottom:8px"><b>' + esc(a.title || '') + '</b> ' +
+      '<span class="tag">' + (a.type === 'google-form' ? 'گوگل فارم' : 'ایپ مشق') + '</span> ' +
+      '<span class="tag ' + ((a.releaseAtMs || 0) <= now ? 'gold' : '') + '">' + ((a.releaseAtMs || 0) <= now ? 'جاری شدہ' : 'باقی: ' + esc(fmtMs(a.releaseAtMs))) + '</span>' +
+      '<br><span class="small">جمع: ' + urDigits(n) + ' • نمبر لگے: ' + urDigits(graded) + ' • ڈیڈ لائن: ' + esc(fmtMs(a.deadlineMs)) + '</span> ' +
+      '<button class="btn sm" onclick="editCourseAssignment(\'' + a.id + '\')">تدوین</button></div>';
+  }).join('') : '<p class="small">ابھی کوئی مشق نہیں — خودکار مشقیں اپنے وقت پر خود بنیں گی، یا اوپر سے نئی بنائیں۔</p>');
+}
+function toLocalInput(ms){
+  const d = new Date(ms || Date.now()); const p = n => ('0' + n).slice(-2);
+  return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) + 'T' + p(d.getHours()) + ':' + p(d.getMinutes());
+}
+function editCourseAssignment(id){
+  const a = (DB.get('courseAssignments', []) || []).find(x => x.id === id); if(!a) return;
+  document.getElementById('ca-id').value = a.id;
+  document.getElementById('ca-title').value = a.title || '';
+  document.getElementById('ca-instructions').value = a.instructions || '';
+  document.getElementById('ca-session').value = a.session || '';
+  document.getElementById('ca-type').value = a.type || 'in-app';
+  document.getElementById('ca-formurl-wrap').style.display = a.type === 'google-form' ? 'block' : 'none';
+  document.getElementById('ca-formurl').value = a.formUrl || '';
+  document.getElementById('ca-release').value = toLocalInput(a.releaseAtMs);
+  document.getElementById('ca-deadline').value = toLocalInput(a.deadlineMs);
+  document.getElementById('ca-marks').value = a.maxMarks || 0;
+  showMsg('cc-msg', 'مشق خانوں میں آ گئی ہے — تبدیلی کر کے «مشق محفوظ کریں» دبائیں۔', true);
+  window.scrollTo(0, 0);
+}
+function clearCourseAssignmentForm(){
+  ['ca-id','ca-title','ca-instructions','ca-session','ca-formurl'].forEach(i => { const e = document.getElementById(i); if(e) e.value = ''; });
+  const t = document.getElementById('ca-type'); if(t) t.value = 'in-app';
+  document.getElementById('ca-formurl-wrap').style.display = 'none';
+  const m = document.getElementById('ca-marks'); if(m) m.value = 20;
+}
+async function saveCourseAssignment(){
+  if(!window.__courseApi) return;
+  const title = document.getElementById('ca-title').value.trim();
+  if(!title){ showMsg('cc-msg', 'مشق کا عنوان لکھیں۔', false); return; }
+  const type = document.getElementById('ca-type').value;
+  const formUrl = document.getElementById('ca-formurl').value.trim();
+  if(type === 'google-form' && !/^https:\/\//.test(formUrl)){ showMsg('cc-msg', 'گوگل فارم کا درست لنک لکھیں۔', false); return; }
+  const rel = document.getElementById('ca-release').value;
+  const dl = document.getElementById('ca-deadline').value;
+  const doc = {
+    id: document.getElementById('ca-id').value || undefined,
+    title, instructions: document.getElementById('ca-instructions').value,
+    session: Number(document.getElementById('ca-session').value) || null,
+    type, formUrl,
+    releaseAtMs: rel ? new Date(rel).getTime() : Date.now(),
+    deadlineMs: dl ? new Date(dl).getTime() : 0,
+    maxMarks: Number(document.getElementById('ca-marks').value) || 0,
+  };
+  showMsg('cc-msg', 'محفوظ ہو رہا ہے…', true);
+  try{
+    const saved = await window.__courseApi.saveAssignment(doc);
+    const list = (DB.get('courseAssignments', []) || []).slice();
+    const ix = list.findIndex(x => x.id === saved.id);
+    if(ix >= 0) list[ix] = saved; else list.push(saved);
+    CACHE.courseAssignments = list;
+    showMsg('cc-msg', 'مشق محفوظ ہو گئی — اجراء کے وقت پر صرف کورس رجسٹرڈ طلبہ کو نظر آئے گی۔', true);
+    clearCourseAssignmentForm();
+    renderAdminCourseAsgList();
+    fillGradeSelect();
+  }catch(e){ showMsg('cc-msg', (e && e.message) || 'محفوظ نہ ہو سکی۔', false); }
+}
+function fillGradeSelect(){
+  const sel = document.getElementById('cg-asg-select'); if(!sel) return;
+  const prev = sel.value;
+  const asgs = (DB.get('courseAssignments', []) || []).filter(a => a.type === 'in-app');
+  sel.innerHTML = asgs.length ? asgs.map(a => '<option value="' + escq(a.id) + '">' + esc(a.title || '') + '</option>').join('') : '<option value="">کوئی ایپ مشق نہیں</option>';
+  if(prev && asgs.some(a => a.id === prev)) sel.value = prev;
+}
+function renderAdminCourseSubs(){
+  const el = document.getElementById('admin-course-subs'); if(!el) return;
+  const sel = document.getElementById('cg-asg-select');
+  const asgId = sel ? sel.value : '';
+  const asg = (DB.get('courseAssignments', []) || []).find(a => a.id === asgId) || {};
+  CC_SUBS = (DB.get('courseSubmissions', []) || []).filter(s => s.assignmentId === asgId);
+  el.innerHTML = CC_SUBS.length ? CC_SUBS.map((s, i) =>
+    '<div class="card" style="margin-bottom:8px"><b>' + esc(s.name || '') + '</b> <span class="small">(' + esc(s.email || '') + ')</span>' +
+    (s.late ? ' <span class="tag red">تاخیر سے</span>' : '') +
+    '<br><span class="small">جمع: ' + esc(String(s.submittedAt || '').slice(0, 16).replace('T', ' ')) + '</span>' +
+    '<p style="margin:6px 0;white-space:pre-wrap">' + esc(s.text || '') + '</p>' +
+    (s.link ? '<p style="margin:0 0 6px"><a target="_blank" rel="noopener" href="' + esc(s.link) + '">معاون لنک ←</a></p>' : '') +
+    '<label>نمبر (کل ' + urDigits(asg.maxMarks || 0) + ')</label>' +
+    '<input id="cg-marks-' + i + '" type="number" min="0" max="' + (asg.maxMarks || 100) + '" value="' + (typeof s.marks === 'number' ? s.marks : '') + '" style="width:110px">' +
+    '<label>رائے (اختیاری)</label>' +
+    '<input id="cg-fb-' + i + '" type="text" value="' + escq(s.feedback || '') + '">' +
+    '<button class="btn sm goldb" onclick="gradeCourseSub(' + i + ')">' + (typeof s.marks === 'number' ? 'نمبر بدلیں' : '🏅 نمبر لگائیں') + '</button></div>'
+  ).join('') : '<p class="small">اس مشق میں ابھی کوئی جمع شدہ جواب نہیں۔</p>';
+}
+async function gradeCourseSub(i){
+  const s = CC_SUBS[i]; if(!s || !window.__courseApi) return;
+  const mv = document.getElementById('cg-marks-' + i).value;
+  if(mv === ''){ showMsg('cc-msg', 'پہلے نمبر لکھیں۔', false); return; }
+  const fb = document.getElementById('cg-fb-' + i).value;
+  showMsg('cc-msg', 'نمبر لگ رہے ہیں…', true);
+  try{
+    const r = await window.__courseApi.grade(s.id, Number(mv), fb);
+    showMsg('cc-msg', 'نمبر لگ گئے: ' + urDigits(r.marks) + ' — طالب علم کو اطلاع چلی گئی اور اس کے پوائنٹس تازہ ہو گئے (' + urDigits(r.points ? r.points.totalPoints : 0) + ' کل)۔', true);
+    const subs = (DB.get('courseSubmissions', []) || []).slice();
+    const ix = subs.findIndex(x => x.id === s.id);
+    if(ix >= 0){ subs[ix] = Object.assign({}, subs[ix], { marks: r.marks, feedback: fb }); CACHE.courseSubmissions = subs; }
+    renderAdminCourseSubs();
+    renderAdminCourseAsgList();
+  }catch(e){ showMsg('cc-msg', (e && e.message) || 'نمبر نہ لگ سکے۔', false); }
+}
+function renderAdminGradebook(){
+  const el = document.getElementById('admin-course-gradebook'); if(!el) return;
+  const gb = (DB.get('courseGradebook', []) || [])[0];
+  if(!gb || !gb.rows || !gb.rows.length){ el.innerHTML = '<p class="small">ابھی کوئی کورس رجسٹرڈ طالب علم نہیں — رجسٹریشن ہوتے ہی گریڈ بک یہاں بن جائے گی۔</p>'; return; }
+  const head = '<tr><th>طالب علم</th>' + (gb.sessions || []).map((s, i) => '<th>ح' + urDigits(i + 1) + '</th>').join('') +
+    (gb.assignments || []).map(a => '<th>' + esc(String(a.title || '').slice(0, 18)) + '</th>').join('') + '<th>کل نمبر</th></tr>';
+  const rows = gb.rows.map(r =>
+    '<tr><td>' + esc(r.name || r.email || '') + '<br><span class="small">' + urDigits(r.attCount || 0) + ' حاضری</span></td>' +
+    (r.att || []).map(a => '<td style="text-align:center">' + (a ? '✓' : '—') + '</td>').join('') +
+    (r.marks || []).map(m => '<td style="text-align:center">' + (!m ? '—' : (typeof m.marks === 'number' ? urDigits(m.marks) + (m.late ? '*' : '') : 'جمع')) + '</td>').join('') +
+    '<td style="text-align:center"><b>' + urDigits(r.totalMarks || 0) + '</b></td></tr>').join('');
+  el.innerHTML = '<div style="overflow-x:auto"><table class="rep-table">' + head + rows + '</table></div>' +
+    '<p class="small" style="margin:6px 0 0">ح = حاضری (کلاس نمبر کے مطابق)؛ * = تاخیر سے جمع (پوائنٹس نصف)۔ گریڈ بک ہر پول (60 سیکنڈ) پر خود تازہ ہوتی ہے۔</p>';
+}
+
 /* ================= تحقیقی کورسز (بیرونی پلیٹ فارم) ================= */
 const SEED_RCOURSES = [
  {id:"rc1", platform:"Coursera", sample:true,
@@ -7213,6 +7631,7 @@ function openAdminSec(key, skipNav){
   if(key === 'charts') renderCharts();
   if(key === 'dashboard') renderAdminDashboard();
   if(key === 'dashdata') renderDashData();
+  if(key === 'courseclass') renderAdminCourseClass();
   if(key === 'counsel') renderAdminCounsel();
   if(key === 'visionreview') renderVisionReview();
   if(key === 'starteam') renderAdminStarTeam();
@@ -13039,6 +13458,6 @@ window.helpChatSend = function(){
 <script src="foreign-data.js?v=20261029g"></script>
 <script src="admissions-news.js"></script>
 <script src="admissions.js?v=20261030a"></script>
-<script type="module" src="api-bridge.js?v=20261029h"></script>
+<script type="module" src="api-bridge.js?v=20261030b"></script>
 </body>
 </html>
