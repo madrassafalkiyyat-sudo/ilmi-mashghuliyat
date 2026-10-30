@@ -310,6 +310,21 @@ window.__fb = {
     return { uid: userDoc.uid, isAdmin, userDoc };
   },
 
+  // Passwordless ADMIN entry (Mufti, 2026-10-30): the server checks the
+  // admins collection itself — the client never decides admin-ness, it
+  // only learns it from the server's answer (here + /users/me). A
+  // non-admin email gets the generic rejection and the login screen
+  // falls back to asking for a password. No admin list exists client-side.
+  async signInAdmin(email) {
+    const r = await api('/api/auth/admin-login', { method: 'POST', auth: false, body: { email } });
+    setTokens(r.accessToken, r.refreshToken);
+    const me = await fetchMe();
+    const userDoc = normDoc(me.user);
+    const isAdmin = !!me.isAdmin;
+    startSubscriptions({ uid: userDoc.uid, email, isAdmin, approved: userDoc.status === 'approved' });
+    return { uid: userDoc.uid, isAdmin, userDoc };
+  },
+
   async signOut() {
     try {
       const rt = getRefresh();

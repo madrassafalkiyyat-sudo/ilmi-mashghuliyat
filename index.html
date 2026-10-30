@@ -861,6 +861,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   </div>
   <p style="margin:4px 0 0"><a href="#" onclick="go('reset');return false" style="color:var(--c-primary-700);font-weight:bold">پاس ورڈ بھول گئے؟</a> <span class="small">— نیا پاس ورڈ بنانے کا طریقہ</span></p>
   <button class="btn" onclick="doLogin()">لاگ ان</button>
+  <p class="center small" style="margin:6px 0 0">ایڈمن کے لیے: صرف اپنا جی میل لکھیں — پاس ورڈ کی ضرورت نہیں</p>
   <p class="center">اکاؤنٹ نہیں ہے؟ <a href="#" onclick="go('register');return false" style="color:var(--c-primary-700);font-weight:bold">رجسٹریشن کریں</a></p>
 </section>
 
@@ -878,7 +879,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 <section class="view" id="view-staff">
   <div class="center"><img class="logo-sm" src="assets/logo.png" onerror="this.onerror=null;this.src=window.__LOGO" alt="لوگو" style="width:84px;height:84px"></div>
   <h1>🏛️ انتظامیہ و ٹیم — ای میل سے داخلہ</h1>
-  <p class="center small">نئی ایپ میں <b>ای میل لنک کا راستہ بند ہے</b> — کوئی تصدیقی لنک آپ کی ای میل پر نہیں آئے گا۔ انتظامیہ کے ارکان بھی عام لاگ ان سے داخل ہوں: لاگ ان اسکرین پر اپنی <b>ایڈمن ای میل</b> اور نیا پاس ورڈ لکھیں (پہلی بار سنہری بٹن <b>«پہلی بار نئی ایپ میں لاگ ان کریں»</b> سے پاس ورڈ بنائیں) — ایڈمن کی ای میل خود پہچان کر ایڈمن پینل کھل جائے گا۔</p>
+  <p class="center small">نئی ایپ میں <b>ای میل لنک کا راستہ بند ہے</b> — کوئی تصدیقی لنک آپ کی ای میل پر نہیں آئے گا۔ انتظامیہ کے ارکان لاگ ان اسکرین پر صرف اپنی <b>ایڈمن ای میل (جی میل)</b> لکھیں — <b>پاس ورڈ کی ضرورت نہیں</b>؛ نظام ای میل خود پہچان کر سیدھا ایڈمن پینل کھول دے گا (مفتی، 2026-10-30)۔</p>
   <div class="divider"></div>
   <div class="layout-switch-slot"></div>
   <div class="msg" id="staff-msg"></div>
@@ -2872,7 +2873,10 @@ function go(id){
     previewNotice('👁 پریوو موڈ: ایڈمن پینل پر واپسی کے لیے اوپر «ایڈمن پینل پر واپس» بٹن دبائیں۔');
     return;
   }
-  if(id === 'admin' && sessionStorage.getItem('em_admin_ok') !== '1') id = 'admincode';
+  /* سرور سے تصدیق شدہ ایڈمن (JWT) کو کوڈ والی اسکرین کبھی نہیں دکھتی
+     (مفتی، 2026-10-30 — ایڈمن کے لیے نہ پاس ورڈ، نہ کوڈ، نہ مشکل)؛
+     کوڈ والا راستہ صرف آف لائن ڈیمو کے لیے رہ گیا ہے */
+  if(id === 'admin' && !IS_ADMIN && sessionStorage.getItem('em_admin_ok') !== '1') id = 'admincode';
   /* مفتی کی ہدایت (2026-10-25): وژن کے فوراً بعد رجسٹریشن اسکرین پر لاگ ان کا ربط
      چھپا رہے؛ کسی اور اسکرین پر جاتے ہی یہ جھنڈا ختم اور ربط واپس آ جائے۔ */
   if(id !== 'register') window.__postVision = false;
@@ -3445,21 +3449,42 @@ function doLogin(){
   syncLocalFromRecord(u);
   goRoot(nextAfterLogin(u));
 }
-/* آن لائن لاگ ان: Firebase Auth سے تصدیق؛ ایڈمن ہو تو سیدھا پینل، طالب علم ہو تو حیثیت کی جانچ کے بعد داخلہ */
+/* ایڈمن داخلہ — دونوں راستے (پاس ورڈ والا عام لاگ ان اور بغیر پاس ورڈ والا
+   ایڈمن لاگ ان) یہیں سے پینل میں جاتے ہیں؛ حفاظتی کوڈ والی اسکرین آن لائن
+   ایڈمن کے لیے کبھی نہیں آتی */
+function enterAdminSession(email, res){
+  IS_ADMIN = true;
+  sessionStorage.setItem('em_admin_ok', '1');
+  DB.set('session', email);
+  if(res && res.userDoc) syncLocalFromRecord(res.userDoc);
+  showMsg('login-msg', 'ایڈمن لاگ ان کامیاب — پینل کھل رہا ہے۔', true);
+  go('admin');
+}
+/* آن لائن لاگ ان: سرور سے تصدیق؛ ایڈمن ہو تو سیدھا پینل، طالب علم ہو تو حیثیت کی جانچ کے بعد داخلہ */
 async function doLoginOnline(email, pass){
-  if(!email || !pass){ showMsg('login-msg', 'ای میل اور پاس ورڈ دونوں لکھیں۔', false); return; }
+  if(!email){ showMsg('login-msg', 'ای میل لکھیں۔', false); return; }
+  if(!pass){
+    /* ایڈمن کا بغیر پاس ورڈ داخلہ (مفتی، 2026-10-30): پاس ورڈ کا خانہ خالی ہو
+       تو پہلے سرور سے ایڈمن جانچ — ای میل انتظامیہ کی فہرست میں ہو تو سیدھا
+       پینل کھل جاتا ہے؛ ورنہ (طالب علم ہو یا غلط ای میل) پاس ورڈ مانگا جاتا
+       ہے اور عام لاگ ان ویسے ہی چلتا ہے جیسے پہلے تھا۔ */
+    showMsg('login-msg', 'لاگ ان ہو رہا ہے — چند لمحے انتظار کریں…', true);
+    try{
+      if(FB && FB.signInAdmin){
+        const res = await FB.signInAdmin(email);
+        if(res && res.isAdmin){ enterAdminSession(email, res); return; }
+        if(FB.signOut) await FB.signOut();
+      }
+    }catch(e){ /* ایڈمن نہیں — نیچے پاس ورڈ مانگا جائے گا */ }
+    showMsg('login-msg', 'پاس ورڈ درج کریں', false);
+    const pi = document.getElementById('l-pass');
+    if(pi){ try{ pi.focus(); }catch(e){} }
+    return;
+  }
   showMsg('login-msg', 'لاگ ان ہو رہا ہے — چند لمحے انتظار کریں…', true);
   try{
     const res = await FB.signIn(email, pass);
-    if(res.isAdmin){
-      IS_ADMIN = true;
-      sessionStorage.setItem('em_admin_ok', '1');
-      DB.set('session', email);
-      if(res.userDoc) syncLocalFromRecord(res.userDoc);
-      showMsg('login-msg', 'ایڈمن لاگ ان کامیاب — پینل کھل رہا ہے۔', true);
-      go('admin');
-      return;
-    }
+    if(res.isAdmin){ enterAdminSession(email, res); return; }
     let u = res.userDoc;
     if(!u){
       // رجسٹریشن کے وقت دستاویز نہ بن سکی تھی (قوانین باقی تھے) تو اس ڈیوائس پر موجود محفوظ نقل سے اب بنا دیں
@@ -7600,7 +7625,8 @@ function counselSaveLog(kind){
 const ADMIN_CODE = '2468';
 function checkAdminCode(){
   if(ONLINE){
-    if(IS_ADMIN && sessionStorage.getItem('em_admin_ok') === '1'){ go('admin'); return; }
+    /* سرور سے تصدیق شدہ ایڈمن کو کوڈ درکار نہیں — جھنڈا درست کر کے سیدھا پینل */
+    if(IS_ADMIN){ sessionStorage.setItem('em_admin_ok', '1'); go('admin'); return; }
     showMsg('ac-msg', 'آن لائن نظام میں ایڈمن پینل صرف اس وقت کھلتا ہے جب ایڈمن اپنے اکاؤنٹ (ای میل) سے لاگ ان ہو — پہلے لاگ ان اسکرین سے ایڈمن ای میل سے داخل ہوں۔ حفاظتی کوڈ (2468) صرف آف لائن ڈیمو موڈ کے لیے ہے۔', false);
     return;
   }
@@ -13525,6 +13551,6 @@ window.helpChatSend = function(){
 <script src="foreign-data.js?v=20261029g"></script>
 <script src="admissions-news.js"></script>
 <script src="admissions.js?v=20261030a"></script>
-<script type="module" src="api-bridge.js?v=20261030b"></script>
+<script type="module" src="api-bridge.js?v=20261030c"></script>
 </body>
 </html>
