@@ -143,6 +143,13 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--c-gold-500);bord
 .gbtn:active{background:var(--c-paper)}
 .gbtn .sub{display:block;font-size:15px;color:#68796f;line-height:1.9}
 .ahub-stats{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 2px}
+.dash-sec{margin:10px 0}
+.dash-sec-btn{display:flex;align-items:center;gap:10px;width:100%;text-align:right;cursor:pointer;background:var(--c-paper);border:1px solid var(--c-border);border-radius:12px;padding:8px 14px 10px;font-family:inherit;font-size:19px;font-weight:bold;color:var(--c-primary-900);line-height:1.8}
+.dash-sec-btn:active{transform:scale(.99)}
+.dash-sec-title{flex:1}
+.dash-sec-count{flex:none;background:var(--c-gold-100);border:1px solid var(--c-gold-500);color:var(--c-primary-900);border-radius:999px;padding:0 12px;font-size:16px;font-weight:bold;line-height:1.9}
+.dash-sec-arrow{flex:none;color:var(--c-gold-700);font-size:18px}
+.dash-sec-body{padding:2px}
 .stat-chip{flex:1;min-width:100px;background:var(--c-card);border:1px solid var(--c-border);border-radius:12px;padding:8px 6px;text-align:center;font-size:17px;color:var(--c-primary-900);line-height:1.9}
 .stat-chip b{display:block;font-size:23px;color:var(--c-primary-700)}
 .abadge{display:inline-block;background:#b3261e;color:var(--c-card);border-radius:16px;font-size:15px;padding:0 9px;line-height:1.9;margin-top:3px}
@@ -12629,6 +12636,33 @@ function renderCharts(){
    تازگی: سیکشن کھلنے پر + ہر پول اسنیپ شاٹ پر (600ms ڈی باؤنس) دوبارہ
    رینڈر؛ داخلہ جات کا اسکرپٹ فچ زیادہ سے زیادہ 60 سیکنڈ میں ایک بار۔ */
 let DASH_TAB = 'ilmi';
+/* ڈیش بورڈ کے کھلے سیکشنز (مفتی، 2026-10-31): خلاصہ ہمیشہ اوپر نظر آئے،
+   ہر سیکشن بٹن سے صرف اپنے کلک پر کھلے — default سب بند۔ کھلی حالت اس
+   Set میں رہتی ہے تاکہ 60s پول کا دوبارہ رینڈر بھی کھلا سیکشن بند نہ کرے
+   اور اس کا ڈیٹا وہیں تازہ ہو جائے۔ */
+const DASH_OPEN = new Set();
+function dashSection(id, title, count, bodyHtml){
+  const open = DASH_OPEN.has(id);
+  return '<div class="dash-sec">'
+    + '<button type="button" class="dash-sec-btn" onclick="dashToggle(\'' + id + '\')" aria-expanded="' + (open ? 'true' : 'false') + '">'
+    + '<span class="dash-sec-title">' + esc(title) + '</span>'
+    + ((count === null || count === undefined) ? '' : '<span class="dash-sec-count">' + esc(String(count)) + '</span>')
+    + '<span class="dash-sec-arrow">' + (open ? '▾' : '▸') + '</span></button>'
+    + '<div class="dash-sec-body" id="dash-sec-' + id + '" style="display:' + (open ? 'block' : 'none') + '">' + bodyHtml + '</div></div>';
+}
+function dashToggle(id){
+  if(DASH_OPEN.has(id)) DASH_OPEN.delete(id); else DASH_OPEN.add(id);
+  const open = DASH_OPEN.has(id);
+  const body = document.getElementById('dash-sec-' + id);
+  if(!body) return;
+  body.style.display = open ? 'block' : 'none';
+  const btn = body.previousElementSibling;
+  if(btn){
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    const ar = btn.querySelector('.dash-sec-arrow');
+    if(ar) ar.textContent = open ? '▾' : '▸';
+  }
+}
 let __admDashCache = null;
 let __admDashErr = '';
 let __dashTimer = null;
@@ -12719,8 +12753,10 @@ function renderAdminDashboard(){
    courseAssignments، courseSubmissions) — اس لیے ڈیش بورڈ کے خودکار تازہ چکر
    (dashPollTick) میں یہ بلاک بھی خود بخود تازہ ہوتا ہے۔ تفصیل «ادارہ سازی
    کلاس روم» سیکشن میں رہتی ہے؛ یہاں صرف اجمالی صورت، کوئی نام نہیں۔ */
+let __dashCourseReg = null; /* dashCourseBlock کی رجسٹریشن گنتی — سیکشن بٹن کے چپ کے لیے (ماخذ یہی ایک) */
 function dashCourseBlock(){
-  let h = '<h3>🏛️ ادارہ سازی کورس — اجمالی صورتِ حال</h3>';
+  __dashCourseReg = null;
+  let h = '';
   const ov = (DB.get('courseOverview', []) || [])[0];
   const gb = (DB.get('courseGradebook', []) || [])[0];
   const sess = (typeof courseBatchSessions === 'function') ? courseBatchSessions() : [];
@@ -12731,6 +12767,7 @@ function dashCourseBlock(){
   let registered = null;
   if(ov && typeof ov.registered === 'number') registered = ov.registered;
   else if(gb && gb.rows) registered = gb.rows.length;
+  __dashCourseReg = registered;
   /* تصدیق شدہ حاضری: فی سیشن الگ طلبہ (ای میل وار — ایک طالب علم فی سیشن ایک بار) */
   const claims = DB.get('attendanceClaims', []) || [];
   const attBy = {};
@@ -12814,7 +12851,7 @@ function renderDashIlmi(){
   const other = us.filter(function(u){ return ['بی ایس', 'ایم فل', 'پی ایچ ڈی'].indexOf(u.degree || '') < 0; });
   degRows.push(['دیگر', urDigits(other.length), urDigits(other.filter(function(u){ return u.status === 'approved'; }).length), urDigits(other.filter(function(u){ return u.status === 'pending'; }).length), urDigits(other.filter(function(u){ return u.status === 'rejected'; }).length)]);
   degRows.push(['کل', urDigits(us.length), urDigits(approved.length), urDigits(pending.length), urDigits(rejected.length)]);
-  h += '<h3>درجہ × حیثیت</h3>' + dashTable(['درجہ', 'کل', 'منظور شدہ', 'زیرِ غور', 'مسترد'], degRows);
+  h += dashSection('degstatus', 'درجہ × حیثیت', urDigits(us.length), dashTable(['درجہ', 'کل', 'منظور شدہ', 'زیرِ غور', 'مسترد'], degRows));
   const uniMap = {};
   approved.forEach(function(u){
     const k = (u.uni || '').trim() || 'یونیورسٹی درج نہیں';
@@ -12828,10 +12865,11 @@ function renderDashIlmi(){
     const v = uniMap[r[0]];
     return [r[0], urDigits(v.total), urDigits(v.bs), urDigits(v.ms), urDigits(v.phd)];
   });
-  h += '<h3>فی یونیورسٹی (منظور شدہ)</h3>' + dashTblOrEmpty(['یونیورسٹی', 'کل', 'بی ایس', 'ایم فل', 'پی ایچ ڈی'], uniRows);
+  h += dashSection('uni', 'فی یونیورسٹی (منظور شدہ)', urDigits(uniRows.length), dashTblOrEmpty(['یونیورسٹی', 'کل', 'بی ایس', 'ایم فل', 'پی ایچ ڈی'], uniRows));
   const cMap = {};
   approved.forEach(function(u){ const k = (u.country || '').trim() || 'ملک درج نہیں'; cMap[k] = (cMap[k] || 0) + 1; });
-  h += '<h3>فی ملک (منظور شدہ)</h3>' + dashTblOrEmpty(['ملک', 'طلبہ'], dashCount(cMap).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  const cRows = dashCount(cMap).map(function(r){ return [r[0], urDigits(r[1])]; });
+  h += dashSection('country', 'فی ملک (منظور شدہ)', urDigits(cRows.length), dashTblOrEmpty(['ملک', 'طلبہ'], cRows));
   const claims = DB.get('attendanceClaims', []) || [];
   const verified = claims.filter(function(c){ return c && c.status === 'تصدیق شدہ' && c.sessionId; });
   const bySess = {};
@@ -12857,37 +12895,39 @@ function renderDashIlmi(){
   }).sort(function(a, b){ return b.att - a.att; }).map(function(r){
     return [r.title, urDigits(r.ver), urDigits(r.att), urDigits(r.pct) + '٪'];
   });
-  h += '<h3>فی سیشن حاضری (تصدیق شدہ دعوے + حاضرین خلاصہ)</h3>' + dashTblOrEmpty(['سیشن', 'تصدیق شدہ دعوے', 'حاضرین', 'شرح (منظور شدہ میں سے)'], attRows);
+  let attBody = dashTblOrEmpty(['سیشن', 'تصدیق شدہ دعوے', 'حاضرین', 'شرح (منظور شدہ میں سے)'], attRows);
   const claimedEmails = {};
   verified.forEach(function(c){ if(c.email) claimedEmails[c.email] = true; });
   const zeroN = approved.filter(function(u){ return u.email && !claimedEmails[u.email]; }).length;
-  h += '<p>صفر تصدیق شدہ دعوے والے منظور شدہ طلبہ: <b>' + urDigits(zeroN) + '</b> — ان سے رابطہ کر کے حاضری کی پیروی کریں۔</p>';
-  h += dashCourseBlock();
+  attBody += '<p>صفر تصدیق شدہ دعوے والے منظور شدہ طلبہ: <b>' + urDigits(zeroN) + '</b> — ان سے رابطہ کر کے حاضری کی پیروی کریں۔</p>';
+  h += dashSection('attendance', 'فی سیشن حاضری (تصدیق شدہ دعوے + حاضرین خلاصہ)', urDigits(attRows.length), attBody);
+  const courseHtml = dashCourseBlock();
+  h += dashSection('course', '🏛️ ادارہ سازی کورس — اجمالی صورتِ حال', __dashCourseReg === null ? null : urDigits(__dashCourseReg), courseHtml);
   const pubs = DB.get('publications', []) || [];
   const topAuth = approved.map(function(u){
     if(!u.name) return null;
     const n = pubs.filter(function(pb){ return pb && pb.author && (String(pb.author).indexOf(u.name) >= 0 || String(u.name).indexOf(pb.author) >= 0); }).length;
     return n > 0 ? [u.name, n] : null;
   }).filter(function(x){ return !!x; }).sort(function(a, b){ return b[1] - a[1]; }).slice(0, 5);
-  h += '<h3>اشاعتیں</h3><p>کل اشاعتیں: <b>' + urDigits(pubs.length) + '</b></p>'
-    + dashTblOrEmpty(['مصنف (نام سے میل — ایپ کا موجودہ طریقہ)', 'مقالات'], topAuth.map(function(r){ return [r[0], urDigits(r[1])]; }));
+  h += dashSection('pubs', 'اشاعتیں', urDigits(pubs.length), '<p>کل اشاعتیں: <b>' + urDigits(pubs.length) + '</b></p>'
+    + dashTblOrEmpty(['مصنف (نام سے میل — ایپ کا موجودہ طریقہ)', 'مقالات'], topAuth.map(function(r){ return [r[0], urDigits(r[1])]; })));
   const regDates = pending.map(function(u){ return u.regAt || ''; }).filter(function(x){ return !!x; }).sort();
-  h += '<h3>زیرِ غور کی عمر</h3><p>زیرِ غور طلبہ: <b>' + urDigits(pending.length) + '</b>'
-    + (regDates.length ? ' · قدیم ترین درخواست (جن کی تاریخ درج ہے): <b>' + urDigits(regDates[0].slice(0, 10)) + '</b>' : '') + '</p>';
+  h += dashSection('pendage', 'زیرِ غور کی عمر', urDigits(pending.length), '<p>زیرِ غور طلبہ: <b>' + urDigits(pending.length) + '</b>'
+    + (regDates.length ? ' · قدیم ترین درخواست (جن کی تاریخ درج ہے): <b>' + urDigits(regDates[0].slice(0, 10)) + '</b>' : '') + '</p>');
   const inc = approved.filter(function(u){ try{ return profileMissing(u).length > 0; }catch(e){ return false; } });
   const missCount = {};
   inc.forEach(function(u){ try{ profileMissing(u).forEach(function(m){ missCount[m] = (missCount[m] || 0) + 1; }); }catch(e){} });
-  h += '<h3>نامکمل پروفائلز (ایپ کا اپنا معیار — profileMissing)</h3><p>منظور شدہ میں نامکمل: <b>' + urDigits(inc.length) + '</b></p>'
-    + dashTblOrEmpty(['خالی میدان', 'طلبہ'], dashCount(missCount).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  h += dashSection('incomplete', 'نامکمل پروفائلز (ایپ کا اپنا معیار — profileMissing)', urDigits(inc.length), '<p>منظور شدہ میں نامکمل: <b>' + urDigits(inc.length) + '</b></p>'
+    + dashTblOrEmpty(['خالی میدان', 'طلبہ'], dashCount(missCount).map(function(r){ return [r[0], urDigits(r[1])]; })));
   const raw = dashDataAll();
   const conf = dashSumEntries(raw.filter(function(e){ return e.category === 'کانفرنس کے لیے اپلائی'; }));
   const pubRaw = dashSumEntries(raw.filter(function(e){ return e.category === 'مضمون شائع'; }));
-  h += '<h3>ایڈمن کے درج کردہ (ایپ کی اشاعتوں سے الگ)</h3>'
-    + '<p>کانفرنس کے لیے اپلائی: <b>' + urDigits(conf.total) + '</b> · مضمون شائع: <b>' + urDigits(pubRaw.total) + '</b></p>';
-  if(dashCount(conf.byUni).length) h += dashTable(['کانفرنس — یونیورسٹی', 'تعداد'], dashCount(conf.byUni).map(function(r){ return [r[0], urDigits(r[1])]; }));
-  if(dashCount(conf.byField).length) h += dashTable(['کانفرنس — شعبہ / فیلڈ', 'تعداد'], dashCount(conf.byField).map(function(r){ return [r[0], urDigits(r[1])]; }));
-  if(dashCount(pubRaw.byUni).length) h += dashTable(['مضمون — یونیورسٹی', 'تعداد'], dashCount(pubRaw.byUni).map(function(r){ return [r[0], urDigits(r[1])]; }));
-  if(dashCount(pubRaw.byField).length) h += dashTable(['مضمون — شعبہ / فیلڈ', 'تعداد'], dashCount(pubRaw.byField).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  let rawBody = '<p>کانفرنس کے لیے اپلائی: <b>' + urDigits(conf.total) + '</b> · مضمون شائع: <b>' + urDigits(pubRaw.total) + '</b></p>';
+  if(dashCount(conf.byUni).length) rawBody += dashTable(['کانفرنس — یونیورسٹی', 'تعداد'], dashCount(conf.byUni).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  if(dashCount(conf.byField).length) rawBody += dashTable(['کانفرنس — شعبہ / فیلڈ', 'تعداد'], dashCount(conf.byField).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  if(dashCount(pubRaw.byUni).length) rawBody += dashTable(['مضمون — یونیورسٹی', 'تعداد'], dashCount(pubRaw.byUni).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  if(dashCount(pubRaw.byField).length) rawBody += dashTable(['مضمون — شعبہ / فیلڈ', 'تعداد'], dashCount(pubRaw.byField).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  h += dashSection('adminraw', 'ایڈمن کے درج کردہ (ایپ کی اشاعتوں سے الگ)', urDigits(conf.total + pubRaw.total), rawBody);
   box.innerHTML = h;
 }
 async function fetchAdmDashboard(force){
@@ -12908,18 +12948,21 @@ async function fetchAdmDashboard(force){
 }
 function dashRawAdmHtml(){
   const cats = [
-    ['داخلہ ہو گیا', 'داخلے (ایڈمن درج کردہ)'],
-    ['ٹیسٹ میں فیل', 'ٹیسٹ میں فیل (ایڈمن درج کردہ)'],
-    ['اپلائی نہ کر سکے', 'اپلائی نہ کر سکے (ایڈمن درج کردہ)'],
-    ['کانفرنس کے لیے اپلائی', 'کانفرنس اپلائی (ایڈمن درج کردہ)']
+    ['داخلہ ہو گیا', 'داخلے (ایڈمن درج کردہ)', 'raw-admitted'],
+    ['ٹیسٹ میں فیل', 'ٹیسٹ میں فیل (ایڈمن درج کردہ)', 'raw-testfail'],
+    ['اپلائی نہ کر سکے', 'اپلائی نہ کر سکے (ایڈمن درج کردہ)', 'raw-noapply'],
+    ['کانفرنس کے لیے اپلائی', 'کانفرنس اپلائی (ایڈمن درج کردہ)', 'raw-confapply']
   ];
-  let h = '<h3>نتائج — خام اندراج سے (ایپ ان کا سراغ خود نہیں رکھتی)</h3>';
+  let h = '<p class="small" style="margin:14px 0 2px"><b>نتائج — خام اندراج سے</b> (ایپ ان کا سراغ خود نہیں رکھتی)</p>';
   cats.forEach(function(c){
     const s = dashSumEntries(dashDataAll().filter(function(e){ return e.category === c[0]; }));
-    h += '<h3>' + esc(c[1]) + ' — ' + urDigits(s.total) + '</h3>';
-    if(!s.total){ h += '<p class="small">ابھی کوئی اندراج نہیں۔</p>'; return; }
-    if(dashCount(s.byUni).length) h += dashTable(['یونیورسٹی', 'تعداد'], dashCount(s.byUni).map(function(r){ return [r[0], urDigits(r[1])]; }));
-    if(dashCount(s.byField).length) h += dashTable(['شعبہ / فیلڈ', 'تعداد'], dashCount(s.byField).map(function(r){ return [r[0], urDigits(r[1])]; }));
+    let body = '';
+    if(!s.total){ body = '<p class="small">ابھی کوئی اندراج نہیں۔</p>'; }
+    else {
+      if(dashCount(s.byUni).length) body += dashTable(['یونیورسٹی', 'تعداد'], dashCount(s.byUni).map(function(r){ return [r[0], urDigits(r[1])]; }));
+      if(dashCount(s.byField).length) body += dashTable(['شعبہ / فیلڈ', 'تعداد'], dashCount(s.byField).map(function(r){ return [r[0], urDigits(r[1])]; }));
+    }
+    h += dashSection(c[2], c[1], urDigits(s.total), body);
   });
   return h;
 }
@@ -12939,10 +12982,10 @@ async function renderDashAdm(){
     ['منتخب یونیورسٹیز', urDigits(Object.keys(d.byUniversityChosen || {}).length)],
     ['مطلوبہ فیلڈز', urDigits(Object.keys(d.byField || {}).length)]
   ]);
-  h += '<h3>فنل</h3>' + dashTable(['مرحلہ', 'تعداد', 'پچھلے مرحلے کا فیصد'], [
+  h += dashSection('funnel', 'فنل', urDigits(d.totalCandidates), dashTable(['مرحلہ', 'تعداد', 'پچھلے مرحلے کا فیصد'], [
     ['رجسٹریشن', urDigits(d.totalCandidates), '—'],
     ['اپلائی تصدیق', urDigits(d.totalApplications), urDigits(conv) + '٪']
-  ]);
+  ]));
   const uniKeys = {};
   Object.keys(d.byUniversityChosen || {}).forEach(function(k){ uniKeys[k] = true; });
   Object.keys(d.byUniversityApplied || {}).forEach(function(k){ uniKeys[k] = true; });
@@ -12951,18 +12994,18 @@ async function renderDashAdm(){
   }).sort(function(a, b){ return (b.c + b.a) - (a.c + a.a); }).map(function(r){
     return [r.k, urDigits(r.c), urDigits(r.a)];
   });
-  h += '<h3>فی یونیورسٹی</h3>' + dashTblOrEmpty(['یونیورسٹی', 'منتخب (رجسٹریشن)', 'اپلائی تصدیق'], uniRows);
-  h += '<h3>فی فیلڈ / ڈسپلن (رجسٹریشن کی مطلوبہ فیلڈز + اپلائی کے ڈسپلن)</h3>'
-    + dashTblOrEmpty(['فیلڈ / ڈسپلن', 'تعداد'], dashCount(d.byField || {}).map(function(r){ return [r[0], urDigits(r[1])]; }));
-  h += '<h3>فی لیول (اپلائی)</h3>'
-    + dashTblOrEmpty(['لیول', 'اپلائی تصدیق'], dashCount(d.byLevel || {}).map(function(r){ return [r[0], urDigits(r[1])]; }));
+  h += dashSection('auni', 'فی یونیورسٹی', urDigits(uniRows.length), dashTblOrEmpty(['یونیورسٹی', 'منتخب (رجسٹریشن)', 'اپلائی تصدیق'], uniRows));
+  const afRows = dashCount(d.byField || {}).map(function(r){ return [r[0], urDigits(r[1])]; });
+  h += dashSection('afield', 'فی فیلڈ / ڈسپلن (رجسٹریشن کی مطلوبہ فیلڈز + اپلائی کے ڈسپلن)', urDigits(afRows.length), dashTblOrEmpty(['فیلڈ / ڈسپلن', 'تعداد'], afRows));
+  const alRows = dashCount(d.byLevel || {}).map(function(r){ return [r[0], urDigits(r[1])]; });
+  h += dashSection('alevel', 'فی لیول (اپلائی)', urDigits(alRows.length), dashTblOrEmpty(['لیول', 'اپلائی تصدیق'], alRows));
   const moKeys = {};
   Object.keys(d.byMonth || {}).forEach(function(k){ moKeys[k] = true; });
   Object.keys(d.byMonthApplied || {}).forEach(function(k){ moKeys[k] = true; });
   const moRows = Object.keys(moKeys).sort().map(function(k){
     return [urDigits(k), urDigits((d.byMonth || {})[k] || 0), urDigits((d.byMonthApplied || {})[k] || 0)];
   });
-  h += '<h3>فی مہینہ</h3>' + dashTblOrEmpty(['مہینہ', 'رجسٹریشن', 'اپلائی تصدیق'], moRows);
+  h += dashSection('amonth', 'فی مہینہ', urDigits(moRows.length), dashTblOrEmpty(['مہینہ', 'رجسٹریشن', 'اپلائی تصدیق'], moRows));
   if(__admDashErr) h += '<p class="small">تازہ ڈیٹا نہ مل سکا — آخری محفوظ شدہ گنتی دکھائی جا رہی ہے۔</p>';
   h += dashRawAdmHtml();
   box.innerHTML = h;
