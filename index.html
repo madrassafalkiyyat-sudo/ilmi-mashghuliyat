@@ -2917,7 +2917,18 @@ function showMsg(id, txt, ok){
      اب ہر پیغام خود اسکرول ہو کر منظر میں آ جاتا ہے۔ */
   try{ el.scrollIntoView({behavior:'smooth', block:'center'}); }catch(e){}
 }
-function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+function esc(s){ return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+/* تصویر کا src صرف base64 تصویر یا https ربط — کوئی اور قدر (مثلاً اقتباس توڑ کر onerror) خالی ہو جاتی ہے */
+function safeImg(src){
+  const s = String(src || '');
+  return (/^data:image\/(jpeg|png|webp|gif);base64,[A-Za-z0-9+/]+=*$/.test(s) || /^https:\/\/[^\s"'<>]+$/i.test(s)
+    || /^[\w\-./]+\.(png|jpe?g|webp|gif)$/i.test(s)) ? s : '';
+}
+/* ربط صرف http/https — javascript: وغیرہ رد */
+function safeUrl(href){
+  const s = String(href || '').trim();
+  return /^https?:\/\/[^\s"'<>]+$/i.test(s) ? s : '';
+}
 function copyAppLink(btn){
   const url = 'https://madrassafalkiyyat-sudo.github.io/ilmi-mashghuliyat/';
   const done = () => { if(btn){ const t = btn.textContent; btn.textContent = '✅ کاپی ہو گیا'; setTimeout(() => btn.textContent = t, 2000); } };
@@ -4393,7 +4404,7 @@ function renderHome(){
     let ring = 'var(--c-primary-700)';
     try{ if(starMemberByEmail(u.email)) ring = 'var(--c-gold-500)'; }catch(e){}
     av.innerHTML = (p.gender === 'مرد' && p.photo)
-      ? '<img src="' + p.photo + '" alt="" style="width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid ' + ring + ';box-shadow:0 1px 4px rgba(0,0,0,.15)">'
+      ? '<img src="' + safeImg(p.photo) + '" alt="" style="width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid ' + ring + ';box-shadow:0 1px 4px rgba(0,0,0,.15)">'
       : '<div style="width:64px;height:64px;border-radius:50%;background:var(--c-primary-900);border:3px solid ' + ring + ';color:var(--c-gold-100);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:bold;margin:0 auto">' + esc((u.name || '؟').trim().charAt(0)) + '</div>';
   }
   document.getElementById('home-name').textContent = u.name;
@@ -4469,7 +4480,7 @@ function spotlightCardHtml(s){
   const isStar = !!starMemberByEmail(s.email);
   let visual;
   if(s.gender === 'مرد' && s.photo){
-    visual = '<img src="' + s.photo + '" alt="" style="width:58px;height:58px;border-radius:50%;object-fit:cover;border:2.5px solid ' + (isStar ? 'var(--c-gold-500)' : 'var(--c-primary-700)') + ';flex:none">';
+    visual = '<img src="' + safeImg(s.photo) + '" alt="" style="width:58px;height:58px;border-radius:50%;object-fit:cover;border:2.5px solid ' + (isStar ? 'var(--c-gold-500)' : 'var(--c-primary-700)') + ';flex:none">';
   } else {
     visual = '<div style="flex:none;width:88px;text-align:center;background:var(--c-primary-900);color:var(--c-card);border-radius:12px;padding:7px 4px 5px">' +
       '<div style="font-family:\'Jameel Noori Nastaleeq\',serif;font-size:17px;line-height:1.9;color:var(--c-card)">' + esc(s.name || '') + '</div>' +
@@ -4629,7 +4640,7 @@ function renderAnnouncements(){
     '<div class="card"><span class="tag">' + esc(a.from || 'انتظامیہ') + '</span>' +
     (a.breaking ? '<span class="tag red">🚨 بریکنگ نیوز</span>' : '') +
     (a.sample ? '<span class="tag gold">نمونہ</span>' : '<span class="tag gold">نیا</span>') +
-    (a.img ? '<img class="certimg" style="margin:6px 0" src="' + a.img + '" alt="سیشن پوسٹر">' : '') +
+    (a.img ? '<img class="certimg" style="margin:6px 0" src="' + safeImg(a.img) + '" alt="سیشن پوسٹر">' : '') +
     '<h3' + (annTargetOf(a) ? ' style="cursor:pointer" onclick="annOpenRev(' + i + ')"' : '') + '>' + esc(a.title) + '</h3><p style="margin:0">' + esc(a.body) + '</p>' +
     annActionsHtml(a, i) + '</div>'
   ).join('') || '<p class="center small">ابھی کوئی اعلان نہیں۔</p>';
@@ -5170,7 +5181,7 @@ function zoomBlockHtml(s){
   return '<div class="divider"></div><h3 style="margin:0 0 6px">🎥 زوم پر شامل ہوں</h3>' +
     (z.room ? '<p style="margin:0 0 4px">کمرہ: <b>' + esc(z.room) + '</b></p>' : '') +
     (z.pass ? '<p style="margin:0 0 8px">زوم پاس کوڈ: <b dir="ltr">' + esc(z.pass) + '</b> <span class="small">(یہ زوم میں داخلے کا کوڈ ہے — حاضری کوڈ اس سے الگ ہے، جو سیشن کے دوران بتایا جائے گا)</span></p>' : '') +
-    (z.link ? '<a class="btn goldb" target="_blank" rel="noopener" href="' + escq(z.link) + '">🎥 زوم پر شامل ہوں</a>' : '');
+    (z.link ? '<a class="btn goldb" target="_blank" rel="noopener" href="' + escq(safeUrl(z.link)) + '">🎥 زوم پر شامل ہوں</a>' : '');
 }
 
 /* ================= حاضری کا خفیہ کوڈ (sessionSecrets — صرف ایڈمن) =================
@@ -6259,7 +6270,7 @@ function renderCourseAssignments(){
     } else if(sub && typeof sub.marks === 'number'){
       body = '<p style="margin:6px 0 0"><span class="tag gold">🏅 نمبر: ' + urDigits(sub.marks) + (a.maxMarks ? ' / ' + urDigits(a.maxMarks) : '') + '</span>' + (sub.late ? ' <span class="tag red">تاخیر سے جمع</span>' : '') + '</p>' +
         (sub.feedback ? '<p style="margin:6px 0 0">💬 <b>استاد کی رائے:</b> ' + esc(sub.feedback) + '</p>' : '') +
-        '<p class="small" style="margin:6px 0 0">آپ کا جمع شدہ جواب:</p><div class="card" style="margin:0;background:var(--c-surface)"><p style="margin:0;white-space:pre-wrap">' + esc(sub.text || '') + '</p>' + (sub.link ? '<p style="margin:6px 0 0"><a target="_blank" rel="noopener" href="' + esc(sub.link) + '">معاون لنک ←</a></p>' : '') + '</div>';
+        '<p class="small" style="margin:6px 0 0">آپ کا جمع شدہ جواب:</p><div class="card" style="margin:0;background:var(--c-surface)"><p style="margin:0;white-space:pre-wrap">' + esc(sub.text || '') + '</p>' + (sub.link ? '<p style="margin:6px 0 0"><a target="_blank" rel="noopener" href="' + esc(safeUrl(sub.link)) + '">معاون لنک ←</a></p>' : '') + '</div>';
     } else if(sub){
       body = '<p style="margin:6px 0 0"><span class="tag">✓ جمع شدہ — نمبر باقی</span>' + (sub.late ? ' <span class="tag red">تاخیر سے جمع</span>' : '') + '</p>' +
         (pastDue
@@ -6443,7 +6454,7 @@ function renderAdminCourseSubs(){
     (s.late ? ' <span class="tag red">تاخیر سے</span>' : '') +
     '<br><span class="small">جمع: ' + esc(String(s.submittedAt || '').slice(0, 16).replace('T', ' ')) + '</span>' +
     '<p style="margin:6px 0;white-space:pre-wrap">' + esc(s.text || '') + '</p>' +
-    (s.link ? '<p style="margin:0 0 6px"><a target="_blank" rel="noopener" href="' + esc(s.link) + '">معاون لنک ←</a></p>' : '') +
+    (s.link ? '<p style="margin:0 0 6px"><a target="_blank" rel="noopener" href="' + esc(safeUrl(s.link)) + '">معاون لنک ←</a></p>' : '') +
     '<label>نمبر (کل ' + urDigits(asg.maxMarks || 0) + ')</label>' +
     '<input id="cg-marks-' + i + '" type="number" min="0" max="' + (asg.maxMarks || 100) + '" value="' + (typeof s.marks === 'number' ? s.marks : '') + '" style="width:110px">' +
     '<label>رائے (اختیاری)</label>' +
@@ -6811,7 +6822,7 @@ function renderJourney(){
   const u = currentUser(); if(!u) return;
   const p = u.profile || {};
   document.getElementById('journey-profile').innerHTML =
-    (p.photo ? '<img class="avatar" src="' + p.photo + '" alt="">' : '') +
+    (p.photo ? '<img class="avatar" src="' + safeImg(p.photo) + '" alt="">' : '') +
     (u.courseReg ? '<div class="center" style="margin-bottom:8px"><span class="tag gold" style="font-size:17px;padding:2px 16px 6px">🏛️ ادارہ ساز — خصوصی بیج</span></div>' : '') +
     '<div class="kv"><span>نام</span><b>' + esc(u.name) + '</b></div>' +
     (p.eduStatus ? '<div class="kv"><span>تعلیمی حالت</span><b>' + esc(eduStatusText(p.eduStatus)) + '</b></div>' : '') +
@@ -6957,7 +6968,7 @@ function starPhotoAllowed(u){ const P = (u && u.profile) || {}; return P.gender 
 function starPhotoHtml(m, size){
   const u = starUserByEmail(m.email); const P = (u && u.profile) || {};
   const sz = size || 64;
-  if(starPhotoAllowed(u)) return '<span class="star-photo-wrap"><img src="' + P.photo + '" alt="" style="width:' + sz + 'px;height:' + sz + 'px"><span class="star-photo-corner">⭐</span></span>';
+  if(starPhotoAllowed(u)) return '<span class="star-photo-wrap"><img src="' + safeImg(P.photo) + '" alt="" style="width:' + sz + 'px;height:' + sz + 'px"><span class="star-photo-corner">⭐</span></span>';
   const initial = ((m.name || '؟') + '').trim().charAt(0) || '؟';
   return '<span class="star-photo-wrap"><span class="star-photo-init" style="width:' + sz + 'px;height:' + sz + 'px;font-size:' + Math.round(sz * 0.45) + 'px">' + esc(initial) + '</span><span class="star-photo-corner">⭐</span></span>';
 }
@@ -6972,7 +6983,7 @@ function starIdCardHtml(m, own){
   }
   const nameEn = P.nameEn || (u && u.cv && u.cv.nameEn) || '';
   const photoBlock = starPhotoAllowed(u)
-    ? '<span class="star-photo-wrap"><img src="' + P.photo + '" alt="" style="width:76px;height:76px"><span class="star-photo-corner">⭐</span></span>'
+    ? '<span class="star-photo-wrap"><img src="' + safeImg(P.photo) + '" alt="" style="width:76px;height:76px"><span class="star-photo-corner">⭐</span></span>'
     : '<div class="star-id-nameplate"><div style="font-family:\'Jameel Noori Nastaleeq\',\'Jameel Noori Nastaleeq Kasheeda\',serif;font-size:21px;line-height:2.0;color:var(--c-gold-100)">' + esc(m.name || '') + '</div><div style="color:var(--c-gold-500);font-size:15px;letter-spacing:3px">✦ ⭐ ✦</div><div class="small" style="color:var(--c-border)">نام-پلیٹ</div></div>';
   return '<div class="star-id-card">' +
     '<div class="star-id-head"><img src="assets/logo.png" onerror="this.onerror=null;this.src=window.__LOGO" alt="لوگو"><div style="flex:1;min-width:0"><b style="font-size:17px;color:var(--c-gold-100)">مدرسہ ڈاٹ پی کے</b><br><span class="small" style="color:var(--c-border)">شعبہ علمی مشغولیت — سٹار ٹیم رکنیت کارڈ</span></div><span class="star-id-star">⭐ STAR TEAM</span></div>' +
@@ -7092,7 +7103,7 @@ function studentIdCardHtml(u, own){
   }
   const member = { email: u.email, name: u.name };
   const photoBlock = starPhotoAllowed(u)
-    ? '<span class="star-photo-wrap"><img src="' + P.photo + '" alt="" style="width:76px;height:76px"></span>'
+    ? '<span class="star-photo-wrap"><img src="' + safeImg(P.photo) + '" alt="" style="width:76px;height:76px"></span>'
     : '<div class="star-id-nameplate"><div style="font-family:\'Jameel Noori Nastaleeq\',\'Jameel Noori Nastaleeq Kasheeda\',serif;font-size:21px;line-height:2.0;color:var(--c-card)">' + esc(u.name || '') + '</div><div style="color:var(--c-success-bg);font-size:15px;letter-spacing:3px">✦ 🎓 ✦</div><div class="small" style="color:var(--c-success-bg)">نام-پلیٹ</div></div>';
   return '<div class="star-id-card stu">' +
     '<div class="star-id-head"><img src="assets/logo.png" onerror="this.onerror=null;this.src=window.__LOGO" alt="لوگو"><div style="flex:1;min-width:0"><b style="font-size:17px;color:var(--c-card)">مدرسہ ڈاٹ پی کے</b><br><span class="small" style="color:var(--c-success-bg)">شعبہ علمی مشغولیت — طالب علم شناختی کارڈ</span></div><span class="star-id-star">🎓 طالب علم</span></div>' +
@@ -8548,8 +8559,8 @@ function openStudent(email, notice){
       kv('سمسٹر', esc(p.semester || '')) + kv('رول نمبر', esc(p.roll || '')) + kv('تعلیمی حالت', esc(eduStatusText(p.eduStatus || ''))) +
       (p.thesis ? kv('تھیسز کی حالت', esc(p.thesis)) : '') +
       ((p.skills && p.skills.length) ? kv('مہارتیں', esc(p.skills.join('، '))) : '') +
-      (p.linkedin ? '<div class="kv"><span>LinkedIn</span><b><a href="' + escq(p.linkedin) + '" target="_blank" rel="noopener">پروفائل دیکھیں</a></b></div>' : '') +
-      (p.scholar ? '<div class="kv"><span>Google Scholar</span><b><a href="' + escq(p.scholar) + '" target="_blank" rel="noopener">پروفائل دیکھیں</a></b></div>' : '') +
+      (p.linkedin ? '<div class="kv"><span>LinkedIn</span><b><a href="' + escq(safeUrl(p.linkedin)) + '" target="_blank" rel="noopener">پروفائل دیکھیں</a></b></div>' : '') +
+      (p.scholar ? '<div class="kv"><span>Google Scholar</span><b><a href="' + escq(safeUrl(p.scholar)) + '" target="_blank" rel="noopener">پروفائل دیکھیں</a></b></div>' : '') +
       kv('CV', esc(p.cvName || '')) + kv('دستاویز', esc(p.docName || '')) + '</div>';
   const inc = u.incomplete || null;
   const decisionHtml =
@@ -12353,7 +12364,7 @@ function renderCVForm(){
     design: 'modern', lang: 'en', updated: ''
   };
   document.getElementById('cv-auto-info').innerHTML =
-    (p.photo ? '<img class="avatar" src="' + p.photo + '" alt="">' : '') +
+    (p.photo ? '<img class="avatar" src="' + safeImg(p.photo) + '" alt="">' : '') +
     '<div class="kv"><span>نام</span><b>' + esc(u.name) + '</b></div>' +
     '<div class="kv"><span>درجہ / شعبہ</span><b>' + esc(u.degree) + ' — ' + esc(u.dept) + '</b></div>' +
     '<div class="kv"><span>یونیورسٹی</span><b>' + esc(u.uni) + '</b></div>' +
@@ -12514,7 +12525,7 @@ function buildCVHtml(d, forPrint){
     ? '<div style="font-size:15px;font-weight:bold;letter-spacing:1.6px;text-transform:uppercase;color:#111;border-bottom:2.5px double #111;padding-bottom:2px;margin:17px 0 8px">' + t + '</div>'
     : '<div style="font-size:17px;font-weight:bold;color:var(--c-primary-900);border-bottom:2px solid var(--c-gold-500);padding-bottom:2px;margin:17px 0 8px">' + t + '</div>';
   const contact = [d.email, d.whatsapp, d.linkedin, d.scholar, d.country].filter(Boolean).map(x => esc(x)).join(' &nbsp;•&nbsp; ');
-  const photo = d.photo ? '<img src="' + d.photo + '" alt="" style="width:92px;height:92px;object-fit:cover;border-radius:50%;border:3px solid ' + (classic ? '#111' : 'var(--c-gold-500)') + ';flex:0 0 auto">' : '';
+  const photo = d.photo ? '<img src="' + safeImg(d.photo) + '" alt="" style="width:92px;height:92px;object-fit:cover;border-radius:50%;border:3px solid ' + (classic ? '#111' : 'var(--c-gold-500)') + ';flex:0 0 auto">' : '';
   let head = '';
   if(classic){
     head = '<div style="text-align:center">' + photo +
@@ -13299,7 +13310,7 @@ function renderAchievements(){
     '<h3>' + esc(a.title) + '</h3><p style="margin:0">' + esc(a.desc) + '</p>' +
     '<p class="small" style="margin:4px 0 0">' + (a.date ? 'تاریخ: ' + esc(a.date) + ' • ' : '') + 'جمع کرائی: ' + esc(a.on) +
     (a.evidence ? ' • ثبوت: ' + esc(a.evidence) : '') +
-    (a.link ? ' • <a href="' + escq(a.link) + '" target="_blank" rel="noopener">ثبوت کا لنک</a>' : '') + '</p></div>').join('')
+    (a.link ? ' • <a href="' + escq(safeUrl(a.link)) + '" target="_blank" rel="noopener">ثبوت کا لنک</a>' : '') + '</p></div>').join('')
     : '<p class="small">ابھی کوئی کارگذاری جمع نہیں کرائی۔</p>';
 }
 /* ================= یاد دہانی مرکز (ایڈمن) + رپورٹ گیٹ ================= */
