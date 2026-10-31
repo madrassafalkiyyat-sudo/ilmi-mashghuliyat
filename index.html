@@ -3981,21 +3981,22 @@ async function saveStaffPassword(){
 function previewPhoto(ev){
   const f = ev.target.files[0]; if(!f) return;
   if(!fileKindOk(f, 'image')){ showMsg('prof-msg', 'براہِ کرم صرف تصویر (JPG/PNG) منتخب کریں — یہ خانہ صرف پروفائل تصویر کے لیے ہے؛ دستاویز کے لیے نیچے والا خانہ الگ ہے۔', false); ev.target.value = ''; return; }
-  fileToCompressedDataURL(f, 650, url => {
+  fileToCompressedDataURL(f, 60, url => {
     profilePhotoData = url;
     const img = document.getElementById('p-photo-preview');
     img.src = profilePhotoData; img.style.display = 'block';
     saveProfileDraft();
-  });
+  }, 480);
 }
 /* تصویر کو سکیڑ کر زیادہ سے زیادہ ~maxKB حروف کی base64 صورت میں دیں —
-   Firebase Storage دستیاب نہیں (Blaze درکار ہے)، اس لیے تصویر/دستاویز Firestore دستاویز کے اندر ہی رہتی ہے اور اس کی حد یہی ہے */
-function fileToCompressedDataURL(file, maxKB, cb){
+   Firebase Storage دستیاب نہیں (Blaze درکار ہے)، اس لیے تصویر/دستاویز Firestore دستاویز کے اندر ہی رہتی ہے اور اس کی حد یہی ہے۔
+   پروفائل تصویر: زیادہ سے زیادہ 480px — اسکرین و کارڈ پر تصویر 92px سے بڑی نہیں دکھتی */
+function fileToCompressedDataURL(file, maxKB, cb, maxDim){
   const rd = new FileReader();
   rd.onload = e => {
     const img = new Image();
     img.onload = () => {
-      let dim = 1024, q = 0.82, out = '';
+      let dim = maxDim || 1024, q = 0.82, out = '';
       for(let attempt = 0; attempt < 9; attempt++){
         const scale = Math.min(1, dim / Math.max(img.width, img.height));
         const cv = document.createElement('canvas');
