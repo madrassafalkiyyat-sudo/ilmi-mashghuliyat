@@ -104,6 +104,101 @@ async function fetchMe() {
   return r;
 }
 
+// ---- lite polling: embedded images (profile photos, session poster)
+// travel once and are then cached by content signature. The server's
+// ?lite=1 responses carry photoSig/posterSig instead of the data: URI;
+// everything handed to the UI is restored to the full shape first, so the
+// main script never sees a signature. Any failure falls back to the
+// classic full request. ----
+const IMG_CACHE = {}; // key -> { sig, data }
+
+function cachedImage(key, sig) {
+  const c = IMG_CACHE[key];
+  return c && c.sig === sig ? c.data : null;
+}
+
+function restorePhoto(d) {
+  if (!d || !d.profile || !d.profile.photoSig) return d;
+  const data = cachedImage('u:' + d._id, d.profile.photoSig);
+  if (data === null) throw new Error('photo-not-cached');
+  const profile = Object.assign({}, d.profile, { photo: data });
+  delete profile.photoSig;
+  return Object.assign({}, d, { profile });
+}
+
+async function restorePoster(session) {
+  if (!session || !session.posterSig) return session;
+  let data = cachedImage('poster', session.posterSig);
+  if (data === null) {
+    const r = await api('/api/attendance/session-poster', {});
+    if (r.posterSig !== session.posterSig) throw new Error('poster-changed');
+    IMG_CACHE.poster = { sig: r.posterSig, data: r.poster };
+    data = r.poster;
+  }
+  const out = Object.assign({}, session, { poster: data });
+  delete out.posterSig;
+  return out;
+}
+
+async function fetchMeLite() {
+  try {
+    const r = await api('/api/users/me?lite=1', {});
+    const u = r.user;
+    if (u && u.profile && u.profile.photoSig && cachedImage('u:' + u._id, u.profile.photoSig) === null) {
+      const p = await api('/api/users/me/photo', {});
+      if (p.photoSig !== u.profile.photoSig) throw new Error('photo-changed');
+      IMG_CACHE['u:' + u._id] = { sig: p.photoSig, data: p.photo };
+    }
+    r.user = restorePhoto(u);
+    CURRENT_USER = r.user || null;
+    CURRENT_IS_ADMIN = !!r.isAdmin;
+    return r;
+  } catch (e) {
+    return fetchMe();
+  }
+}
+
+async function fetchAdminUsersLite() {
+  try {
+    const u = await api('/api/admin/users?limit=200&lite=1', {});
+    const docs = u.docs || [];
+    const need = docs
+      .filter((d) => d && d.profile && d.profile.photoSig && cachedImage('u:' + d._id, d.profile.photoSig) === null)
+      .map((d) => d._id);
+    for (let i = 0; i < need.length; i += 20) {
+      const ids = need.slice(i, i + 20).map(encodeURIComponent).join(',');
+      const r = await api('/api/admin/users/photos?ids=' + ids, {});
+      for (const [id, p] of Object.entries(r.photos || {})) {
+        if (p && p.photoSig) IMG_CACHE['u:' + id] = { sig: p.photoSig, data: p.photo };
+      }
+    }
+    return docs.map(restorePhoto);
+  } catch (e) {
+    const u = await api('/api/admin/users?limit=200', {});
+    return u.docs || [];
+  }
+}
+
+async function fetchAdminSessionLite() {
+  try {
+    const s = await api('/api/admin/settings/session?lite=1', {});
+    return await restorePoster(s.session);
+  } catch (e) {
+    const s = await api('/api/admin/settings/session', {});
+    return s.session;
+  }
+}
+
+async function fetchSessionsLite() {
+  try {
+    const sess = await api('/api/attendance/sessions?lite=1', {});
+    sess.liveSession = await restorePoster(sess.liveSession);
+    return sess;
+  } catch (e) {
+    return api('/api/attendance/sessions', {});
+  }
+}
+
 async function ensureMe() {
   if (!CURRENT_USER) {
     try { await fetchMe(); } catch (e) { /* unauthenticated: caller paths fall back */ }
@@ -167,10 +262,9 @@ async function pollOnce(ctx) {
   try {
     await ensureFreshAccess();
     if (ctx.isAdmin) {
-      const u = await api('/api/admin/users?limit=200', {});
-      window.__applySnapshot('users', normList(u.docs));
-      const s = await api('/api/admin/settings/session', {});
-      if (s.session) { LAST_EVENT_SESSION = s.session; window.__applySnapshot('eventSession', s.session); }
+      window.__applySnapshot('users', normList(await fetchAdminUsersLite()));
+      const liveSession = await fetchAdminSessionLite();
+      if (liveSession) { LAST_EVENT_SESSION = liveSession; window.__applySnapshot('eventSession', liveSession); }
       for (const [coll, key] of CONTENT_FEEDS) {
         try {
           const r = await api('/api/content/' + coll + '?limit=200', {});
@@ -202,7 +296,7 @@ async function pollOnce(ctx) {
     }
     // Student: own doc first (pending students stop here — gated feeds
     // stay blocked exactly as the old code did for unapproved accounts).
-    const me = await fetchMe();
+    const me = await fetchMeLite();
     window.__applySnapshot('users', [normDoc(me.user)]);
     if (!ctx.approved) return;
     for (const [coll, key] of CONTENT_FEEDS) {
@@ -212,7 +306,7 @@ async function pollOnce(ctx) {
       } catch (e) {}
     }
     try {
-      const sess = await api('/api/attendance/sessions', {});
+      const sess = await fetchSessionsLite();
       if (sess.liveSession) { LAST_EVENT_SESSION = sess.liveSession; window.__applySnapshot('eventSession', sess.liveSession); }
       if (sess.sessions) window.__applySnapshot('courseSessions', normList(sess.sessions));
     } catch (e) {}
@@ -441,7 +535,10 @@ window.__fb = {
       const isSelf = !!CURRENT_USER && (targetEmail === myEmail || id === CURRENT_USER.uid);
       if (isSelf) {
         const body = {};
-        if (clean.profile && typeof clean.profile === 'object') body.profile = clean.profile;
+        if (clean.profile && typeof clean.profile === 'object') {
+          body.profile = clean.profile;
+          delete body.profile.photoSig;
+        }
         for (const k of ['name', 'uni', 'madrasa', 'degree', 'dept', 'mobile', 'country']) {
           if (clean[k] !== undefined) body[k] = clean[k];
         }
@@ -559,6 +656,7 @@ window.__fb = {
       return;
     }
     if (collName === 'settings') {
+      delete clean.posterSig;
       await api('/api/admin/settings/session', { method: 'PUT', body: { session: clean } });
       return;
     }
