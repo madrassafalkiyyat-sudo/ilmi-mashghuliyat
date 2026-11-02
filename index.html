@@ -6008,16 +6008,20 @@ function myZoomCardFile(){
   const u = currentUser(); if(!u || !u.courseReg) return null;
   return ZOOM_CARDS[u.uid] || ZOOM_CARDS[u.id] || null;
 }
-/* کارڈ ڈیٹا (cards-data.js) سست لوڈ ہوتا ہے — صرف پہلے کلک پر؛ اس سے پہلے
-   ایپ کا وزن نہیں بڑھتا۔ لوڈ ہو چکا ہو تو فوراً کھلتا ہے۔ */
+/* کارڈ ڈیٹا (cards-data-1.js + cards-data-2.js) سست لوڈ ہوتا ہے — صرف پہلے
+   کلک پر؛ اس سے پہلے ایپ کا وزن نہیں بڑھتا۔ لوڈ ہو چکا ہو تو فوراً کھلتا ہے۔ */
+let zoomLoadStarted = false;
 function openZoomCard(){
   const f = myZoomCardFile(); if(!f) return;
   if(window.ZOOM_CARD_DATA && window.ZOOM_CARD_DATA[f]){ showZoomCard(f); return; }
-  if(document.getElementById('zoom-cards-script')) return; // لوڈ جاری ہے
-  const sc = document.createElement('script');
-  sc.id = 'zoom-cards-script'; sc.src = 'cards-data.js';
-  sc.onload = function(){ if(window.ZOOM_CARD_DATA && window.ZOOM_CARD_DATA[f]) showZoomCard(f); };
-  document.head.appendChild(sc);
+  if(zoomLoadStarted) return; // لوڈ جاری ہے
+  zoomLoadStarted = true;
+  ['cards-data-1.js', 'cards-data-2.js'].forEach(function(src, i){
+    const sc = document.createElement('script');
+    sc.id = 'zoom-cards-script-' + (i + 1); sc.src = src;
+    sc.onload = function(){ if(window.ZOOM_CARD_DATA && window.ZOOM_CARD_DATA[f]) showZoomCard(f); };
+    document.head.appendChild(sc);
+  });
 }
 function showZoomCard(f){
   const ov = document.getElementById('zoom-card-overlay'); if(!ov) return;
