@@ -6075,6 +6075,12 @@ function renderCourseBook(){
 let CURRENT_CAT = 1;
 function courseContentAll(){ return DB.get('courseContent', []) || []; }
 function courseContentOf(cat){ return courseContentAll().find(x => Number(x.cat) === Number(cat)) || null; }
+/* کلاس ریکارڈنگز (YouTube پلے لسٹ PLR3v5rsBvw2k سے، مفتی کی ہدایت 2026-11-02):
+   courseContent.recordings = روابط کی فہرست؛ ایک ہو تو «🎥 کلاس کی ریکارڈنگ»،
+   زیادہ ہوں (کلاس 2 کی دو نصف ریکارڈنگز) تو «🎥 ریکارڈنگ — حصہ اول/دوم» */
+const REC_PART_UR = ['اول','دوم','سوم','چہارم','پنجم','ششم','ہفتم','ہشتم','نہم','دہم'];
+function courseRecsOf(c){ return (c && Array.isArray(c.recordings)) ? c.recordings.filter(u => /^https:\/\//.test(u || '')) : []; }
+function courseRecLabel(i, total){ return total <= 1 ? '🎥 کلاس کی ریکارڈنگ' : '🎥 ریکارڈنگ — حصہ ' + (REC_PART_UR[i] || urDigits(i + 1)); }
 function openCourseCat(cat){ CURRENT_CAT = cat; go('course-cat'); }
 function renderCourseMaterial(){
   const el = document.getElementById('course-material-body'); if(!el) return;
@@ -6082,9 +6088,10 @@ function renderCourseMaterial(){
     const c = courseContentOf(i + 1);
     const title = (c && c.title) || w[1];
     const nPts = c && c.points ? c.points.length : 0;
+    const nRec = courseRecsOf(c).length;
     return '<button class="btn ghost" style="text-align:right;margin-bottom:8px" onclick="openCourseCat(' + (i + 1) + ')">' +
       '<b>زمرہ ' + urDigits(i + 1) + ' — ' + esc(title) + '</b><br>' +
-      '<span class="small">📅 ' + esc(w[0]) + (nPts ? ' • ' + urDigits(nPts) + ' نکات' : '') + '</span></button>';
+      '<span class="small">📅 ' + esc(w[0]) + (nPts ? ' • ' + urDigits(nPts) + ' نکات' : '') + (nRec ? ' • 🎥 ' + urDigits(nRec) + ' ریکارڈنگ' : '') + '</span></button>';
   }).join('');
 }
 function renderCourseCat(){
@@ -6094,13 +6101,22 @@ function renderCourseCat(){
   const u = currentUser();
   const title = (c && c.title) || w[1];
   const points = (c && c.points) || [];
+  const isReg = !!(u && u.courseReg);
+  const lockCard = '<div class="card" style="background:var(--c-surface);text-align:center"><p style="margin:0 0 8px">🔒 <b>ریکارڈنگ و مواد رجسٹرڈ طلبہ کے لیے ہے</b> — پہلے کورس میں رجسٹریشن کریں۔</p><button class="btn goldb" onclick="go(\'course-register\')">رجسٹریشن کی طرف جائیں ←</button></div>';
+  const recs = courseRecsOf(c);
+  let recHtml = '';
+  if(recs.length){
+    recHtml = isReg
+      ? '<div style="display:grid;gap:8px;margin:0 0 8px">' + recs.map((url, i) => '<a class="btn goldb" style="font-size:1.05em;padding:12px" target="_blank" rel="noopener" href="' + escq(url) + '">' + courseRecLabel(i, recs.length) + '</a>').join('') + '</div>'
+      : lockCard;
+  }
   let folderHtml;
   if(c && c.folderUrl){
-    folderHtml = (u && u.courseReg)
+    folderHtml = isReg
       ? '<a class="btn goldb" style="font-size:1.05em;padding:12px" target="_blank" rel="noopener" href="' + escq(c.folderUrl) + '">🎥 ریکارڈنگ و مواد کا فولڈر</a>'
-      : '<div class="card" style="background:var(--c-surface);text-align:center"><p style="margin:0 0 8px">🔒 <b>ریکارڈنگ و مواد رجسٹرڈ طلبہ کے لیے ہے</b> — پہلے کورس میں رجسٹریشن کریں۔</p><button class="btn goldb" onclick="go(\'course-register\')">رجسٹریشن کی طرف جائیں ←</button></div>';
+      : (recs.length ? '' : lockCard);
   } else {
-    folderHtml = '<p class="small" style="opacity:.75;text-align:center">فولڈر ربط جلد شامل ہوگا</p>';
+    folderHtml = recs.length ? '' : '<p class="small" style="opacity:.75;text-align:center">فولڈر ربط جلد شامل ہوگا</p>';
   }
   el.innerHTML =
     '<div class="card"><span class="tag gold">زمرہ ' + urDigits(CURRENT_CAT) + ' / ' + urDigits(IDARA_BATCH1.weeks.length) + '</span>' +
@@ -6110,7 +6126,7 @@ function renderCourseCat(){
     (points.length
       ? '<div class="card"><ul style="margin:0 20px 0 0;padding:0;line-height:2.05">' + points.map(pt => '<li>' + esc(pt) + '</li>').join('') + '</ul></div>'
       : '<div class="card"><p style="margin:0">اس زمرے کے نکات جلد شامل ہوں گے۔</p></div>') +
-    folderHtml;
+    recHtml + folderHtml;
 }
 /* ایڈمن: کورس مواد کی تدوین — فی زمرہ عنوان/نکات (سطر وار)/فولڈر ربط؛ محفوظ پر
    courseContent میں لکھا جاتا ہے، طلبہ کو live subscription سے فوراً نظر آتا ہے */
@@ -6126,6 +6142,8 @@ function renderAdminCourseContent(){
       '<textarea id="cc-points-' + cat + '" rows="6">' + esc((c.points || []).join('\n')) + '</textarea>' +
       '<label>ریکارڈنگ و مواد فولڈر کا ربط (Drive)</label>' +
       '<input id="cc-folder-' + cat + '" type="url" dir="ltr" style="text-align:left" value="' + escq(c.folderUrl || '') + '" placeholder="https://drive.google.com/drive/folders/...">' +
+      '<label>کلاس ریکارڈنگ روابط — YouTube (ہر ربط الگ سطر میں؛ کلاس 2 کی دو نصف ریکارڈنگز الگ الگ سطروں میں — حصہ اول پہلے)</label>' +
+      '<textarea id="cc-recs-' + cat + '" rows="3" dir="ltr" style="text-align:left">' + esc((c.recordings || []).join('\n')) + '</textarea>' +
       '<button class="btn sm goldb" onclick="saveCourseContent(' + cat + ')">💾 زمرہ ' + urDigits(cat) + ' کا مواد محفوظ کریں</button></div>';
   }).join('');
 }
@@ -6133,10 +6151,13 @@ function saveCourseContent(cat){
   const title = document.getElementById('cc-title-' + cat).value.trim();
   const points = document.getElementById('cc-points-' + cat).value.split('\n').map(s => s.trim()).filter(Boolean);
   const folderUrl = document.getElementById('cc-folder-' + cat).value.trim();
+  const recEl = document.getElementById('cc-recs-' + cat);
+  const recordings = recEl ? recEl.value.split('\n').map(s => s.trim()).filter(Boolean) : (courseContentOf(cat) || {}).recordings || [];
   if(!title){ showMsg('ad-msg', 'زمرے کا عنوان لکھیں۔', false); return; }
   if(folderUrl && !/^https:\/\//.test(folderUrl)){ showMsg('ad-msg', 'فولڈر ربط درست https لنک ہونا چاہیے۔', false); return; }
+  if(recordings.some(u => !/^https:\/\//.test(u))){ showMsg('ad-msg', 'ریکارڈنگ ربط درست https لنک ہونا چاہیے۔', false); return; }
   const list = courseContentAll().filter(x => Number(x.cat) !== Number(cat));
-  list.push({ id: 'cat-' + cat, cat, title, points, folderUrl });
+  list.push({ id: 'cat-' + cat, cat, title, points, folderUrl, recordings });
   list.sort((a, b) => Number(a.cat) - Number(b.cat));
   DB.set('courseContent', list);
   showMsg('ad-msg', 'زمرہ ' + urDigits(cat) + ' کا مواد محفوظ ہو گیا — طلبہ کو فوراً نظر آئے گا (' + urDigits(points.length) + ' نکات)۔', true);
@@ -13815,7 +13836,7 @@ function renderFormReminders(){
   list.forEach(function(s){
     var pr = ffProgress(s);
     var label = s.fields ? ('تیار خانے ' + urDigits(pr.ready) + ' از ' + urDigits(pr.total)) : 'رہنمائی جاری ہے';
-    html += '<div class="card" style="border-color:var(--c-gold-500);background:var(--c-gold-100);cursor:pointer;margin:8px 0" onclick="ffResume(\'' + encodeURIComponent(s.url) + '\')"><p style="margin:0"><b>✍️ جاری فارم:</b> ' + esc(s.title || 'فارم') + '</p><p class="small" style="margin:2px 0 0">' + label + ' — جہاں چھوڑا تھا وہیں سے جاری رکھیں ←</p></div>';
+    html += '<div class="card" style="border-color:var(--c-gold-500);background:var(--c-gold-100);cursor:pointer;margin:8px 0" onclick="ffResume(\'' + encodeURIComponent(s.url) + '\')"><p style="margin:0"><b>✍️ جاری فارم:</b> ' + esc(s.title || 'فارم') + '</p><p class="small" style="margin:2px 0 0">' + label + ' — جہاں چھوڑا تھا وہیں سے جاری رکھیں ←</p><p style="margin:8px 0 0"><button type="button" onclick="ffEndReminder(\'' + encodeURIComponent(s.url) + '\', event)" style="padding:4px 14px;border-radius:999px;border:1px solid var(--c-gold-500);background:var(--c-card);color:var(--c-primary-700);font-family:inherit;font-size:14px;font-weight:bold;cursor:pointer">✕ ختم کریں</button></p></div>';
   });
   ['ff-reminders-home', 'ff-reminders-adm'].forEach(function(id){
     var el = document.getElementById(id);
@@ -13825,6 +13846,19 @@ function renderFormReminders(){
 window.ffResume = function(enc){
   var sess = ffStore()[decodeURIComponent(enc)];
   if(sess) openFormCompanion({ url: sess.url, title: sess.title, sourceLabel: sess.source });
+};
+/* کارڈ سے جاری فارم ختم کرنا (مفتی، 2026-11-02): تصدیق ایپ کے اپنے
+   confirm() انداز میں ہے (جیسا ffDiscard)؛ حذف اسی ffDelete سے ہوتا ہے
+   تاکہ کلید مستقل اسٹور (localStorage) سے نکلے — کارڈ فوراً غائب اور
+   اگلا render/poll اسے واپس نہیں لاتا۔ یہی سیشن ساتھی میں کھلا ہو تو
+   FF_CUR بھی صاف (ffDiscard جیسی ہم آہنگی، بغیر navigation کے)۔ */
+window.ffEndReminder = function(enc, ev){
+  if(ev && ev.stopPropagation) ev.stopPropagation();
+  var url = decodeURIComponent(enc);
+  if(!ffStore()[url]) return;
+  if(!confirm('یہ جاری فارم یہاں سے ختم کر دیں؟ اس فارم کی محفوظ معلومات ختم ہو جائے گی۔')) return;
+  ffDelete(url);
+  if(FF_CUR && FF_CUR.url === url) FF_CUR = null;
 };
 window.openFormCompanion = function(opts){
   opts = opts || {};
