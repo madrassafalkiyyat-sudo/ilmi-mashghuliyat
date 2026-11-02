@@ -4304,14 +4304,65 @@ function renderFcmCard(){
    محفوظ ہوتا ہے اور admins/{email} میں بھی عکس درج ہوتا ہے تاکہ پس منظر نظام (نئی رجسٹریشن کی
    اطلاع والا چکر) ایڈمن ٹوکن تلاش کر سکے۔ مقصد (مفتی صاحب، 2026-10-23): نئی رجسٹریشن کی اطلاع
    فوراً ایڈمن کے موبائل پر پہنچے تاکہ کسی کو منظوری کا انتظار نہ کرنا پڑے۔ */
+/* ایڈمن اطلاعاتی کارڈ کی ظاہری حالت اب اسی آلے کی اصل حالت سے چلتی ہے (مفتی صاحب کی ہدایت
+   2026-11-03: «اگر کسی سسٹم میں اطلاعات آن کر دی جائیں تو پھر یہ ختم ہو جانا چاہیے»)۔
+   پہلے کارڈ users ریکارڈ کے fcmTokens / مقامی fcmDone نشان سے چلتا تھا — مگر موجودہ بلڈ میں
+   پش کنفگر ہی نہیں (window.ILMI_VAPID_PUBLIC_KEY کہیں سیٹ نہیں، push-sw.js موجود نہیں،
+   __fcmStatus.push === 'not-configured')، اس لیے __fcmRegister اجازت کے بعد
+   'push-not-configured' پر رک جاتا ہے: نہ ٹوکن بنتا ہے، نہ نشان لگتا ہے، اور کارڈ اس آلے پر
+   اجازت مل جانے کے باوجود ہمیشہ نظر آتا رہتا تھا۔
+   «آن» کی تعریف اب انہی اشاروں سے ہے جو موجودہ فلو خود استعمال کرتا ہے — کوئی نیا نشان ایجاد نہیں:
+   (۱) Notification.permission === 'granted' — ہر render پر براہِ راست پڑھا جاتا ہے، اس لیے
+       اجازت واپس لیتے ہی کارڈ اگلے render پر خود لوٹ آتا ہے؛
+   (۲) اسی origin کی زندہ PushSubscription — serviceWorker.getRegistration().pushManager.getSubscription()
+       (یہی وہ سبسکرپشن ہے جو __fcmRegister بناتا ہے)؛
+   (۳) کنفگریشن کا وہی دروازہ جو فلو خود دیکھتا ہے (api-bridge: ILMI_VAPID_PUBLIC_KEY) —
+       جب یہ سیٹ نہ ہو تو سبسکرپشن بن ہی نہیں سکتی اور «آن» کی آخری قابلِ حصول صورت براؤزر
+       اجازت ہی ہے؛ اس صورت میں granted ہوتے ہی کارڈ ختم۔ جب VAPID سیٹ ہو تو اصول سخت ہے:
+       granted + زندہ سبسکرپشن — ورنہ کارڈ بدستور (ٹیپ ابھی باقی ہے)۔
+   حل شدہ حالت module متغیر میں رہتی ہے؛ تازگی: ایڈمن مرکز میں داخلے (renderAdminHub)،
+   سبسکرائب کامیابی (fcmAdminEnable) اور visibilitychange پر؛ render صرف کیش دیکھتا ہے۔ */
+let __adminPushState = null, __adminPushAt = 0, __adminPushBusy = false;
+function adminPushConfigured(){
+  try{ return !!window.ILMI_VAPID_PUBLIC_KEY; }catch(e){ return false; }
+}
+async function resolveAdminPushState(){
+  const st = { perm: ('Notification' in window) ? Notification.permission : 'unsupported', configured: adminPushConfigured(), sub: false };
+  if(st.perm === 'granted' && ('serviceWorker' in navigator) && ('PushManager' in window)){
+    try{
+      const sub = await Promise.race([
+        (async () => {
+          const reg = await navigator.serviceWorker.getRegistration();
+          if(!reg || !reg.pushManager) return null;
+          return await reg.pushManager.getSubscription();
+        })(),
+        new Promise(res => setTimeout(() => res(null), 1500))
+      ]);
+      st.sub = !!sub;
+    }catch(e){ st.sub = false; }
+  }
+  return st;
+}
+function refreshAdminPushState(force){
+  if(__adminPushBusy) return;
+  if(!force && __adminPushState && (Date.now() - __adminPushAt) < 5000) return;
+  __adminPushBusy = true;
+  resolveAdminPushState().then(st => {
+    __adminPushState = st; __adminPushAt = Date.now(); __adminPushBusy = false;
+    try{ renderAdminFcmCard(); }catch(e){}
+  }).catch(() => { __adminPushBusy = false; });
+}
+try{
+  document.addEventListener('visibilitychange', () => { if(!document.hidden) refreshAdminPushState(true); });
+}catch(e){}
 function renderAdminFcmCard(){
   const el = document.getElementById('admin-fcm'); if(!el) return;
-  const em = DB.get('session', '') || '';
-  const u = users().find(x => x.email === em);
-  const hasToken = (u && u.fcmTokens && u.fcmTokens.length) || LS2.get('fcmDone_admin', false) || (em && LS2.get('fcmDone_' + em, false));
-  if(hasToken){
-    el.innerHTML = '<div class="card" style="border:1px solid var(--c-success-bg);background:var(--c-success-bg)"><p style="margin:0">🔔 اس آلے پر انتظامی اطلاعات <b>فعال ہیں</b> — نئی رجسٹریشن کی اطلاع اسی آلے پر آئے گی۔</p></div>';
-    return;
+  const perm = ('Notification' in window) ? Notification.permission : 'unsupported';
+  if(perm === 'granted'){
+    const st = __adminPushState;
+    if(!st){ el.innerHTML = ''; refreshAdminPushState(true); return; }
+    if(st.sub || !st.configured){ el.innerHTML = ''; return; }
+    /* granted مگر کنفگرڈ پش پر زندہ سبسکرپشن نہیں — ٹیپ ابھی باقی ہے، کارڈ نظر آئے */
   }
   el.innerHTML = '<div class="card" style="border:1px solid var(--c-border)">' +
     '<h3 style="margin-top:0">🔔 نئی رجسٹریشن کی اطلاع اس آلے پر آن کریں</h3>' +
@@ -4349,7 +4400,11 @@ function fcmAdminEnable(){
       if(r && r.ok){
         LS2.set('fcmDone_admin', true);
         if(em) LS2.set('fcmDone_' + em, true);
+        /* کامیاب سبسکرائب یعنی اجازت granted + زندہ سبسکرپشن اسی لمحے موجود ہے — کیش اسی
+           سچائی پر رکھیں تاکہ کارڈ اسی سیشن میں فوراً غائب ہو؛ پیچھے refresh اصل جانچ سے تصدیق کرے گا */
+        __adminPushState = { perm: 'granted', configured: adminPushConfigured(), sub: true }; __adminPushAt = Date.now();
         renderAdminFcmCard();
+        refreshAdminPushState(true);
         alert('انتظامی اطلاعات فعال ہو گئیں ✓ — اب نئی رجسٹریشن کی اطلاع فوراً اس آلے پر آئے گی۔');
       } else {
         fcmFailAlert(r);
@@ -8497,6 +8552,7 @@ function renderAdminCounsel(){
   ).join('') : '<p class="small">ابھی کوئی مشورے کا خلاصہ درج نہیں — طلبہ کے مشورہ کیجیے استعمال کرنے پر یہاں نظر آئے گا۔</p>';
 }
 function renderAdminHub(){
+  try{ refreshAdminPushState(false); }catch(e){}
   try{ renderAdminFcmCard(); }catch(e){}
   try{ renderPreviewCard(); }catch(e){}
   const pend = document.getElementById('ahub-stat-pending'); if(!pend) return;
