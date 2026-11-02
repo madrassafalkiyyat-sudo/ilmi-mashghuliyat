@@ -1295,6 +1295,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
       <p class="small">نوٹ: سرٹیفکیٹ صرف انہی طلبہ کو ملتا ہے جن کی حاضری تصدیق شدہ ہو۔ غیر حاضر طالب علم سرٹیفکیٹ ڈاؤن لوڈ نہیں کر سکتا۔</p>
     </div>
   </div>
+  <div id="sess-course-list" style="margin-top:12px"></div>
 </section>
 
 <!-- ============ مسابقات ============ -->
@@ -2031,6 +2032,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div class="admin-sec-head"><button class="btn sm" onclick="adminBack()"><span>← ایڈمن مرکز</span></button><h2>🏛️ ادارہ سازی کلاس روم</h2></div>
   <div class="msg" id="cc-msg"></div>
   <div id="admin-course-status"></div>
+  <div id="admin-course-attendance" style="margin-top:14px"></div>
   <h3>✍️ نئی مشق بنائیں / مشق بدلیں</h3>
   <p class="small">سلائیڈ سرگرمی کی مکمل ہدایات یہاں لکھیں — اجراء کا وقت آنے پر مشق صرف کورس رجسٹرڈ طلبہ کو نظر آئے گی۔ خودکار مشق (فارم/سرگرمی) بدلنی ہو تو نیچے فہرست سے «تدوین» دبائیں، خانے خود بھر جائیں گے۔</p>
   <input type="hidden" id="ca-id">
@@ -2192,6 +2194,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <!-- حصہ: سیشنز و حاضری -->
   <div class="admin-sec" id="asec-sessions" style="display:none">
   <div class="admin-sec-head"><button class="btn sm" onclick="adminBack()">← ایڈمن مرکز</button><h2>سیشنز و حاضری</h2></div>
+  <div id="admin-sess-course"></div>
   <h2>سیشن حاضری لگائیں</h2>
   <label>طالب علم منتخب کریں</label>
   <select id="ad-att-user" class="inline" style="width:100%"></select>
@@ -5365,6 +5368,7 @@ function sessionEnded(s){
 }
 function renderSession(){
   const u = currentUser(); if(!u) return;
+  paintSessCourseList();
   const s = currentSession();
   const ended = sessionEnded(s);
   const tag = document.getElementById('sess-tag');
@@ -6238,6 +6242,11 @@ function renderCourse(){
       '<p style="margin:0">' + (bookAccessState(u).unlocked ? '📚 کتاب «ادارہ سازی کا فن» آپ کے لیے <b>کھل گئی ہے</b> — <b>سرٹیفکیٹ والٹ</b> سے ڈاؤن لوڈ کریں۔' : '📚 کتاب «ادارہ سازی کا فن»: حاضری <b>' + urDigits(bookAccessState(u).done) + '/' + urDigits(bookAccessState(u).displayTotal) + ' نشستیں</b> — مکمل حاضری + کورس تکمیل پر سرٹیفکیٹ والٹ میں کھلے گی۔') + '<br>🏅 آپ کی پروفائل پر <b>«ادارہ ساز»</b> بیج لگ گیا ہے۔<br>📜 تکمیل پر <b>خصوصی سرٹیفکیٹ</b> اور دورانِ کورس <b>ترجیحی انفرادی رہنمائی</b> آپ کو ملے گی۔</p></div>' +
       '<p style="color:var(--c-primary-700);font-weight:bold;margin:0">✓ آپ اس کورس میں رجسٹرڈ ہیں — آپ کا ریکارڈ کورس کے الگ ریکارڈ (ایپ + مرکزی شیٹ) میں محفوظ ہے۔</p>' +
       courseClassAttHtml(u);
+  } else if(window.__COURSE_REG_OPEN === false || window.__COURSE_REG_CLOSED){
+    // رجسٹریشن بند (مفتی 2026-11-03): کورس شروع ہو چکا ہے — نہ رجسٹر بٹن، نہ
+    // جشن؛ صرف باوقار اطلاع۔
+    elig.innerHTML = '🏛️ <b>ادارہ سازی کورس (بیچ 1)</b>';
+    act.innerHTML = '<div class="card" style="background:var(--c-surface);text-align:center"><p style="margin:0;font-size:17px;line-height:2">🏛️ ادارہ سازی کورس (بیچ 1) کی رجسٹریشن بند ہے — کورس شروع ہو چکا ہے۔ اگلے بیچ کی اطلاع یہیں دی جائے گی۔</p></div>';
   } else if(courseEligible(u)){
     elig.innerHTML = '✓ <b>اہلیت:</b> آپ کی پروفائل کے مطابق آپ اس کورس کے اہل ہیں — رجسٹریشن آپ کے لیے کھلی ہے۔ (یہ کورس صرف ایم فل فارغ التحصیل اور پی ایچ ڈی طلبہ و طالبات کے لیے ہے۔)';
     act.innerHTML = '<button class="btn goldb" onclick="registerCourse()">ابھی رجسٹریشن کریں — ریوارڈ ان لاک کریں</button>';
@@ -6249,6 +6258,12 @@ function renderCourse(){
 function registerCourse(){
   if(previewGuard('کورس رجسٹریشن')) return;
   const u = currentUser(); if(!u) return;
+  if(window.__COURSE_REG_OPEN === false || window.__COURSE_REG_CLOSED){
+    // بند رجسٹریشن میں مقامی جشن کا راستہ بھی مکمل بند (مفتی 2026-11-03)۔
+    showMsg('course-msg', 'ادارہ سازی کورس کی رجسٹریشن بند ہے — کورس شروع ہو چکا ہے', false);
+    renderCourse();
+    return;
+  }
   if(!courseEligible(u)){ showMsg('course-msg', 'معذرت — یہ کورس صرف ایم فل فارغ التحصیل اور پی ایچ ڈی طلبہ کے لیے مخصوص ہے۔', false); return; }
   const nowIso = new Date().toISOString();
   updateUser(u.email, x => { x.courseReg = true; if(!x.courseRegAt) x.courseRegAt = nowIso; logActivity(x, 'ادارہ سازی کورس (خصوصی پروگرام) میں رجسٹریشن — «ادارہ ساز» بیج؛ کتاب مکمل حاضری + کورس تکمیل پر کھلے گی'); });
@@ -6277,16 +6292,17 @@ function courseBatchSessions(){
     .slice().sort((a, b) => String(a.sessionDate || '').localeCompare(String(b.sessionDate || '')));
 }
 function courseWinState(s){
-  /* حاضری کھڑکی پاکستانی وقت (+05:00) سے — ڈیوائس ٹائم زون کی خرابی یہاں نہیں دہرائی جاتی */
+  /* حاضری کھڑکی پاکستانی وقت (+05:00) سے — ڈیوائس ٹائم زون کی خرابی یہاں نہیں دہرائی جاتی۔
+     مفتی کا مقررہ اصول (2026-11-03): ہر کورس کلاس کی کھڑکی عین 20:00–22:00
+     پاکستانی وقت ہے (سرور کے اصول سے ہم آہنگ) — محفوظ شدہ اوقات اسے نہیں بدل سکتے۔ */
   if(!s || !s.sessionDate) return { open:false, state:'none' };
   const off = '+05:00';
-  const start = Date.parse(s.sessionDate + 'T' + (s.startTime || '00:00') + ':00' + off);
-  const endBase = Date.parse(s.sessionDate + 'T' + (s.endTime || '23:59') + ':00' + off);
-  const end = isNaN(endBase) ? Date.parse(s.sessionDate + 'T23:59:59' + off) : endBase + 30 * 60000;
+  const start = Date.parse(s.sessionDate + 'T20:00:00' + off);
+  const end = Date.parse(s.sessionDate + 'T22:00:00' + off);
   const now = Date.now();
   if(isNaN(start)) return { open:false, state:'none' };
   if(now < start) return { open:false, state:'upcoming' };
-  if(now > end) return { open:false, state:'closed' };
+  if(now >= end) return { open:false, state:'closed' };
   return { open:true, state:'open' };
 }
 function fmtMs(ms){
@@ -6472,6 +6488,128 @@ function renderAdminCourseClass(){
   fillGradeSelect();
   renderAdminCourseSubs();
   renderAdminGradebook();
+  renderAdminCourseAttendance();
+}
+/* ---------- مشترکہ: کراچی تاریخ + کورس سیشنز کی ترتیب (آج/آنے والے پہلے، پھر حالیہ گزشتہ) ---------- */
+function karachiTodayStr(){
+  try{ return new Intl.DateTimeFormat('en-CA', { timeZone:'Asia/Karachi' }).format(new Date()); }catch(e){ return ''; }
+}
+function courseSessionsOrdered(){
+  const today = karachiTodayStr();
+  const sess = courseBatchSessions().slice();
+  const up = sess.filter(s => (s.sessionDate || '') >= today).sort((a, b) => (a.sessionDate || '').localeCompare(b.sessionDate || ''));
+  const past = sess.filter(s => (s.sessionDate || '') < today).sort((a, b) => (b.sessionDate || '').localeCompare(a.sessionDate || ''));
+  return up.concat(past);
+}
+/* طالب علم — «سیشنز» خانے میں کورس کلاسوں کی فہرست (پرانا ایک وقتی سیشن اپنے کارڈ میں رہتا ہے) */
+function paintSessCourseList(){
+  const el = document.getElementById('sess-course-list'); if(!el) return;
+  const sess = courseSessionsOrdered();
+  const today = karachiTodayStr();
+  const u = currentUser();
+  if(!sess.length){ el.innerHTML = ''; return; }
+  el.innerHTML = '<h3 style="margin:14px 0 8px">🏛️ ادارہ سازی کورس — کلاسیں (بیچ 1)</h3>' + sess.map(s => {
+    const when = (s.sessionDate || '') === today ? '<span class="tag gold">آج</span>' : ((s.sessionDate || '') > today ? '<span class="tag">آنے والی</span>' : '<span class="tag">ہو چکی</span>');
+    return '<div class="card" style="margin-bottom:8px"><b>' + esc(s.title || '') + '</b> ' + when +
+      '<br><span class="small">📅 ' + esc(s.sessionDate || '') + ' • حاضری کھڑکی: رات 8:00 تا 10:00 (پاکستانی وقت)</span>' +
+      (u && u.courseReg ? '<br><span class="small">مواد، حاضری و مشقیں «ادارہ سازی کورس» کے حصے میں ہیں۔</span>' : '') +
+      '</div>';
+  }).join('');
+}
+/* ایڈمن — «سیشنز و حاضری» خانے کے اوپر کورس کلاسیں (پرانا سیشن نیچے اوزاروں میں محفوظ) */
+function renderAdminSessCourse(){
+  const el = document.getElementById('admin-sess-course'); if(!el) return;
+  const sess = courseSessionsOrdered();
+  const claims = DB.get('attendanceClaims', []) || [];
+  const today = karachiTodayStr();
+  el.innerHTML = '<div class="card" style="margin:0 0 14px"><h3 style="margin:0 0 6px">🏛️ ادارہ سازی کورس — کلاسیں (بیچ 1)</h3>' +
+    '<p class="small" style="margin:0 0 8px">اس خانے کی موجودہ اصل فہرست یہی ہے۔ پرانا ایک وقتی سیشن نیچے اپنے اوزاروں کے ساتھ بدستور موجود ہے — اس کا ڈیٹا، حاضری و سرٹیفکیٹس ریکارڈ میں محفوظ ہیں۔</p>' +
+    (sess.length ? sess.map(s => {
+      const ver = claims.filter(c => c.sessionId === s.sessionId && c.status === 'تصدیق شدہ').length;
+      const pen = claims.filter(c => c.sessionId === s.sessionId && c.status !== 'تصدیق شدہ' && c.status !== 'مسترد').length;
+      const when = (s.sessionDate || '') === today ? 'آج' : ((s.sessionDate || '') > today ? 'آنے والی' : 'ہو چکی');
+      return '<div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:7px 0;border-bottom:1px solid #eee"><span><b>' + esc(s.title || '') + '</b> <span class="small">(' + when + ')</span><br><span class="small">📅 ' + esc(s.sessionDate || '') + ' • تصدیق شدہ حاضری: ' + urDigits(ver) + ' • تصدیق باقی: ' + urDigits(pen) + '</span></span><button class="btn sm" onclick="ccOpenAttendance(\'' + escq(s.sessionId) + '\')">حاضری و مینول اندراج ←</button></div>';
+    }).join('') : '<p class="small">کورس کلاسیں ابھی لوڈ نہیں ہوئیں — اگلے پول پر آ جائیں گی۔</p>') + '</div>';
+}
+function ccOpenAttendance(sid){
+  CC_ATT.sid = sid; CC_ATT.data = null;
+  openAdminSec('courseclass');
+}
+/* ---------- ایڈمن کلاس روم: سیشن وار حاضری + مینول اندراج (مفتی 2026-11-03) ---------- */
+let CC_ATT = { sid:null, data:null };
+function ccAttDefaultSid(){
+  const sess = courseBatchSessions();
+  if(!sess.length) return null;
+  const today = karachiTodayStr();
+  let pick = sess[0].sessionId;
+  sess.forEach(s => { if((s.sessionDate || '') <= today) pick = s.sessionId; });
+  return pick;
+}
+function renderAdminCourseAttendance(){
+  const el = document.getElementById('admin-course-attendance'); if(!el) return;
+  const sess = courseBatchSessions();
+  if(!sess.length){ el.innerHTML = ''; return; }
+  if(!CC_ATT.sid || !sess.some(s => s.sessionId === CC_ATT.sid)) CC_ATT.sid = ccAttDefaultSid();
+  const opts = sess.map(s => '<option value="' + escq(s.sessionId) + '"' + (s.sessionId === CC_ATT.sid ? ' selected' : '') + '>' + esc(s.title || '') + ' — ' + esc(s.sessionDate || '') + '</option>').join('');
+  el.innerHTML = '<div class="card"><h3 style="margin:0 0 6px">🗓️ سیشن وار حاضری و مینول اندراج</h3>' +
+    '<p class="small" style="margin:0 0 8px">کوڈ سے درج حاضری یہاں صرف دکھائی جاتی ہے۔ جو طالب علم کھڑکی کے اندر کوڈ نہ لگا سکا، اس کی حاضری یہاں مینول لگائی جا سکتی ہے (+10 پوائنٹس؛ گریڈ بک خود تازہ ہو جاتا ہے)۔ اوقات پاکستانی وقت میں ہیں۔</p>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><select id="cc-att-session" style="flex:1;min-width:210px" onchange="ccAttLoad(this.value)">' + opts + '</select>' +
+    '<button class="btn sm" onclick="ccAttLoad(document.getElementById(\'cc-att-session\').value, true)">🔄 تازہ کریں</button></div>' +
+    '<div id="cc-att-body" style="margin-top:10px"></div></div>';
+  if(CC_ATT.data && CC_ATT.data.session && CC_ATT.data.session.sessionId === CC_ATT.sid) ccAttPaint();
+  else { const b = document.getElementById('cc-att-body'); if(b) b.innerHTML = '<p class="small">حاضری لوڈ ہو رہی ہے…</p>'; ccAttFetch(); }
+}
+function ccAttLoad(sid, force){
+  CC_ATT.sid = sid;
+  if(force) CC_ATT.data = null;
+  renderAdminCourseAttendance();
+}
+async function ccAttFetch(){
+  if(!window.__courseApi || !CC_ATT.sid) return;
+  try{
+    CC_ATT.data = await window.__courseApi.attendance(CC_ATT.sid);
+    ccAttPaint();
+  }catch(e){
+    const b = document.getElementById('cc-att-body');
+    if(b) b.innerHTML = '<p class="small">حاضری لوڈ نہ ہو سکی: ' + esc((e && e.message) || '') + '</p>';
+  }
+}
+function ccFmtTime(iso){
+  if(!iso) return '—';
+  try{ return new Intl.DateTimeFormat('en-GB', { timeZone:'Asia/Karachi', day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit', hour12:true }).format(new Date(iso)); }
+  catch(e){ return esc(String(iso)); }
+}
+function ccAttPaint(){
+  const b = document.getElementById('cc-att-body'); if(!b || !CC_ATT.data) return;
+  const d = CC_ATT.data;
+  const pres = d.present || [], pend = d.pending || [], abs = d.absent || [];
+  const rowP = p => '<tr><td><b>' + esc(p.name || '') + '</b><br><span class="small" dir="ltr">' + esc(p.email) + '</span></td>' +
+    '<td>' + ccFmtTime(p.at) + '</td>' +
+    '<td>' + (p.source === 'manual' ? '<span class="tag gold">مینول</span>' + (p.markedBy ? '<br><span class="small" dir="ltr">' + esc(p.markedBy) + '</span>' : '') : '<span class="tag">کوڈ</span>') + '</td>' +
+    '<td>' + (p.source === 'manual' ? '<button class="btn sm" onclick="ccAttUndo(\'' + escq(p.email) + '\')">واپس لیں</button>' : '<span class="small">—</span>') + '</td></tr>';
+  b.innerHTML =
+    '<p style="margin:0 0 6px">رجسٹرڈ طلبہ: <b>' + urDigits(d.registered || 0) + '</b> • حاضر (تصدیق شدہ): <b>' + urDigits(pres.length) + '</b> • کوڈ درج، تصدیق باقی: <b>' + urDigits(pend.length) + '</b> • کوئی اندراج نہیں: <b>' + urDigits(abs.length) + '</b></p>' +
+    (pres.length ? '<h4 style="margin:8px 0 4px">✅ حاضر — ' + urDigits(pres.length) + '</h4><table class="rep-table"><tr><th>نام</th><th>وقت (PKT)</th><th>ذریعہ</th><th></th></tr>' + pres.map(rowP).join('') + '</table>' : '<p class="small">تصدیق شدہ حاضری ابھی کوئی نہیں۔</p>') +
+    (pend.length ? '<h4 style="margin:10px 0 4px">⏳ کوڈ درج — تصدیق باقی (' + urDigits(pend.length) + ')</h4>' + pend.map(p => '<div class="card" style="margin-bottom:6px"><b>' + esc(p.name || '') + '</b> <span class="small" dir="ltr">' + esc(p.email) + '</span><br><span class="small">کوڈ وقت: ' + ccFmtTime(p.at) + ' — تصدیق «سیشنز و حاضری» کے تصدیقی اوزار سے ہوتی ہے؛ پوائنٹس و شمار تصدیق پر ملتے ہیں۔</span></div>').join('') : '') +
+    (abs.length ? '<h4 style="margin:10px 0 4px">❌ کوئی اندراج نہیں — ' + urDigits(abs.length) + '</h4>' + abs.map(a => '<div class="card" style="margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><span><b>' + esc(a.name || '') + '</b> <span class="small" dir="ltr">' + esc(a.email) + '</span></span><button class="btn sm goldb" onclick="ccAttMark(\'' + escq(a.email) + '\')">✏️ مینول حاضری لگائیں</button></div>').join('') : '<p class="small">تمام رجسٹرڈ طلبہ کا اندراج موجود ہے۔</p>');
+}
+async function ccAttMark(email){
+  if(!window.__courseApi || !CC_ATT.sid) return;
+  if(!confirm('اس طالب علم کی مینول حاضری لگائی جائے؟ (+10 پوائنٹس)')) return;
+  try{
+    await window.__courseApi.markAttendance(CC_ATT.sid, email);
+    showMsg('cc-msg', 'مینول حاضری لگ گئی — پوائنٹس و گریڈ بک تازہ ہیں۔', true);
+    CC_ATT.data = null; ccAttFetch();
+  }catch(e){ showMsg('cc-msg', (e && e.message) || 'حاضری نہ لگ سکی۔', false); }
+}
+async function ccAttUndo(email){
+  if(!window.__courseApi || !CC_ATT.sid) return;
+  if(!confirm('یہ مینول حاضری واپس لی جائے؟ پوائنٹس بھی واپس ہو جائیں گے۔')) return;
+  try{
+    await window.__courseApi.undoAttendance(CC_ATT.sid, email);
+    showMsg('cc-msg', 'مینول حاضری واپس ہو گئی۔', true);
+    CC_ATT.data = null; ccAttFetch();
+  }catch(e){ showMsg('cc-msg', (e && e.message) || 'واپسی نہ ہو سکی۔', false); }
 }
 async function runCourseSeed(){
   if(!window.__courseApi) return;
@@ -8288,7 +8426,7 @@ function adminRefreshSection(){
     else if(k === 'counsel') renderAdminCounsel();
     else if(k === 'visionreview') renderVisionReview();
     else if(k === 'starteam') renderAdminStarTeam();
-    else if(k === 'sessions'){ renderAttCodeBox(); renderAdminCourseContent(); }
+    else if(k === 'sessions'){ renderAttCodeBox(); renderAdminCourseContent(); renderAdminSessCourse(); }
   }catch(e){}
 }
 function openAdminSec(key, skipNav){
@@ -8305,7 +8443,7 @@ function openAdminSec(key, skipNav){
   if(key === 'counsel') renderAdminCounsel();
   if(key === 'visionreview') renderVisionReview();
   if(key === 'starteam') renderAdminStarTeam();
-  if(key === 'sessions'){ renderAttCodeBox(); renderAdminCourseContent(); syncAttendeesSnapshot(); }
+  if(key === 'sessions'){ renderAttCodeBox(); renderAdminCourseContent(); syncAttendeesSnapshot(); renderAdminSessCourse(); }
   if(!skipNav) navAdminSec(key);
 }
 /* ایڈمن سیکشن = ذیلی فریم: ڈیوائس بیک اب سیکشن سے ایڈمن مرکز لے جائے گا، ایپ سے باہر نہیں
@@ -15246,6 +15384,6 @@ window.helpChatSend = function(){
 <script src="foreign-data.js?v=20261031a"></script>
 <script src="admissions-news.js?v=20261031a"></script>
 <script src="admissions.js?v=20261031i"></script>
-<script type="module" src="api-bridge.js?v=20261031d"></script>
+<script type="module" src="api-bridge.js?v=20261103a"></script>
 </body>
 </html>
