@@ -96,6 +96,11 @@ let LAST_EVENT_SESSION = null;
 // routing on absolute state would mistake a pre-existing bookAccess=true
 // for a new grant, or a student's unchanged status for a decision.
 let LAST_USERS = {};
+// Last polled achievements docs (id -> JSON), for diff-based routing of
+// the admin's spotlight «چھپائیں» write: an EXISTING doc whose only change
+// is spotlightHidden goes to the dedicated visibility endpoint, while a
+// doc with no polled baseline is a NEW student submission (create route).
+let LAST_ACH = {};
 
 async function fetchMe() {
   const r = await api('/api/users/me', {});
@@ -135,6 +140,11 @@ function hookSnapshots() {
               if (d && (d.uid || d.email)) LAST_USERS[d.uid || d.email] = JSON.stringify(d);
             }
           }
+          if (k === 'achievements' && Array.isArray(data)) {
+            for (const d of data) {
+              if (d && (d.id || d._id)) LAST_ACH[d.id || d._id] = JSON.stringify(d);
+            }
+          }
         } catch (e) {}
         return cur(k, data);
       };
@@ -160,10 +170,19 @@ const CONTENT_FEEDS = [
 const ADMIN_LISTS = [
   'sessionArchive', 'counselLogs', 'messages', 'competitions', 'transfers',
   'starRequests', 'courseSessions', 'starTeam', 'certificates',
-  'starRecommendations', 'attendanceClaims', 'dashboardData',
+  'starRecommendations', 'attendanceClaims', 'dashboardData', 'achievements',
 ];
 
 async function pollOnce(ctx) {
+  // Automatic achievement spotlight (Mufti, 2026-11-03): sanitized
+  // projection only (name/cat/title/date/ts, last 6h) — shared by the
+  // admin and student branches; never widens the general sync.
+  const fetchAchSpotlight = async () => {
+    try {
+      const r = await api('/api/users/achievements/spotlight', {});
+      window.__applySnapshot('achSpotlight', normList(r.docs));
+    } catch (e) {}
+  };
   try {
     await ensureFreshAccess();
     if (ctx.isAdmin) {
@@ -198,6 +217,7 @@ async function pollOnce(ctx) {
         const gb = await api('/api/course/admin/gradebook', {});
         window.__applySnapshot('courseGradebook', [Object.assign({ id: 'gradebook' }, gb)]);
       } catch (e) {}
+      await fetchAchSpotlight();
       return;
     }
     // Student: own doc first (pending students stop here — gated feeds
@@ -236,6 +256,7 @@ async function pollOnce(ctx) {
         window.__applySnapshot(key, normList(r.docs));
       } catch (e) {}
     }
+    await fetchAchSpotlight();
     try {
       const mine = await api('/api/attendance/mine', {});
       window.__applySnapshot('attendanceClaims', normList(mine.claims));
@@ -263,6 +284,17 @@ async function pollOnce(ctx) {
     console.warn('poll failed:', e && e.message);
   }
 }
+
+// ---- Automatic achievement spotlight: admin hide fallback (used when
+// the spotlight entry is not in the admin's local achievements list,
+// e.g. it arrived only via the sanitized spotlight snapshot) ----
+window.__achSpotlightHide = async function (id) {
+  await api('/api/admin/achievements/' + encodeURIComponent(id) + '/spotlight-visibility', { method: 'POST', body: { hidden: true } });
+  try {
+    const r = await api('/api/users/achievements/spotlight', {});
+    window.__applySnapshot('achSpotlight', normList(r.docs));
+  } catch (e) {}
+};
 
 // ---- Idara Sazi course classroom actions (direct API; errors carry the
 // server's Urdu message on err.message, exactly like the bridge's api()) ----
@@ -632,10 +664,37 @@ window.__fb = {
       await api('/api/admin/lists/' + collName, { method: 'POST', body: { doc: clean } });
       return;
     }
-    // Server-owned or read-only collections (achievements,
-    // sessionSecrets, mailQueue, admins): never written from the client.
-    // Notifications have their own branch above (admin fan-out + own
-    // read-state); everything else here is skipped, never faked.
+    if (collName === 'achievements') {
+      // Diff-routed (Mufti, 2026-11-03): a doc that exists in the last
+      // poll and whose ONLY routed change is spotlightHidden is the
+      // admin's «چھپائیں» action -> the dedicated visibility endpoint.
+      // A doc with no polled baseline is a NEW submission -> the own
+      // create endpoint (the server stamps email/name/ts/month itself).
+      // Anything else on an existing doc is skipped, never blind-sent.
+      hookSnapshots();
+      await ensureMe();
+      let prev = null;
+      try { prev = LAST_ACH[clean.id || id] ? JSON.parse(LAST_ACH[clean.id || id]) : null; } catch (e) {}
+      if (prev) {
+        if (typeof clean.spotlightHidden === 'boolean' && clean.spotlightHidden !== !!prev.spotlightHidden) {
+          await api('/api/admin/achievements/' + encodeURIComponent(clean.id || id) + '/spotlight-visibility', { method: 'POST', body: { hidden: clean.spotlightHidden } });
+          try { LAST_ACH[clean.id || id] = JSON.stringify(clean); } catch (e) {}
+        } else {
+          console.warn('achievements upsert on an existing doc without a spotlight change — skipped:', id);
+        }
+        return;
+      }
+      await api('/api/users/me/achievements', { method: 'POST', body: { doc: clean } });
+      try {
+        const r = await api('/api/users/achievements/spotlight', {});
+        window.__applySnapshot('achSpotlight', normList(r.docs));
+      } catch (e) {}
+      return;
+    }
+    // Server-owned or read-only collections (sessionSecrets, mailQueue,
+    // admins): never written from the client. Notifications have their
+    // own branch above (admin fan-out + own read-state); everything else
+    // here is skipped, never faked.
     console.warn('upsert ignored for server-owned collection:', collName);
   },
 

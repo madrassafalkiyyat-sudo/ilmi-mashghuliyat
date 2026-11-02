@@ -257,16 +257,16 @@ img.avatar.star-frame{border:3.5px solid var(--c-gold-500) !important;box-shadow
 .star-id-card.stu .star-id-nameplate{border-color:rgba(255,255,255,.65);background:rgba(255,255,255,.07)}
 .featured-card h3{font-size:23px;margin:4px 0 2px}
 /* ہوم — خبروں کا محدود اونچائی والا خانہ (اندرونی اسکرول، صفحہ لمبا نہیں ہوتا) */
-/* ماہانہ رپورٹ (صرف پرنٹ) */
+/* ماہانہ رپورٹ (صرف پرنٹ) + ماہانہ نتائج کی آن اسکرین مکمل رپورٹ — ایک ہی طرز */
 #print-report{display:none}
-#print-report .rep-head{display:flex;gap:14px;align-items:center;border-bottom:3px solid var(--c-primary-700);padding-bottom:10px;margin-bottom:12px}
-#print-report .rep-head img{width:76px;height:76px;object-fit:contain}
-#print-report h1{font-size:26px;margin:0;color:var(--c-primary-900)}
-#print-report h2{font-size:19px;margin:16px 0 6px;color:var(--c-primary-700)}
-#print-report .rep-table{width:100%;border-collapse:collapse;font-size:15px}
-#print-report .rep-table th,#print-report .rep-table td{border:1px solid var(--c-border);padding:5px 7px;text-align:right;vertical-align:top}
-#print-report .rep-sum{width:100%;border-collapse:collapse;font-size:15px}
-#print-report .rep-sum td{border:1px solid var(--c-border);padding:6px 9px}
+#print-report .rep-head,#ch-full-report .rep-head{display:flex;gap:14px;align-items:center;border-bottom:3px solid var(--c-primary-700);padding-bottom:10px;margin-bottom:12px}
+#print-report .rep-head img,#ch-full-report .rep-head img{width:76px;height:76px;object-fit:contain}
+#print-report h1,#ch-full-report h1{font-size:26px;margin:0;color:var(--c-primary-900)}
+#print-report h2,#ch-full-report h2{font-size:19px;margin:16px 0 6px;color:var(--c-primary-700)}
+#print-report .rep-table,#ch-full-report .rep-table{width:100%;border-collapse:collapse;font-size:15px}
+#print-report .rep-table th,#print-report .rep-table td,#ch-full-report .rep-table th,#ch-full-report .rep-table td{border:1px solid var(--c-border);padding:5px 7px;text-align:right;vertical-align:top}
+#print-report .rep-sum,#ch-full-report .rep-sum{width:100%;border-collapse:collapse;font-size:15px}
+#print-report .rep-sum td,#ch-full-report .rep-sum td{border:1px solid var(--c-border);padding:6px 9px}
 @media print{
   #phone{display:none !important}
   #print-report{display:block !important;direction:rtl;color:#111;background:#fff}
@@ -851,7 +851,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   </div>
   <div class="card">
     <h3 style="margin-top:0"><span class="tag gold">درجہ ۶</span> ہوم — آپ کا علمی مرکز</h3>
-    <p style="margin:0">ہوم سے سب کچھ ملتا ہے: خصوصی اعلانات و قریبی آخری تاریخیں، سیشنز و سرٹیفکیٹس، خبریں و اسکالرشپس، تحقیقی و تربیتی کورسز، تحریری معاون، ماہانہ کارگذاری اور آپ کا شناختی کارڈ۔ سب سے پہلے اپنا 🪪 شناختی کارڈ ڈاؤن لوڈ کر لیں، اور کوئی الجھن ہو تو آخر میں «🧭 مشورہ کیجیے» سے پوچھیں۔</p>
+    <p style="margin:0">ہوم سے سب کچھ ملتا ہے: خصوصی اعلانات و قریبی آخری تاریخیں، سیشنز و سرٹیفکیٹس، خبریں و اسکالرشپس، تحقیقی و تربیتی کورسز، تحریری معاون، علمی کارگذاری اور آپ کا شناختی کارڈ۔ سب سے پہلے اپنا 🪪 شناختی کارڈ ڈاؤن لوڈ کر لیں، اور کوئی الجھن ہو تو آخر میں «🧭 مشورہ کیجیے» سے پوچھیں۔</p>
   </div>
   <a class="btn goldb" href="assets/quick-guide.pdf" download>⬇️ یہ راہنما PDF میں ڈاؤن لوڈ کریں (2 صفحات)</a>
   <button class="btn" onclick="go('vision')">وژن کی طرف واپس جائیں</button>
@@ -1036,6 +1036,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 
 <!-- ============ پروفائل گیٹ ============ -->
 <section class="view" id="view-profile">
+  <div class="topbar"><button onclick="goBack('home')">→ واپس</button><div class="ttl">میری پروفائل</div><span style="width:52px"></span></div>
   <h1>اپنی پروفائل مکمل کریں</h1>
   <p class="small center">پروفائل مکمل کیے بغیر ایپ کا مواد نہیں کھلے گا — اس سے ہر طالب علم کا درست ریکارڈ پہلے مکمل ہو جاتا ہے۔</p>
   <div class="divider"></div>
@@ -1180,6 +1181,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div id="home-badge" class="center" style="margin-bottom:6px"></div>
   <div id="home-incomplete"></div>
   <div id="home-announce"></div>
+  <div id="home-ach-spotlight"></div>
   <div id="ff-reminders-home"></div>
   <div class="groups-grid" style="margin-top:2px">
     <button class="gcard" onclick="go('hub-opp')"><span class="ic">🌟</span><span class="nm">مواقع و پروگرامز</span></button>
@@ -1709,13 +1711,13 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <p class="small">یہ پیش منظر A4 طرز پر ہے — PDF/پرنٹ میں بھی یہی صورت آئے گی۔ CV آپ کی ایپ سرگرمی سے خودکار تازہ رہتی ہے۔</p>
 </section>
 
-<!-- ============ میری علمی کارگذاری — لازمی ماہانہ جمع ============ -->
+<!-- ============ میری علمی کارگذاری ============ -->
 <section class="view" id="view-achievements">
   <div class="topbar"><button onclick="goBack('home')">→ واپس</button><div class="ttl">میری علمی کارگذاری</div><span style="width:52px"></span></div>
-  <p>ہر طالب علم کے لیے <b>ہر مہینے</b> اپنی علمی کارگذاری یہاں جمع کرانا لازمی ہے — انتظامیہ کی ماہانہ رپورٹ اسی جمع کردہ کارگذاری کی بنیاد پر تیار ہوتی ہے۔ کارگذاری نہ ہو تو بھی جمع مکمل کرنا ضروری ہے: نیچے «اس مہینے کوئی نئی کارگذاری نہیں» کا اعلان جمع کرا دیں۔</p>
+  <p>جب بھی کوئی نیا علمی کارنامہ ہو — کانفرنس میں شرکت، مقالہ، کورس تکمیل وغیرہ — یہاں اس کی <b>اپنی تاریخ</b> کے ساتھ شامل کر دیں۔ کسی مہینے یا آخری تاریخ کی قید نہیں؛ انتظامیہ کی رپورٹ انہی اندراجات سے بنتی ہے۔</p>
   <div id="ach-status"></div>
   <div class="msg" id="ach-msg"></div>
-  <h2>نئی کارگذاری جمع کرائیں</h2>
+  <h2>نیا کارنامہ شامل کریں</h2>
   <label>زمرہ منتخب کریں</label>
   <select id="a-cat">
     <option>ڈگری/سمسٹر کی تکمیل</option>
@@ -1738,12 +1740,6 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <label>یا ثبوت کا لنک</label>
   <input id="a-link" type="url" dir="ltr" style="text-align:left" placeholder="https://...">
   <button class="btn" onclick="submitAchievement()">کارگذاری جمع کرائیں</button>
-  <div class="divider"></div>
-  <div class="card" style="background:var(--c-surface)">
-    <h3 style="margin-top:0">اس مہینے کوئی نئی کارگذاری نہیں؟</h3>
-    <p style="margin:0 0 8px">اگر اس مہینے واقعی کوئی نئی علمی کارگذاری نہیں ہوئی تو یہ اعلان جمع کرا دیں — مہینے کی جمع اسی سے <b>مکمل</b> شمار ہوگی۔ (یہ اعلان بھی آپ کے مستقل ریکارڈ و آڈٹ میں درج رہے گا۔)</p>
-    <button class="btn goldb" onclick="submitNoAchievement()">«اس مہینے کوئی نئی کارگذاری نہیں» — اعلان جمع کرائیں</button>
-  </div>
   <div class="divider"></div>
   <h2>میری جمع کردہ کارگذاریاں</h2>
   <div id="ach-list"></div>
@@ -2004,10 +2000,10 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
       <button class="gbtn" onclick="openAdminSec('comps')"><span class="ic">🏆</span>مسابقات<span class="sub">جمع شدہ مقالات کی فہرست</span></button>
       <button class="gbtn" onclick="openAdminSec('broadcast')"><span class="ic">📣</span>براڈکاسٹ اعلان<span class="sub">تمام طلبہ کو ایک پیغام</span></button>
       <button class="gbtn" onclick="openAdminSec('notify')"><span class="ic">🔔</span>اطلاعات مرکز<span class="sub">واٹس ایپ تیار پیغام + ایپ اطلاع</span></button>
-      <button class="gbtn" onclick="openAdminSec('reminders')"><span class="ic">⏰</span>یاد دہانی مرکز<span class="sub">ماہانہ کارگذاری کی یاد دہانی</span><span class="abadge goldb2" id="ahub-badge-rem" style="display:none"></span></button>
+      <button class="gbtn" onclick="openAdminSec('reminders')"><span class="ic">🏅</span>کارگذاری براؤزر<span class="sub">مہینہ وار کارنامے — اپنی تاریخ کے مطابق</span><span class="abadge goldb2" id="ahub-badge-rem" style="display:none"></span></button>
       <button class="gbtn" onclick="openAdminSec('group')"><span class="ic">📱</span>گروپ اعلانات<span class="sub">واٹس ایپ گروپ کے لیے تیار متن</span></button>
       <button class="gbtn" onclick="openAdminSec('report')"><span class="ic">🖨️</span>ماہانہ رپورٹ<span class="sub">کارکردگی رپورٹ (PDF / پرنٹ)</span></button>
-      <button class="gbtn" onclick="openAdminSec('charts')"><span class="ic">📊</span>ماہانہ نتائج<span class="sub">چارٹس — طلبہ، درجے، ممالک، کارگذاری و حاضری</span></button>
+      <button class="gbtn" onclick="openAdminSec('charts')"><span class="ic">📊</span>ماہانہ نتائج<span class="sub">چارٹس + گذشتہ مہینے کی مکمل رپورٹ PDF</span></button>
       <button class="gbtn" onclick="openAdminSec('monthly')"><span class="ic">🌟</span>ماہانہ نظام<span class="sub">ماہ کے ستارے و وارننگز</span></button>
       <button class="gbtn" onclick="openAdminSec('counsel')"><span class="ic">🧭</span>مشورہ کیجیے — خلاصے<span class="sub">مشورہ کیجیے سے رہنمائی کے خلاصے — موضوعات و اطمینان</span></button>
       <button class="gbtn" onclick="openAdminSec('starteam')"><span class="ic">⭐</span>سٹار ٹیم<span class="sub">ارکان، ماہانہ سفارشات و میٹنگ دعوتیں — ہدف ۱۰۰ ستارے</span></button>
@@ -2379,7 +2375,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <div class="admin-sec-head"><button class="btn sm" onclick="adminBack()">← ایڈمن مرکز</button><h2>ماہانہ رپورٹ</h2></div>
   <p class="small">بٹن دبانے سے اس مہینے کی کارکردگی رپورٹ پرنٹ-فرینڈلی صفحے کی صورت میں تیار ہو جائے گی — پرنٹ ڈائیلاگ میں «PDF میں محفوظ کریں» منتخب کر کے فائل بنا لیں یا براہِ راست پرنٹ کریں۔ رپورٹ میں شعبے کا خلاصہ، فی طالب علم جدول اور «ماہ کی نمایاں کارکردگی» شامل ہوتی ہے۔</p>
   <div id="admin-sub-status"></div>
-  <p class="small" style="color:var(--c-gold-700)"><b>انتباہ:</b> رپورٹ طلبہ کی جمع کردہ کارگذاری کی بنیاد پر تیار ہوتی ہے — بقایا طلبہ کی کارگذاری اس میں شامل نہیں ہوگی اور رپورٹ پر اس کی نشاندہی آئے گی۔</p>
+  <p class="small" style="color:var(--c-gold-700)"><b>نوٹ:</b> رپورٹ میں کارگذاری ہر کارنامے کی اپنی تاریخ کے مہینے کے مطابق شامل ہوتی ہے — کوئی ماہانہ جمع کا تصور نہیں۔</p>
   <button class="btn goldb" onclick="generateReport()">🖨️ اس مہینے کی رپورٹ تیار کریں (PDF / پرنٹ)</button>
   <p class="small">نوٹ: اصل نظام میں یہ رپورٹ ہر مہینے کے آخر میں خودکار بن کر ایڈمن پینل میں محفوظ ہوگی اور پچھلے مہینوں کی رپورٹس بھی یہیں سے ملیں گی۔</p>
   </div>
@@ -2392,6 +2388,11 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <label>مہینہ منتخب کریں</label>
   <select id="ch-month" class="inline" style="width:100%" onchange="renderCharts()"></select>
   <div id="charts-body"></div>
+  <div class="divider"></div>
+  <h2>📋 مکمل کارگذاری رپورٹ — منتخب مہینہ</h2>
+  <p class="small">ابتدائی طور پر <b>گذشتہ مہینہ</b> کھلتا ہے۔ مکمل رپورٹ میں منتخب مہینے کا خلاصہ (کل کارنامے، شریک طلبہ، زمرہ وار گنتی)، اس مہینے کی تاریخ والے <b>تمام کارنامے طالب علم وار</b> (ثبوت سمیت)، اور آخر میں وہ منظور شدہ طلبہ جن کا اس مہینے کوئی کارنامہ درج نہیں — سب شامل ہے۔</p>
+  <button class="btn goldb" onclick="printMonthlyResultsReport()">📄 مکمل رپورٹ PDF</button>
+  <div id="ch-full-report"></div>
   </div>
 
   <!-- حصہ: ماہانہ نظام -->
@@ -2448,18 +2449,13 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <button class="btn goldb" onclick="sendAudienceNotif()">🎓 منتخب طبقے کو اطلاع بھیجیں</button>
   </div>
 
-  <!-- حصہ: یاد دہانی مرکز -->
+  <!-- حصہ: کارگذاری براؤزر -->
   <div class="admin-sec" id="asec-reminders" style="display:none">
-  <div class="admin-sec-head"><button class="btn sm" onclick="adminBack()">← ایڈمن مرکز</button><h2>یاد دہانی مرکز — ماہانہ کارگذاری جمع</h2></div>
-  <p class="small">ہر طالب علم کے لیے ہر مہینے کارگذاری جمع کرانا لازمی ہے — جنہوں نے اس مہینے ابھی جمع نہیں کرایا، انہیں یہاں سے انفرادی یاد دہانی (واٹس ایپ / ای میل) بھیجیں یا گروپ یاد دہانی کا متن تیار کریں۔ نوٹ: اصل نظام میں یہ یاد دہانیاں مہینہ ختم ہونے سے پہلے <b>خودکار ایپ اطلاعات</b> کی صورت جائیں گی — واٹس ایپ کے لیے یہاں سے تیار متن/پیغام بھی ملتا ہے۔</p>
+  <div class="admin-sec-head"><button class="btn sm" onclick="adminBack()">← ایڈمن مرکز</button><h2>کارگذاری براؤزر — مہینہ وار اندراجات</h2></div>
+  <p class="small">طلبہ کے درج کردہ علمی کارنامے یہاں دیکھیں — ابتدائی منظر میں <b>تمام کارنامے تازہ ترین پہلے</b> نظر آتے ہیں؛ مہینہ منتخب کر کے صرف اس مہینے کی تاریخ والے کارنامے دیکھیں۔ مہینہ ہر کارنامے کی <b>اپنی تاریخ</b> سے طے ہوتا ہے (جمع کرانے کی تاریخ سے نہیں)۔ اس نظام میں کوئی ماہانہ جمع نہیں — طالب علم جب بھی نیا کارنامہ ہو، اسی وقت شامل کرتا ہے۔ پرانے «اعلان» اندراجات بھی اپنی محفوظ شدہ تاریخ/مہینے کے ساتھ اسی فہرست میں نظر آتے ہیں۔</p>
+  <label>مہینہ منتخب کریں</label>
+  <select id="ach-month" class="inline" style="width:100%" onchange="renderReminders()"></select>
   <div id="admin-reminders"></div>
-  <button class="btn" onclick="genGroupReminderText()">📢 گروپ یاد دہانی کا متن تیار کریں</button>
-  <label>گروپ یاد دہانی متن</label>
-  <textarea id="rem-text" rows="6" placeholder="بٹن دبانے سے گروپ یاد دہانی کا متن یہاں تیار ہو جائے گا…"></textarea>
-  <button class="btn goldb" style="font-size:19px;padding:14px 10px" onclick="openGroupWithText('rem')">💬 واٹس ایپ گروپ کھولیں — متن تیار ہے</button>
-  <p class="small" style="margin-top:2px">بٹن دباتے ہی متن کاپی ہو جائے گا اور گروپ کھل جائے گا — وہاں صرف پیسٹ کر کے بھیج دیں۔ واٹس ایپ گروپوں میں کوئی بیرونی نظام خود نہیں لکھ سکتا، اس لیے آخری بھیجنا آپ کے ایک ٹیپ سے ہوتا ہے۔</p>
-  <button class="btn sm ghost" onclick="copyReminderText()">📋 صرف متن کاپی کریں</button>
-  <div class="msg" id="rem-msg"></div>
   </div>
 </section>
 
@@ -2608,7 +2604,7 @@ const LS2 = {
 };
 /* ایپ کلید → Firestore کلیکشن */
 const COLL = { users:'users', news:'news', announcements:'announcements', notifications:'notifications',
-  achievements:'achievements', compSubs:'competitions', transfers:'transfers', graduates:'graduates',
+  achievements:'achievements', achSpotlight:'achSpotlight', compSubs:'competitions', transfers:'transfers', graduates:'graduates',
   messages:'messages', drafts:'drafts', jobsExtra:'jobs', rcoursesExtra:'courses', mailQueue:'mailQueue',
   publications:'publications', sessionSecrets:'sessionSecrets', attendanceClaims:'attendanceClaims', courseSessions:'courseSessions', journals:'journals', counselLogs:'counselLogs',
   starTeam:'starTeam', starRecommendations:'starRecommendations', starRequests:'starRequests',
@@ -4483,10 +4479,11 @@ function renderHome(){
     nb.textContent = c ? '(' + c + ' نئی)' : '';
   }
   renderHomeNews();
+  renderAchSpotlight();
 }
 
 /* ================= نمایاں کارکردگی — ٹاپ نیوز (Spotlights) =================
-   ایڈمن ماہانہ کارگذاری کے کسی اندراج کو نمایاں کرتا ہے → spotlights کلیکشن میں
+   ایڈمن کارگذاری کے کسی اندراج کو نمایاں کرتا ہے → spotlights کلیکشن میں
    ریکارڈ (میعاد 30 دن) + طالب علم کو مبارکباد کی اطلاع۔ ہوم پر چھوٹا ID کارڈ:
    مرد کی تصویر؛ خاتون کی صرف نام-پلیٹ — اس کی تصویر ریکارڈ میں محفوظ ہی نہیں
    ہوتی۔ ایک کارگذاری دوبارہ نمایاں نہیں ہو سکتی (achKey نقش سے روک)۔ */
@@ -4527,7 +4524,7 @@ function saveSpotlight(idx){
     gender: p.gender || '',
     /* صنفی اصول: خاتون کی تصویر اس ریکارڈ میں ہرگز محفوظ نہیں ہوتی — صرف مرد کی تصویر (ہو تو) */
     photo: (p.gender === 'مرد' && p.photo) ? p.photo : '',
-    text, period: a.month || '', createdAt: new Date().toISOString(),
+    text, period: achMonthOf(a), createdAt: new Date().toISOString(),
     expiresAt: isoDatePlus(30), active: true };
   const list = allSpotlights(); list.push(rec); DB.set('spotlights', list);
   pushNotification(a.email, '🌟 مبارک ہو! آپ کی نمایاں کارکردگی ایپ کی ٹاپ نیوز میں دکھائی جا رہی ہے',
@@ -7069,7 +7066,6 @@ function generateReport(){
   const tops = topStudents(5).map(x => x.u);
   const lows = us.filter(lowActivity);
   const monthAch = achThisMonthAll();
-  const pendAch = pendingAchievers();
   let monthName = todayStr();
   try{ monthName = new Date().toLocaleDateString('ur-PK', {month: 'long', year: 'numeric'}); }catch(e){}
   const rows = us.map(u => {
@@ -7097,10 +7093,8 @@ function generateReport(){
     (us.length
       ? '<table class="rep-table"><tr><th>نام</th><th>درجہ</th><th>شعبہ / یونیورسٹی</th><th>سیشن حاضری</th><th>سرٹیفکیٹس</th><th>اسائنمنٹس</th><th>مکمل کورسز</th><th>آخری سرگرمی</th></tr>' + rows + '</table>'
       : '<p>ابھی کوئی طالب علم رجسٹر نہیں ہوا۔</p>') +
-    '<h2>📚 طلبہ کی جمع کردہ کارگذاری (اس مہینہ)</h2>' +
-    (pendAch.length
-      ? '<p style="color:var(--c-gold-700)"><b>⚠ یہ رپورٹ بقایا طلبہ (' + urDigits(pendAch.length) + ') کے بغیر تیار کی گئی ہے</b> — ان کی کارگذاری شامل نہیں: ' + pendAch.map(u => esc(u.name)).join('، ') + '</p>'
-      : '<p>تمام منظور شدہ طلبہ نے اس مہینے کی کارگذاری جمع کرائی ہے ✓</p>') +
+    '<h2>📚 طلبہ کی کارگذاری (اس مہینے کی تاریخ والی)</h2>' +
+    '<p>یہ اندراجات کارناموں کی اپنی تاریخ کے مطابق اس مہینے میں شمار کیے گئے ہیں — ماہانہ جمع کا کوئی تصور نہیں۔</p>' +
     (monthAch.length
       ? '<table class="rep-table"><tr><th>طالب علم</th><th>جمع کردہ کارگذاری</th></tr>' +
         us.map(u => {
@@ -8094,7 +8088,7 @@ const COUNSEL_GUIDE = [
   { v: 'journals',     t: '📰 مستند جرنلز',       d: 'HEC منظور شدہ و Scopus جرنلز کی تقسیم + مقالہ بھیجنے کا مکمل طریقہ۔' },
   { v: 'news',         t: '🌐 علمی خبریں',         d: 'اسکالرشپس، کانفرنسز و داخلے — ہر رات خودکار تازہ کاری۔' },
   { v: 'jobs',         t: '💼 روزگار کے مواقع',    d: 'آپ کی مہارتوں سے اہل جابز خودکار نشان زد ہو کر آتی ہیں۔' },
-  { v: 'achievements', t: '🏅 میری کارگذاری',      d: 'ماہانہ کارگذاری جمع کرائیں، ستارے پائیں و رپورٹ دیکھیں۔' },
+  { v: 'achievements', t: '🏅 میری کارگذاری',      d: 'اپنے علمی کارنامے ان کی اپنی تاریخ کے ساتھ شامل کریں اور ریکارڈ دیکھیں۔' },
   { v: 'cv',           t: '📄 میری CV',          d: 'انگریزی پروفیشنل CV بلڈر — آپ کے ریکارڈ سے خودکار تیار۔' },
   { v: 'course',       t: '🏛️ ادارہ سازی کورس',   d: 'خصوصی پروگرام: شیڈول، رجسٹریشن اور مکمل حاضری پر کتاب کی رسائی۔' }
 ];
@@ -8565,9 +8559,8 @@ function renderAdminHub(){
   const mo = document.getElementById('ahub-stat-month'); if(mo) mo.textContent = urDigits(m);
   const b1 = document.getElementById('ahub-badge-students');
   if(b1){ b1.textContent = urDigits(p) + ' زیرِ منظوری'; b1.style.display = p ? 'inline-block' : 'none'; }
-  let r = 0; try{ r = pendingAchievers().length; }catch(e){}
   const b2 = document.getElementById('ahub-badge-rem');
-  if(b2){ b2.textContent = urDigits(r) + ' بقایا'; b2.style.display = r ? 'inline-block' : 'none'; }
+  if(b2){ b2.textContent = urDigits(m) + ' کارنامے اس مہینے'; b2.style.display = m ? 'inline-block' : 'none'; }
 }
 function renderAdminComps(){
   const el = document.getElementById('admin-comps'); if(!el) return;
@@ -9399,7 +9392,7 @@ function renderAdminMonthly(){
       '<button class="btn sm goldb" onclick="decideTransfer(\'' + r.email + '\', true)">✓ منتقلی منظور کریں</button> ' +
       '<button class="btn sm ghost" onclick="decideTransfer(\'' + r.email + '\', false)">مسترد کریں</button></div>').join('')
       : '<p class="small">اس وقت کوئی درجہ منتقلی درخواست زیرِ غور نہیں۔</p>');
-  /* 🌟 نمایاں کارکردگی — اس مہینے کی کارگذاریوں سے ٹاپ نیوز کے لیے انتخاب */
+  /* 🌟 نمایاں کارکردگی — اس مہینے کی تاریخ والی کارگذاریوں سے ٹاپ نیوز کے لیے انتخاب */
   const allMonth = achThisMonthAll();
   const realMonth = allMonth.filter(a => !a.none);
   el.innerHTML += '<h3>🌟 نمایاں کارکردگی — ٹاپ نیوز میں دکھائیں</h3>' +
@@ -9417,7 +9410,7 @@ function renderAdminMonthly(){
           '<p class="small" style="margin:4px 0">⏳ مدت: <b>30 دن</b> (خودکار) — میعاد ختم: ' + isoDatePlus(30) + '</p>' +
           '<button class="btn sm" onclick="saveSpotlight(' + i + ')">✓ نمایاں کر کے شائع کریں</button></div>') +
         '</div>';
-    }).join('') : '<p class="small">اس مہینے ابھی کوئی کارکردگی جمع نہیں ہوئی۔</p>');
+    }).join('') : '<p class="small">اس مہینے کی تاریخ والی کوئی کارکردگی ابھی درج نہیں۔</p>');
   const sps = allSpotlights().slice().sort((a, b) => String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
   el.innerHTML += '<h3>🌟 نمایاں کارکردگیاں — مکمل فہرست (' + urDigits(sps.length) + ')</h3>' +
     (sps.length ? sps.map(s => '<div class="card"><b>' + esc(s.name || '') + '</b>' +
@@ -12930,10 +12923,16 @@ function chMonthLabel(mk){
   const p = String(mk || '').split('-'); const m = parseInt(p[1], 10);
   return ((CH_UMN[m - 1] || '') + ' ' + (p[0] || '')).trim();
 }
+function prevMonthKey(){
+  const p = currentMonthKey().split('-');
+  let y = parseInt(p[0], 10), m = parseInt(p[1], 10) - 1;
+  if(m < 1){ m = 12; y -= 1; }
+  return y + '-' + m;
+}
 function chAvailableMonths(){
-  const set = new Set([currentMonthKey()]);
-  DB.get('achievements', []).forEach(a => { if(a && a.month) set.add(a.month); });
-  return Array.from(set).sort().reverse();
+  const set = new Set([currentMonthKey(), prevMonthKey()]);
+  DB.get('achievements', []).forEach(a => { const mk = achMonthOf(a); if(mk) set.add(mk); });
+  return Array.from(set).sort((x, y) => achMonthKeyNum(y) - achMonthKeyNum(x));
 }
 function chLegend(items){
   return '<div style="margin-top:6px">' + items.map(p =>
@@ -12991,9 +12990,10 @@ function renderCharts(){
   const prev = sel ? sel.value : '';
   if(sel){
     sel.innerHTML = months.map(mk => '<option value="' + mk + '">' + esc(chMonthLabel(mk)) + '</option>').join('');
-    sel.value = months.indexOf(prev) >= 0 ? prev : currentMonthKey();
+    /* ابتدائی منظر: گذشتہ (مکمل) مہینہ — مفتی، 2026-11-03 */
+    sel.value = months.indexOf(prev) >= 0 ? prev : prevMonthKey();
   }
-  const mk = sel ? sel.value : currentMonthKey();
+  const mk = sel ? sel.value : prevMonthKey();
   const us = users();
   const approved = us.filter(u => u.status === 'approved');
   const note = document.getElementById('charts-note');
@@ -13024,16 +13024,15 @@ function renderCharts(){
     .sort((a, b) => b.value - a.value);
   html += chCard('🌍 ممالک کے لحاظ سے منظور شدہ طلبہ',
     cItems.length ? svgBars(cItems) : chEmpty(), cItems.length ? chLegend(cItems) : '');
-  /* ۴) منتخب مہینہ — کارگذاری جمع بمقابلہ بقایا */
-  const doneSet = new Set(DB.get('achievements', []).filter(a => a && a.month === mk).map(a => a.email));
-  const doneN = approved.filter(u => doneSet.has(u.email)).length;
+  /* ۴) منتخب مہینہ — کارنامے ان کی اپنی تاریخ کے مطابق */
+  const monthList = DB.get('achievements', []).filter(a => a && !a.none && achMonthOf(a) === mk);
   const achItems = [
-    { label: 'کارگذاری جمع کرا چکے', value: doneN, color: 'var(--c-primary-700)' },
-    { label: 'بقایا', value: Math.max(0, approved.length - doneN), color: 'var(--c-gold-500)' }
+    { label: 'کارنامے (اندراجات)', value: monthList.length, color: 'var(--c-primary-700)' },
+    { label: 'شریک طلبہ', value: new Set(monthList.map(a => a.email)).size, color: 'var(--c-gold-500)' }
   ];
-  html += chCard('🏅 ' + esc(chMonthLabel(mk)) + ' — ماہانہ کارگذاری',
-    approved.length ? svgBars(achItems, Math.max(1, approved.length)) : chEmpty(),
-    approved.length ? chLegend(achItems) : '');
+  html += chCard('🏅 ' + esc(chMonthLabel(mk)) + ' — کارگذاری (اپنی تاریخ کے مطابق)',
+    monthList.length ? svgBars(achItems, Math.max(1, monthList.length)) : chEmpty(),
+    monthList.length ? chLegend(achItems) : '');
   /* ۵) منتخب مہینہ — سیشن حاضری شرح و سرٹیفکیٹس (موجودہ سیشن کا ریکارڈ صرف جاری مہینے کا ہے) */
   if(mk === currentMonthKey()){
     const attN = approved.filter(u => u.sessionAtt).length;
@@ -13053,6 +13052,83 @@ function renderCharts(){
     html += chCard('🎓 ' + esc(chMonthLabel(mk)) + ' — سیشن حاضری و سرٹیفکیٹس', chEmpty(), '');
   }
   body.innerHTML = html;
+  renderMonthlyFullReport();
+}
+
+/* ================= ماہانہ نتائج — مکمل کارگذاری رپورٹ (آن اسکرین + PDF) =================
+   مہینہ ہمیشہ کارنامے کی اپنی تاریخ سے (achMonthOf)۔ مکمل رپورٹ = خلاصہ
+   (کل کارنامے، شریک طلبہ، زمرہ وار گنتی) + اس مہینے کی تاریخ والے تمام
+   کارنامے طالب علم وار (زمرہ/عنوان/تاریخ/ثبوت) + آخر میں وہ منظور شدہ
+   طلبہ جن کا اس مہینے کوئی کارنامہ درج نہیں۔ PDF ایپ کے اپنے پرنٹ نظام
+   (#print-report) سے — CV کی طرح براؤزر پرنٹ/«PDF میں محفوظ کریں»۔ */
+function monthlyAchReportData(mk){
+  const list = achInMonthAll(mk).filter(a => a && !a.none);
+  const byEmail = {};
+  list.forEach(a => { (byEmail[a.email] = byEmail[a.email] || []).push(a); });
+  const groups = Object.keys(byEmail).map(email => {
+    const u = users().find(x => x.email === email) || {};
+    const items = byEmail[email].slice().sort((a, b) =>
+      String(b.date || '').localeCompare(String(a.date || '')) || (Number(b.ts || 0) - Number(a.ts || 0)));
+    return { email, name: (items[0] && items[0].name) || u.name || '', user: u, items };
+  }).sort((a, b) => String(a.name).localeCompare(String(b.name)));
+  const catCounts = {};
+  list.forEach(a => { const c = a.cat || 'دیگر علمی کارگذاری'; catCounts[c] = (catCounts[c] || 0) + 1; });
+  const withSet = new Set(list.map(a => a.email));
+  const noAch = users().filter(u => u.status === 'approved' && !withSet.has(u.email));
+  return { list, groups, catCounts, noAch, total: list.length, students: withSet.size };
+}
+function monthlyAchEvidenceText(a){
+  const parts = [];
+  if(a.evidence) parts.push('فائل: ' + a.evidence);
+  if(a.link) parts.push('لنک: ' + a.link);
+  return parts.length ? parts.join(' • ') : '—';
+}
+function monthlyReportHtml(mk){
+  const d = monthlyAchReportData(mk);
+  let h = '<div class="rep-head"><img src="assets/logo.png" onerror="this.onerror=null;this.src=window.__LOGO" alt="مدرسہ ڈاٹ پی کے">' +
+    '<div><h1>ماہانہ نتائج — مکمل کارگذاری رپورٹ</h1>' +
+    '<p style="margin:2px 0 0">شعبہ علمی مشغولیت، مدرسہ ڈاٹ پی کے • مہینہ: <b>' + esc(chMonthLabel(mk)) + '</b> • تیاری کی تاریخ: ' + esc(todayStr()) + '</p></div></div>';
+  h += '<h2>خلاصہ</h2><table class="rep-sum">' +
+    '<tr><td>کل کارنامے (اس مہینے کی تاریخ والے)</td><td><b>' + urDigits(d.total) + '</b></td>' +
+    '<td>شریک طلبہ</td><td><b>' + urDigits(d.students) + '</b></td></tr>' +
+    '<tr><td>زمرہ وار گنتی</td><td colspan="3">' +
+    (Object.keys(d.catCounts).length ? Object.keys(d.catCounts).map(c => esc(c) + ': ' + urDigits(d.catCounts[c])).join(' • ') : '—') +
+    '</td></tr></table>';
+  if(!d.total){
+    h += '<p><b>اس مہینے کوئی کارگذاری درج نہیں</b> — کسی طالب علم کا کوئی کارنامہ اس مہینے کی تاریخ کے ساتھ درج نہیں ہوا۔</p>';
+  } else {
+    h += '<h2>تمام کارنامے — طالب علم وار</h2>' + d.groups.map(g =>
+      '<h3 style="margin:12px 0 4px">' + esc(g.name) +
+      (g.user && g.user.degree ? ' — ' + esc(g.user.degree) : '') +
+      (g.user && g.user.uni ? '، ' + esc(g.user.uni) : '') +
+      ' (' + urDigits(g.items.length) + ' کارنامے)</h3>' +
+      '<table class="rep-table"><tr><th>زمرہ</th><th>عنوان و تفصیل</th><th>کارنامے کی تاریخ</th><th>ثبوت</th></tr>' +
+      g.items.map(a =>
+        '<tr><td>' + esc(a.cat || '') + '</td><td><b>' + esc(a.title || '') + '</b>' +
+        (a.desc ? '<br>' + esc(a.desc) : '') + '</td><td>' + esc(a.date || '') + '</td><td>' + esc(monthlyAchEvidenceText(a)) + '</td></tr>').join('') +
+      '</table>').join('');
+  }
+  h += '<h2>اس مہینے کارنامہ درج نہ کرنے والے منظور شدہ طلبہ</h2>' +
+    (d.noAch.length
+      ? '<p>' + d.noAch.map(u => esc(u.name)).join('، ') + '</p>'
+      : '<p>تمام منظور شدہ طلبہ کا کم از کم ایک کارنامہ اس مہینے کی تاریخ کے ساتھ درج ہے۔</p>');
+  return h;
+}
+function renderMonthlyFullReport(){
+  const el = document.getElementById('ch-full-report'); if(!el) return;
+  const sel = document.getElementById('ch-month');
+  const mk = (sel && sel.value) ? sel.value : prevMonthKey();
+  el.innerHTML = monthlyReportHtml(mk);
+}
+function printMonthlyResultsReport(){
+  const sel = document.getElementById('ch-month');
+  const mk = (sel && sel.value) ? sel.value : prevMonthKey();
+  const pr = document.getElementById('print-report'); if(!pr) return;
+  const oldTitle = document.title;
+  document.title = 'Monthly-Results-' + mk;
+  pr.innerHTML = monthlyReportHtml(mk);
+  window.print();
+  document.title = oldTitle;
 }
 
 /* ================= ایڈمن ڈیش بورڈز — خودکار اپڈیٹ =================
@@ -13513,10 +13589,7 @@ function copyTextRobust(txt, done){
    گروپ پہلے کھولا جاتا ہے (کلک کے اسی لمحے) تاکہ براؤزر کی پاپ اپ روک اسے نہ روکے۔ */
 function openGroupWithText(kind){
   let ta, msgId;
-  if(kind === 'rem'){
-    ta = document.getElementById('rem-text'); msgId = 'rem-msg';
-    if(ta && !ta.value.trim()) genGroupReminderText();   // یاد دہانی کا متن خالی ہو تو خود تیار کر لیں
-  } else { ta = document.getElementById('ga-text'); msgId = 'ga-msg'; }
+  { ta = document.getElementById('ga-text'); msgId = 'ga-msg'; }
   const txt = ta ? ta.value.trim() : '';
   if(!txt){ showMsg(msgId, 'پہلے اوپر کے بٹن سے کوئی اعلان تیار کریں۔', false); return; }
   window.open(GROUP_URL, '_blank');
@@ -13557,7 +13630,7 @@ function copyGroupText(){
   copyTextRobust(ta.value, () => showMsg('ga-msg', 'متن کاپی ہو گیا — اب واٹس ایپ گروپ میں پیسٹ کر دیں۔', true));
 }
 
-/* ================= میری علمی کارگذاری — لازمی ماہانہ جمع ================= */
+/* ================= میری علمی کارگذاری — اپنی تاریخ کے ساتھ اندراج (ماہانہ قید ختم، مفتی 2026-11-03) ================= */
 let achFileName = '';
 function achFileChosen(ev){
   const f = ev.target.files[0];
@@ -13571,24 +13644,36 @@ function achFileChosen(ev){
   document.getElementById('a-file-name').textContent = achFileName ? ('منتخب ثبوت: ' + achFileName) : '';
 }
 function myAchievements(u){ return DB.get('achievements', []).filter(a => a.email === u.email); }
-function achThisMonth(email){ return DB.get('achievements', []).filter(a => a.email === email && a.month === currentMonthKey()); }
-function achSubmitted(email){ return achThisMonth(email).length > 0; }
-/* ہوم کے لیے کارگذاری کی پتلی پٹی — ایک سطر صورت + بٹن */
+/* کارنامے کا حاکم مہینہ — ہمیشہ اس کی اپنی تاریخ (a.date) سے اخذ ہوتا ہے؛
+   پرانے «اعلان» اندراجات (جن کی تاریخ خالی ہے) کے لیے محفوظ شدہ month fallback ہے
+   تاکہ ماضی کا ریکارڈ ویسے ہی پڑھا جا سکے۔ ذخیرہ شدہ ریکارڈز دوبارہ نہیں لکھے جاتے۔ */
+function achMonthOf(a){
+  if(a && a.date){
+    const p = String(a.date).split('-');
+    if(p.length >= 2){ const y = parseInt(p[0], 10), m = parseInt(p[1], 10); if(y > 0 && m >= 1 && m <= 12) return y + '-' + m; }
+  }
+  return (a && a.month) || '';
+}
+/* ہوم کے لیے کارگذاری کی پتلی پٹی — غیر جانبدار خلاصہ + بٹن (کوئی ماہانہ جمع نہیں) */
 function achStripHtml(u){
-  const done = achSubmitted(u.email);
-  return '<div class="strip"><span class="txt">📌 <b>اس مہینے کی کارگذاری:</b> ' +
-    (done ? 'جمع ہو گئی ✓' : 'بقایا — آخری تاریخ مہینے کا آخری دن') + '</span>' +
-    '<button class="btn sm" onclick="go(\'achievements\')">' + (done ? 'دیکھیں' : 'جمع کرائیں') + ' ←</button></div>';
+  const n = myAchievements(u).filter(a => !a.none).length;
+  return '<div class="strip"><span class="txt">📌 <b>میری علمی کارگذاری:</b> ' +
+    (n ? 'درج شدہ کارنامے: ' + urDigits(n) : 'ابھی کوئی کارنامہ درج نہیں') + '</span>' +
+    '<button class="btn sm" onclick="go(\'achievements\')">شامل کریں ←</button></div>';
 }
 function achStatusHtml(u, withBtn){
-  const done = achSubmitted(u.email);
   const btn = withBtn ? '<button class="btn sm goldb" style="margin-top:8px" onclick="go(\'achievements\')">میری علمی کارگذاری کھولیں ←</button>' : '';
-  return done
-    ? '<div class="card" style="border-color:var(--c-primary-700);background:var(--c-success-bg)"><p style="margin:0">📌 <b>اس مہینے کی کارگذاری: جمع ہو گئی ✓</b> — جزاک اللہ! مزید کارگذاری ہو تو وہ بھی جمع کرا سکتے ہیں۔ آخری تاریخ: مہینے کا آخری دن۔</p>' + btn + '</div>'
-    : '<div class="card" style="border:1px solid var(--c-border);background:var(--c-gold-100)"><p style="margin:0">📌 <b>اس مہینے کی کارگذاری: بقایا ⚠</b> — ابھی جمع نہیں کرائی۔ آخری تاریخ: <b>مہینے کا آخری دن</b> — براہِ کرم فوراً جمع کرائیں؛ کارگذاری نہ ہو تو «کوئی نئی کارگذاری نہیں» کا اعلان جمع کرا دیں۔</p>' + btn + '</div>';
+  const mine = myAchievements(u).filter(a => !a.none);
+  if(!mine.length)
+    return '<div class="card" style="border:1px solid var(--c-border);background:var(--c-gold-100)"><p style="margin:0">📌 ابھی کوئی کارنامہ درج نہیں — جب بھی کوئی نیا علمی کارنامہ ہو (کانفرنس میں شرکت، مقالہ، کورس تکمیل وغیرہ) تو نیچے فارم سے اس کی <b>اپنی تاریخ</b> کے ساتھ شامل کر دیں۔ کسی مہینے کی قید یا آخری تاریخ نہیں۔</p>' + btn + '</div>';
+  const dates = mine.map(a => a.date || '').filter(Boolean).sort();
+  const latest = dates.length ? dates[dates.length - 1] : '';
+  return '<div class="card" style="border-color:var(--c-primary-700);background:var(--c-success-bg)"><p style="margin:0">📌 <b>کل درج کارنامے: ' + urDigits(mine.length) + '</b>' +
+    (latest ? ' • تازہ ترین کارنامے کی تاریخ: ' + esc(latest) : '') +
+    ' — نیا کارنامہ ہو تو اس کی اپنی تاریخ کے ساتھ شامل کر دیں۔</p>' + btn + '</div>';
 }
 function submitAchievement(){
-  if(previewGuard('ماہانہ کارگذاری جمع کرانا')) return;
+  if(previewGuard('کارگذاری جمع کرانا')) return;
   const u = currentUser(); if(!u) return;
   const cat = document.getElementById('a-cat').value;
   const title = document.getElementById('a-title').value.trim();
@@ -13600,12 +13685,13 @@ function submitAchievement(){
     if(!isHttpsUrl(link)){ showMsg('ach-msg', 'ثبوت کا لنک درست نہیں — مکمل لنک (https://…) لکھیں، یا لنک والا خانہ خالی چھوڑ دیں۔', false); return; }
   }
   if(!title || !desc || !date){ showMsg('ach-msg', 'عنوان، تفصیل اور تاریخ — تینوں لازمی ہیں۔', false); return; }
+  if(date > karachiTodayStr()){ showMsg('ach-msg', 'تاریخ آج سے آگے نہیں ہو سکتی — کارنامے کی اصل تاریخ منتخب کریں۔', false); return; }
   if(!achFileName && !link){ showMsg('ach-msg', 'ثبوت ضروری ہے — دستاویز/تصویر اپ لوڈ کریں یا ثبوت کا لنک دیں۔', false); return; }
   const list = DB.get('achievements', []);
-  list.push({ email: u.email, name: u.name, cat, title, desc, date, evidence: achFileName, link, none: false, month: currentMonthKey(), on: todayStr() });
+  list.push({ email: u.email, name: u.name, cat, title, desc, date, evidence: achFileName, link, none: false, month: achMonthOf({ date }), on: todayStr(), ts: Date.now(), spotlightHidden: false });
   DB.set('achievements', list);
   updateUser(u.email, x => logActivity(x, 'علمی کارگذاری جمع کرائی (' + cat + '): «' + title + '»'));
-  showMsg('ach-msg', 'کارگذاری جمع ہو گئی ✓ — اس مہینے کی جمع مکمل ہو گئی۔ جزاک اللہ!', true);
+  showMsg('ach-msg', 'کارگذاری جمع ہو گئی ✓ — جزاک اللہ! یہ کارنامہ اس کی اپنی تاریخ کے ساتھ آپ کے ریکارڈ میں شامل ہو گیا۔', true);
   document.getElementById('a-title').value = '';
   document.getElementById('a-desc').value = '';
   document.getElementById('a-link').value = '';
@@ -13613,17 +13699,6 @@ function submitAchievement(){
   achFileName = '';
   const fn = document.getElementById('a-file'); if(fn) fn.value = '';
   document.getElementById('a-file-name').textContent = '';
-  renderAchievements();
-}
-function submitNoAchievement(){
-  if(previewGuard('ماہانہ کارگذاری جمع کرانا')) return;
-  const u = currentUser(); if(!u) return;
-  if(achSubmitted(u.email)){ showMsg('ach-msg', 'اس مہینے آپ کی جمع پہلے ہی مکمل ہے — اعلان کی ضرورت نہیں۔', false); return; }
-  const list = DB.get('achievements', []);
-  list.push({ email: u.email, name: u.name, cat: 'اعلان', title: 'اس مہینے کوئی نئی کارگذاری نہیں', desc: 'طالب علم کا اعلان: اس مہینے کوئی نئی علمی کارگذاری نہیں ہوئی۔', date: '', evidence: '', link: '', none: true, month: currentMonthKey(), on: todayStr() });
-  DB.set('achievements', list);
-  updateUser(u.email, x => logActivity(x, 'اعلان جمع کرایا: اس مہینے کوئی نئی کارگذاری نہیں'));
-  showMsg('ach-msg', 'اعلان جمع ہو گیا ✓ — اس مہینے کی جمع مکمل شمار ہوگی۔', true);
   renderAchievements();
 }
 function renderAchievements(){
@@ -13638,61 +13713,110 @@ function renderAchievements(){
     (a.link ? ' • <a href="' + escq(safeUrl(a.link)) + '" target="_blank" rel="noopener">ثبوت کا لنک</a>' : '') + '</p></div>').join('')
     : '<p class="small">ابھی کوئی کارگذاری جمع نہیں کرائی۔</p>';
 }
-/* ================= یاد دہانی مرکز (ایڈمن) + رپورٹ گیٹ ================= */
-function pendingAchievers(){
-  const done = new Set(achThisMonthAll().map(a => a.email));
-  return users().filter(u => u.status === 'approved' && !done.has(u.email));
+/* ================= خودکار اسپاٹ لائٹ — نیا کارنامہ چند گھنٹے سب کو (مفتی، 2026-11-03) =================
+   ہر نیا اصل کارنامہ جمع ہوتے ہی 6 گھنٹے کے لیے ہوم پر «🌟 نمایاں کارگذاری»
+   کارڈ میں سب لاگ ان طلبہ و انتظامیہ کو نظر آتا ہے — صرف نام، زمرہ، عنوان
+   اور کارنامے کی اپنی تاریخ (کوئی ای میل/ثبوت عوامی کارڈ پر نہیں)۔
+   ڈیٹا: سرور کا صاف شدہ خلاصہ (achSpotlight — صرف پچھلے 6 گھنٹے) + مقامی
+   ریکارڈز (طالب علم کے پاس صرف اپنے، ایڈمن کے پاس سب) — تازہ ترین پہلے،
+   زیادہ سے زیادہ 3۔ میعاد گزرتے ہی کارڈ خود ختم؛ کارنامہ ریکارڈ و ایڈمن
+   مناظر میں مستقل رہتا ہے۔ ایڈمن «چھپائیں» سے اسی اندراج کو فوراً ہٹا
+   سکتا ہے (spotlightHidden) — اصل کارنامہ کہیں متاثر نہیں ہوتا۔ */
+const SPOTLIGHT_HOURS = 6;
+const SPOTLIGHT_MAX = 3;
+function achSpotlightItems(nowMs){
+  const now = (typeof nowMs === 'number') ? nowMs : Date.now();
+  const cutoff = now - SPOTLIGHT_HOURS * 3600 * 1000;
+  const byId = {};
+  const add = a => {
+    if(!a || a.none || a.spotlightHidden) return;
+    const ts = Number(a.ts || 0);
+    if(!ts || ts < cutoff) return;
+    const id = a.id || a._id || ((a.email || '') + '|' + (a.title || '') + '|' + ts);
+    if(byId[id]) return;
+    byId[id] = { id, name: a.name || '', cat: a.cat || '', title: a.title || '', date: a.date || '', ts };
+  };
+  DB.get('achSpotlight', []).forEach(add);
+  DB.get('achievements', []).forEach(add);
+  return Object.values(byId).sort((x, y) => y.ts - x.ts).slice(0, SPOTLIGHT_MAX);
 }
-function achThisMonthAll(){ const mk = currentMonthKey(); return DB.get('achievements', []).filter(a => a.month === mk); }
-function achReminderText(u){
-  return 'السلام علیکم ' + u.name + '!\nیاد دہانی: اس مہینے کی آپ کی علمی کارگذاری «علمی مشغولیت» ایپ میں جمع کرانا بقایا ہے — آخری تاریخ مہینے کا آخری دن ہے۔\nاگر کوئی کارگذاری ہو تو ایپ میں «میری علمی کارگذاری» سے فوراً جمع کرائیں؛ نہ ہو تو «اس مہینے کوئی نئی کارگذاری نہیں» کا اعلان جمع کرا دیں — جمع کی تکمیل ہر صورت ضروری ہے۔\n— شعبہ علمی مشغولیت، مدرسہ ڈاٹ پی کے';
+function renderAchSpotlight(){
+  const el = document.getElementById('home-ach-spotlight'); if(!el) return;
+  const list = achSpotlightItems();
+  if(!list.length){ el.innerHTML = ''; return; }
+  el.innerHTML = '<div class="card" style="border:1px solid var(--c-gold-500);background:var(--c-gold-100)"><h3 style="margin:0 0 4px">🌟 نمایاں کارگذاری</h3>' +
+    '<p class="small" style="margin:0 0 4px">تازہ علمی کارنامے — مبارک ہو!</p>' +
+    list.map(s =>
+      '<div style="border-top:1px dashed var(--c-border);padding:6px 0">' +
+      '<span class="tag">' + esc(s.cat) + '</span> <b>' + esc(s.name) + '</b>' +
+      '<div style="margin-top:2px"><b>' + esc(s.title) + '</b>' + (s.date ? ' <span class="small">• کارنامے کی تاریخ: ' + esc(s.date) + '</span>' : '') + '</div>' +
+      (IS_ADMIN ? '<button class="btn sm ghost" data-id="' + escq(s.id) + '" onclick="hideAchSpotlight(this.getAttribute(\'data-id\'))">چھپائیں</button>' : '') +
+      '</div>').join('') + '</div>';
+}
+function hideAchSpotlight(id){
+  if(!IS_ADMIN || !id) return;
+  const list = DB.get('achievements', []);
+  const i = list.findIndex(a => a && (a.id === id || a._id === id));
+  if(i >= 0){
+    list[i] = Object.assign({}, list[i], { spotlightHidden: true });
+    DB.set('achievements', list);
+  } else if(window.__achSpotlightHide){
+    Promise.resolve(window.__achSpotlightHide(id)).catch(e => console.warn('spotlight hide failed:', e && e.message));
+  }
+  const snap = DB.get('achSpotlight', []).filter(s => s && (s.id || s._id) !== id);
+  DB.set('achSpotlight', snap);
+  renderAchSpotlight();
+}
+
+/* ================= کارگذاری براؤزر (ایڈمن) — مہینہ کارنامے کی اپنی تاریخ سے =================
+   سابقہ «یاد دہانی مرکز» کا پیچھا نظام ختم (مفتی، 2026-11-03): اب یہ حصہ صرف
+   مہینہ وار براؤزر ہے — مہینہ ہمیشہ کارنامے کی اپنی تاریخ (a.date) سے اخذ ہوتا ہے۔ */
+function achThisMonthAll(){ const mk = currentMonthKey(); return DB.get('achievements', []).filter(a => achMonthOf(a) === mk); }
+function achInMonthAll(mk){ return DB.get('achievements', []).filter(a => achMonthOf(a) === mk); }
+function achMonthKeyNum(mk){ const p = String(mk || '').split('-'); return (parseInt(p[0], 10) || 0) * 100 + (parseInt(p[1], 10) || 0); }
+function achAvailableMonths(){
+  const set = new Set([currentMonthKey()]);
+  DB.get('achievements', []).forEach(a => { const mk = achMonthOf(a); if(mk) set.add(mk); });
+  return Array.from(set).sort((x, y) => achMonthKeyNum(y) - achMonthKeyNum(x));
+}
+function achAdminCardHtml(a){
+  const u = users().find(x => x.email === a.email) || {};
+  return '<div class="card">' + (a.none ? '<span class="tag gold">اعلان</span>' : '<span class="tag">' + esc(a.cat || '') + '</span>') +
+    ' <b>' + esc(a.name || u.name || '') + '</b>' + (u.sample ? ' <span class="tag red">نمونہ ڈیٹا</span>' : '') +
+    ' <span class="small">(' + esc(a.email || '') + (u.degree ? ' — ' + esc(u.degree) : '') + (u.uni ? '، ' + esc(u.uni) : '') + ')</span>' +
+    '<br><b>' + esc(a.title || '') + '</b><br><span class="small">' + esc(a.desc || '') + '</span>' +
+    '<br><span class="small">' + (a.date ? 'کارنامے کی تاریخ: ' + esc(a.date) + ' • ' : '') + 'جمع کرائی: ' + esc(a.on || '') +
+    (achMonthOf(a) ? ' • مہینہ: ' + esc(chMonthLabel(achMonthOf(a))) : '') +
+    (a.evidence ? ' • ثبوت: ' + esc(a.evidence) : '') +
+    (a.link ? ' • <a href="' + escq(safeUrl(a.link)) + '" target="_blank" rel="noopener">ثبوت کا لنک</a>' : '') + '</span></div>';
 }
 function renderReminders(){
   const el = document.getElementById('admin-reminders'); if(!el) return;
-  const pend = pendingAchievers();
-  const totalApproved = users().filter(u => u.status === 'approved').length;
-  el.innerHTML = '<p class="small">اس مہینے جمع کر چکے: <b>' + urDigits(totalApproved - pend.length) + '</b> • بقایا: <b>' + urDigits(pend.length) + '</b></p>' +
-    (pend.length ? pend.map(u => {
-      const txt = achReminderText(u);
-      return '<div class="card"><b>' + esc(u.name) + '</b>' + (u.sample ? ' <span class="tag red">نمونہ ڈیٹا</span>' : '') +
-        '<br><span class="small">' + esc(u.degree) + ' — ' + esc(u.uni) + '</span><br>' +
-        contactBtnsHtml(u, { text: txt, subject: 'یاد دہانی: ماہانہ علمی کارگذاری جمع کرائیں — علمی مشغولیت', waLabel: '📱 واٹس ایپ یاد دہانی', mailLabel: '✉️ ای میل یاد دہانی', mailCls: 'btn sm goldb' }) +
-        ' <button class="btn sm" onclick="sendAchReminderNotif(\'' + u.email + '\')">🔔 ایپ اطلاع بھیجیں</button></div>';
-    }).join('') : '<p class="small">الحمدللہ — تمام طلبہ اس مہینے کی کارگذاری جمع کرا چکے ہیں۔</p>');
-}
-/* یاد دہانی مرکز سے انفرادی ایپ اطلاع — ایک ہی دن میں اسی طالب علم کو دُہری یاد دہانی نہیں جاتی */
-function sendAchReminderNotif(email){
-  const u = users().find(x => x.email === email); if(!u) return;
-  const title = '📌 یاد دہانی — ماہانہ علمی کارگذاری جمع کرائیں';
-  const already = DB.get('notifications', []).some(n => n.email === email && n.title === title && n.date === todayStr());
-  if(already){ showMsg('rem-msg', u.name + ' کو آج کی کارگذاری یاد دہانی پہلے جا چکی ہے — دوبارہ نہیں بھیجی گئی۔', false); return; }
-  pushNotification(email, title,
-    'السلام علیکم ' + u.name + '! یاد دہانی: اس مہینے کی آپ کی علمی کارگذاری «علمی مشغولیت» ایپ میں جمع کرانا بقایا ہے — آخری تاریخ مہینے کا آخری دن ہے۔ اگر کوئی کارگذاری ہو تو «میری علمی کارگذاری» سے فوراً جمع کرائیں؛ نہ ہو تو «اس مہینے کوئی نئی کارگذاری نہیں» کا اعلان جمع کرا دیں۔');
-  updateUser(email, x => logActivity(x, 'انتظامیہ نے کارگذاری کی ایپ یاد دہانی بھیجی'));
-  showMsg('rem-msg', u.name + ' کو ایپ اطلاع بھیج دی گئی — ان کی «اطلاعات» (گھنٹی) میں نظر آئے گی۔', true);
-}
-function genGroupReminderText(){
-  const pend = pendingAchievers();
-  document.getElementById('rem-text').value =
-    '📢 یاد دہانی — ماہانہ علمی کارگذاری\nتمام طلبہ و طالبات متوجہ ہوں: اس مہینے کی علمی کارگذاری جمع کرانے کی آخری تاریخ مہینے کا آخری دن ہے۔' +
-    (pend.length ? '\nابھی ' + urDigits(pend.length) + ' طلبہ کی کارگذاری بقایا ہے۔' : '\nالحمدللہ، تمام طلبہ جمع کرا چکے ہیں۔') +
-    '\nبراہِ کرم «علمی مشغولیت» ایپ میں «میری علمی کارگذاری» سے فوراً جمع کرائیں — کارگذاری نہ ہو تو «اس مہینے کوئی نئی کارگذاری نہیں» کا اعلان جمع کرا دیں۔ جمع ہر صورت لازمی ہے۔\n— شعبہ علمی مشغولیت، مدرسہ ڈاٹ پی کے';
-  showMsg('rem-msg', 'گروپ یاد دہانی تیار ہے — نیچے بڑے بٹن «💬 واٹس ایپ گروپ کھولیں» سے ایک ہی ٹیپ میں گروپ تک بھیجیں (متن خود کاپی ہو جائے گا)۔', true);
-}
-function copyReminderText(){
-  const ta = document.getElementById('rem-text');
-  if(!ta.value.trim()){ showMsg('rem-msg', 'پہلے گروپ یاد دہانی کا متن تیار کریں۔', false); return; }
-  copyTextRobust(ta.value, () => showMsg('rem-msg', 'متن کاپی ہو گیا — اب واٹس ایپ گروپ میں پیسٹ کر دیں۔', true));
+  const sel = document.getElementById('ach-month');
+  const months = achAvailableMonths();
+  const prev = sel ? sel.value : '';
+  if(sel){
+    sel.innerHTML = '<option value="all">تمام کارنامے — تازہ ترین پہلے</option>' +
+      months.map(mk => '<option value="' + mk + '">' + esc(chMonthLabel(mk)) + '</option>').join('');
+    sel.value = (prev === 'all' || months.indexOf(prev) >= 0) ? prev : 'all';
+  }
+  const mk = sel ? sel.value : 'all';
+  const byNewest = (a, b) => (Number(b.ts || 0) - Number(a.ts || 0)) ||
+    String(b.date || b.on || '').localeCompare(String(a.date || a.on || ''));
+  const list = (mk === 'all' ? DB.get('achievements', []).slice() : achInMonthAll(mk)).sort(byNewest);
+  const real = list.filter(a => !a.none);
+  el.innerHTML = '<p class="small">' + (mk === 'all' ? 'تمام مہینے' : esc(chMonthLabel(mk))) + ' — کل اندراجات: <b>' + urDigits(list.length) + '</b> • کارنامے: <b>' + urDigits(real.length) + '</b> • شریک طلبہ: <b>' + urDigits(new Set(list.map(a => a.email)).size) + '</b><br>مہینہ ہر کارنامے کی <b>اپنی تاریخ</b> سے طے ہوتا ہے — کوئی ماہانہ جمع یا یاد دہانی نہیں۔</p>' +
+    (list.length ? list.map(achAdminCardHtml).join('') : '<p class="small">اس مہینے کی تاریخ والا کوئی اندراج نہیں۔</p>');
 }
 function renderSubStatus(){
   const el = document.getElementById('admin-sub-status'); if(!el) return;
-  const approved = users().filter(u => u.status === 'approved');
-  const pend = pendingAchievers();
-  el.innerHTML = '<div class="card" style="background:var(--c-gold-100);border-color:var(--c-gold-500)"><h3 style="margin-top:0">📥 جمع کی صورتحال (اس مہینہ)</h3>' +
-    '<p style="margin:0">کل طلبہ: <b>' + urDigits(approved.length) + '</b> • جمع کر چکے: <b>' + urDigits(approved.length - pend.length) + '</b> • بقایا: <b>' + urDigits(pend.length) + '</b></p>' +
-    (pend.length
-      ? '<p class="small" style="margin:4px 0 0">بقایا طلبہ: ' + pend.map(u => esc(u.name)).join('، ') + ' — یاد دہانی کے لیے نیچے «یاد دہانی مرکز» دیکھیں۔</p>'
-      : '<p class="small" style="margin:4px 0 0">تمام طلبہ جمع کرا چکے ہیں ✓</p>') + '</div>';
+  const all = DB.get('achievements', []);
+  const real = all.filter(a => !a.none);
+  const monthReal = achThisMonthAll().filter(a => !a.none);
+  const studentsWith = new Set(real.map(a => a.email)).size;
+  el.innerHTML = '<div class="card" style="background:var(--c-gold-100);border-color:var(--c-gold-500)"><h3 style="margin-top:0">📥 کارگذاری کی صورتحال</h3>' +
+    '<p style="margin:0">کل درج کارنامے: <b>' + urDigits(real.length) + '</b> • اس مہینے کی تاریخ والے کارنامے: <b>' + urDigits(monthReal.length) + '</b> • کم از کم ایک کارنامہ رکھنے والے طلبہ: <b>' + urDigits(studentsWith) + '</b></p>' +
+    '<p class="small" style="margin:4px 0 0">ہر کارنامہ اس کی اپنی تاریخ کے مہینے میں شمار ہوتا ہے — کوئی ماہانہ جمع نہیں۔ مہینہ وار تفصیل کے لیے «کارگذاری براؤزر» دیکھیں۔</p></div>';
 }
 
 /* ================= اطلاعات مرکز — واٹس ایپ تیار پیغام + ایپ اطلاع ================= */
@@ -15440,6 +15564,6 @@ window.helpChatSend = function(){
 <script src="foreign-data.js?v=20261031a"></script>
 <script src="admissions-news.js?v=20261031a"></script>
 <script src="admissions.js?v=20261031i"></script>
-<script type="module" src="api-bridge.js?v=20261103a"></script>
+<script type="module" src="api-bridge.js?v=20261103b"></script>
 </body>
 </html>
