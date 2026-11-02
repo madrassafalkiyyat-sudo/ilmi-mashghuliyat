@@ -6028,7 +6028,50 @@ function showZoomCard(f){
   document.getElementById('zoom-card-img').src = window.ZOOM_CARD_DATA[f];
   const dl = document.getElementById('zoom-card-dl');
   dl.href = window.ZOOM_CARD_DATA[f]; dl.setAttribute('download', f);
+  dl.dataset.cardFile = f; dl.onclick = downloadZoomCardPng;
   ov.style.display = 'block';
+}
+/* ڈاؤن لوڈ PNG صورت میں (2026-11-02): ذخیرہ شدہ کارڈ WebP ہی رہتا ہے (ایپ ہلکی
+   رہے)، مگر فون/زوم WebP کو «ویب فائل» سمجھ کر پروفائل تصویر قبول نہیں کرتے تھے —
+   اس لیے ڈاؤن لوڈ کے وقت canvas سے PNG بنا کر دیتے ہیں۔ تبدیلی ناکام ہو تو
+   پرانا رویہ (براہِ راست WebP ڈاؤن لوڈ) خودکار برقرار رہتا ہے۔ */
+function downloadZoomCardPng(ev){
+  if(ev) ev.preventDefault();
+  const dl = document.getElementById('zoom-card-dl'); if(!dl) return;
+  const f = dl.dataset.cardFile;
+  const data = (f && window.ZOOM_CARD_DATA) ? window.ZOOM_CARD_DATA[f] : null;
+  if(!data) return;
+  const oldLabel = dl.textContent;
+  dl.textContent = '⏳ تیار ہو رہا ہے…'; dl.style.pointerEvents = 'none';
+  const done = function(){ dl.textContent = oldLabel; dl.style.pointerEvents = ''; };
+  const fallback = function(){
+    const a = document.createElement('a');
+    a.href = data; a.setAttribute('download', f || 'zoom-card.webp');
+    document.body.appendChild(a); a.click(); a.remove(); done();
+  };
+  try {
+    const img = new Image();
+    img.onload = function(){
+      try {
+        const c = document.createElement('canvas');
+        c.width = img.naturalWidth || 1080; c.height = img.naturalHeight || 1080;
+        const ctx = c.getContext('2d'); if(!ctx){ fallback(); return; }
+        ctx.drawImage(img, 0, 0, c.width, c.height);
+        if(!c.toBlob){ fallback(); return; }
+        c.toBlob(function(blob){
+          if(!blob){ fallback(); return; }
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url; a.setAttribute('download', 'zoom-card.png');
+          document.body.appendChild(a); a.click(); a.remove();
+          setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+          done();
+        }, 'image/png');
+      } catch(e){ fallback(); }
+    };
+    img.onerror = function(){ fallback(); };
+    img.src = data;
+  } catch(e){ fallback(); }
 }
 function closeZoomCard(){
   const ov = document.getElementById('zoom-card-overlay'); if(ov) ov.style.display = 'none';
