@@ -6564,7 +6564,13 @@ function renderAdminCourseStudents(){
    «Save as PDF»۔ absPrint کی طرح صرف #print-report بھرتا ہے، کسی اور
    فیچر کی پرنٹ حالت نہیں چھیڑتا۔ */
 function printCourseStudents(){
-  const rows = courseStudentRows() || [];
+  /* مفتی کی ہدایت 2026-11-02: ان کا اپنا آزمائشی اکاؤنٹ (محمد حسن —
+     muftihassan2026@gmail.com) ریکارڈ اور اسکرین فہرست میں بدستور رہے گا،
+     مگر PDF فائل میں شامل نہیں ہوگا۔ اخراج صرف یہیں، پرنٹ پرت پر ہے؛
+     courseStudentRows (اسکرین) کو ہاتھ نہیں لگایا گیا۔ */
+  const rows = (courseStudentRows() || []).filter(function(r){
+    return String(r.email || '').toLowerCase() !== 'muftihassan2026@gmail.com';
+  });
   let h = '<div class="rep-head"><img src="assets/logo.png" onerror="this.onerror=null;this.src=window.__LOGO" alt="مدرسہ ڈاٹ پی کے">' +
     '<div><h1>ادارہ سازی کورس — رجسٹرڈ طلبہ کی فہرست</h1>' +
     '<p style="margin:2px 0 0">مدرسہ ڈاٹ پی کے — شعبہ علمی مشغولیت (یونیورسٹی سٹڈیز) • تاریخ: ' + esc(todayStr()) + ' • کل تعداد: <b>' + urDigits(rows.length) + '</b></p></div></div>';
