@@ -5987,28 +5987,28 @@ function renderCourseSchedule(){
    sha256 کے ابتدائی 14 hex حروف ہیں — اندازہ نہیں لگایا جا سکتا۔ نقشہ صرف
    uid → فائل ہے؛ بٹن و overlay صرف اسی طالب علم کو اس کا اپنا کارڈ دیتے ہیں۔ */
 const ZOOM_CARDS = {
-  'RciaoSoChbRN2faVQGSygapNml23': 'c-352915e17e30d2.png',
-  'GZa1ldDxgQhMJjzstimKi1MgTCi1': 'c-6778897c6ce665.png',
-  'EMLfiJCbrtdvpqEtRwP0JcIo5343': 'c-76ee89962c7baa.png',
-  'op2kVUDmj6fIzZRJuQEFLDEOF5s1': 'c-0b2bd6eb5908d2.png',
-  'tshKFs69ZPfZCHnkfM4mzb7Zjg03': 'c-d996e69b0fe327.png',
-  'u_mvsbpi1x': 'c-084b3764e755ad.png',
-  'uSi1xNTfJISGVSmUBBq5lYtbDEv1': 'c-1f203725252b6b.png',
-  'rmaDHl0gSdfBxW29ou6qN4GRXxn1': 'c-db414c395115f6.png',
-  'NKI7sJ38RpgNLjVgT7CgUs3xJ8D2': 'c-03baed236a3a2f.png',
-  'uXOjryJAQMOjogasGEosta003Sg2': 'c-12754546c3ae53.png',
-  'gWCZZBD6VuVzmphRqGogoi1TMd22': 'c-d012d4125db319.png',
-  'FH1GDuZseWYc6IKwx0NfN7a21Pr1': 'c-96c1e447bdd0de.png',
-  'npJgGx7DLBWo9G3hYUEymvxcROq1': 'c-f481fb2845b08e.png',
-  'A9rLEoOOjThsiBcnwJG9O3WEjLl1': 'c-ff9ca0c3196938.png',
-  'tpTugzNNZvdZl1pO50QiGY5M9193': 'c-6d1535effb73a8.png',
-  'urmz8PG9USdWyg9STFyZbfCrlQF3': 'c-56b39cba5d81bd.png'
+  'RciaoSoChbRN2faVQGSygapNml23': 'c-352915e17e30d2.webp',
+  'GZa1ldDxgQhMJjzstimKi1MgTCi1': 'c-6778897c6ce665.webp',
+  'EMLfiJCbrtdvpqEtRwP0JcIo5343': 'c-76ee89962c7baa.webp',
+  'op2kVUDmj6fIzZRJuQEFLDEOF5s1': 'c-0b2bd6eb5908d2.webp',
+  'tshKFs69ZPfZCHnkfM4mzb7Zjg03': 'c-d996e69b0fe327.webp',
+  'u_mvsbpi1x': 'c-084b3764e755ad.webp',
+  'uSi1xNTfJISGVSmUBBq5lYtbDEv1': 'c-1f203725252b6b.webp',
+  'rmaDHl0gSdfBxW29ou6qN4GRXxn1': 'c-db414c395115f6.webp',
+  'NKI7sJ38RpgNLjVgT7CgUs3xJ8D2': 'c-03baed236a3a2f.webp',
+  'uXOjryJAQMOjogasGEosta003Sg2': 'c-12754546c3ae53.webp',
+  'gWCZZBD6VuVzmphRqGogoi1TMd22': 'c-d012d4125db319.webp',
+  'FH1GDuZseWYc6IKwx0NfN7a21Pr1': 'c-96c1e447bdd0de.webp',
+  'npJgGx7DLBWo9G3hYUEymvxcROq1': 'c-f481fb2845b08e.webp',
+  'A9rLEoOOjThsiBcnwJG9O3WEjLl1': 'c-ff9ca0c3196938.webp',
+  'tpTugzNNZvdZl1pO50QiGY5M9193': 'c-6d1535effb73a8.webp',
+  'urmz8PG9USdWyg9STFyZbfCrlQF3': 'c-56b39cba5d81bd.webp'
 };
 function myZoomCardFile(){
   const u = currentUser(); if(!u || !u.courseReg) return null;
   return ZOOM_CARDS[u.uid] || ZOOM_CARDS[u.id] || null;
 }
-/* کارڈ ڈیٹا (cards-data-1.js + cards-data-2.js) سست لوڈ ہوتا ہے — صرف پہلے
+/* کارڈ ڈیٹا (cards-data.js) سست لوڈ ہوتا ہے — صرف پہلے
    کلک پر؛ اس سے پہلے ایپ کا وزن نہیں بڑھتا۔ لوڈ ہو چکا ہو تو فوراً کھلتا ہے۔ */
 let zoomLoadStarted = false;
 function openZoomCard(){
@@ -6016,12 +6016,10 @@ function openZoomCard(){
   if(window.ZOOM_CARD_DATA && window.ZOOM_CARD_DATA[f]){ showZoomCard(f); return; }
   if(zoomLoadStarted) return; // لوڈ جاری ہے
   zoomLoadStarted = true;
-  ['cards-data-1.js', 'cards-data-2.js'].forEach(function(src, i){
-    const sc = document.createElement('script');
-    sc.id = 'zoom-cards-script-' + (i + 1); sc.src = src;
-    sc.onload = function(){ if(window.ZOOM_CARD_DATA && window.ZOOM_CARD_DATA[f]) showZoomCard(f); };
-    document.head.appendChild(sc);
-  });
+  const sc = document.createElement('script');
+  sc.id = 'zoom-cards-script'; sc.src = 'cards-data.js';
+  sc.onload = function(){ if(window.ZOOM_CARD_DATA && window.ZOOM_CARD_DATA[f]) showZoomCard(f); };
+  document.head.appendChild(sc);
 }
 function showZoomCard(f){
   const ov = document.getElementById('zoom-card-overlay'); if(!ov) return;
