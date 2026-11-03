@@ -309,6 +309,12 @@ window.__courseApi = {
   async grade(submissionId, marks, feedback) {
     return api('/api/course/admin/grade', { method: 'POST', body: { submissionId, marks, feedback } });
   },
+  async manualSubmission(assignmentId, email) {
+    return api('/api/course/admin/submissions/manual', { method: 'POST', body: { assignmentId, email } });
+  },
+  async removeSubmission(submissionId) {
+    return api('/api/course/admin/submissions/remove', { method: 'POST', body: { submissionId } });
+  },
   async seed() {
     return api('/api/course/admin/seed', { method: 'POST', body: {} });
   },

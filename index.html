@@ -2051,7 +2051,7 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
   <input id="ca-release" type="datetime-local">
   <label>آخری تاریخ (ڈیڈ لائن)</label>
   <input id="ca-deadline" type="datetime-local">
-  <label>کل نمبر (گوگل فارم پر 0 رکھیں)</label>
+  <label>کل نمبر (گوگل فارم: 10 — سلائیڈ سرگرمی: 20)</label>
   <input id="ca-marks" type="number" min="0" max="100" value="20" style="width:120px">
   <div style="margin-top:10px">
     <button class="btn goldb" onclick="saveCourseAssignment()">💾 مشق محفوظ کریں</button>
@@ -6453,13 +6453,46 @@ function renderCourseAssignments(){
     .slice().sort((a, b) => (a.releaseAtMs || 0) - (b.releaseAtMs || 0));
   const subs = DB.get('courseSubmissions', []) || [];
   const mySub = id => subs.find(s => s.assignmentId === id && s.email === u.email) || null;
-  aEl.innerHTML = '<h3 style="margin:14px 0 6px">✍️ مشقیں</h3>' + (asgs.length ? asgs.map(a => {
+  /* «میرے نمبرات» خلاصہ — جاری شدہ تمام مشقوں پر: حالت + نمبر؛ کُل صرف
+     نمبر لگی مشقوں کا، تاکہ فیصد منصفانہ رہے؛ درجہ (گریڈ) پہلی نمبر لگی
+     مشق سے خود بنتا ہے۔ حاضری پوائنٹس اوپر والے کارڈ میں الگ رہتے ہیں۔ */
+  let summaryHtml = '';
+  if(asgs.length){
+    let got = 0, tot = 0, gradedN = 0;
+    const sRows = asgs.map(a => {
+      const s = mySub(a.id);
+      const graded = !!(s && typeof s.marks === 'number');
+      if(graded){ got += s.marks; tot += (a.maxMarks || 0); gradedN++; }
+      return '<tr><td>' + esc(a.title || '') + '</td><td style="text-align:center">' + (s ? 'جمع شدہ' : 'باقی') + '</td><td style="text-align:center">' + (graded ? '<b>' + urDigits(s.marks) + '</b> / ' + urDigits(a.maxMarks || 0) : '—') + '</td></tr>';
+    }).join('');
+    const totLine = gradedN
+      ? (() => { const pct = tot ? Math.round(got / tot * 100) : 0;
+          const band = pct >= 90 ? 'ممتاز (A+)' : pct >= 80 ? 'جید جداً (A)' : pct >= 70 ? 'جید (B)' : pct >= 60 ? 'متوسط (C)' : pct >= 50 ? 'کامیاب (D)' : 'ناکام (F)';
+          return '<p style="margin:8px 0 0">حاصل کردہ نمبر: <b>' + urDigits(got) + '</b> / ' + urDigits(tot) + ' • فیصد: <b>' + urDigits(pct) + '٪</b> • درجہ: <span class="tag gold">' + band + '</span></p>'; })()
+      : '<p class="small" style="margin:8px 0 0">ابھی کسی مشق کے نمبر نہیں لگے — نمبر لگتے ہی یہاں حاصل کردہ نمبر، فیصد اور درجہ نظر آئے گا۔</p>';
+    summaryHtml = '<div class="card" style="margin-top:14px"><h3 style="margin:0 0 6px">📊 میرے نمبرات</h3><table class="rep-table"><tr><th>مشق</th><th>حالت</th><th>نمبر</th></tr>' + sRows + '</table>' + totLine + '</div>';
+  }
+  aEl.innerHTML = summaryHtml + '<h3 style="margin:14px 0 6px">✍️ مشقیں</h3>' + (asgs.length ? asgs.map(a => {
     const sub = mySub(a.id);
     const pastDue = now > (a.deadlineMs || Infinity);
     let body = '';
     if(a.type === 'google-form'){
-      body = '<a class="btn goldb" target="_blank" rel="noopener" href="' + esc(a.formUrl || '') + '">📝 گوگل فارم کھولیں ←</a>' +
-        '<p class="small" style="margin:6px 0 0">یہ مشق گوگل فارم پر مکمل ہوتی ہے — آپ کے جوابات براہِ راست انتظامیہ کے ریکارڈ (فارم شیٹ) میں جاتے ہیں، اس لیے اس کے نمبر ایپ میں نہیں لگتے۔</p>';
+      const openBtn = '<a class="btn goldb" target="_blank" rel="noopener" href="' + esc(a.formUrl || '') + '">📝 گوگل فارم کھولیں ←</a>';
+      const note = '<p class="small" style="margin:6px 0 0">فارم بھرنے کے بعد نیچے بٹن سے ایپ میں اپنا اندراج ضرور کریں — انتظامیہ فارم شیٹ سے جوابات ملا کر یہیں نمبر دے گی۔ اصل جوابات فارم شیٹ میں رہتے ہیں؛ ایپ میں آپ کا اندراج، نمبر اور رائے نظر آئے گی۔</p>';
+      const claimDate = (sub && sub.submittedAt) ? '<p class="small" style="margin:6px 0 0">اندراج کی تاریخ: ' + esc(fmtMs(Date.parse(sub.submittedAt))) + '</p>' : '';
+      const claimNote = (sub && sub.text) ? '<p class="small" style="margin:4px 0 0">آپ کا نوٹ: ' + esc(sub.text) + '</p>' : '';
+      if(sub && typeof sub.marks === 'number'){
+        body = openBtn + note +
+          '<p style="margin:6px 0 0"><span class="tag gold">🏅 نمبر: ' + urDigits(sub.marks) + (a.maxMarks ? ' / ' + urDigits(a.maxMarks) : '') + '</span>' + (sub.late ? ' <span class="tag red">تاخیر سے جمع</span>' : '') + '</p>' +
+          (sub.feedback ? '<p style="margin:6px 0 0">💬 <b>استاد کی رائے:</b> ' + esc(sub.feedback) + '</p>' : '') + claimDate + claimNote;
+      } else if(sub){
+        body = openBtn + note +
+          '<p style="margin:6px 0 0"><span class="tag">✓ فارم جمع شدہ درج ہے — نمبر باقی</span>' + (sub.late ? ' <span class="tag red">تاخیر سے جمع</span>' : '') + '</p>' + claimDate + claimNote;
+      } else {
+        body = openBtn + note +
+          (pastDue ? '<p class="small" style="margin:6px 0 0">⏰ ڈیڈ لائن گزر گئی — اب اندراج پر «تاخیر» لگے گی: نمبر مکمل ملیں گے مگر پوائنٹس نصف شمار ہوں گے۔</p>' : '') +
+          '<div style="margin-top:8px"><button class="btn" onclick="claimFormAssignment(\'' + a.id + '\')">✅ میں نے فارم جمع کرا دیا ہے</button></div>';
+      }
     } else if(sub && typeof sub.marks === 'number'){
       body = '<p style="margin:6px 0 0"><span class="tag gold">🏅 نمبر: ' + urDigits(sub.marks) + (a.maxMarks ? ' / ' + urDigits(a.maxMarks) : '') + '</span>' + (sub.late ? ' <span class="tag red">تاخیر سے جمع</span>' : '') + '</p>' +
         (sub.feedback ? '<p style="margin:6px 0 0">💬 <b>استاد کی رائے:</b> ' + esc(sub.feedback) + '</p>' : '') +
@@ -6514,6 +6547,28 @@ async function submitCourseAssignment(id){
     renderCourseAssignments();
   }catch(e){
     showMsg('course-asg-msg', (e && e.message) || 'جمع نہ ہو سکی — دوبارہ کوشش کریں۔', false);
+  }
+}
+/* گوگل فارم مشق کا اندراج (دعویٰ): جوابات فارم شیٹ میں رہتے ہیں؛ طالب علم
+   یہاں صرف یہ درج کرتا ہے کہ اس نے فارم جمع کرا دیا ہے — انتظامیہ شیٹ سے
+   ملا کر نمبر دے گی اور وہ یہیں نظر آئیں گے (مفتی 2026-11-03)۔ */
+async function claimFormAssignment(id){
+  if(previewGuard('فارم اندراج')) return;
+  const u = currentUser(); if(!u) return;
+  if(!confirm('کیا آپ نے یہ گوگل فارم کھول کر اپنے جوابات جمع کرا دیے ہیں؟ اندراج کے بعد انتظامیہ فارم شیٹ سے آپ کے جوابات ملا کر نمبر دے گی۔')) return;
+  if(!window.__courseApi){ showMsg('course-asg-msg', 'رابطہ اس وقت دستیاب نہیں — کچھ دیر بعد دوبارہ کوشش کریں۔', false); return; }
+  showMsg('course-asg-msg', 'اندراج ہو رہا ہے…', true);
+  try{
+    const r = await window.__courseApi.submit(id, '', '');
+    showMsg('course-asg-msg', r.late ? 'فارم کا اندراج درج ہو گیا (تاخیر سے — نمبر مکمل ملیں گے مگر پوائنٹس نصف شمار ہوں گے)۔ نمبر یہیں «میرے نمبرات» میں نظر آئیں گے۔' : 'فارم کا اندراج درج ہو گیا — انتظامیہ جوابات ملا کر نمبر دے گی، نمبر لگتے ہی اطلاع ملے گی۔', true);
+    const subs = (DB.get('courseSubmissions', []) || []).slice();
+    const ix = subs.findIndex(s => s.assignmentId === id && s.email === u.email);
+    const doc = { id: id + ':' + u.email, assignmentId: id, email: u.email, name: u.name, text: '', link: '', late: !!r.late, submittedAt: new Date().toISOString(), marks: ix >= 0 ? subs[ix].marks : null, feedback: ix >= 0 ? (subs[ix].feedback || '') : '', formClaim: true, source: 'student' };
+    if(ix >= 0) subs[ix] = doc; else subs.push(doc);
+    CACHE.courseSubmissions = subs;
+    renderCourseAssignments();
+  }catch(e){
+    showMsg('course-asg-msg', (e && e.message) || 'اندراج نہ ہو سکا — دوبارہ کوشش کریں۔', false);
   }
 }
 /* ---------- ایڈمن: ادارہ سازی کلاس روم ---------- */
@@ -6767,8 +6822,8 @@ async function saveCourseAssignment(){
 function fillGradeSelect(){
   const sel = document.getElementById('cg-asg-select'); if(!sel) return;
   const prev = sel.value;
-  const asgs = (DB.get('courseAssignments', []) || []).filter(a => a.type === 'in-app');
-  sel.innerHTML = asgs.length ? asgs.map(a => '<option value="' + escq(a.id) + '">' + esc(a.title || '') + '</option>').join('') : '<option value="">کوئی ایپ مشق نہیں</option>';
+  const asgs = (DB.get('courseAssignments', []) || []).slice().sort((a, b) => (a.releaseAtMs || 0) - (b.releaseAtMs || 0));
+  sel.innerHTML = asgs.length ? asgs.map(a => '<option value="' + escq(a.id) + '">' + esc(a.title || '') + (a.type === 'google-form' ? ' (گوگل فارم)' : ' (ایپ مشق)') + '</option>').join('') : '<option value="">کوئی مشق نہیں</option>';
   if(prev && asgs.some(a => a.id === prev)) sel.value = prev;
 }
 function renderAdminCourseSubs(){
@@ -6777,18 +6832,68 @@ function renderAdminCourseSubs(){
   const asgId = sel ? sel.value : '';
   const asg = (DB.get('courseAssignments', []) || []).find(a => a.id === asgId) || {};
   CC_SUBS = (DB.get('courseSubmissions', []) || []).filter(s => s.assignmentId === asgId);
-  el.innerHTML = CC_SUBS.length ? CC_SUBS.map((s, i) =>
+  const isForm = asg.type === 'google-form';
+  let head = '';
+  if(isForm && asg.formUrl){
+    head = '<div class="card" style="margin-bottom:8px"><a class="btn sm goldb" target="_blank" rel="noopener" href="' + esc(String(asg.formUrl).replace('/viewform', '/edit#responses')) + '">📋 فارم کے جوابات (شیٹ) کھولیں ←</a>' +
+      '<p class="small" style="margin:6px 0 0">نام ملا کر جوابات دیکھیں اور درست جواب کے مطابق نمبر دیں — جواب کنجی ہمارے ریکارڈ میں موجود ہے۔</p></div>';
+  }
+  const cards = CC_SUBS.length ? CC_SUBS.map((s, i) =>
     '<div class="card" style="margin-bottom:8px"><b>' + esc(s.name || '') + '</b> <span class="small">(' + esc(s.email || '') + ')</span>' +
+    ' ' + (s.source === 'manual' ? '<span class="tag gold">مینول اندراج</span>' : '<span class="tag">طالب علم کا اندراج</span>') +
     (s.late ? ' <span class="tag red">تاخیر سے</span>' : '') +
     '<br><span class="small">جمع: ' + esc(String(s.submittedAt || '').slice(0, 16).replace('T', ' ')) + '</span>' +
-    '<p style="margin:6px 0;white-space:pre-wrap">' + esc(s.text || '') + '</p>' +
+    '<p style="margin:6px 0;white-space:pre-wrap">' + (s.text ? esc(s.text) : ((isForm || s.formClaim) ? '(جوابات گوگل فارم شیٹ میں ہیں)' : (s.source === 'manual' ? '(جواب ایپ سے باہر موصول ہوا — مینول اندراج)' : ''))) + '</p>' +
     (s.link ? '<p style="margin:0 0 6px"><a target="_blank" rel="noopener" href="' + esc(safeUrl(s.link)) + '">معاون لنک ←</a></p>' : '') +
     '<label>نمبر (کل ' + urDigits(asg.maxMarks || 0) + ')</label>' +
     '<input id="cg-marks-' + i + '" type="number" min="0" max="' + (asg.maxMarks || 100) + '" value="' + (typeof s.marks === 'number' ? s.marks : '') + '" style="width:110px">' +
     '<label>رائے (اختیاری)</label>' +
     '<input id="cg-fb-' + i + '" type="text" value="' + escq(s.feedback || '') + '">' +
-    '<button class="btn sm goldb" onclick="gradeCourseSub(' + i + ')">' + (typeof s.marks === 'number' ? 'نمبر بدلیں' : '🏅 نمبر لگائیں') + '</button></div>'
+    '<button class="btn sm goldb" onclick="gradeCourseSub(' + i + ')">' + (typeof s.marks === 'number' ? 'نمبر بدلیں' : '🏅 نمبر لگائیں') + '</button>' +
+    (typeof s.marks === 'number' ? '' : ' <button class="btn sm ghost" onclick="removeCourseSub(' + i + ')">اندراج حذف کریں</button>') + '</div>'
   ).join('') : '<p class="small">اس مشق میں ابھی کوئی جمع شدہ جواب نہیں۔</p>';
+  /* مینول اندراج: جن رجسٹرڈ طلبہ کا اس مشق میں کوئی اندراج نہیں (فہرست
+     سرور گریڈ بک سے — یہی مستند رجسٹرڈ فہرست ہے)۔ */
+  let manual = '';
+  const gb = (DB.get('courseGradebook', []) || [])[0];
+  if(asgId && gb && gb.rows){
+    const have = new Set(CC_SUBS.map(s => s.email));
+    const missing = gb.rows.filter(r => !have.has(r.email));
+    manual = '<div class="card" style="margin-top:10px"><h4 style="margin:0 0 6px">➕ مینول اندراج</h4>' +
+      '<p class="small" style="margin:0 0 8px">جس طالب علم کے جوابات فارم شیٹ میں موجود ہوں مگر اس نے ایپ میں اندراج نہ کیا ہو، اس کا اندراج یہاں سے بنائیں — پھر اوپر اسی کے کارڈ سے نمبر لگائیں۔</p>' +
+      (missing.length
+        ? '<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><select id="cg-manual-email" style="flex:1;min-width:200px">' + missing.map(r => '<option value="' + escq(r.email) + '">' + esc(r.name || r.email) + ' (' + esc(r.email) + ')</option>').join('') + '</select>' +
+          '<button class="btn sm goldb" onclick="manualCourseSub()">➕ مینول اندراج کریں</button></div>'
+        : '<p class="small" style="margin:0">تمام رجسٹرڈ طلبہ کا اندراج اس مشق میں موجود ہے۔</p>') + '</div>';
+  }
+  el.innerHTML = head + cards + manual;
+}
+async function manualCourseSub(){
+  const sel = document.getElementById('cg-asg-select');
+  const emSel = document.getElementById('cg-manual-email');
+  if(!sel || !emSel || !window.__courseApi) return;
+  if(!emSel.value){ showMsg('cc-msg', 'پہلے طالب علم منتخب کریں۔', false); return; }
+  showMsg('cc-msg', 'مینول اندراج بن رہا ہے…', true);
+  try{
+    const r = await window.__courseApi.manualSubmission(sel.value, emSel.value);
+    const subs = (DB.get('courseSubmissions', []) || []).slice();
+    if(r && r.doc) subs.push(r.doc);
+    CACHE.courseSubmissions = subs;
+    showMsg('cc-msg', 'مینول اندراج بن گیا — اب اوپر اسی طالب علم کے کارڈ سے نمبر لگائیں۔', true);
+    renderAdminCourseSubs();
+    renderAdminCourseAsgList();
+  }catch(e){ showMsg('cc-msg', (e && e.message) || 'اندراج نہ بن سکا۔', false); }
+}
+async function removeCourseSub(i){
+  const s = CC_SUBS[i]; if(!s || !window.__courseApi) return;
+  if(!confirm('یہ اندراج حذف کیا جائے؟ یہ عمل واپس نہیں ہو سکتا۔')) return;
+  try{
+    await window.__courseApi.removeSubmission(s.id);
+    CACHE.courseSubmissions = (DB.get('courseSubmissions', []) || []).filter(x => x.id !== s.id);
+    showMsg('cc-msg', 'اندراج حذف ہو گیا۔', true);
+    renderAdminCourseSubs();
+    renderAdminCourseAsgList();
+  }catch(e){ showMsg('cc-msg', (e && e.message) || 'حذف نہ ہو سکا۔', false); }
 }
 async function gradeCourseSub(i){
   const s = CC_SUBS[i]; if(!s || !window.__courseApi) return;
@@ -6811,7 +6916,7 @@ function renderAdminGradebook(){
   const gb = (DB.get('courseGradebook', []) || [])[0];
   if(!gb || !gb.rows || !gb.rows.length){ el.innerHTML = '<p class="small">ابھی کوئی کورس رجسٹرڈ طالب علم نہیں — رجسٹریشن ہوتے ہی گریڈ بک یہاں بن جائے گی۔</p>'; return; }
   const head = '<tr><th>طالب علم</th>' + (gb.sessions || []).map((s, i) => '<th>ح' + urDigits(i + 1) + '</th>').join('') +
-    (gb.assignments || []).map(a => '<th>' + esc(String(a.title || '').slice(0, 18)) + '</th>').join('') + '<th>کل نمبر</th></tr>';
+    (gb.assignments || []).map(a => '<th>' + esc(String(a.title || '').slice(0, 22)) + '</th>').join('') + '<th>کل نمبر</th></tr>';
   /* خانے کا یکساں اصول (سرور attState): ✓ ذریعے کے لیبل کے ساتھ (کوڈ =
      طالب علم نے خود درج کی، مینول = انتظامیہ نے لگائی)؛ ⏳ = کوڈ درج ہے،
      تصدیق باقی — یہ حالت «—» (غیر حاضر) سے ہمیشہ الگ نظر آئے گی۔
@@ -6848,8 +6953,8 @@ function renderAdminGradebook(){
    سرور کے عین اصول (lib/course.js: recomputeCoursePoints) سے انہی خانوں سے
    حساب — حاضری × 10 + مشقوں کے نمبر (تاخیر پر نصف، floor)۔ ایڈمن پول میں
    فی طالب علم پوائنٹس کی الگ کلیکشن نہیں آتی، اس لیے پوائنٹس گریڈ بک کے
-   خانوں سے بنتے ہیں؛ فارم قسم کی مشقیں ایپ میں جمع ہی نہیں ہوتیں، اس لیے
-   یہ حساب سرور کے عدد سے نہیں ٹکراتا۔ */
+   خانوں سے بنتے ہیں؛ فارم مشقوں کے اندراج و نمبر بھی اب گریڈ بک میں شامل
+   ہیں (2026-11-03)، اس لیے یہ حساب سرور کے عدد سے عین ملتا ہے۔ */
 function courseStudentRows(){
   const gb = (DB.get('courseGradebook', []) || [])[0];
   if(!gb || !gb.rows) return null;
@@ -15606,6 +15711,6 @@ window.helpChatSend = function(){
 <script src="foreign-data.js?v=20261031a"></script>
 <script src="admissions-news.js?v=20261031a"></script>
 <script src="admissions.js?v=20261031i"></script>
-<script type="module" src="api-bridge.js?v=20261103c"></script>
+<script type="module" src="api-bridge.js?v=20261103d"></script>
 </body>
 </html>
