@@ -6604,7 +6604,7 @@ function renderAdminCourseAttendance(){
   if(!CC_ATT.sid || !sess.some(s => s.sessionId === CC_ATT.sid)) CC_ATT.sid = ccAttDefaultSid();
   const opts = sess.map(s => '<option value="' + escq(s.sessionId) + '"' + (s.sessionId === CC_ATT.sid ? ' selected' : '') + '>' + esc(s.title || '') + ' — ' + esc(s.sessionDate || '') + '</option>').join('');
   el.innerHTML = '<div class="card"><h3 style="margin:0 0 6px">🗓️ سیشن وار حاضری و مینول اندراج</h3>' +
-    '<p class="small" style="margin:0 0 8px">کوڈ سے درج حاضری یہاں صرف دکھائی جاتی ہے۔ جو طالب علم کھڑکی کے اندر کوڈ نہ لگا سکا، اس کی حاضری یہاں مینول لگائی جا سکتی ہے (+10 پوائنٹس؛ گریڈ بک خود تازہ ہو جاتا ہے)۔ اوقات پاکستانی وقت میں ہیں۔</p>' +
+    '<p class="small" style="margin:0 0 8px">یکساں اصول ہر جگہ ایک ہی ہے: حاضر (✓) صرف تصدیق شدہ حاضری ہے، ذریعہ (کوڈ/مینول) ساتھ درج ہوتا ہے۔ کوڈ دعوے کی تصدیق بھی یہیں سے ہوتی ہے؛ جو طالب علم کھڑکی کے اندر کوڈ نہ لگا سکا، اس کی حاضری یہاں مینول لگائی جا سکتی ہے (+10 پوائنٹس؛ گریڈ بک و فہرستیں خود تازہ ہو جاتی ہیں)۔ اوقات پاکستانی وقت میں ہیں۔</p>' +
     '<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><select id="cc-att-session" style="flex:1;min-width:210px" onchange="ccAttLoad(this.value)">' + opts + '</select>' +
     '<button class="btn sm" onclick="ccAttLoad(document.getElementById(\'cc-att-session\').value, true)">🔄 تازہ کریں</button></div>' +
     '<div id="cc-att-body" style="margin-top:10px"></div></div>';
@@ -6635,14 +6635,14 @@ function ccAttPaint(){
   const b = document.getElementById('cc-att-body'); if(!b || !CC_ATT.data) return;
   const d = CC_ATT.data;
   const pres = d.present || [], pend = d.pending || [], abs = d.absent || [];
-  const rowP = p => '<tr><td><b>' + esc(p.name || '') + '</b><br><span class="small" dir="ltr">' + esc(p.email) + '</span></td>' +
-    '<td>' + ccFmtTime(p.at) + '</td>' +
-    '<td>' + (p.source === 'manual' ? '<span class="tag gold">مینول</span>' + (p.markedBy ? '<br><span class="small" dir="ltr">' + esc(p.markedBy) + '</span>' : '') : '<span class="tag">کوڈ</span>') + '</td>' +
-    '<td>' + (p.source === 'manual' ? '<button class="btn sm" onclick="ccAttUndo(\'' + escq(p.email) + '\')">واپس لیں</button>' : '<span class="small">—</span>') + '</td></tr>';
+  const rowP = p => '<tr><td>✓ <b>' + esc(p.name || '') + '</b><br><span class="small" dir="ltr">' + esc(p.email) + '</span></td>' +
+    '<td>' + (p.at ? ccFmtTime(p.at) : '—') + '</td>' +
+    '<td>' + (p.source === 'manual' ? '<span class="tag gold">مینول</span>' + (p.markedBy ? '<br><span class="small" dir="ltr">' + esc(p.markedBy) + '</span>' : '') + (p.legacy ? '<br><span class="small">پرانا اندراج</span>' : '') : '<span class="tag">کوڈ</span>') + '</td>' +
+    '<td>' + (p.source === 'manual' && p.claimId ? '<button class="btn sm" onclick="ccAttUndo(\'' + escq(p.email) + '\')">واپس لیں</button>' : '<span class="small">—</span>') + '</td></tr>';
   b.innerHTML =
     '<p style="margin:0 0 6px">رجسٹرڈ طلبہ: <b>' + urDigits(d.registered || 0) + '</b> • حاضر (تصدیق شدہ): <b>' + urDigits(pres.length) + '</b> • کوڈ درج، تصدیق باقی: <b>' + urDigits(pend.length) + '</b> • کوئی اندراج نہیں: <b>' + urDigits(abs.length) + '</b></p>' +
     (pres.length ? '<h4 style="margin:8px 0 4px">✅ حاضر — ' + urDigits(pres.length) + '</h4><table class="rep-table"><tr><th>نام</th><th>وقت (PKT)</th><th>ذریعہ</th><th></th></tr>' + pres.map(rowP).join('') + '</table>' : '<p class="small">تصدیق شدہ حاضری ابھی کوئی نہیں۔</p>') +
-    (pend.length ? '<h4 style="margin:10px 0 4px">⏳ کوڈ درج — تصدیق باقی (' + urDigits(pend.length) + ')</h4>' + pend.map(p => '<div class="card" style="margin-bottom:6px"><b>' + esc(p.name || '') + '</b> <span class="small" dir="ltr">' + esc(p.email) + '</span><br><span class="small">کوڈ وقت: ' + ccFmtTime(p.at) + ' — تصدیق «سیشنز و حاضری» کے تصدیقی اوزار سے ہوتی ہے؛ پوائنٹس و شمار تصدیق پر ملتے ہیں۔</span></div>').join('') : '') +
+    (pend.length ? '<h4 style="margin:10px 0 4px">⏳ کوڈ درج — تصدیق باقی (' + urDigits(pend.length) + ')</h4>' + pend.map(p => '<div class="card" style="margin-bottom:6px"><b>' + esc(p.name || '') + '</b> <span class="small" dir="ltr">' + esc(p.email) + '</span><br><span class="small">کوڈ وقت: ' + ccFmtTime(p.at) + ' — تصدیق ہوتے ہی +10 پوائنٹس ملتے ہیں، یہ نام اوپر «حاضر» فہرست میں ✓ کے ساتھ آ جاتا ہے اور گریڈ بک و طالب علم فہرست بھی خود تازہ ہو جاتی ہیں۔</span><br><button class="btn sm goldb" style="margin-top:6px" onclick="ccAttVerify(\'' + escq(p.claimId) + '\', true)">✓ تصدیق کریں</button> <button class="btn sm ghost" style="margin-top:6px" onclick="ccAttVerify(\'' + escq(p.claimId) + '\', false)">مسترد کریں</button></div>').join('') : '') +
     (abs.length ? '<h4 style="margin:10px 0 4px">❌ کوئی اندراج نہیں — ' + urDigits(abs.length) + '</h4>' + abs.map(a => '<div class="card" style="margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><span><b>' + esc(a.name || '') + '</b> <span class="small" dir="ltr">' + esc(a.email) + '</span></span><button class="btn sm goldb" onclick="ccAttMark(\'' + escq(a.email) + '\')">✏️ مینول حاضری لگائیں</button></div>').join('') : '<p class="small">تمام رجسٹرڈ طلبہ کا اندراج موجود ہے۔</p>');
 }
 async function ccAttMark(email){
@@ -6662,6 +6662,19 @@ async function ccAttUndo(email){
     showMsg('cc-msg', 'مینول حاضری واپس ہو گئی۔', true);
     CC_ATT.data = null; ccAttFetch();
   }catch(e){ showMsg('cc-msg', (e && e.message) || 'واپسی نہ ہو سکی۔', false); }
+}
+/* کوڈ دعوے کی تصدیق/رد — یہی وہ اوزار ہے جس کی طرف زیرِ تصدیق فہرست
+   اشارہ کرتی ہے (مفتی 2026-11-03: تصدیق کا عمل پینل ہی میں ہو، طالب علم
+   «تصدیق باقی» حالت میں لٹکا نہ رہے)۔ سرور کا اپنا verify راستہ: تصدیق پر
+   sessionAtts + پوائنٹس (+10) خود بن جاتے ہیں۔ */
+async function ccAttVerify(claimId, verified){
+  if(!window.__courseApi || !claimId) return;
+  if(!confirm(verified ? 'اس کوڈ دعوے کی تصدیق کی جائے؟ طالب علم کی حاضری ✓ شمار ہوگی اور +10 پوائنٹس مل جائیں گے۔' : 'یہ کوڈ دعویٰ مسترد کیا جائے؟')) return;
+  try{
+    await window.__courseApi.verifyClaim(claimId, verified);
+    showMsg('cc-msg', verified ? 'حاضری تصدیق ہو گئی — پوائنٹس و گریڈ بک تازہ ہیں۔' : 'دعویٰ مسترد ہو گیا۔', true);
+    CC_ATT.data = null; ccAttFetch();
+  }catch(e){ showMsg('cc-msg', (e && e.message) || 'عمل نہ ہو سکا۔', false); }
 }
 async function runCourseSeed(){
   if(!window.__courseApi) return;
@@ -6799,13 +6812,25 @@ function renderAdminGradebook(){
   if(!gb || !gb.rows || !gb.rows.length){ el.innerHTML = '<p class="small">ابھی کوئی کورس رجسٹرڈ طالب علم نہیں — رجسٹریشن ہوتے ہی گریڈ بک یہاں بن جائے گی۔</p>'; return; }
   const head = '<tr><th>طالب علم</th>' + (gb.sessions || []).map((s, i) => '<th>ح' + urDigits(i + 1) + '</th>').join('') +
     (gb.assignments || []).map(a => '<th>' + esc(String(a.title || '').slice(0, 18)) + '</th>').join('') + '<th>کل نمبر</th></tr>';
+  /* خانے کا یکساں اصول (سرور attState): ✓ ذریعے کے لیبل کے ساتھ (کوڈ =
+     طالب علم نے خود درج کی، مینول = انتظامیہ نے لگائی)؛ ⏳ = کوڈ درج ہے،
+     تصدیق باقی — یہ حالت «—» (غیر حاضر) سے ہمیشہ الگ نظر آئے گی۔
+     attState نہ ملے (پرانا اسنیپ شاٹ) تو سادہ ✓/— پر واپسی۔ */
+  const attCell = (r, i) => {
+    const st = (r.attState || [])[i];
+    if(st === 'code') return '<td style="text-align:center">✓<br><span class="small">کوڈ</span></td>';
+    if(st === 'manual') return '<td style="text-align:center">✓<br><span class="small">مینول</span></td>';
+    if(st === 'pending') return '<td style="text-align:center" title="کوڈ درج ہے — تصدیق باقی">⏳</td>';
+    if(st === undefined || st === null) return '<td style="text-align:center">' + ((r.att || [])[i] ? '✓' : '—') + '</td>';
+    return '<td style="text-align:center">—</td>';
+  };
   const rows = gb.rows.map(r =>
-    '<tr><td>' + esc(r.name || r.email || '') + '<br><span class="small">' + urDigits(r.attCount || 0) + ' حاضری</span></td>' +
-    (r.att || []).map(a => '<td style="text-align:center">' + (a ? '✓' : '—') + '</td>').join('') +
+    '<tr><td>' + esc(r.name || r.email || '') + '<br><span class="small">' + urDigits(r.attCount || 0) + ' حاضری' + ((r.attPend || 0) ? ' • ⏳ ' + urDigits(r.attPend) + ' تصدیق باقی' : '') + '</span></td>' +
+    (r.att || []).map((a, i) => attCell(r, i)).join('') +
     (r.marks || []).map(m => '<td style="text-align:center">' + (!m ? '—' : (typeof m.marks === 'number' ? urDigits(m.marks) + (m.late ? '*' : '') : 'جمع')) + '</td>').join('') +
     '<td style="text-align:center"><b>' + urDigits(r.totalMarks || 0) + '</b></td></tr>').join('');
   el.innerHTML = '<div style="overflow-x:auto"><table class="rep-table">' + head + rows + '</table></div>' +
-    '<p class="small" style="margin:6px 0 0">ح = حاضری (کلاس نمبر کے مطابق)؛ * = تاخیر سے جمع (پوائنٹس نصف)۔ گریڈ بک ہر پول (60 سیکنڈ) پر خود تازہ ہوتی ہے۔</p>';
+    '<p class="small" style="margin:6px 0 0">ح = حاضری (کلاس نمبر کے مطابق)؛ ✓ کوڈ = طالب علم نے خود کوڈ سے درج کی؛ ✓ مینول = انتظامیہ نے لگائی؛ ⏳ = کوڈ درج ہے، تصدیق باقی (تصدیق «سیشن وار حاضری و مینول اندراج» والے خانے سے ہوتی ہے)؛ * = تاخیر سے جمع (پوائنٹس نصف)۔ گریڈ بک ہر پول (60 سیکنڈ) پر خود تازہ ہوتی ہے۔</p>';
 }
 
 /* ---------- ایڈمن: ادارہ سازی کورس — رجسٹرڈ طلبہ کی فہرست + PDF ----------
@@ -6815,8 +6840,10 @@ function renderAdminGradebook(){
    (courseReg + منظور شدہ) طلبہ کی مستند فہرست ہے جو ایڈمن پول پہلے سے لاتا ہے۔
    ہر خانے کا ماخذ: نام = users() سے studentDisplayName (نہ ملے تو قطار کا
    name)؛ ڈگری / تعلیمی درجہ / یونیورسٹی / واٹس ایپ = ای میل سے ملان شدہ
-   users() ریکارڈ؛ حاضری = قطار کا attCount (تصدیق شدہ دعوے + ایڈمن درج
-   courseAtt — سرور کا اپنا عدد، گریڈ بک والا)؛ جمع شدہ مشقیں = قطار کے
+   users() ریکارڈ؛ حاضری = قطار کا attCount (سرور کا یکساں اصول: تصدیق شدہ
+   دعویٰ یا ایڈمن درج ریکارڈ — گریڈ بک والا ہی عدد)؛ attPend = زیرِ تصدیق
+   کوڈ دعوے (حاضری میں شمار نہیں، مگر فہرست و PDF میں ⏳ «تصدیق باقی»
+   لکھ کر الگ نظر آتے ہیں تاکہ کوئی طالب علم خاموشی سے غائب نہ رہے)؛ جمع شدہ مشقیں = قطار کے
    marks میں جمع اندراجات کی گنتی؛ کل نمبر = قطار کا totalMarks؛ پوائنٹس =
    سرور کے عین اصول (lib/course.js: recomputeCoursePoints) سے انہی خانوں سے
    حساب — حاضری × 10 + مشقوں کے نمبر (تاخیر پر نصف، floor)۔ ایڈمن پول میں
@@ -6846,7 +6873,7 @@ function courseStudentRows(){
       edu: u ? eduStatusFormValue((u.profile && u.profile.eduStatus) || '', u.degree || '') : '',
       uni: u ? (u.uni || '') : '',
       waRaw: u ? studentWaRaw(u) : '',
-      att: r.attCount || 0, totalSess: totalSess,
+      att: r.attCount || 0, attPend: r.attPend || 0, totalSess: totalSess,
       submitted: submitted, totalMarks: r.totalMarks || 0, points: points
     };
   });
@@ -6870,7 +6897,7 @@ function renderAdminCourseStudents(){
         '<span class="small">' + esc(r.degree || '—') + (r.edu ? ' • ' + esc(r.edu) : '') + (r.uni ? ' • ' + esc(r.uni) : '') + '</span><br>' +
         '<span class="small">📧 ' + esc(r.email) + ' &nbsp;•&nbsp; 📱 واٹس ایپ: <b dir="ltr">' + esc(r.waRaw || 'درج نہیں') + '</b></span><br>' +
         '<span style="display:inline-block;margin:4px 0">' + contactBtnsHtml(cu) + '</span><br>' +
-        '<span class="small">حاضری: <b>' + urDigits(r.att) + '/' + urDigits(r.totalSess) + '</b> • جمع شدہ مشقیں: <b>' + urDigits(r.submitted) + '</b> • کل نمبر: <b>' + urDigits(r.totalMarks) + '</b> • پوائنٹس: <b>' + urDigits(r.points) + '</b></span></div>';
+        '<span class="small">حاضری: <b>' + urDigits(r.att) + '/' + urDigits(r.totalSess) + '</b>' + (r.attPend ? ' • ⏳ تصدیق باقی: <b>' + urDigits(r.attPend) + '</b> کلاس' : '') + ' • جمع شدہ مشقیں: <b>' + urDigits(r.submitted) + '</b> • کل نمبر: <b>' + urDigits(r.totalMarks) + '</b> • پوائنٹس: <b>' + urDigits(r.points) + '</b></span></div>';
     }).join('');
   }
   el.innerHTML = h;
@@ -6894,7 +6921,7 @@ function printCourseStudents(){
     h += '<tr><td>' + urDigits(i + 1) + '</td><td>' + esc(r.name || r.email) + '</td><td>' + esc(r.degree) + '</td><td>' + esc(r.uni) + '</td>' +
       '<td dir="ltr" style="text-align:left">' + esc(r.email) + '</td>' +
       '<td dir="ltr" style="text-align:left">' + esc(r.waRaw || 'درج نہیں') + '</td>' +
-      '<td>' + urDigits(r.att) + '/' + urDigits(r.totalSess) + '</td><td>' + urDigits(r.points) + '</td></tr>';
+      '<td>' + urDigits(r.att) + '/' + urDigits(r.totalSess) + (r.attPend ? ' (⏳ ' + urDigits(r.attPend) + ' تصدیق باقی)' : '') + '</td><td>' + urDigits(r.points) + '</td></tr>';
   });
   h += '</table>';
   document.getElementById('print-report').innerHTML = h;
@@ -13281,6 +13308,20 @@ function dashCourseBlock(){
     if(!c || c.status !== 'تصدیق شدہ' || !c.sessionId || !c.email) return;
     (attBy[c.sessionId] = attBy[c.sessionId] || {})[String(c.email).toLowerCase()] = true;
   });
+  /* یکساں اصول (مفتی 2026-11-03): ایڈمن درج ریکارڈ (users.sessionAtts /
+     courseAtt) بھی حاضر شمار ہو، اور زیرِ تصدیق کوڈ دعویٰ حاضر گنتی سے
+     الگ ⏳ میں نظر آئے — کہیں خاموش غیابی نہ ہو۔ */
+  const pendBy = {};
+  claims.forEach(function(c){
+    if(!c || !c.sessionId || !c.email || c.status === 'تصدیق شدہ' || c.status === 'مسترد') return;
+    (pendBy[c.sessionId] = pendBy[c.sessionId] || {})[String(c.email).toLowerCase()] = true;
+  });
+  users().forEach(function(u){
+    if(!u || !u.email || !u.courseReg || u.status !== 'approved') return;
+    const em = String(u.email).toLowerCase();
+    Object.keys(u.sessionAtts || {}).forEach(function(sid){ if(u.sessionAtts[sid]) (attBy[sid] = attBy[sid] || {})[em] = true; });
+    (u.courseAtt || []).forEach(function(sid){ (attBy[sid] = attBy[sid] || {})[em] = true; });
+  });
   const asgs = DB.get('courseAssignments', []) || [];
   const subs = DB.get('courseSubmissions', []) || [];
   const asgById = {};
@@ -13294,6 +13335,7 @@ function dashCourseBlock(){
     if(isHeld) held++;
     if(!nextSess && st.state !== 'closed') nextSess = s;
     const att = attBy[s.sessionId] ? Object.keys(attBy[s.sessionId]).length : 0;
+    const pendN = pendBy[s.sessionId] ? Object.keys(pendBy[s.sessionId]).filter(function(e){ return !(attBy[s.sessionId] || {})[e]; }).length : 0;
     if(isHeld) attSum += att;
     const relN = released.filter(function(a){ return Number(a.session) === n; });
     const ss = subs.filter(function(x){ const a = asgById[x.assignmentId]; return a && Number(a.session) === n; });
@@ -13302,7 +13344,7 @@ function dashCourseBlock(){
     return [
       urDigits(n), urDigits(s.sessionDate || ''),
       isHeld ? 'ہو چکی' : (st.state === 'open' ? 'جاری ہے' : 'آنے والی'),
-      urDigits(att),
+      urDigits(att) + (pendN ? ' (+' + urDigits(pendN) + ' ⏳)' : ''),
       (registered && st.state !== 'upcoming') ? urDigits(Math.round(att / registered * 100)) + '٪' : '—',
       urDigits(relN.length), urDigits(ss.length), urDigits(graded.length),
       avg === null ? '—' : urDigits(avg)
@@ -15564,6 +15606,6 @@ window.helpChatSend = function(){
 <script src="foreign-data.js?v=20261031a"></script>
 <script src="admissions-news.js?v=20261031a"></script>
 <script src="admissions.js?v=20261031i"></script>
-<script type="module" src="api-bridge.js?v=20261103b"></script>
+<script type="module" src="api-bridge.js?v=20261103c"></script>
 </body>
 </html>

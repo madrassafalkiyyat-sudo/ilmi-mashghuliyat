@@ -324,6 +324,9 @@ window.__courseApi = {
   async undoAttendance(sessionId, userId) {
     return api('/api/course/admin/attendance/manual/undo', { method: 'POST', body: { sessionId, userId } });
   },
+  async verifyClaim(claimId, verified) {
+    return api('/api/attendance/verify', { method: 'POST', body: { claimId, verified: !!verified } });
+  },
 };
 
 function startSubscriptions(opts) {
