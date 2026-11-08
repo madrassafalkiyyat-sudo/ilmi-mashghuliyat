@@ -6516,7 +6516,7 @@ function renderCourseAssignments(){
       '<h3 style="margin:6px 0 2px">' + esc(a.title || '') + '</h3>' +
       '<p class="small" style="margin:0">⏰ آخری تاریخ: ' + esc(fmtMs(a.deadlineMs)) + '</p>' +
       '<p style="margin:6px 0 0;white-space:pre-wrap">' + esc(a.instructions || '') + '</p>' + body + '</div>';
-  }).join('') : '<div class="card"><p style="margin:0">ابھی کوئی مشق جاری نہیں ہوئی — ہر کلاس کے بعد مشقیں خود یہاں آتی جائیں گی: اگلے دن پہلا گوگل فارم، دو دن بعد دوسرا فارم اور سلائیڈ سرگرمی۔</p></div>');
+  }).join('') : '<div class="card"><p style="margin:0">ابھی کوئی مشق جاری نہیں ہوئی — ہر کلاس کے بعد مشقیں خود یہاں آتی جائیں گی: منگل کو پہلا گوگل فارم، جمعرات کو دوسرا گوگل فارم، اور ہفتے کو سلائیڈ سرگرمی۔</p></div>');
   if(lEl){
     const board = DB.get('courseLeaderboard', []) || [];
     lEl.innerHTML = board.length
@@ -6588,7 +6588,7 @@ function renderAdminCourseClass(){
     '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">' +
     '<button class="btn sm goldb" onclick="runCourseSeed()">🔄 بیچ سیٹ اپ دوبارہ چلائیں (محفوظ — دوبارہ اندراج نہیں ہوتا)</button>' +
     '<button class="btn sm" onclick="runCourseReleasesNow()">🚀 واجب مشقیں ابھی جاری کریں</button></div>' +
-    '<p class="small" style="margin:8px 0 0">خودکار نظام: سرور ہر گھنٹے + جاگنے پر واجب مشقیں خود جاری کرتا ہے (کلاس کے اگلے دن فارم 1، دو دن بعد فارم 2 و سلائیڈ سرگرمی) اور رجسٹرڈ طلبہ کو اطلاع جاتی ہے۔ سیٹ/فہرست اگلے پول (60 سیکنڈ) پر تازہ ہوتی ہے۔</p>' +
+    '<p class="small" style="margin:8px 0 0">خودکار نظام: سرور ہر گھنٹے + جاگنے پر واجب مشقیں خود جاری کرتا ہے (کلاس کے بعد منگل کو فارم 1، جمعرات کو فارم 2 اور ہفتے کو سلائیڈ سرگرمی) اور رجسٹرڈ طلبہ کو اطلاع جاتی ہے۔ سیٹ/فہرست اگلے پول (60 سیکنڈ) پر تازہ ہوتی ہے۔</p>' +
     (codeRows ? '<h4 style="margin:12px 0 4px">🔑 کلاس وار حاضری کوڈز (صرف ایڈمن کے لیے)</h4><table class="rep-table"><tr><th>تاریخ</th><th>کلاس</th><th>کوڈ</th></tr>' + codeRows + '</table>' : '') +
     '</div>';
   renderAdminCourseAsgList();
