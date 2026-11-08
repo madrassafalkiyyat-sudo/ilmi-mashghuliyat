@@ -2488,8 +2488,8 @@ window.__fbBoot = new Promise(function(r){ window.__fbResolve = r; });
 /* ================= تحقیقی ٹولز کا ڈیٹا ================= */
 const TOOLS = [
  {cat:"التراث و اسلامی مصادر", items:[
-   {n:"Al-Turath Notebooks — التراث نوٹ بکس", d:"التراث کی مستند کتب پر مبنی نوٹ بک مجموعہ — مصادر سے براہِ راست تحقیق", url:"https://sajidzbi.github.io/Al-Turath-Notebook-LMs-Hub/index.html", top:true},
-   {n:"Al-Turath AI — التراث اے آئی", d:"اسلامی مصادر کی تحقیق کے لیے مخصوص AI معاون", url:"https://sajidzbi.github.io/Al-Turath-AI/index.html", top:true},
+   {n:"Al-Turath Notebooks — التراث نوٹ بکس", d:"التراث کی مستند کتب پر مبنی نوٹ بک مجموعہ — مصادر سے براہِ راست تحقیق — بیرونی براؤزر میں کھلے گا (گوگل سائن ان درکار)", url:"https://sajidzbi.github.io/Al-Turath-Notebook-LMs-Hub/index.html", top:true},
+   {n:"Al-Turath AI — التراث اے آئی", d:"اسلامی مصادر کی تحقیق کے لیے مخصوص AI معاون — بیرونی براؤزر میں کھلے گا (گوگل سائن ان درکار)", url:"https://sajidzbi.github.io/Al-Turath-AI/index.html", top:true},
    {n:"Shamela AI — شاملہ اے آئی", d:"مکتبہ شاملہ کی ذہین AI تلاش — لاکھوں عربی کتب میں جستجو", url:"https://shamela.ws/ai", top:true},
    {n:"Prompt Studio — تحقیقی پرامپٹ سٹوڈیو", d:"اسلامی تحقیق کے لیے تیار پرامپٹس و سانچوں کا سٹوڈیو", url:"https://thewebustaad.github.io/islamic-prompt-master/", top:true},
    {n:"Shamela — مکتبہ شاملہ", d:"عربی اسلامی کتب کی عظیم مفت ڈیجیٹل لائبریری", url:"https://shamela.ws"},
@@ -10099,7 +10099,11 @@ function findToolUrl(q){
    ہر چپ کے ساتھ بیرونی براؤزر کا واضح راستہ۔ پرانا WIZ_TOOLS (فی مرحلہ ذیلی فہرست — جس کی
    وجہ سے صرف 2 چپس نظر آتی تھیں اور پرامپٹ سٹوڈیو غائب تھا) ہٹا دیا گیا ہے۔ */
 function wizToolFrameOk(url){
-  return /Al-Turath-Notebook-LMs-Hub|Al-Turath-AI|islamic-prompt-master|core\.ac\.uk|sunnah\.com|elicit\.com/.test(url || '');
+  /* التراث AI و التراث نوٹ بکس حب فریم سے باہر رکھے گئے ہیں (درستگی 2026-11-08): ان کے
+     صفحے فریم میں اتر تو آتے ہیں مگر اندر کی اصل چیز — گوگل کے Gems و NotebookLM —
+     گوگل کی حفاظتی پالیسی کی وجہ سے فریم کے اندر نہیں کھل سکتی؛ طالب علم کے لیے پورا
+     اوزار «کام نہیں کرتا» بن جاتا تھا۔ اس لیے یہ دونوں اب بیرونی براؤزر میں کھلتے ہیں۔ */
+  return /islamic-prompt-master|core\.ac\.uk|sunnah\.com|elicit\.com/.test(url || '');
 }
 function wizAllToolsChips(){
   const chips = [];
@@ -12157,8 +12161,20 @@ function wizShowFrame(url, name){
   document.getElementById('wiz-frame-name').textContent = '🔬 ' + (name || '');
   document.getElementById('wiz-frame-ext').href = url;
   const note = document.getElementById('wiz-frame-note');
-  note.style.display = 'block'; note.textContent = '⏳ اوزار لوڈ ہو رہا ہے…';
   const fr = document.getElementById('wiz-frame');
+  if(!wizToolFrameOk(url)){
+    /* فریم میں نہ چلنے والے اوزار (گوگل پر مبنی، مثلاً التراث AI/نوٹ بکس): فریم میں
+       لوڈ کرنے کی بجائے سیدھا بیرونی براؤزر میں کھولیں اور وجہ یہیں بتا دیں۔ */
+    if(wizFrameTimer) clearTimeout(wizFrameTimer);
+    if(fr){ fr.onload = null; fr.src = 'about:blank'; fr.style.display = 'none'; }
+    note.style.display = 'block';
+    note.textContent = '🌐 یہ اوزار ایپ کے اندر والے خانے میں نہیں چل سکتا — اس کے اندرونی لنکس گوگل پر ہیں اور گوگل انہیں کسی ایپ کے خانے کے اندر کھلنے سے روکتا ہے۔ اسے بیرونی براؤزر میں کھول دیا گیا ہے؛ وہاں اپنے گوگل اکاؤنٹ سے سائن ان کر کے استعمال کریں۔ اگر نئی ونڈو خود نہ کھلی ہو تو اوپر دیا «بیرونی براؤزر میں کھولیں» بٹن دبائیں۔';
+    try{ window.open(url, '_blank', 'noopener'); }catch(e){}
+    try{ box.scrollIntoView({behavior:'smooth', block:'start'}); }catch(e){}
+    return;
+  }
+  if(fr) fr.style.display = 'block';
+  note.style.display = 'block'; note.textContent = '⏳ اوزار لوڈ ہو رہا ہے…';
   fr.onload = function(){ note.style.display = 'none'; };
   fr.src = url;
   if(wizFrameTimer) clearTimeout(wizFrameTimer);
