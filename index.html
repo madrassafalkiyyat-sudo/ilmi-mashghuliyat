@@ -6360,6 +6360,13 @@ function courseWinState(s){
      مفتی کا مقررہ اصول (2026-11-03): ہر کورس کلاس کی کھڑکی عین 20:00–22:00
      پاکستانی وقت ہے (سرور کے اصول سے ہم آہنگ) — محفوظ شدہ اوقات اسے نہیں بدل سکتے۔ */
   if(!s || !s.sessionDate) return { open:false, state:'none' };
+  /* ہنگامی زبردستی کھولنا: سیشن پر attForceOpen (کراچی تاریخ) ہو تو اس دن کھڑکی کھلی */
+  if(s.attForceOpen){
+    try{
+      const kd = new Intl.DateTimeFormat('en-CA', { timeZone:'Asia/Karachi', year:'numeric', month:'2-digit', day:'2-digit' }).format(new Date());
+      if(kd === s.attForceOpen) return { open:true, state:'open' };
+    }catch(e){}
+  }
   const off = '+05:00';
   const start = Date.parse(s.sessionDate + 'T20:00:00' + off);
   const end = Date.parse(s.sessionDate + 'T22:00:00' + off);
