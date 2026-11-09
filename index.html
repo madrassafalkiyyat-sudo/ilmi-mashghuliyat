@@ -5308,13 +5308,15 @@ function attWindow(s){
     if(nowMs >= ce) return { open: false, msg: 'حاضری کا وقت ختم ہو چکا ہے — اب حاضری درج نہیں ہو سکتی۔ کسی مسئلے پر انتظامیہ سے رابطہ کریں۔' };
     return { open: true, msg: '' };
   }
-  const now = new Date();
-  const start = s.startTime ? new Date(d + 'T' + s.startTime + ':00') : new Date(d + 'T00:00:00');
+  /* مستقل اصول (مفتی، 2026-11-09): اس ایپ کے تمام اوقات پاکستانی وقت
+     (Asia/Karachi) سے ہیں — آلے کا مقامی وقت کبھی استعمال نہیں ہوتا۔ */
+  const nowMs = Date.now();
+  const start = s.startTime ? Date.parse(d + 'T' + s.startTime + ':00+05:00') : Date.parse(d + 'T00:00:00+05:00');
   let end;
-  if(s.endTime){ end = new Date(d + 'T' + s.endTime + ':00'); end = new Date(end.getTime() + 30 * 60000); }
-  else end = new Date(d + 'T23:59:59');
-  if(now < start) return { open: false, msg: 'حاضری کا وقت ابھی شروع نہیں ہوا — سیشن کے آغاز پر حاضری کوڈ سے حاضری درج ہو سکے گی۔' };
-  if(now > end) return { open: false, msg: 'حاضری کا وقت ختم ہو چکا ہے — اب حاضری درج نہیں ہو سکتی۔ کسی مسئلے پر انتظامیہ سے رابطہ کریں۔' };
+  if(s.endTime){ end = Date.parse(d + 'T' + s.endTime + ':00+05:00') + 30 * 60000; }
+  else end = Date.parse(d + 'T23:59:59+05:00');
+  if(nowMs < start) return { open: false, msg: 'حاضری کا وقت ابھی شروع نہیں ہوا — سیشن کے آغاز پر حاضری کوڈ سے حاضری درج ہو سکے گی۔' };
+  if(nowMs > end) return { open: false, msg: 'حاضری کا وقت ختم ہو چکا ہے — اب حاضری درج نہیں ہو سکتی۔ کسی مسئلے پر انتظامیہ سے رابطہ کریں۔' };
   return { open: true, msg: '' };
 }
 function myAttClaim(){
