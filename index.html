@@ -5298,6 +5298,16 @@ function renderAttCodeBox(){
 function attWindow(s){
   const d = (s && s.sessionDate) || '';
   if(!d) return { open: true, msg: '' };
+  /* ادارہ سازی کورس کلاسز: کھڑکی ہمیشہ کراچی وقت کی 20:00–22:00 ہے — آلے کے
+     مقامی وقت سے نہیں (درستگی 2026-11-09؛ سرور کا بھی یہی اصول ہے) */
+  if(s && (s.isCourseSession || s.courseBatch)){
+    const nowMs = Date.now();
+    const cs = Date.parse(d + 'T20:00:00+05:00');
+    const ce = Date.parse(d + 'T22:00:00+05:00');
+    if(nowMs < cs) return { open: false, msg: 'حاضری کا وقت ابھی شروع نہیں ہوا — سیشن کے آغاز پر حاضری کوڈ سے حاضری درج ہو سکے گی۔' };
+    if(nowMs >= ce) return { open: false, msg: 'حاضری کا وقت ختم ہو چکا ہے — اب حاضری درج نہیں ہو سکتی۔ کسی مسئلے پر انتظامیہ سے رابطہ کریں۔' };
+    return { open: true, msg: '' };
+  }
   const now = new Date();
   const start = s.startTime ? new Date(d + 'T' + s.startTime + ':00') : new Date(d + 'T00:00:00');
   let end;
