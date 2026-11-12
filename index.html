@@ -4594,7 +4594,7 @@ function buildAttendeesSnapshot(){
   const sid = sessionIdOf(s);
   const emails = new Set();
   (DB.get('attendanceClaims', []) || []).forEach(c => { if(c && c.sessionId === sid && c.status === 'تصدیق شدہ' && c.email) emails.add(c.email); });
-  users().forEach(u => { if(u.sessionAtt && u.email) emails.add(u.email); });
+  users().forEach(u => { if(isSessionAttended(u, s) && u.email) emails.add(u.email); });
   const claims = DB.get('attendanceClaims', []) || [];
   const list = [...emails].map(em => {
     const u = users().find(x => x.email === em) || {};
@@ -4686,7 +4686,7 @@ function annOpenRev(i){
 function annRegisterRev(i){
   const u = currentUser();
   go('sessions');
-  if(u && !u.sessionReg) registerSession();
+  if(u && !isSessionRegistered(u, currentSession())) registerSession();
 }
 function annActionsHtml(a, i){
   const t = annTargetOf(a);
@@ -5256,6 +5256,21 @@ function sessionIdOf(s){
   for(let i = 0; i < raw.length; i++){ h1 ^= raw.charCodeAt(i); h1 = Math.imul(h1, 0x01000193) >>> 0; }
   return 'sess-' + h1.toString(16);
 }
+/* رجسٹریشن/حاضری ہمیشہ اسی سیشن کے نقشے (sessionRegs/sessionAtts) سے پرکھی
+   جاتی ہے — پرانا sessionReg/sessionAtt بولین کسی سیشن کا نام نہیں لیتا، اس
+   لیے پچھلے سیشن (23 اکتوبر) کی رجسٹریشن نئے سیشن پر بھی «رجسٹرڈ» دکھا دیتی
+   تھی (مفتی کی شکایت، 2026-11-12)۔ نیا سیشن سب کے لیے غیر رجسٹرڈ سے شروع
+   ہوتا ہے؛ نقشے میں اندراج صرف اسی سیشن کی رجسٹریشن/حاضری سے بنتا ہے۔ */
+function isSessionRegistered(u, s){
+  if(!u || !s) return false;
+  const m = u.sessionRegs || {};
+  return !!m[sessionIdOf(s)];
+}
+function isSessionAttended(u, s){
+  if(!u || !s) return false;
+  const m = u.sessionAtts || {};
+  return !!m[sessionIdOf(s)];
+}
 function genAttCode(){
   const A = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
   let c = ''; for(let i = 0; i < 5; i++) c += A[Math.floor(Math.random() * A.length)];
@@ -5328,7 +5343,7 @@ function renderAttArea(){
   const el = document.getElementById('att-area'); if(!el) return;
   const u = currentUser(); if(!u) return;
   const s = currentSession();
-  if(u.sessionAtt){
+  if(isSessionAttended(u, s)){
     el.innerHTML = s.isCourseSession
       ? '<p style="color:var(--c-primary-700);font-weight:bold;margin:0">✓ اس کلاس میں آپ کی حاضری تصدیق شدہ ہے — کورس ریکارڈ میں شامل ہے۔ (اس کلاس کا الگ سرٹیفکیٹ نہیں ہوتا؛ کورس سرٹیفکیٹ اختتام پر ملے گا۔)</p>'
       : '<p style="color:var(--c-primary-700);font-weight:bold;margin:0">✓ آپ کی حاضری تصدیق شدہ ہے — سرٹیفکیٹ آپ کے والٹ میں موجود ہے۔</p>';
@@ -5361,7 +5376,7 @@ function submitAttClaim(){
   const u = currentUser(); if(!u) return;
   const s = currentSession();
   if(s.closed){ showMsg('sess-msg', 'یہ سیشن اختتام پذیر ہو چکا ہے — حاضری بند ہے۔', false); return; }
-  if(!u.sessionReg){ showMsg('sess-msg', 'پہلے سیشن میں رجسٹریشن کریں، پھر حاضری درج ہوگی۔', false); return; }
+  if(!isSessionRegistered(u, s)){ showMsg('sess-msg', 'پہلے سیشن میں رجسٹریشن کریں، پھر حاضری درج ہوگی۔', false); return; }
   if(myAttClaim()){ showMsg('sess-msg', 'آپ اس سیشن کے لیے حاضری پہلے ہی درج کر چکے ہیں — ایک طالب علم کا ایک ہی دعویٰ ہو سکتا ہے۔', false); return; }
   const w = attWindow(s);
   if(!w.open){ showMsg('sess-msg', w.msg, false); return; }
@@ -5381,8 +5396,8 @@ function submitAttClaim(){
         claims.push(claim); DB.set('attendanceClaims', claims);
         /* کورس کلاس ہو تو نمونہ جانچ میں بھی سرٹیفکیٹ جاری نہیں ہوتا (اصول 2026-10-24) */
         const isCourseSess = !!(s && s.isCourseSession);
-        updateUser(u.email, x => { x.sessionAtt = true;
-          if(isCourseSess){ const sid = sessionIdOf(s); x.courseAtt = Array.from(new Set([...(x.courseAtt || []), sid])); }
+        updateUser(u.email, x => { const sid = sessionIdOf(s); x.sessionAtts = Object.assign({}, x.sessionAtts || {}, { [sid]: true }); x.sessionAtt = true;
+          if(isCourseSess){ x.courseAtt = Array.from(new Set([...(x.courseAtt || []), sid])); }
           else { x.certIssued = true; }
           logActivity(x, isCourseSess ? 'حاضری کوڈ سے حاضری درج — نمونہ جانچ میں تصدیق شدہ (ادارہ سازی کورس کی کلاس)' : 'حاضری کوڈ سے حاضری درج — نمونہ جانچ میں تصدیق شدہ، سرٹیفکیٹ جاری'); });
         if(isCourseSess){
@@ -5464,7 +5479,7 @@ function renderSession(){
     att.style.display = 'none';
     return;
   }
-  if(u.sessionReg){
+  if(isSessionRegistered(u, s)){
     act.innerHTML = '<p style="color:var(--c-primary-700);font-weight:bold;margin:0">✓ آپ اس سیشن میں رجسٹرڈ ہیں۔</p>';
     att.style.display = 'block';
     renderAttArea();
@@ -5479,7 +5494,7 @@ function registerSession(){
   const s = currentSession();
   if(sessionEnded(s)){ showMsg('sess-msg', 'یہ سیشن اختتام پذیر ہو چکا ہے — اس کی رجسٹریشن بند ہے۔', false); return; }
   if(s.closed){ showMsg('sess-msg', 'یہ سیشن اختتام پذیر ہو چکا ہے — اس کی رجسٹریشن بند ہے۔', false); return; }
-  updateUser(u.email, x => { x.sessionReg = true; logActivity(x, 'سیشن «' + s.title + '» میں رجسٹریشن کی'); });
+  updateUser(u.email, x => { const sid = sessionIdOf(s); x.sessionRegs = Object.assign({}, x.sessionRegs || {}, { [sid]: true }); x.sessionReg = true; logActivity(x, 'سیشن «' + s.title + '» میں رجسٹریشن کی'); });
   pushNotification(u.email, '✓ سیشن رجسٹریشن کی تصدیق',
     'آپ سیشن «' + s.title + '» میں رجسٹر ہو گئے ہیں — وقت: ' + s.when + '۔ سیشن کا لنک وقت پر ایپ و واٹس ایپ پر بھیج دیا جائے گا۔');
   showMsg('sess-msg', 'رجسٹریشن مکمل ہو گئی — تصدیق آپ کی «اطلاعات» میں بھی بھیج دی گئی ہے۔ سیشن کا لنک وقت پر مل جائے گا۔', true);
@@ -8891,7 +8906,7 @@ function adminStudentCardHtml(u){
     (u.incomplete ? ' <span class="tag ' + (u.incomplete.state === 'resubmitted' ? 'gold' : 'red') + '" style="cursor:pointer" title="نامکمل فیصلے کی تفصیل دیکھیں" onclick="openStudent(\'' + u.email + '\')">' + (u.incomplete.state === 'resubmitted' ? '🔁 کمی پوری — دوبارہ جائزہ کریں' : '📋 نامکمل قرار — ' + incompleteReasonText(u.incomplete.reason)) + ' ›</span>' : '') +
     (u.status === 'approved' ? ' <button class="btn sm ghost" onclick="openStudentIncomplete(\'' + u.email + '\')">نامکمل</button>' : '') +
     (u.admissionRoute ? ' <span class="tag' + (u.admissionRoute === 'madrasa' ? ' gold' : '') + '">ذریعۂ داخلہ: ' + routeLabel(u.admissionRoute) + '</span>' : '') +
-    '<br><span class="small">سیشن رجسٹریشن: ' + (u.sessionReg ? 'ہے' : 'نہیں') + ' • حاضری: ' + (u.sessionAtt ? 'لگی' : 'نہیں') + ' • کورس: ' + (u.courseReg ? 'رجسٹرڈ' : '—') + '</span>' +
+    '<br><span class="small">سیشن رجسٹریشن: ' + (isSessionRegistered(u, currentSession()) ? 'ہے' : 'نہیں') + ' • حاضری: ' + (isSessionAttended(u, currentSession()) ? 'لگی' : 'نہیں') + ' • کورس: ' + (u.courseReg ? 'رجسٹرڈ' : '—') + '</span>' +
     adminVisionHtml(u) +
     '<details style="margin-top:8px"><summary style="cursor:pointer;color:var(--c-primary-900);font-weight:bold">📋 سرگرمی لاگ (آڈٹ) — ' + urDigits((u.activity || []).length) + ' اندراجات</summary>' +
     '<div style="margin-top:4px">' + ((u.activity || []).length ? (u.activity || []).slice().reverse().map(a => '<div class="small" style="border-bottom:1px dashed var(--c-border);padding:2px 0">' + esc(a.date) + ' — ' + esc(a.txt) + '</div>').join('') : '<span class="small">کوئی سرگرمی درج نہیں</span>') + '</div></details>' +
@@ -9053,7 +9068,7 @@ function openStudent(email, notice){
     (u.status === 'approved' ? '<span class="tag">منظور شدہ ✓</span>' : '<span class="tag red">' + (u.status === 'rejected' ? 'مسترد شدہ' : 'منظوری باقی') + '</span>') +
     ' <span class="tag gold">🎓 ' + alumniStageLabel(alumniStage(u)) + '</span>' +
     (u.admissionRoute ? ' <span class="tag' + (u.admissionRoute === 'madrasa' ? ' gold' : '') + '">ذریعۂ داخلہ: ' + routeLabel(u.admissionRoute) + '</span>' : '') +
-    '<br><span class="small">سیشن رجسٹریشن: ' + (u.sessionReg ? 'ہے' : 'نہیں') + ' • حاضری: ' + (u.sessionAtt ? 'لگی' : 'نہیں') + ' • کورس: ' + (u.courseReg ? 'رجسٹرڈ' : '—') + '</span></div>' +
+    '<br><span class="small">سیشن رجسٹریشن: ' + (isSessionRegistered(u, currentSession()) ? 'ہے' : 'نہیں') + ' • حاضری: ' + (isSessionAttended(u, currentSession()) ? 'لگی' : 'نہیں') + ' • کورس: ' + (u.courseReg ? 'رجسٹرڈ' : '—') + '</span></div>' +
     '<div class="card"><h3 style="margin-top:0">📞 رابطہ</h3>' +
     '<span class="small">📧 ' + esc(studentEmail(u) || 'درج نہیں') + ' &nbsp;•&nbsp; 📱 واٹس ایپ: ' + esc(studentWaRaw(u) || 'درج نہیں') + '</span><br>' +
     '<span style="display:inline-block;margin:6px 0">' + contactBtnsHtml(u) + '</span>' +
@@ -9219,8 +9234,8 @@ function adminSetAttendance(){
      سرٹیفکیٹ جاری نہیں ہوتا (مفتی کی ہدایت 2026-10-24؛ حتمی سرٹیفکیٹ کورس کے
      اختتام پر مکمل حاضری کی بنیاد پر ایک ہی ملے گا) */
   const isCourse = !!(cs && cs.isCourseSession);
-  updateUser(email, u => { u.sessionReg = true; u.sessionAtt = true;
-    if(isCourse){ const sid = sessionIdOf(cs); u.courseAtt = Array.from(new Set([...(u.courseAtt || []), sid])); }
+  updateUser(email, u => { const sid = sessionIdOf(cs); u.sessionRegs = Object.assign({}, u.sessionRegs || {}, { [sid]: true }); u.sessionAtts = Object.assign({}, u.sessionAtts || {}, { [sid]: true }); u.sessionReg = true; u.sessionAtt = true;
+    if(isCourse){ u.courseAtt = Array.from(new Set([...(u.courseAtt || []), sid])); }
     else { u.certIssued = true; }
     logActivity(u, isCourse ? 'انتظامیہ نے ادارہ سازی کورس کی کلاس کی حاضری لگائی' : 'انتظامیہ نے سیشن حاضری لگائی — سرٹیفکیٹ جاری'); });
   if(isCourse){
@@ -9305,6 +9320,10 @@ function publishSession(){
     renderAdmin();
     return;
   }
+  /* پرانے بولین کی مقامی صفائی — اب سیشن کے فیصلے نقشوں (sessionRegs/
+     sessionAtts) سے ہوتے ہیں، اس لیے یہ صفر کرنا نئے سیشن کی رجسٹریشن پر
+     اثر نہیں ڈالتا؛ نیا سیشن نقشے میں اندراج نہ ہونے کی وجہ سے خودبخود
+     غیر رجسٹرڈ سے شروع ہوتا ہے۔ */
   const us = users(); us.forEach(x => { x.sessionReg = false; x.sessionAtt = false; x.certIssued = false; }); saveUsers(us);
   const list = DB.get('announcements', null) || SEED_ANNOUNCEMENTS.slice();
   /* سیشن اعلان کی میعاد: سیشن کی تاریخ + 1 دن (اعلانات کی میعاد لازمی ہے — مفتی کی ہدایت
