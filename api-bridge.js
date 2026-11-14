@@ -525,6 +525,17 @@ window.__fb = {
             } else { throw e; }
           }
         }
+        // Group-gate confirm (2026-11-14 fix): groupJoined used to be a
+        // local-only write — the bridge never forwarded it, so the next
+        // server re-sync wiped it and the gate reappeared on every login.
+        // Now it goes to its own endpoint and sticks on the server doc.
+        if (clean.groupJoined === true && !CURRENT_USER.groupJoined) {
+          try {
+            await api('/api/users/me/group-joined', { method: 'POST', body: {} });
+          } catch (e) {
+            console.warn('group-joined submit failed:', e && e.code);
+          }
+        }
         // Vision text (2026-10-30 fix): a changed visionSummary goes to
         // its own endpoint, which stores the text AND applies the
         // auto-verdict (approve / incomplete / borderline) server-side.
