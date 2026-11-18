@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Executive Summary — Maqamat</title>
+<title>Maqamat Executive Dashboard</title>
 <link rel="icon" href="https://maqamathub.com/wp-content/uploads/2026/10/transparent-maqamat-logo-blue.png">
 <style>
 *{box-sizing:border-box}
@@ -16,7 +16,7 @@ h2{font-size:17px;margin:22px 0 10px}
 .small{color:#5f6368;font-size:12px}
 button{font-size:14px;padding:9px 16px;margin:4px 4px 4px 0;cursor:pointer;border:1px solid #dadce0;background:#fff;border-radius:20px;color:#1a73e8}
 button.primary{background:#1a73e8;color:#fff;border-color:#1a73e8}
-input{font-size:15px;padding:10px;margin:4px 0;border:1px solid #dadce0;border-radius:8px;width:100%;max-width:420px}
+input,select{font-size:15px;padding:10px;margin:4px 0;border:1px solid #dadce0;border-radius:8px;width:100%;max-width:420px}
 .center{max-width:480px;margin:24px auto}
 .hero{text-align:center;padding:28px 8px 8px}
 .hero img{height:72px;width:auto}
@@ -37,7 +37,7 @@ th{background:#f8f9fa}
 <body>
 <header>
 <img src="https://maqamathub.com/wp-content/uploads/2026/10/transparent-maqamat-logo-blue.png" alt="Maqamat">
-<span class="t">Maqamat Tracker</span>
+<span class="t">Maqamat Executive Dashboard</span>
 </header>
 <main>
 <div id="gate" class="center">
@@ -53,11 +53,17 @@ th{background:#f8f9fa}
 <div id="summary" class="hidden">
   <h2>Summary</h2>
   <p><button class="primary" onclick="loadSummary()">⟳ Refresh</button> <span id="stamp" class="small"></span></p>
+  <p><label class="small" for="monthSel">Month</label><br>
+  <select id="monthSel" onchange="renderMonth()" style="max-width:280px"></select></p>
+  <p id="monthNote" class="small"></p>
   <div class="cards" id="execCards"></div>
   <h2>Payments</h2>
   <div class="cards" id="payCards"></div>
   <h2>Pipeline stages (Admission Progress)</h2>
   <div class="cards" id="stageCards"></div>
+  <h2>Monthly breakdown (by start month)</h2>
+  <p class="small">Start month = the month the client's booking payment arrived (the "Start Month" column in the Offer tab). Rows with no month yet are counted under "Not assigned yet".</p>
+  <div class="wrap" id="execByMonth"></div>
   <h2>Monthly form registrations</h2>
   <div class="wrap" id="execMonthly"></div>
 </div>
@@ -95,24 +101,65 @@ function loadSummary(){
 }
 function card(n,l,s){ return '<div class="card"><b>'+n+'</b><span>'+esc(l)+(s?"<br>"+esc(s):"")+"</span></div>"; }
 function renderSummary(j){
-  var c=j.candidates;
-  document.getElementById("execCards").innerHTML=
-    card(c.total,"Candidates registered",c.named+" named + "+c.unnamed+" no name yet")+
-    card(j.offer.received,"Offer letters received","of "+j.offer.total)+
-    card(j.offer.applied,"Offer letters applied","of "+j.offer.total)+
-    card(j.prog.total,"Admission in progress",j.prog.complete+" complete")+
-    card(j.done,"Admission done","")+
-    card(j.emgs,"EMGS received","")+
-    card(j.evisa,"eVisa received","");
-  document.getElementById("payCards").innerHTML=
-    card(j.payments.received,"Payments received","")+
-    card(j.payments.partial,"Payments partial","")+
-    card(fmtMoney(j.payments.money),"Payment received","")+
-    card(fmtMoney(j.payments.pending),"Payment remaining","");
-  document.getElementById("stageCards").innerHTML=j.stages.map(function(s){ return card(s.count,s.label,""); }).join("");
+  lastSummary=j;
+  var sel=document.getElementById("monthSel");
+  var cur=sel.value||"";
+  var opts='<option value="">All months</option>';
+  (j.byMonth||[]).forEach(function(m){
+    opts+='<option value="'+esc(m.key)+'">'+esc(m.label)+'</option>';
+  });
+  sel.innerHTML=opts;
+  sel.value=cur;
+  renderMonth();
+  var rows=(j.byMonth||[]).map(function(m){
+    return "<tr><td>"+esc(m.label)+"</td><td>"+m.offerReceived+"</td><td>"+m.offerApplied+"</td><td>"+m.progTotal+"</td><td>"+m.progComplete+"</td><td>"+m.done+"</td><td>"+m.payReceived+"</td><td>"+esc(fmtMoney(m.money))+"</td></tr>";
+  }).join("");
+  document.getElementById("execByMonth").innerHTML="<table><thead><tr><th>Month</th><th>Offer received</th><th>Offer applied</th><th>In progress</th><th>Complete</th><th>Done</th><th>Payments received</th><th>Money received</th></tr></thead><tbody>"+(rows||'<tr><td colspan="8">No data yet.</td></tr>')+"</tbody></table>";
   var mh=j.monthly||[];
   var body=mh.map(function(r){ return "<tr><td>"+esc(r.month)+"</td><td>"+r.count+"</td></tr>"; }).join("");
   document.getElementById("execMonthly").innerHTML="<table><thead><tr><th>Month</th><th>Registrations</th></tr></thead><tbody>"+(body||'<tr><td colspan="2">No registrations yet.</td></tr>')+"</tbody></table>";
+}
+var lastSummary=null;
+function renderMonth(){
+  var j=lastSummary; if(!j) return;
+  var key=document.getElementById("monthSel").value;
+  var m=null;
+  if(key!==""){ (j.byMonth||[]).forEach(function(x){ if(x.key===key) m=x; }); }
+  var c=j.candidates;
+  var note=document.getElementById("monthNote");
+  if(!m){
+    note.textContent="Showing all months together. Candidates are always all-time (they have no booking payment yet).";
+    document.getElementById("execCards").innerHTML=
+      card(c.total,"Candidates registered",c.named+" named + "+c.unnamed+" no name yet")+
+      card(j.offer.received,"Offer letters received","of "+j.offer.total)+
+      card(j.offer.applied,"Offer letters applied","of "+j.offer.total)+
+      card(j.prog.total,"Admission in progress",j.prog.complete+" complete")+
+      card(j.done,"Admission done","")+
+      card(j.emgs,"EMGS received","")+
+      card(j.evisa,"eVisa received","");
+    document.getElementById("payCards").innerHTML=
+      card(j.payments.received,"Payments received","")+
+      card(j.payments.partial,"Payments partial","")+
+      card(fmtMoney(j.payments.money),"Payment received","")+
+      card(fmtMoney(j.payments.pending),"Payment remaining","");
+    document.getElementById("stageCards").innerHTML=j.stages.map(function(s){ return card(s.count,s.label,""); }).join("");
+  } else {
+    note.textContent="Showing "+m.label+" only. Candidates are always all-time (they have no booking payment yet).";
+    document.getElementById("execCards").innerHTML=
+      card(c.total,"Candidates registered (all time)",c.named+" named + "+c.unnamed+" no name yet")+
+      card(m.offerReceived,"Offer letters received","of "+m.offerTotal+" in "+m.label)+
+      card(m.offerApplied,"Offer letters applied","of "+m.offerTotal+" in "+m.label)+
+      card(m.progTotal,"Admission in progress",m.progComplete+" complete")+
+      card(m.done,"Admission done","")+
+      card(m.emgs,"EMGS received","")+
+      card(m.evisa,"eVisa received","");
+    document.getElementById("payCards").innerHTML=
+      card(m.payReceived,"Payments received","")+
+      card(m.payPartial,"Payments partial","")+
+      card(fmtMoney(m.money),"Payment received","")+
+      card(fmtMoney(m.pending),"Payment remaining","");
+    document.getElementById("stageCards").innerHTML=m.stages.map(function(s){ return card(s.count,s.label,""); }).join("");
+  }
 }
 </script>
 </body>
