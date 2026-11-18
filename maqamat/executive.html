@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive Summary — Maqamat</title>
+<link rel="icon" href="https://maqamathub.com/wp-content/uploads/2026/10/transparent-maqamat-logo-blue.png">
+<style>
+*{box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;margin:0;color:#202124;background:#fff;font-size:14px;line-height:1.5}
+header{position:sticky;top:0;background:#fff;border-bottom:1px solid #dadce0;padding:8px 16px;display:flex;align-items:center;gap:12px;z-index:10}
+header img{height:40px;width:auto}
+header .t{font-size:18px;font-weight:bold}
+main{max-width:1060px;margin:0 auto;padding:16px}
+h2{font-size:17px;margin:22px 0 10px}
+.small{color:#5f6368;font-size:12px}
+button{font-size:14px;padding:9px 16px;margin:4px 4px 4px 0;cursor:pointer;border:1px solid #dadce0;background:#fff;border-radius:20px;color:#1a73e8}
+button.primary{background:#1a73e8;color:#fff;border-color:#1a73e8}
+input{font-size:15px;padding:10px;margin:4px 0;border:1px solid #dadce0;border-radius:8px;width:100%;max-width:420px}
+.center{max-width:480px;margin:24px auto}
+.hero{text-align:center;padding:28px 8px 8px}
+.hero img{height:72px;width:auto}
+.hero .t{font-size:22px;font-weight:bold;margin-top:10px}
+.hero .s{color:#5f6368;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:12px 0}
+.card{border:1px solid #dadce0;border-radius:12px;padding:14px}
+.card b{font-size:26px;display:block;color:#1a73e8}
+.card span{font-size:12px;color:#5f6368}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid #e8eaed;padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f8f9fa}
+.wrap{overflow-x:auto;border:1px solid #e8eaed;border-radius:12px}
+.hidden{display:none}
+@media (max-width:640px){ header img{height:32px} header .t{font-size:16px} main{padding:12px} .cards{grid-template-columns:repeat(2,1fr)} .card b{font-size:22px} .hero img{height:56px} }
+</style>
+</head>
+<body>
+<header>
+<img src="https://maqamathub.com/wp-content/uploads/2026/10/transparent-maqamat-logo-blue.png" alt="Maqamat">
+<span class="t">Maqamat Tracker</span>
+</header>
+<main>
+<div id="gate" class="center">
+  <div class="hero">
+    <img src="https://maqamathub.com/wp-content/uploads/2026/10/transparent-maqamat-logo-blue.png" alt="Maqamat">
+    <div class="t">Executive Summary</div>
+    <div class="s">High-level numbers only. No student names, no editing.</div>
+  </div>
+  <p><input id="email" type="text" placeholder="Enter your executive email" autocomplete="email" onkeydown="if(event.key==='Enter')openSummary()"></p>
+  <p><button class="primary" onclick="openSummary()">Continue</button></p>
+  <p id="gateMsg" class="small"></p>
+</div>
+<div id="summary" class="hidden">
+  <h2>Summary</h2>
+  <p><button class="primary" onclick="loadSummary()">⟳ Refresh</button> <span id="stamp" class="small"></span></p>
+  <div class="cards" id="execCards"></div>
+  <h2>Payments</h2>
+  <div class="cards" id="payCards"></div>
+  <h2>Pipeline stages (Admission Progress)</h2>
+  <div class="cards" id="stageCards"></div>
+  <h2>Monthly form registrations</h2>
+  <div class="wrap" id="execMonthly"></div>
+</div>
+</main>
+<script>
+var API="https://script.google.com/macros/s/AKfycbw09r90_ltFg4hpzcAr57WRdgStSv7rqUkjvlbzUQT_aDbaB_jOKVFsfgLXSiCkI-7e0g/exec";
+var execEmail="";
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function fmtMoney(x){ var p=[]; if(x.pkr) p.push("PKR "+x.pkr.toLocaleString()); if(x.rm) p.push("RM "+x.rm.toLocaleString()); return p.length?p.join(" + "):"—"; }
+function apiFetch(q){
+  return fetch(API+q).catch(function(){
+    var rel=location.href.split("?")[0];
+    return fetch(rel+q);
+  });
+}
+function openSummary(){
+  var em=document.getElementById("email").value.trim().toLowerCase();
+  var msg=document.getElementById("gateMsg");
+  if(!em){ msg.textContent="Please enter your email."; return; }
+  msg.textContent="Checking…";
+  execEmail=em;
+  loadSummary();
+}
+function loadSummary(){
+  var msg=document.getElementById("gateMsg");
+  apiFetch("?summary&email="+encodeURIComponent(execEmail)).then(function(r){ return r.json(); }).then(function(j){
+    if(!j.ok){ msg.textContent="This email is not an executive email."; return; }
+    msg.textContent="";
+    document.getElementById("gate").classList.add("hidden");
+    document.getElementById("summary").classList.remove("hidden");
+    renderSummary(j);
+    var now=new Date();
+    document.getElementById("stamp").textContent="Updated "+now.getHours()+":"+("0"+now.getMinutes()).slice(-2)+" · Live from sheet";
+  }).catch(function(){ msg.textContent="Could not reach Maqamat. Please check your connection and try again."; });
+}
+function card(n,l,s){ return '<div class="card"><b>'+n+'</b><span>'+esc(l)+(s?"<br>"+esc(s):"")+"</span></div>"; }
+function renderSummary(j){
+  var c=j.candidates;
+  document.getElementById("execCards").innerHTML=
+    card(c.total,"Candidates registered",c.named+" named + "+c.unnamed+" no name yet")+
+    card(j.offer.received,"Offer letters received","of "+j.offer.total)+
+    card(j.offer.applied,"Offer letters applied","of "+j.offer.total)+
+    card(j.prog.total,"Admission in progress",j.prog.complete+" complete")+
+    card(j.done,"Admission done","")+
+    card(j.emgs,"EMGS received","")+
+    card(j.evisa,"eVisa received","");
+  document.getElementById("payCards").innerHTML=
+    card(j.payments.received,"Payments received","")+
+    card(j.payments.partial,"Payments partial","")+
+    card(fmtMoney(j.payments.money),"Payment received","")+
+    card(fmtMoney(j.payments.pending),"Payment remaining","");
+  document.getElementById("stageCards").innerHTML=j.stages.map(function(s){ return card(s.count,s.label,""); }).join("");
+  var mh=j.monthly||[];
+  var body=mh.map(function(r){ return "<tr><td>"+esc(r.month)+"</td><td>"+r.count+"</td></tr>"; }).join("");
+  document.getElementById("execMonthly").innerHTML="<table><thead><tr><th>Month</th><th>Registrations</th></tr></thead><tbody>"+(body||'<tr><td colspan="2">No registrations yet.</td></tr>')+"</tbody></table>";
+}
+</script>
+</body>
+</html>

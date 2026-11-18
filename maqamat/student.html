@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Admission Status — Maqamat</title>
+<link rel="icon" href="https://maqamathub.com/wp-content/uploads/2026/10/transparent-maqamat-logo-blue.png">
+<style>
+*{box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;margin:0;color:#202124;background:#fff;font-size:14px;line-height:1.5}
+header{position:sticky;top:0;background:#fff;border-bottom:1px solid #dadce0;padding:8px 16px;display:flex;align-items:center;gap:12px;z-index:10}
+header img{height:40px;width:auto}
+header .t{font-size:18px;font-weight:bold}
+main{max-width:640px;margin:0 auto;padding:16px}
+h2{font-size:17px;margin:22px 0 10px}
+.small{color:#5f6368;font-size:12px}
+button{font-size:14px;padding:9px 16px;margin:4px 4px 4px 0;cursor:pointer;border:1px solid #dadce0;background:#fff;border-radius:20px;color:#1a73e8}
+button.primary{background:#1a73e8;color:#fff;border-color:#1a73e8}
+input{font-size:15px;padding:10px;margin:4px 0;border:1px solid #dadce0;border-radius:8px;width:100%;max-width:420px}
+.center{max-width:480px;margin:24px auto}
+.hero{text-align:center;padding:28px 8px 8px}
+.hero img{height:72px;width:auto}
+.hero .t{font-size:22px;font-weight:bold;margin-top:10px}
+.hero .s{color:#5f6368;font-size:14px}
+.steps{list-style:none;padding:0;margin:10px 0}
+.steps li{padding:10px 12px;border:1px solid #e8eaed;border-radius:10px;margin:6px 0;display:flex;gap:10px;align-items:center}
+.steps li .dot{font-size:18px;width:26px;text-align:center}
+.steps li.done{border-color:#ceead6;background:#e6f4ea}
+.steps li .st{margin-left:auto;color:#5f6368;font-size:12px}
+.note{border:1px solid #e8eaed;border-radius:12px;padding:14px;background:#f8f9fa}
+@media (max-width:640px){ header img{height:32px} header .t{font-size:16px} main{padding:12px} .hero img{height:56px} }
+</style>
+</head>
+<body>
+<header>
+<img src="https://maqamathub.com/wp-content/uploads/2026/10/transparent-maqamat-logo-blue.png" alt="Maqamat">
+<span class="t">Maqamat Tracker</span>
+</header>
+<main>
+<div class="center">
+  <div class="hero">
+    <img src="https://maqamathub.com/wp-content/uploads/2026/10/transparent-maqamat-logo-blue.png" alt="Maqamat">
+    <div class="t">My Admission Status</div>
+    <div class="s">Enter the email or WhatsApp number you gave Maqamat.<br>Only your own admission will be shown.</div>
+  </div>
+  <p><input id="key" type="text" placeholder="Email or WhatsApp number" autocomplete="email" onkeydown="if(event.key==='Enter')checkStatus()"></p>
+  <p><button class="primary" onclick="checkStatus()">Check my status</button></p>
+  <p id="msg" class="small"></p>
+  <div id="result"></div>
+  <p class="small" style="margin-top:24px">This page shows only your own admission. Nothing here can be edited — for any correction, contact Maqamat on WhatsApp +92 302 2150103.</p>
+</div>
+</main>
+<script>
+var API="https://script.google.com/macros/s/AKfycbw09r90_ltFg4hpzcAr57WRdgStSv7rqUkjvlbzUQT_aDbaB_jOKVFsfgLXSiCkI-7e0g/exec";
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function apiFetch(q){
+  return fetch(API+q).catch(function(){
+    var rel=location.href.split("?")[0];
+    return fetch(rel+q);
+  });
+}
+function checkStatus(){
+  var key=document.getElementById("key").value.trim();
+  var msg=document.getElementById("msg"), res=document.getElementById("result");
+  res.innerHTML="";
+  if(!key){ msg.textContent="Please enter your email or WhatsApp number."; return; }
+  msg.textContent="Checking…";
+  var q=key.indexOf("@")>=0?"?email="+encodeURIComponent(key):"?phone="+encodeURIComponent(key);
+  apiFetch(q).then(function(r){ return r.json(); }).then(function(j){
+    if(!j.ok){ msg.textContent="No admission found for this email or number. Please check what you entered, or contact Maqamat on WhatsApp."; return; }
+    msg.textContent="";
+    renderResult(j);
+  }).catch(function(){ msg.textContent="Could not reach Maqamat. Please check your connection and try again."; });
+}
+function renderResult(j){
+  var h="";
+  h+="<h2>"+esc(j.name)+"</h2>";
+  if(j.university||j.programme) h+="<p>"+esc(j.university||"")+(j.programme?" — "+esc(j.programme):"")+"</p>";
+  if(!j.started){
+    h+='<div class="note">Your admission has not started yet. Maqamat will update you once your process begins.</div>';
+    document.getElementById("result").innerHTML=h; return;
+  }
+  if(j.offerStatus) h+="<p><b>Offer letter:</b> "+esc(j.offerStatus)+"</p>";
+  if(j.stages && j.stages.length){
+    h+='<ul class="steps">';
+    j.stages.forEach(function(s){
+      h+='<li class="'+(s.done?"done":"")+'"><span class="dot">'+(s.done?"✓":"○")+'</span>'+esc(s.label)+'<span class="st">'+(s.done?"Done":"Pending")+"</span></li>";
+    });
+    h+="</ul>";
+  }
+  if(j.status) h+="<p><b>Status:</b> "+esc(j.status)+"</p>";
+  if(j.paymentStatus) h+="<p><b>Payment:</b> "+esc(j.paymentStatus)+(j.paymentReceived?" ("+esc(j.paymentReceived)+")":"")+"</p>";
+  document.getElementById("result").innerHTML=h;
+}
+</script>
+</body>
+</html>
