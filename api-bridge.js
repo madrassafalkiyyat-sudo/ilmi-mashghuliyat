@@ -504,12 +504,23 @@ window.__fb = {
           await api('/api/users/me/profile', { method: 'PATCH', body });
         }
         // Own state transitions (UI writes these onto the user doc).
-        if (clean.sessionReg === true && CURRENT_USER.sessionReg !== true) {
-          if (LAST_EVENT_SESSION) {
-            await api('/api/attendance/register', { method: 'POST', body: { sessionId: sessionIdOf(LAST_EVENT_SESSION) } });
-          } else {
-            console.warn('sessionReg write without a known live session — registration skipped');
-          }
+        // Session registration (2026-11-19 fix): route on the PER-SESSION
+        // map entry for the live session. The old trigger keyed only on the
+        // legacy sessionReg boolean flipping false->true — students whose
+        // server doc already carried sessionReg=true (23 Oct session) could
+        // never fire it, so their taps registered locally only and the
+        // server never recorded them (Hamid + Tauqeer, 19 Nov session).
+        // The map entry is the true signal; the legacy flip is kept as a
+        // fallback so first-time registrants still route. The POST is
+        // idempotent ($set), so one call covers both conditions.
+        const _sid = LAST_EVENT_SESSION && sessionIdOf(LAST_EVENT_SESSION);
+        const _mapReg = !!(_sid && clean.sessionRegs && clean.sessionRegs[_sid] === true
+          && !(CURRENT_USER.sessionRegs && CURRENT_USER.sessionRegs[_sid]));
+        const _legacyFlip = !!(clean.sessionReg === true && CURRENT_USER.sessionReg !== true);
+        if (_sid && (_mapReg || _legacyFlip)) {
+          await api('/api/attendance/register', { method: 'POST', body: { sessionId: _sid } });
+        } else if (!_sid && _legacyFlip) {
+          console.warn('sessionReg write without a known live session — registration skipped');
         }
         if (clean.courseReg === true && !CURRENT_USER.courseReg && !window.__COURSE_REG_CLOSED) {
           try {
